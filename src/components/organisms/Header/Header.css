@@ -1,0 +1,28 @@
+.top-page-header {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 20vh;
+    display: grid;
+    grid-template-columns: [col0-start] 5vw [col1] 20vw [col2] 25vw [col3] 25vw [col4] 20vw [col5] 5vw [col6-end];
+    grid-template-rows: [row0-start] 5vh [row1] 5vh [row2] 5vh [row3] 5vh [row4-end];
+    justify-items: center;
+}
+
+.top-page-header__title {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 4.8vw;
+    align-self: center;
+    font-weight: 500;
+}
+
+.search-bar {
+    /* width: 90vw; */
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    align-self: center;
+    /* grid-row-end: 4; */
+}
