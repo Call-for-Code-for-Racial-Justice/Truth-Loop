@@ -1,5 +1,5 @@
 import React , {Component, Fragment} from 'react';
-import { Search } from 'carbon-components-react';
+import { Search, TableSelectAll } from 'carbon-components-react';
     
 import './policyCatalog.scss';
 class Policycatalog extends Component {

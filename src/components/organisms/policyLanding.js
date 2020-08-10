@@ -1,7 +1,7 @@
 import React , {Component, Fragment} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './PolicyLanding.scss';
-import Policycatalog from './policyCatalog';
+import Policycatalog from '../atoms/policyCatalog';
 import { Search, TableSelectAll } from 'carbon-components-react';
 class PolicyLanding extends Component {
 	
