@@ -1,0 +1,39 @@
+.floatRight{
+    float: right;
+}
+.outerDiv{
+    margin: 10px;
+}
+.border{
+    padding: 0 5px 5px 10px;
+    /* border: 1px solid #eee; */
+    box-shadow: 0 4px #eee;
+  
+    border-left:1px solid #eee; 
+    border-right:1px solid #eee; 
+    border-bottom:1px solid #eee; 
+}
+.hrClassRed{
+    color:red;
+    width:48%;
+    display: inline-block;
+    border-top: 4px solid red;
+    margin: 0;
+}
+.hrClassBlue{
+    color:#00ccff;
+    width:30%;
+    display: inline-block;
+    border-top: 4px solid #00ccff;
+    margin: 0;
+}
+.hrClassYellow{
+    color:Yellow;
+    width:20%;
+    display: inline-block;
+    border-top: 4px solid yellow;
+    margin: 0;
+}
+.padding10{
+    padding: 10px 0;
+}
