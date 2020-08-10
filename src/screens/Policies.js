@@ -1,12 +1,15 @@
 import React, { useReducer } from "react";
+import Header from '../components/organisms/Header/Header'
 
 import "../App.css";
 
 const Policies = ({ category }) => {
 
     return (
-      <div>
-          <h2>policies</h2>
+      <div className="container">
+        <header className="App-header">
+          <Header category={category}/>
+        </header>
       </div>
     );
 };

@@ -7,7 +7,7 @@ const CategoryTab = ({categoryId, category}) => {
 
   return(
       <div className="column">
-          <Link to={"categoryId"}>
+          <Link to={categoryId}>
           <div className="ctg-button">
             {category}
             </div>

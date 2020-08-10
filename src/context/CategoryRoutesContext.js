@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PolicyRoutes from "../components/organisms/PolicyRoutes/PolicyRoutes"
+import PolicyRoutes from "./PolicyRoutes/PolicyRoutes"
 
 const cBank = require("../policyBank/PolicyBank");
 

@@ -1,6 +1,6 @@
 import React from "react";
-import {BrowserRouter as Route} from "react-router-dom";
-import Policies from '../../../screens/Policies'
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Policies from '../../screens/Policies'
 
 // import "../App.css";
 // const cBank = require("../policyBank/PolicyBank");
