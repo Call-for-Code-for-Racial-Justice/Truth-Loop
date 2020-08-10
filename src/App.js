@@ -1,37 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import Policycatalog from './policyCatalog';
-import { Search } from 'carbon-components-react';
+import PolicyLanding from './policyLanding';
+import { Search, TableSelectAll } from 'carbon-components-react';
 function App() {
+
+  
   return (
-    <>
-      <Search
-  id="search-1"
-  placeHolderText="Search"
-/>
-    <Policycatalog/>
-    <Policycatalog/>
-    <Policycatalog/>
-    <Policycatalog/>
-    <Policycatalog/>
-    </>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    <PolicyLanding/>
+   
   );
 }
 

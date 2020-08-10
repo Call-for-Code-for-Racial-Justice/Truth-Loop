@@ -25,11 +25,13 @@ class Policycatalog extends Component {
         <div class='border'>
           
 
-            <p class='padding10'>Nita Lowey</p>
-            <p class='padding10'>H.R. 6019: Cure the Coronavirus Act </p>
+
+
+            <p class='padding10'> {this.props.obj.name}</p>
+            <p class='padding10'> {this.props.obj.description} </p>
             <p class='padding10'>
               <span>Federal</span>  
-              <span class='floatRight'>Introduced: 11-08-2020</span>
+              <span class='floatRight'>Introduced: {this.props.obj.date}</span>
             </p>
         </div>
         </div>
