@@ -1,14 +1,19 @@
-import React, { Fragment } from 'react';
-// import logo from './logo.svg';
-import './App.scss';
-import PolicyLanding from './components/organisms/policyLanding';
-// import { Search, TableSelectAll } from 'carbon-components-react';
+import React from 'react';
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Home from "./screens/Home";
+import CategoryRoutesContext from "./context/CategoryRoutesContext"
+import './App.css';
+
 function App() {
 
   
   return (
-    <PolicyLanding/>
-   
+    <div className="App">
+      <Router>
+        <Route path="/" exact component={Home} />
+        <CategoryRoutesContext />
+      </Router>
+    </div>
   );
 }
 
