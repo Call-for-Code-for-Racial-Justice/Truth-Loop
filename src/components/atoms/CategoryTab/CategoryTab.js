@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-// import "../stylesheets/CategoryButton.css";
+import "./CategoryButton.css";
 
 
 const CategoryTab = ({categoryId, category}) => {
 
   return(
       <div className="column">
-          <Link to={categoryId}>
+          <Link className="ctg-button__title" to={categoryId}>
           <div className="ctg-button">
-            {category}
+            <h3>{category}</h3>
             </div>
           </Link>
       </div>

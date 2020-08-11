@@ -1,6 +1,8 @@
 import React from "react";
 import Header from '../components/organisms/Header/Header'
 
+import '../App.css';
+
 import CategoryTabContext from '../context/CategoryTabContext'
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import CategoryTab from "../components/atoms/CategoryTab"
+import CategoryTab from "../components/atoms/CategoryTab/CategoryTab"
 
 const cBank = require("../policyBank/PolicyBank");
 
