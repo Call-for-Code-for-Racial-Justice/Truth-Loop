@@ -5,6 +5,7 @@
     grid-template-columns: [col0-start] 5vw [col1] 10vw [col2] 35vw [col3] 35vw [col4] 10vw [col5] 5vw [col6-end];
     grid-template-rows: [row0-start] 5vh [row1] 5vh [row2] 4vh [row3] 1vh [row4] 5vh [row4-end];
     justify-items: center;
+    margin-bottom: 8vw;
 }
 
 .top-page-header__title {
@@ -35,6 +36,6 @@
 }
 
 .bx--search-input {
-    background-color: white;
+    background-color: whitesmoke;
     width: 90vw;
 }

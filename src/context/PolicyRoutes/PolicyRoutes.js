@@ -10,7 +10,7 @@ const PolicyRoutes = ({categoryId, category}) => {
 
   return(
       <div>
-          <Route exact path={pathName} render={(props) => <Policies {...props} category={category}/>} />
+          <Route exact path={pathName} render={(props) => <Policies {...props} pathName={pathName} category={category}/>} />
       </div>
 )
   };
