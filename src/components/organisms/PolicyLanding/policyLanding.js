@@ -72,9 +72,12 @@ class PolicyLanding extends Component {
 }
 </>
           </Route>
-          <Route path="/policydetails">
-          <Polictydetails/>
-          </Route>
+          <Route exact path="/policydetails" component={Polictydetails} />
+          {/* <Polictydetails/>
+          </Route> */}
+            <Link to="/policydetails">
+              <Polictydetails/>
+            </Link>
           
           </Switch>
       

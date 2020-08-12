@@ -40,8 +40,7 @@ class PolicyDetails extends Component {
             <p class='pLeft'>
                 Passed House (Senate next) on Jul 20,2020
             </p>
-            <div >
-            <Link to="/" class='link'>Full text  &nbsp; &nbsp; &nbsp;<Launch20 /></Link>
+            <div className='link'>Full text  &nbsp; &nbsp; &nbsp;<Launch20 />
             </div>
         </div>
         <div class='divSentiment'>
