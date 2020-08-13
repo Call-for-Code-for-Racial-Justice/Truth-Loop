@@ -67,3 +67,29 @@ color: white;
         padding: 10px 0;
         letter-spacing: 1px;
     }
+    .footer2{
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #333;
+        position: fixed;
+       bottom: 0;
+        left: 0;
+        width: 100%;
+        color:white;
+        font-size: 0.99rem;
+      }
+      .footer1{
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: blue;
+        position: fixed;
+       bottom: 47px;
+        left: 0;
+        width: 100%;
+        color:white;
+        font-size: 0.99rem;
+      }
+     
+      .dummydiv{
+        height: 100px;
+      }

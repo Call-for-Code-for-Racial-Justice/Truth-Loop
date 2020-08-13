@@ -9,7 +9,7 @@ import {
     Link,
     Redirect,withRouter
   } from "react-router-dom";
-  import { Launch20 ,Watson20} from '@carbon/icons-react';
+  import { Launch20 ,Watson20, VideoAdd20,VideoFilled20} from '@carbon/icons-react';
   import {Accordion, AccordionItem  } from 'carbon-components-react';
 class PolicyDetails extends Component {
 	
@@ -28,6 +28,7 @@ class PolicyDetails extends Component {
         let widthYellowopac=(100-parseInt(widthYellow))+'%';
         return(
        <>
+       <div>
         <div class='DescDiv'>
             <p class='pLeft'>Federal</p>
             <p class='mainData'>
@@ -70,6 +71,19 @@ class PolicyDetails extends Component {
            <AccordionItem  title='Status history' ></AccordionItem>
            <AccordionItem  title='Related policies' ></AccordionItem>
            </Accordion>
+           <div className='dummydiv'></div>
+           </div>
+           
+           {/* <Footer text='Tell my story' style={{bottom:'46px;'}} /> */}
+             <div className="footer1" >
+                <span>Tell my story</span>
+                <VideoAdd20  class='floatRight'/>
+                </div>
+                <div className="footer2" >
+                <span>See policy testimonials</span>
+                <VideoFilled20  class='floatRight' style={{color: 'white;'}}/>
+            </div>
+           {/* <Footer text='See policy testomenials'  style={{bottom:'0;'}}/> */}
            </>
         )
     }
