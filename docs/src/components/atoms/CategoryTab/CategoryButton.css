@@ -1,0 +1,9 @@
+.ctg-button {
+    padding: 32px;
+    border-top: 1px solid #bebebe;
+    color: black;
+}
+
+.ctg-button__title {
+    text-decoration: none!important;
+}

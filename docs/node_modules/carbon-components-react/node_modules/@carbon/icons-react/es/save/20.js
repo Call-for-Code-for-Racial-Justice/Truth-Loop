@@ -1,0 +1,74 @@
+import { getAttributes } from '@carbon/icon-helpers';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+var defaultStyle = {
+  "willChange": "transform"
+};
+var Save20 = React.forwardRef(function (_ref, ref) {
+  var className = _ref.className,
+      children = _ref.children,
+      style = _ref.style,
+      tabIndex = _ref.tabIndex,
+      rest = _objectWithoutProperties(_ref, ["className", "children", "style", "tabIndex"]);
+
+  var _getAttributes = getAttributes(_objectSpread({}, rest, {
+    tabindex: tabIndex
+  })),
+      tabindex = _getAttributes.tabindex,
+      props = _objectWithoutProperties(_getAttributes, ["tabindex"]);
+
+  if (className) {
+    props.className = className;
+  }
+
+  if (tabindex !== undefined && tabindex !== null) {
+    props.tabIndex = tabindex;
+  }
+
+  if (_typeof(style) === 'object') {
+    props.style = _objectSpread({}, defaultStyle, style);
+  } else {
+    props.style = defaultStyle;
+  }
+
+  if (ref) {
+    props.ref = ref;
+  }
+
+  return React.createElement('svg', props, children, React.createElement('path', {
+    d: 'M17.8 5.5l-3.3-3.3c-.2-.1-.3-.2-.5-.2H3.3C2.6 2 2 2.6 2 3.3v13.3c0 .8.6 1.4 1.3 1.4h13.3c.7 0 1.4-.5 1.4-1.2V6.1c0-.4-.1-.4-.2-.6zM7.3 3.3h5.3v3.3H7.3V3.3zm5.4 13.4H7.3v-5.3h5.3l.1 5.3zm1.3 0v-5.3c0-.7-.6-1.3-1.3-1.3H7.3c-.7-.1-1.3.5-1.3 1.2v5.3H3.3V3.3H6v3.3C6 7.4 6.6 8 7.3 8h5.3c.8 0 1.4-.6 1.4-1.3v-3l2.7 2.7v10.4l-2.7-.1z'
+  }));
+});
+Save20.displayName = 'Save20';
+Save20.propTypes = {
+  'aria-hidden': PropTypes.bool,
+  'aria-label': PropTypes.string,
+  'aria-labelledby': PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  height: PropTypes.number,
+  preserveAspectRatio: PropTypes.string,
+  tabIndex: PropTypes.string,
+  viewBox: PropTypes.string,
+  width: PropTypes.number,
+  xmlns: PropTypes.string
+};
+Save20.defaultProps = {
+  width: 20,
+  height: 20,
+  viewBox: '0 0 20 20',
+  xmlns: 'http://www.w3.org/2000/svg',
+  preserveAspectRatio: 'xMidYMid meet'
+};
+
+export default Save20;
