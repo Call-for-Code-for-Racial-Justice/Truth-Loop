@@ -20,6 +20,7 @@
    1. [Getting started](#getting-started)
    1. [Contributing](#contributing)
 1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
+1. [Fortification Plan](#fortification-plan)
 
 ---
 ### Short description
@@ -94,8 +95,7 @@ pertinent PR&L, and submission of video testimonials
  - **Privacy Notice(s):** A notice informing data subjects of the purpose of the processing, as well as the rights of the data subjects, is required. Otherwise, this would be a breach;
  - **Controller:** Processor obligations – IBM will act as both a Controller – determining the purpose of the processing – and as a Processor.  Accordingly, obligations are two-fold.  
 
- 
-
+![privacy map](images/privacy-map.png)
 
 ---
 ### Skills
@@ -137,10 +137,6 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ---
 ### Future Enhancements and Undecided Aspects of the Solution
-**----> TODO: point 8 in the starter kit instructions**
-> Suggestions on how to take the idea in other directions - this points developer/organizations in ways to connect the dots and create solutions to address other use cases; e.g. swapping out data sets
-
-**talk about some of the extensions, dilemmas and technical issues we've talked about but didn't completely cover**
 
 Currently, the back end and front end of the application have been developed in isolation due to the experience of developers within the team. Therefore, the first step in contribution would be to route the back end database to allow viewing and filtering of policies on the front end through API calls.
 
@@ -155,3 +151,12 @@ One functionality that has caused technical issues is the implementation of the 
 - **moderation of uploaded videos/text:** how is video or accompanying text reviewed to ensure community guidelines are being followed, and that users are misusing functionalities? Applications of moderation can include profanity detection, manual moderation via user admins, or through flagging and reporting of user content. Furthermore, consideration should be made to assess whether these implementations address the spirit of the solution, e.g. how to distinguish the software from social media settings where users already share political views. 
 - **Natural Language technology:** Work has already begun on refining a pipeline to extract text from video submissions to implement tone analysis, which will help to identify various characteristics and give more meaning to the video testimonials from users. Further expansion can be made to analyse profanity and inappropriate language submitted by users, to address moderation of user content.
 
+
+---
+### Fortification Plan
+
+A Boxnote containing our [Fortification Plan](https://ibm.box.com/s/eevvdjtokxy23faaesj0kydm2vvyrj5a) which outlines:
+
+ - Team members that are available to complete the below items and additional help needed to our OM; what platform, software, product naming and user experience expertise is needed to ensure the solution is robust and meets outlined criteria
+ - Ideas on the user experience of developers, end users, public and private beneficiaries, and subject matter experts who would access and contribute to our solution
+ - A draft of our high level test plan, which includes which preferred external partners we could work with to test our solution 
