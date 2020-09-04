@@ -13,7 +13,6 @@
    1. [How can technology help?](#how-can-technology-help)
 1. [The Idea](#the-idea)
    1. [A successful implementation](#a-successful-implementation)
-      1. [Privacy Concerns](#privacy-concerns)
 1. [Skills](#skills)
 1. [Reference Materials](#reference-materials)
 1. [The Architecture](#the-architecture)
@@ -22,7 +21,7 @@
    1. [Contributing](#contributing)
 1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
 1. [Fortification Plan](#fortification-plan)
-
+1. [Privacy Considerations](#privacy-concerns)
 ---
 ### Short description
 
