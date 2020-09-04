@@ -1,6 +1,7 @@
 [hi-level-arch]: images/architectural-diagram.png "High Level Architecture"
 [components]: images/components.jpg "Components"
 [PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
+[openshift]: images/openshift.png "OpenShift Console"
 
 # Team Truth
 ## Truth in Legislation
@@ -99,8 +100,19 @@ pertinent PR&L, and submission of video testimonials
 
 ---
 ### Skills
-**----> TODO: point 4 in the starter kit instructions**
-> Skills and IBM Cloud or open source services - what are the key technology areas an external developer needs to know in order to build upon this idea? Please be sure to call out the open source technologies it would leverage.
+
+- familiarity with cloud operations
+- object storage (called Cloud Object Storage in IBM Cloud, identical to AWS S3)
+- Kubernetes, possibly OpenShift
+- Node JS, React JS, Express JS
+- PostgreSQL
+- Javascript
+- SQLWorking on this solution as it stands will require an IBM Cloud account - free tier.
+In initial sandbox development we did have the opportunity to use OpenShift as a deployment
+environment.
+![openshift]Openshift makes it *easier* to deploy the Node application deployments and the Postgres
+database, but would not be essential.  An IBM Cloud with a Kubernetes cluster
+and an instance of Postgres would be sufficient.
 
 The software leverages all open-source technologies for core development, which is built upon the PERN stack (PostgreSQL, Express, React, and Nodejs). The framework itself relies on knowledge of Javascript as a required skill from the developer. For populating and working with the database, basic SQL skills are enough to get started with the current data model.
    
@@ -142,8 +154,8 @@ Currently, the back end and front end of the application have been developed in 
 
 One functionality that has caused technical issues is the implementation of the video testimonial uploading for different policies. Various approaches have been researched, including use of a no-streaming solution using Cloud Object Storage to call stored videos to be downloaded and then played back to the user, upon loading of the page. As the videos will have a restriction of 60 second time limits, optimisation can be made to minimise the overhead of waiting to download the entire video before playback. This implementation is certainly feasible, however it is not scalable when taking into account users with potentially weaker network connections.
 
-- deployment (hosted or independent deployments)
-- customizing instance if hosted
+- **deployment:** As of this time it is unclear whether this would be hosted in IBM Cloud and enhanced there by contributors (a Reddit model), or supplied as open source for independent hosting.
+- **customizing instance if hosted:** We had not yet discussed options for customizing individual instances of this solution.  If hosted, we could certainly provide the means to customize the UI of the application. If independently hosted, of course, the implementers could customize it themselves.
 - **security:** an efficient expansion to secure data storage (particularly regarding the video implementation) is required to ensure all user data is kept safe. Implementation of user accounts that safely store user data may even assist in developing a more convenient solution, however the privacy implications that comes with this should also be assessed.
 - **privacy concerns around videos and location information:** consideration of the metadata around user testimonials will be essential in providing a solution that focuses on privacy risks.
 - **sourcing legislation information:** several data sources will be required to adapt the solution for all locales, therefore expansion of this project will be impacted massively by taking into account the structures of legislation from other countries. 
