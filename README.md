@@ -85,7 +85,8 @@ pertinent PR&L, and submission of video testimonials
 ### Skills
 **----> TODO: point 4 in the starter kit instructions**
 > Skills and IBM Cloud or open source services - what are the key technology areas an external developer needs to know in order to build upon this idea? Please be sure to call out the open source technologies it would leverage.
-   The software leverages all open-source technologies for core development, which is built upon the PERN stack (PostgreSQL, Express, React, and Nodejs). The framework itself relies on knowledge of Javascript as a required skill from the developer. For populating and working with the database, basic SQL skills are enough to get started with the current data model.
+
+The software leverages all open-source technologies for core development, which is built upon the PERN stack (PostgreSQL, Express, React, and Nodejs). The framework itself relies on knowledge of Javascript as a required skill from the developer. For populating and working with the database, basic SQL skills are enough to get started with the current data model.
    
 
 ---
@@ -124,6 +125,11 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 > Suggestions on how to take the idea in other directions - this points developer/organizations in ways to connect the dots and create solutions to address other use cases; e.g. swapping out data sets
 
 **talk about some of the extensions, dilemmas and technical issues we've talked about but didn't completely cover**
+
+Currently, the back end and front end of the application have been developed in isolation due to the experience of developers within the team. Therefore, the first step in contribution would be to route the back end database to allow viewing and filtering of policies on the front end through API calls.
+
+One functionality that has caused technical issues is the implementation of the video testimonial uploading for different policies. Various approaches have been researched, including use of a no-streaming solution using Cloud Object Storage to call stored videos to be downloaded and then played back to the user, upon loading of the page. As the videos will have a restriction of 60 second time limits, optimisation can be made to minimise the overhead of waiting to download the entire video before playback. This implementation is certainly feasible, however it is not scalable when taking into account users with potentially weaker network connections.
+
 - deployment (hosted or independent deployments)
 - customizing instance if hosted
 - **security:** an efficient expansion to secure data storage (particularly regarding the video implementation)
