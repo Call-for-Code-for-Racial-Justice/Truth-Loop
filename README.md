@@ -85,6 +85,8 @@ pertinent PR&L, and submission of video testimonials
 ### Skills
 **----> TODO: point 4 in the starter kit instructions**
 > Skills and IBM Cloud or open source services - what are the key technology areas an external developer needs to know in order to build upon this idea? Please be sure to call out the open source technologies it would leverage.
+   The software leverages all open-source technologies for core development, which is built upon the PERN stack (PostgreSQL, Express, React, and Nodejs). The framework itself relies on knowledge of Javascript as a required skill from the developer. For populating and working with the database, basic SQL skills are enough to get started with the current data model.
+   
 
 ---
 ### Reference Materials
@@ -124,9 +126,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 **talk about some of the extensions, dilemmas and technical issues we've talked about but didn't completely cover**
 - deployment (hosted or independent deployments)
 - customizing instance if hosted
-- security
+- **security:** an efficient expansion to secure data storage (particularly regarding the video implementation)
 - privacy issues around videos and location information
-- the challenges of sourcing legislation information
+- **sourcing legislation information:** several data sources will be required to adapt the solution for all locales, therefore expansion of this project will be impacted massively by taking into account the structures of legislation from other countries. 
 - policy upload - who provides the implementation
 - who does the work of curating
 - how is video or accompanying text reviewed or moderated
