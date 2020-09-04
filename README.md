@@ -143,15 +143,18 @@ The software leverages all open-source technologies for core development, which 
 
 ---
 ### Working Code
-**----> TODO: point 7 in the starter kit instructions**
-> Working code - details on how to get started (i.e. register for a cloud account and choose a common service) and how to assemble the building blocks of your solution using IBM and open source technology. 
+- Developers will need access to the front end (this) and back end Git repos
+https://github.com/embrace-call-for-code/policy-truth-frontend
+https://github.com/embrace-call-for-code/policy-truth-backend
+- Individuals working on the CI/CD portion of the development will need access to
+the IBM Cloud and/or OpenShift consoles
+- Individuals working directly with the database will either need to configure remote
+connection to the database instance
 
 #### Getting started
-**----> TODO: See if this linked document is still accurate given any discoveries you've made**
-
 Instructions to get you a copy of the project up and running on your local machine for development and testing purposes can be found [here](docs/README.md).
 
-##### Contributing
+#### Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ---
