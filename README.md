@@ -76,11 +76,6 @@ site owners to curate the PR&L information
 pertinent PR&L, and submission of video testimonials
 - build a mechanism by which information about the video testimonials gets stored within the system,
 
-#### A successful implementation
-**----> TODO: point 3, part 2 of starter kit instructions**
-> provide guidance to the developer (if you were to take on the challenge, this is what would prove success that you made a great application; standards/protocols; documents)```
-
-
 
 ##### Privacy concerns
 
