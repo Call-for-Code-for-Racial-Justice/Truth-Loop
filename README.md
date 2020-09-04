@@ -119,8 +119,15 @@ The software leverages all open-source technologies for core development, which 
 
 ---
 ### Reference Materials
-**----> TODO: point 5 in the starter kit instructions**
-> links to ibm cloud documentation, video technology, cloud object storage, openshift, node, react, express, postgres, video post-processing technologies in Watson, etc.. whatever is relevant to a developer
+
+- [IBM Cloud Documentation Home](https://cloud.ibm.com/docs/home/alldocs)
+- [Kubernetes in IBM Cloud](https://cloud.ibm.com/docs/containers?topic=containers-cs_cluster_tutorial)
+- [PostgreSQL](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started)
+- [OpenShift](https://cloud.ibm.com/docs/openshift?topic=openshift-getting-started)
+- [PERN](https://www.geeksforgeeks.org/what-is-pern-stack/)
+- [NodeJS](https://nodejs.org/en/docs/)
+- [ExpressJS](https://expressjs.com/)
+- [ReactJS](https://reactjs.org/)
 
 ---
 ### The Architecture
