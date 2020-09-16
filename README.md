@@ -9,15 +9,15 @@
 ### Team Members
 
 Developers:
-Peter Ihlenfeldt
-Bimsara Pilapitiya
-Joe Konathapally
-Khadija Al-Selini
-Abiola Jones
-Ya Jiao Zheng
-Aakansha Agrawal
-Parisa Babaali
-Rahul Caller
+Peter Ihlenfeldt, 
+Bimsara Pilapitiya, 
+Joe Konathapally, 
+Khadija Al-Selini, 
+Abiola Jones, 
+Ya Jiao Zheng, 
+Aakansha Agrawal, 
+Parisa Babaali, 
+Rahul Caller, 
 
 Architect:
 Boz Bosma
@@ -32,7 +32,7 @@ User Research:
 Kimberly Cassidy
 
 SMEs:
-Michelle Esselen
+Michelle Esselen, 
 Frank Madden
 
 
