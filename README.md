@@ -6,6 +6,36 @@
 # Team Truth
 ## Truth in Legislation
 
+### Team Members
+
+Developers:
+Peter Ihlenfeldt
+Bimsara Pilapitiya
+Joe Konathapally
+Khadija Al-Selini
+Abiola Jones
+Ya Jiao Zheng
+Aakansha Agrawal
+Parisa Babaali
+Rahul Caller
+
+Architect:
+Boz Bosma
+
+Product Manager:
+Sharon Osahon 
+
+Designer:
+Stephanie Daher
+
+User Research:
+Kimberly Cassidy
+
+SMEs:
+Michelle Esselen
+Frank Madden
+
+
 ### Contents
 
 1. [Short description](#short-description)
