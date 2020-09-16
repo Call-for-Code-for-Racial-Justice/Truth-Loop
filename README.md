@@ -8,7 +8,7 @@
 
 ### Team Members
 
-Developers:
+#### Developers:
 Peter Ihlenfeldt, 
 Bimsara Pilapitiya, 
 Joe Konathapally, 
@@ -19,19 +19,19 @@ Aakansha Agrawal,
 Parisa Babaali, 
 Rahul Caller, 
 
-Architect:
+#### Architect:
 Boz Bosma
 
-Product Manager:
+#### Product Manager:
 Sharon Osahon 
 
-Designer:
+#### Designer:
 Stephanie Daher
 
-User Research:
+#### User Researcher:
 Kimberly Cassidy
 
-SMEs:
+#### SMEs:
 Michelle Esselen, 
 Frank Madden
 
