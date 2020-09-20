@@ -17,7 +17,7 @@ Abiola Jones,
 Ya Jiao Zheng, 
 Aakansha Agrawal, 
 Parisa Babaali, 
-Rahul Caller, 
+Rahul Kalluri
 
 #### Architect:
 Boz Bosma
