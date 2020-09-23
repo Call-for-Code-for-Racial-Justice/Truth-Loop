@@ -2,6 +2,7 @@
 [components]: images/components.jpg "Components"
 [PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [openshift]: images/openshift.png "OpenShift Console"
+[erd]: images/team-truth-erd-20200923T1642Z.png "Database ERD"
 
 # Team Truth
 ## Truth in Legislation
@@ -12,10 +13,7 @@
 Peter Ihlenfeldt, 
 Bimsara Pilapitiya, 
 Joe Konathapally, 
-Khadija Al-Selini, 
-Abiola Jones, 
 Ya Jiao Zheng, 
-Aakansha Agrawal, 
 Parisa Babaali, 
 Rahul Kalluri
 
@@ -146,6 +144,9 @@ The software leverages all open-source technologies for core development, which 
 ---
 **The information to be stored in the system**
 ![PRL-data]
+---
+**The data structure**
+![erd]
 ---
 **The components of the system** 
 ![components]
