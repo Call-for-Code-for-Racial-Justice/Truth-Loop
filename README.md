@@ -2,7 +2,7 @@
 [components]: images/components.jpg "Components"
 [PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [openshift]: images/openshift.png "OpenShift Console"
-[erd]: images/team-truth-erd-20200923T1642Z.png "Database ERD"
+[erd]: images/team-truth-erd-20200924T0210Z.png "Database ERD"
 
 # Team Truth
 ## Truth in Legislation
