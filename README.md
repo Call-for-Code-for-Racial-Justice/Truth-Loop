@@ -2,7 +2,7 @@
 [components]: images/components.jpg "Components"
 [PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [openshift]: images/openshift.png "OpenShift Console"
-[erd]: images/team-truth-erd-20200924T0210Z.png "Database ERD"
+[erd]: images/erd.png "Database ERD"
 
 # Team Truth
 ## Truth in Legislation
@@ -139,9 +139,6 @@ The software leverages all open-source technologies for core development, which 
 ---
 ### The Architecture
 
-**A high-level depiction of the solution's intent**
-![hi-level-arch]
----
 **The information to be stored in the system**
 ![PRL-data]
 ---
