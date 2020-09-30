@@ -3,6 +3,7 @@
 [PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [openshift]: images/openshift.png "OpenShift Console"
 [erd]: images/erd.png "Database ERD"
+[dataflow]: images/dataflow.png "Data flow"
 
 # Team Truth
 ## Truth in Legislation
@@ -147,6 +148,9 @@ The software leverages all open-source technologies for core development, which 
 ---
 **The data structure**
 ![erd]
+---
+**The data flow**
+![dataflow]
 ---
 **The components of the system** 
 ![components]
