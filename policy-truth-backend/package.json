@@ -1,0 +1,30 @@
+{
+  "name": "policy-truth-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/embrace-call-for-code/policy-truth-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/embrace-call-for-code/policy-truth-backend/issues"
+  },
+  "homepage": "https://github.com/embrace-call-for-code/policy-truth-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^5.0.0",
+    "pg": "^8.3.0",
+    "pino": "^6.5.0",
+    "ustream-sdk": "^1.11.1"
+  }
+}
