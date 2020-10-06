@@ -117,7 +117,7 @@ router.get('/name/:name', (request, response) => {
  * summary: Creates a category object
  * tags:
  *   - Categories
-* parameters:
+ * parameters:
  *   - in: body
  *     schema:
  *       $ref: "#/components/schemas/Category"
