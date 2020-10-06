@@ -25,6 +25,8 @@
     "express-pino-logger": "^5.0.0",
     "pg": "^8.3.0",
     "pino": "^6.5.0",
+    "swagger-inline": "^3.2.0",
+    "swagger-ui-express": "^4.1.4",
     "ustream-sdk": "^1.11.1"
   }
 }
