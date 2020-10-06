@@ -1,0 +1,9 @@
+{
+  "openapi": "3.0.1",
+  "host": "legislative_artifcats.swagger.io",
+  "schemes": ["http"],
+  "info": {
+    "title": "Legislative Artifacts Service API",
+    "version": "0.1"
+  }
+}

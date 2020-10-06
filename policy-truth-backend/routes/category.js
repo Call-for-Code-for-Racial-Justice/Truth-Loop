@@ -1,7 +1,24 @@
 const logger = require('../logger').logger
 const categoryDB = require('../db/category')
+var express = require('express');
+var router = express.Router();
 
-const getCategories = (request, response) => {
+ /**
+ * @api [get] /category
+ * summary: Get a list of category objects
+ * tags:
+ *   - Categories
+ * responses:
+ *   200:
+ *     description: A list of category objects
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: "#/components/schemas/Category"
+ */
+router.get('/', (request, response) => {
     categoryDB.getCategories((error, results) => {
         if (error) {
             logger.error("fail to retrieve categories: %s", error)
@@ -12,9 +29,30 @@ const getCategories = (request, response) => {
             response.status(200).json(results.rows)
         }
     })
-}
+})
 
-const getCategoryById = (request, response) => {
+/**
+ * @api [get] /category/{id}
+ * summary: Get an category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: string
+ *     description: The category ID
+ * responses:
+ *   200:
+ *     description: Category object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   404:
+ *     description: No Category object exists for that id
+ */
+router.get('/:id', (request, response) => {
     const id = parseInt(request.params.id)
     categoryDB.getCategoryById(id, (error, results) => {
         if (error) {
@@ -32,9 +70,30 @@ const getCategoryById = (request, response) => {
             }
         }
     })
-}
+})
 
-const getCategoryByName = (request, response) => {
+/**
+ * @api [get] /category/name/{name}
+ * summary: Get a category object by name
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: name
+ *     schema:
+ *       type: string
+ *     description: The category name
+ * responses:
+ *   200:
+ *     description: Category object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   404:
+ *     description: No Category object exists for that name
+ */
+router.get('/name/:name', (request, response) => {
     categoryDB.getCategoryByName(request.params.name, (error, results) => {
         if (error) {
             logger.error("fail to retrieve category with name %s: %s", request.params.name, error)
@@ -51,9 +110,28 @@ const getCategoryByName = (request, response) => {
             }
         }
     })
-}
+})
 
-const createCategory = (request, response) => {
+/**
+ * @api [post] /category
+ * summary: Creates a category object
+ * tags:
+ *   - Categories
+* parameters:
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/Category"
+ * responses:
+ *   201:
+ *     description: CategoryCategory object added
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   400:
+ *     description: Bad request
+ */
+router.post('/', (request, response) => {
     categoryDB.createCategory(request.body, (error, results) => {
         if (error) {
             logger.error("fail to create category: %s", error)
@@ -64,9 +142,33 @@ const createCategory = (request, response) => {
             response.status(201).json(results.rows[0])
         }
     })
-}
+})
 
-const updateCategory = (request, response) => {
+/**
+ * @api [put] /category
+ * summary: Updates a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: string
+ *     description: The category ID
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/Category"
+ * responses:
+ *   200:
+ *     description: CategoryCategory object updated
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   400:
+ *     description: Bad request
+ */
+router.put('/:id', (request, response) => {
     const id = parseInt(request.params.id)
     categoryDB.updateCategory(id, request.body, (error, results) => {
         if (error) {
@@ -86,9 +188,30 @@ const updateCategory = (request, response) => {
             }
         }
     })
-}
+})
 
-const deleteCategory = (request, response) => {
+/**
+ * @api [delete] /category/{id}
+ * summary: Deletes a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: string
+ *     description: The category ID
+ * responses:
+ *   200:
+ *     description: Category object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   404:
+ *     description: No Category object exists for that id
+ */
+router.delete('/:id', (request, response) => {
     const id = parseInt(request.params.id)
     categoryDB.deleteCategory(id, (error, results) => {
         if (error) {
@@ -108,13 +231,6 @@ const deleteCategory = (request, response) => {
             }
         }
     })
-}
+})
 
-module.exports = {
-    getCategories,
-    getCategoryById,
-    getCategoryByName,
-    createCategory,
-    updateCategory,
-    deleteCategory,
-}
+module.exports = router
