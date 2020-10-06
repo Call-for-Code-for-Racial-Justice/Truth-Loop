@@ -110,91 +110,103 @@ app.use(
   })
 )
 
-//ROUTES//
-// Ustream testing //
-app.get('/channels',getChannels);
-app.get('/channels/:id',getChannelVideos);
-app.get('/video/:id',getVideo);
-// Category //
-app.get('/category', category.getCategories);
-app.get('/category/:id', category.getCategoryById);
-app.get('/category/name/:name', category.getCategoryByName);
-app.post('/category', category.createCategory);
-app.put('/category/:id', category.updateCategory);
-app.delete('/category/:id', category.deleteCategory);
-// Geospatial Definition //
-app.get('/geospatialDefinition', geospatialDefinition.getGeospatialDefinitions);
-app.get('/geospatialDefinition/:id', geospatialDefinition.getGeospatialDefinitionById);
-app.get('/geospatialDefinition/name/:name', geospatialDefinition.getGeospatialDefinitionByName);
-app.post('/geospatialDefinition', geospatialDefinition.createGeospatialDefinition);
-app.put('/geospatialDefinition/:id', geospatialDefinition.updateGeospatialDefinition);
-app.delete('/geospatialDefinition/:id', geospatialDefinition.deleteGeospatialDefinition);
-// Official //
-app.get('/official',official.getOfficials);
-app.get('/official/:id',official.getOfficialById);
-app.post('/official',official.createOfficial);
-app.put('/official/:id',official.updateOfficial);
-app.delete('/official/:id',official.deleteOfficial);
-// Advocacy Group //
-app.get('/advocacyGroup',advocacyGroup.getAdvocacyGroups);
-app.get('/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
-app.post('/advocacyGroup',advocacyGroup.createAdvocacyGroup);
-app.put('/advocacyGroup/:id',advocacyGroup.updateAdvocacyGroup);
-app.delete('/advocacyGroup/:id',advocacyGroup.deleteAdvocacyGroup);
-// Publication //
-app.get('/publication',publication.getPublications);
-app.get('/publication/:id',publication.getPublicationById);
-app.post('/publication',publication.createPublication);
-app.put('/publication/:id',publication.updatePublication);
-app.delete('/publication/:id',publication.deletePublication);
-// Video Testimonials //
-app.get('/videoTestimonial', videoTestimonial.getVideoTestimonials);
-app.get('/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
-app.post('/videoTestimonial', videoTestimonial.createVideoTestimonial);
-app.put('/videoTestimonial/:id', videoTestimonial.updateVideoTestimonial);
-app.delete('/videoTestimonial/:id', videoTestimonial.deleteVideoTestimonial);
-// Legislative Artifacts (atomic) //
-app.get('/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
-app.get('/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
-app.post('/legislativeArtifact', legislativeArtifact.createLegislativeArtifact);
-app.put('/legislativeArtifact/:id', legislativeArtifact.updateLegislativeArtifact);
-app.delete('/legislativeArtifact/:id', legislativeArtifact.deleteLegislativeArtifact);
-// Unfiltered ArtifactList //
-app.get('/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
-// Single Full Artifact //
-app.get('/getSingleFullLegislativeArtifact/:id', singleFullArtifact.getSingleFullLegislativeArtifact);
+const swaggerInline = require('swagger-inline');
 
-// Intersections
-// category
-app.delete('/categoryIntersection/:artifactId/:categoryId', adminIntersections.removeSingleCategoryIntersection);
-app.delete('/categoryIntersections/:artifactId', adminIntersections.removeAllCategoryIntersections);
-app.post('/categoryIntersection/:artifactId/:categoryId', adminIntersections.addCategoryIntersection);
-// geo defs
-app.delete('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.removeSingleGeoDefIntersection);
-app.delete('/geoDefIntersections/:artifactId', adminIntersections.removeAllGeoDefIntersections);
-app.post('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.addGeoDefIntersection);
-// officials
-app.delete('/officialIntersection/:artifactId/:officialId', adminIntersections.removeSingleOfficialIntersection);
-app.delete('/officialIntersections/:artifactId', adminIntersections.removeAllOfficialIntersections);
-app.post('/officialIntersection/:artifactId/:officialId', adminIntersections.addOfficialIntersection);
-// publications
-app.delete('/publicationIntersection/:artifactId/:publicationId', adminIntersections.removeSinglePublicationIntersection);
-app.delete('/publicationIntersections/:artifactId', adminIntersections.removeAllPublicationIntersections);
-app.post('/publicationIntersection/:artifactId/:publicationId', adminIntersections.addPublicationIntersection);
-// advocacy groups
-app.delete('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.removeSingleAdvocacyGroupIntersection);
-app.delete('/advocacyGroupIntersections/:artifactId', adminIntersections.removeAllAdvocacyGroupIntersections);
-app.post('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.addAdvocacyGroupIntersection);
-// video testimonials
-app.delete('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.removeSingleVideoTestimonialIntersection);
-app.delete('/videoTestimonialIntersections/:artifactId', adminIntersections.removeAllVideoTestimonialIntersections);
-app.post('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.addVideoTestimonialIntersection);
-// related artifacts
-app.delete('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.removeSingleRelatedArtifactIntersection);
-app.delete('/relatedArtifactIntersections/:artifactId', adminIntersections.removeAllRelatedArtifactIntersections);
-app.post('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
+swaggerInline(['./*.js', './routes/*.js'], {
+  base: 'swaggerBase.json',
+}).then((generatedSwagger) => {
+  swaggerDocument = JSON.parse(generatedSwagger);
+  var swaggerUi = require('swagger-ui-express');
+  var options = {
+    jsonEditor: true 
+  }
+  app.use('/api-docs', function(req, res, next){
+    swaggerDocument.host = req.get('host');
+    req.swaggerDoc = swaggerDocument;
+    next();
+  }, swaggerUi.serve, swaggerUi.setup(null, options));
 
-const PORT = process.env.PORT || 5000;
-app.listen(5000, () => {
-  logger.logger.info('server has started on port %d', PORT);
+  //ROUTES//
+  // Ustream testing //
+  app.get('/channels',getChannels);
+  app.get('/channels/:id',getChannelVideos);
+  app.get('/video/:id',getVideo);
+  // Category //
+  app.use('/category', category);
+  // Geospatial Definition //
+  app.get('/geospatialDefinition', geospatialDefinition.getGeospatialDefinitions);
+  app.get('/geospatialDefinition/:id', geospatialDefinition.getGeospatialDefinitionById);
+  app.get('/geospatialDefinition/name/:name', geospatialDefinition.getGeospatialDefinitionByName);
+  app.post('/geospatialDefinition', geospatialDefinition.createGeospatialDefinition);
+  app.put('/geospatialDefinition/:id', geospatialDefinition.updateGeospatialDefinition);
+  app.delete('/geospatialDefinition/:id', geospatialDefinition.deleteGeospatialDefinition);
+  // Official //
+  app.get('/official',official.getOfficials);
+  app.get('/official/:id',official.getOfficialById);
+  app.post('/official',official.createOfficial);
+  app.put('/official/:id',official.updateOfficial);
+  app.delete('/official/:id',official.deleteOfficial);
+  // Advocacy Group //
+  app.get('/advocacyGroup',advocacyGroup.getAdvocacyGroups);
+  app.get('/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
+  app.post('/advocacyGroup',advocacyGroup.createAdvocacyGroup);
+  app.put('/advocacyGroup/:id',advocacyGroup.updateAdvocacyGroup);
+  app.delete('/advocacyGroup/:id',advocacyGroup.deleteAdvocacyGroup);
+  // Publication //
+  app.get('/publication',publication.getPublications);
+  app.get('/publication/:id',publication.getPublicationById);
+  app.post('/publication',publication.createPublication);
+  app.put('/publication/:id',publication.updatePublication);
+  app.delete('/publication/:id',publication.deletePublication);
+  // Video Testimonials //
+  app.get('/videoTestimonial', videoTestimonial.getVideoTestimonials);
+  app.get('/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
+  app.post('/videoTestimonial', videoTestimonial.createVideoTestimonial);
+  app.put('/videoTestimonial/:id', videoTestimonial.updateVideoTestimonial);
+  app.delete('/videoTestimonial/:id', videoTestimonial.deleteVideoTestimonial);
+  // Legislative Artifacts (atomic) //
+  app.get('/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
+  app.get('/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
+  app.post('/legislativeArtifact', legislativeArtifact.createLegislativeArtifact);
+  app.put('/legislativeArtifact/:id', legislativeArtifact.updateLegislativeArtifact);
+  app.delete('/legislativeArtifact/:id', legislativeArtifact.deleteLegislativeArtifact);
+  // Unfiltered ArtifactList //
+  app.get('/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
+  // Single Full Artifact //
+  app.get('/getSingleFullLegislativeArtifact/:id', singleFullArtifact.getSingleFullLegislativeArtifact);
+
+  // Intersections
+  // category
+  app.delete('/categoryIntersection/:artifactId/:categoryId', adminIntersections.removeSingleCategoryIntersection);
+  app.delete('/categoryIntersections/:artifactId', adminIntersections.removeAllCategoryIntersections);
+  app.post('/categoryIntersection/:artifactId/:categoryId', adminIntersections.addCategoryIntersection);
+  // geo defs
+  app.delete('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.removeSingleGeoDefIntersection);
+  app.delete('/geoDefIntersections/:artifactId', adminIntersections.removeAllGeoDefIntersections);
+  app.post('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.addGeoDefIntersection);
+  // officials
+  app.delete('/officialIntersection/:artifactId/:officialId', adminIntersections.removeSingleOfficialIntersection);
+  app.delete('/officialIntersections/:artifactId', adminIntersections.removeAllOfficialIntersections);
+  app.post('/officialIntersection/:artifactId/:officialId', adminIntersections.addOfficialIntersection);
+  // publications
+  app.delete('/publicationIntersection/:artifactId/:publicationId', adminIntersections.removeSinglePublicationIntersection);
+  app.delete('/publicationIntersections/:artifactId', adminIntersections.removeAllPublicationIntersections);
+  app.post('/publicationIntersection/:artifactId/:publicationId', adminIntersections.addPublicationIntersection);
+  // advocacy groups
+  app.delete('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.removeSingleAdvocacyGroupIntersection);
+  app.delete('/advocacyGroupIntersections/:artifactId', adminIntersections.removeAllAdvocacyGroupIntersections);
+  app.post('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.addAdvocacyGroupIntersection);
+  // video testimonials
+  app.delete('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.removeSingleVideoTestimonialIntersection);
+  app.delete('/videoTestimonialIntersections/:artifactId', adminIntersections.removeAllVideoTestimonialIntersections);
+  app.post('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.addVideoTestimonialIntersection);
+  // related artifacts
+  app.delete('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.removeSingleRelatedArtifactIntersection);
+  app.delete('/relatedArtifactIntersections/:artifactId', adminIntersections.removeAllRelatedArtifactIntersections);
+  app.post('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
+
+  const PORT = process.env.PORT || 5000;
+  app.listen(5000, () => {
+    logger.logger.info('server has started on port %d', PORT);
+  });
 });
