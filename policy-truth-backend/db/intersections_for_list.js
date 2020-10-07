@@ -1,12 +1,5 @@
 const pool = require('./db_pool').pool
 
-const getArtifactsWithVideoCount = (callback) => {
-    pool.query(
-        'SELECT la.id, la.title, la.summary, la.date_introduced, coalesce(vid_counts.vid_count::int, 0) vid_count from legislative_artifact la left join (select artifact_id, count(*) as vid_count from artifact_video_testimonial avt group by artifact_id) as vid_counts on la.id = vid_counts.vid_count order by la.id',
-        callback
-    )
-}
-
 // -----------------------------------------------------------------------------------------------
 // full intersection listings for decorating lists of artifacts ----------------------------------
 // -----------------------------------------------------------------------------------------------
@@ -21,6 +14,13 @@ const getArtifactCategoryIntersections = (callback) => {
 const getArtifactGeoDefIntersections = (callback) => {
     pool.query(
         'SELECT agd.artifact_id, gd.id, gd."name", gd.short_name_ui, gd.description from artifact_geospatial_definition agd left join geospatial_definition gd on gd.id = agd.geospatial_definition_id order by agd.artifact_id, gd.id',
+        callback
+    )
+}
+
+const getArtifactVideoIntersections = (callback) => {
+    pool.query(
+        'SELECT avt.artifact_id, avt.video_testimonial_id from artifact_video_testimonial avt order by avt.artifact_id, avt.video_testimonial_id',
         callback
     )
 }
@@ -86,7 +86,7 @@ const getRelatedArtifactsForArtifact = (id, callback) => {
 }
 
 module.exports = {
-    getArtifactsWithVideoCount,
+    getArtifactVideoIntersections,
     getArtifactCategoryIntersections,
     getArtifactGeoDefIntersections,
     getCategoryIntersectionsForArtifact,
