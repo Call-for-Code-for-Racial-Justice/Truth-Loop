@@ -134,16 +134,16 @@ insert into "publication" (title, description, link) values ('Publication Title 
 insert into "publication" (title, description, link) values ('Publication Title 19', 'Description for Publication 19', 'https://www.publications.com/publicartion/19');
 insert into "publication" (title, description, link) values ('Publication Title 20', 'Description for Publication 20', 'https://www.publications.com/publicartion/20');
 
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 01A', 'Testimonial Comment 01A', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 01B', 'Testimonial Comment 01B', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 03A', 'Testimonial Comment 03A', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 03B', 'Testimonial Comment 03B', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 05A', 'Testimonial Comment 05A', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 05B', 'Testimonial Comment 05B', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 07A', 'Testimonial Comment 07A', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 07B', 'Testimonial Comment 07B', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 09A', 'Testimonial Comment 09A', '1020304050', true);
-insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 09B', 'Testimonial Comment 09B', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 01', 'Testimonial Comment 01', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 02', 'Testimonial Comment 02', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 03', 'Testimonial Comment 03', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 04', 'Testimonial Comment 04', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 05', 'Testimonial Comment 05', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 06', 'Testimonial Comment 06', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 07', 'Testimonial Comment 07', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 08', 'Testimonial Comment 08', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 09', 'Testimonial Comment 09', '1020304050', true);
+insert into video_testimonial (subject, "comment", video_cms_id, privacy_stmt_ack) values ('Testimonial Subject 10', 'Testimonial Comment 10', '1020304050', true);
 
 -- create intersections between things.
 -- Everybody gets 2 advocacy groups
