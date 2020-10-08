@@ -253,13 +253,13 @@ insert into artifact_related_artifact (artifact_id_1, artifact_id_2) values (8,9
 insert into artifact_related_artifact (artifact_id_1, artifact_id_2) values (9,10);
 insert into artifact_related_artifact (artifact_id_1, artifact_id_2) values (10,1);
 -- 2 video testimonials (no actual videos just metadata) for the artifacts with odd IDs
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (1, 1);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (1, 2);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (3, 3);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (3, 4);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (5, 5);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (5, 6);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (7, 7);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (7, 8);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (9, 9);
-insert into public.artifact_video_testimonial (artifact_id, video_testimonial_id) values (9, 10);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (1, 1);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (1, 2);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (3, 3);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (3, 4);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (5, 5);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (5, 6);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (7, 7);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (7, 8);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (9, 9);
+insert into artifact_video_testimonial (artifact_id, video_testimonial_id) values (9, 10);
