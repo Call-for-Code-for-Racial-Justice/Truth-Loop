@@ -40,7 +40,7 @@ router.get('/', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
   responses:
     200:
@@ -123,13 +123,11 @@ router.get('/name/:name', (request, response) => {
         $ref: "#/components/schemas/Category"
   responses:
     201:
-      description: CategoryCategory object added
+      description: ID of Category object added
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
-    400:
-      description: Bad request
+            $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
     categoryDB.createCategory(request.body, (error, results) => {
@@ -153,20 +151,20 @@ router.post('/', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
     - in: body
       schema:
         $ref: "#/components/schemas/Category"
   responses:
     200:
-      description: CategoryCategory object updated
+      description: confirmation of success
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
-    400:
-      description: Bad request
+            $ref: "#/components/schemas/ConfirmationOfSuccess"
+    404:
+      description: No Category object exists for that id
  */
 router.put('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -199,15 +197,15 @@ router.put('/:id', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
   responses:
     200:
-      description: Category object found
+      description: confirmation of success
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
+            $ref: "#/components/schemas/ConfirmationOfSuccess"
     404:
       description: No Category object exists for that id
  */
