@@ -108,7 +108,7 @@
 
 /**
  * @schema AdvocacyGroup
- * description: An Advocacy Group defines a human collective supporting and monitoring soe aspect of one or more legal artifacts
+ * description: An Advocacy Group defines a human collective supporting and monitoring some aspect of one or more legal artifacts
  * type: object
  * properties:
  *   id:
@@ -137,4 +137,34 @@
  * required:
  *   - name
  *   - description
+ */
+
+/**
+ * @schema Publication
+ * description: An Publication defines any information source (article, book, web site, podcast, blog, etc) that is relevant to understanding a given legislative artifact
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   title:
+ *     type: string
+ *   description:
+ *     type: string
+ *   link:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - title
+ *   - description
+ *   - link
  */
