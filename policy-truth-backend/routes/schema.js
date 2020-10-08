@@ -164,6 +164,7 @@
  *     format: date-time
  *     description: date-time object last updated
  * required:
- *   - name
+ *   - title
  *   - description
+ *   - link
  */
