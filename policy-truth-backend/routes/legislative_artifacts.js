@@ -1,5 +1,5 @@
 const logger = require('../logger').logger
-const legislativeArtifactDB = require('../db/legislative_artifact')
+const legislativeArtifactDB = require('../db/legislative_artifacts')
 
 const getLegislativeArtifacts = (request, response) => {
     legislativeArtifactDB.getLegislativeArtifacts((error, results) => {

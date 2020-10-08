@@ -92,7 +92,7 @@ const officials = require('./routes/officials');
 const advocacyGroups = require('./routes/advocacy_groups');
 const publications = require('./routes/publications');
 const videoTestimonials = require('./routes/video_testimonials');
-const legislativeArtifact = require('./routes/legislative_artifact');
+const legislativeArtifacts = require('./routes/legislative_artifacts');
 const unfilteredArtifactList = require('./routes/unfiltered_artifact_list');
 const singleFullArtifact = require('./routes/single_full_artifact');
 const adminIntersections = require('./routes/admin_intersections')
@@ -141,11 +141,12 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/videoTestimonials', videoTestimonials);
 
   // Legislative Artifacts (atomic) //
-  app.get('/api/v1/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
-  app.get('/api/v1/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
-  app.post('/api/v1/legislativeArtifact', legislativeArtifact.createLegislativeArtifact);
-  app.put('/api/v1/legislativeArtifact/:id', legislativeArtifact.updateLegislativeArtifact);
-  app.delete('/api/v1/legislativeArtifact/:id', legislativeArtifact.deleteLegislativeArtifact);
+  app.get('/api/v1/legislativeArtifact', legislativeArtifacts.getLegislativeArtifacts);
+  app.get('/api/v1/legislativeArtifact/:id', legislativeArtifacts.getLegislativeArtifactById);
+  app.post('/api/v1/legislativeArtifact', legislativeArtifacts.createLegislativeArtifact);
+  app.put('/api/v1/legislativeArtifact/:id', legislativeArtifacts.updateLegislativeArtifact);
+  app.delete('/api/v1/legislativeArtifact/:id', legislativeArtifacts.deleteLegislativeArtifact);
+
   // Unfiltered ArtifactList //
   app.get('/api/v1/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
   // Single Full Artifact //
