@@ -1,4 +1,5 @@
 const logger = require('../logger').logger
+const fs = require('fs');
 const categoryDB = require('../db/categories')
 var express = require('express');
 const Ustream = require("ustream-sdk");
@@ -43,6 +44,20 @@ router.get('/:id', (request, response) => {
       error: "Internal Server Error"
     })
   })
+})
+
+router.post('/', (request, response) => {
+  // console.log(request.body.file.getAsBinary());
+  fs.readFile(request.body.file, 'utf8', (err,data) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(data);
+  })
+  // fetch(request.body.file)
+  // .then(response => response.text())
+  // .then(text => console.log(text))
+  // outputs the content of the text file
 })
 
 router.delete('/:id', (request, response) => {
