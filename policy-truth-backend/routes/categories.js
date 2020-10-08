@@ -4,19 +4,19 @@ var express = require('express');
 var router = express.Router();
 
 /**
-  @api [get] /api/v1/categories
-  summary: Get a list of category objects
-  tags:
-    - Categories
-  responses:
-    200:
-      description: A list of category objects
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/Category"
+ * @api [get] /api/v1/categories
+ * summary: Get a list of category objects
+ * tags:
+ *   - Categories
+ * responses:
+ *   200:
+ *     description: A list of category objects
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: "#/components/schemas/Category"
  */
 router.get('/', (request, response) => {
     categoryDB.getCategories((error, results) => {
@@ -32,25 +32,25 @@ router.get('/', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/categories/{id}
-  summary: Get a category object
-  tags:
-    - Categories
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The category ID
-  responses:
-    200:
-      description: Category object found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Category"
-    404:
-      description: No Category object exists for that id
+ * @api [get] /api/v1/categories/{id}
+ * summary: Get a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The category ID
+ * responses:
+ *   200:
+ *     description: Category object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   404:
+ *     description: No Category object exists for that id
  */
 router.get('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -73,25 +73,25 @@ router.get('/:id', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/categories/name/{name}
-  summary: Get a category object by name
-  tags:
-    - Categories
-  parameters:
-    - in: path
-      name: name
-      schema:
-        type: string
-      description: The category name
-  responses:
-    200:
-      description: Category object found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Category"
-    404:
-      description: No Category object exists for that name
+ * @api [get] /api/v1/categories/name/{name}
+ * summary: Get a category object by name
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: name
+ *     schema:
+ *       type: string
+ *     description: The category name
+ * responses:
+ *   200:
+ *     description: Category object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Category"
+ *   404:
+ *     description: No Category object exists for that name
  */
 router.get('/name/:name', (request, response) => {
     categoryDB.getCategoryByName(request.params.name, (error, results) => {
@@ -113,21 +113,21 @@ router.get('/name/:name', (request, response) => {
 })
 
 /**
-  @api [post] /api/v1/categories
-  summary: Creates a category object
-  tags:
-    - Categories
-  parameters:
-    - in: body
-      schema:
-        $ref: "#/components/schemas/Category"
-  responses:
-    201:
-      description: ID of Category object added
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/IdOfCreatedObject"
+ * @api [post] /api/v1/categories
+ * summary: Creates a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/Category"
+ * responses:
+ *   201:
+ *     description: ID of Category object added
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
     categoryDB.createCategory(request.body, (error, results) => {
@@ -143,28 +143,28 @@ router.post('/', (request, response) => {
 })
 
 /**
-  @api [put] /api/v1/categories
-  summary: Updates a category object
-  tags:
-    - Categories
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The category ID
-    - in: body
-      schema:
-        $ref: "#/components/schemas/Category"
-  responses:
-    200:
-      description: confirmation of success
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ConfirmationOfSuccess"
-    404:
-      description: No Category object exists for that id
+ * @api [put] /api/v1/categories
+ * summary: Updates a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The category ID
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/Category"
+ * responses:
+ *   200:
+ *     description: confirmation of success
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/ConfirmationOfSuccess"
+ *   404:
+ *     description: No Category object exists for that id
  */
 router.put('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -189,25 +189,25 @@ router.put('/:id', (request, response) => {
 })
 
 /**
-  @api [delete] /api/v1/categories/{id}
-  summary: Deletes a category object
-  tags:
-    - Categories
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The category ID
-  responses:
-    200:
-      description: confirmation of success
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ConfirmationOfSuccess"
-    404:
-      description: No Category object exists for that id
+ * @api [delete] /api/v1/categories/{id}
+ * summary: Deletes a category object
+ * tags:
+ *   - Categories
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The category ID
+ * responses:
+ *   200:
+ *     description: confirmation of success
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/ConfirmationOfSuccess"
+ *   404:
+ *     description: No Category object exists for that id
  */
 router.delete('/:id', (request, response) => {
     const id = parseInt(request.params.id)
