@@ -136,13 +136,8 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/categories', categories);
   app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
   app.use('/api/v1/officials', officials);
+  app.use('/api/v1/advocacyGroups', advocacyGroups);
 
-  // Advocacy Group //
-  app.get('/api/v1/advocacyGroup',advocacyGroups.getAdvocacyGroups);
-  app.get('/api/v1/advocacyGroup/:id',advocacyGroups.getAdvocacyGroupById);
-  app.post('/api/v1/advocacyGroup',advocacyGroups.createAdvocacyGroup);
-  app.put('/api/v1/advocacyGroup/:id',advocacyGroups.updateAdvocacyGroup);
-  app.delete('/api/v1/advocacyGroup/:id',advocacyGroups.deleteAdvocacyGroup);
   // Publication //
   app.get('/api/v1/publication',publication.getPublications);
   app.get('/api/v1/publication/:id',publication.getPublicationById);

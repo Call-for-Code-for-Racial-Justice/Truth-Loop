@@ -105,3 +105,36 @@
  *   - name
  *   - title
  */
+
+/**
+ * @schema AdvocacyGroup
+ * description: An Advocacy Group defines a human collective supporting and monitoring soe aspect of one or more legal artifacts
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   description:
+ *     type: string
+ *   title:
+ *     type: string
+ *   email_address:
+ *     type: string
+ *   phone_number:
+ *     type: string
+ *   website_url:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ *   - title
+ */
