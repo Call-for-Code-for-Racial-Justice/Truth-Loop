@@ -86,8 +86,8 @@ console.log(process.env.DB_PASSWORD);
 console.log(process.env.DB_PORT);
 console.log(process.env.DB_DATABASE_NAME);
 
-const category = require('./routes/category');
-const geospatialDefinition = require('./routes/geospatial_definition');
+const categories = require('./routes/categories');
+const geospatialDefinitions = require('./routes/geospatial_definitions');
 const official = require('./routes/official');
 const advocacyGroup = require('./routes/advocacy_group');
 const publication = require('./routes/publication');
@@ -133,8 +133,8 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.get('/api/v1/video/:id',getVideo);
 
   // Database Entities
-  app.use('/api/v1/category', category);
-  app.use('/api/v1/geospatialDefinition', geospatialDefinition);
+  app.use('/api/v1/categories', categories);
+  app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
   // Official //
   app.get('/api/v1/official',official.getOfficials);
   app.get('/api/v1/official/:id',official.getOfficialById);
