@@ -91,7 +91,7 @@ const geospatialDefinitions = require('./routes/geospatial_definitions');
 const officials = require('./routes/officials');
 const advocacyGroups = require('./routes/advocacy_groups');
 const publications = require('./routes/publications');
-const videoTestimonial = require('./routes/video_testimonial');
+const videoTestimonials = require('./routes/video_testimonials');
 const legislativeArtifact = require('./routes/legislative_artifact');
 const unfilteredArtifactList = require('./routes/unfiltered_artifact_list');
 const singleFullArtifact = require('./routes/single_full_artifact');
@@ -140,11 +140,11 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/publications', publications);
 
   // Video Testimonials //
-  app.get('/api/v1/videoTestimonial', videoTestimonial.getVideoTestimonials);
-  app.get('/api/v1/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
-  app.post('/api/v1/videoTestimonial', videoTestimonial.createVideoTestimonial);
-  app.put('/api/v1/videoTestimonial/:id', videoTestimonial.updateVideoTestimonial);
-  app.delete('/api/v1/videoTestimonial/:id', videoTestimonial.deleteVideoTestimonial);
+  app.get('/api/v1/videoTestimonial', videoTestimonials.getVideoTestimonials);
+  app.get('/api/v1/videoTestimonial/:id', videoTestimonials.getVideoTestimonialById);
+  app.post('/api/v1/videoTestimonial', videoTestimonials.createVideoTestimonial);
+  app.put('/api/v1/videoTestimonial/:id', videoTestimonials.updateVideoTestimonial);
+  app.delete('/api/v1/videoTestimonial/:id', videoTestimonials.deleteVideoTestimonial);
   // Legislative Artifacts (atomic) //
   app.get('/api/v1/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
   app.get('/api/v1/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);

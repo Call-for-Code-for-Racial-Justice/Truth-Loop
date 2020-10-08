@@ -1,5 +1,5 @@
 const logger = require('../logger').logger;
-const videoTestimonialDB = require('../db/video_testimonial');
+const videoTestimonialDB = require('../db/video_testimonials');
 
 const getVideoTestimonials = (request, response) => {
   videoTestimonialDB.getVideoTestimonials((error, results) => {
