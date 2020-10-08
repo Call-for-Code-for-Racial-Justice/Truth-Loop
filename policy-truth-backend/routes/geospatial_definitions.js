@@ -114,7 +114,7 @@ router.get('/name/:name', (request, response) => {
 
 /**
  * @api [post] /api/v1/geospatialDefinitions
- * summary: Creates a geospatial definition object
+ * summary: Create a geospatial definition object
  * tags:
  *   - Geospatial Definitions
  * parameters:
@@ -144,7 +144,7 @@ router.post('/', (request, response) => {
 
 /**
  * @api [put] /api/v1/geospatialDefinitions
- * summary: Updates a geospatial definition object
+ * summary: Update a geospatial definition object
  * tags:
  *   - Geospatial Definitions
  * parameters:
@@ -190,7 +190,7 @@ router.put('/:id', (request, response) => {
 
 /**
  * @api [delete] /api/v1/geospatialDefinitions/{id}
- * summary: Deletes a geospatial definition object
+ * summary: Delete a geospatial definition object
  * tags:
  *   - Geospatial Definitions
  * parameters:
