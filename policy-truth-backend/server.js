@@ -138,13 +138,8 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/officials', officials);
   app.use('/api/v1/advocacyGroups', advocacyGroups);
   app.use('/api/v1/publications', publications);
+  app.use('/api/v1/videoTestimonials', videoTestimonials);
 
-  // Video Testimonials //
-  app.get('/api/v1/videoTestimonial', videoTestimonials.getVideoTestimonials);
-  app.get('/api/v1/videoTestimonial/:id', videoTestimonials.getVideoTestimonialById);
-  app.post('/api/v1/videoTestimonial', videoTestimonials.createVideoTestimonial);
-  app.put('/api/v1/videoTestimonial/:id', videoTestimonials.updateVideoTestimonial);
-  app.delete('/api/v1/videoTestimonial/:id', videoTestimonials.deleteVideoTestimonial);
   // Legislative Artifacts (atomic) //
   app.get('/api/v1/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
   app.get('/api/v1/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
