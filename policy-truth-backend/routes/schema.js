@@ -31,12 +31,12 @@
  *   description:
  *     type: string
  *   created:
- *     type: date-time
+ *     type: string
  *     readOnly: true
  *     format: date-time
  *     description: date-time object first created
  *   updated:
- *     type: date-time
+ *     type: string
  *     readOnly: true
  *     format: date-time
  *     description: date-time object last updated
@@ -59,12 +59,12 @@
  *   description:
  *     type: string
  *   created:
- *     type: date-time
+ *     type: string
  *     readOnly: true
  *     format: date-time
  *     description: date-time object first created
  *   updated:
- *     type: date-time
+ *     type: string
  *     readOnly: true
  *     format: date-time
  *     description: date-time object last updated
