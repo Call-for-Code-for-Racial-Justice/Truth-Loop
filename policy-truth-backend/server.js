@@ -90,7 +90,7 @@ const categories = require('./routes/categories');
 const geospatialDefinitions = require('./routes/geospatial_definitions');
 const officials = require('./routes/officials');
 const advocacyGroups = require('./routes/advocacy_groups');
-const publication = require('./routes/publication');
+const publications = require('./routes/publications');
 const videoTestimonial = require('./routes/video_testimonial');
 const legislativeArtifact = require('./routes/legislative_artifact');
 const unfilteredArtifactList = require('./routes/unfiltered_artifact_list');
@@ -139,11 +139,11 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/advocacyGroups', advocacyGroups);
 
   // Publication //
-  app.get('/api/v1/publication',publication.getPublications);
-  app.get('/api/v1/publication/:id',publication.getPublicationById);
-  app.post('/api/v1/publication',publication.createPublication);
-  app.put('/api/v1/publication/:id',publication.updatePublication);
-  app.delete('/api/v1/publication/:id',publication.deletePublication);
+  app.get('/api/v1/publication',publications.getPublications);
+  app.get('/api/v1/publication/:id',publications.getPublicationById);
+  app.post('/api/v1/publication',publications.createPublication);
+  app.put('/api/v1/publication/:id',publications.updatePublication);
+  app.delete('/api/v1/publication/:id',publications.deletePublication);
   // Video Testimonials //
   app.get('/api/v1/videoTestimonial', videoTestimonial.getVideoTestimonials);
   app.get('/api/v1/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
