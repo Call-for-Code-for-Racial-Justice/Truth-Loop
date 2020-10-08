@@ -128,82 +128,82 @@ swaggerInline(['./*.js', './routes/*.js'], {
 
   //ROUTES//
   // Ustream testing //
-  app.get('/channels',getChannels);
-  app.get('/channels/:id',getChannelVideos);
-  app.get('/video/:id',getVideo);
+  app.get('/api/v1/channels',getChannels);
+  app.get('/api/v1/channels/:id',getChannelVideos);
+  app.get('/api/v1/video/:id',getVideo);
   // Category //
-  app.use('/category', category);
+  app.use('/api/v1/category', category);
   // Geospatial Definition //
-  app.get('/geospatialDefinition', geospatialDefinition.getGeospatialDefinitions);
-  app.get('/geospatialDefinition/:id', geospatialDefinition.getGeospatialDefinitionById);
-  app.get('/geospatialDefinition/name/:name', geospatialDefinition.getGeospatialDefinitionByName);
-  app.post('/geospatialDefinition', geospatialDefinition.createGeospatialDefinition);
-  app.put('/geospatialDefinition/:id', geospatialDefinition.updateGeospatialDefinition);
-  app.delete('/geospatialDefinition/:id', geospatialDefinition.deleteGeospatialDefinition);
+  app.get('/api/v1/geospatialDefinition', geospatialDefinition.getGeospatialDefinitions);
+  app.get('/api/v1/geospatialDefinition/:id', geospatialDefinition.getGeospatialDefinitionById);
+  app.get('/api/v1/geospatialDefinition/name/:name', geospatialDefinition.getGeospatialDefinitionByName);
+  app.post('/api/v1/geospatialDefinition', geospatialDefinition.createGeospatialDefinition);
+  app.put('/api/v1/geospatialDefinition/:id', geospatialDefinition.updateGeospatialDefinition);
+  app.delete('/api/v1/geospatialDefinition/:id', geospatialDefinition.deleteGeospatialDefinition);
   // Official //
-  app.get('/official',official.getOfficials);
-  app.get('/official/:id',official.getOfficialById);
-  app.post('/official',official.createOfficial);
-  app.put('/official/:id',official.updateOfficial);
-  app.delete('/official/:id',official.deleteOfficial);
+  app.get('/api/v1/official',official.getOfficials);
+  app.get('/api/v1/official/:id',official.getOfficialById);
+  app.post('/api/v1/official',official.createOfficial);
+  app.put('/api/v1/official/:id',official.updateOfficial);
+  app.delete('/api/v1/official/:id',official.deleteOfficial);
   // Advocacy Group //
-  app.get('/advocacyGroup',advocacyGroup.getAdvocacyGroups);
-  app.get('/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
-  app.post('/advocacyGroup',advocacyGroup.createAdvocacyGroup);
-  app.put('/advocacyGroup/:id',advocacyGroup.updateAdvocacyGroup);
-  app.delete('/advocacyGroup/:id',advocacyGroup.deleteAdvocacyGroup);
+  app.get('/api/v1/advocacyGroup',advocacyGroup.getAdvocacyGroups);
+  app.get('/api/v1/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
+  app.post('/api/v1/advocacyGroup',advocacyGroup.createAdvocacyGroup);
+  app.put('/api/v1/advocacyGroup/:id',advocacyGroup.updateAdvocacyGroup);
+  app.delete('/api/v1/advocacyGroup/:id',advocacyGroup.deleteAdvocacyGroup);
   // Publication //
-  app.get('/publication',publication.getPublications);
-  app.get('/publication/:id',publication.getPublicationById);
-  app.post('/publication',publication.createPublication);
-  app.put('/publication/:id',publication.updatePublication);
-  app.delete('/publication/:id',publication.deletePublication);
+  app.get('/api/v1/publication',publication.getPublications);
+  app.get('/api/v1/publication/:id',publication.getPublicationById);
+  app.post('/api/v1/publication',publication.createPublication);
+  app.put('/api/v1/publication/:id',publication.updatePublication);
+  app.delete('/api/v1/publication/:id',publication.deletePublication);
   // Video Testimonials //
-  app.get('/videoTestimonial', videoTestimonial.getVideoTestimonials);
-  app.get('/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
-  app.post('/videoTestimonial', videoTestimonial.createVideoTestimonial);
-  app.put('/videoTestimonial/:id', videoTestimonial.updateVideoTestimonial);
-  app.delete('/videoTestimonial/:id', videoTestimonial.deleteVideoTestimonial);
+  app.get('/api/v1/videoTestimonial', videoTestimonial.getVideoTestimonials);
+  app.get('/api/v1/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
+  app.post('/api/v1/videoTestimonial', videoTestimonial.createVideoTestimonial);
+  app.put('/api/v1/videoTestimonial/:id', videoTestimonial.updateVideoTestimonial);
+  app.delete('/api/v1/videoTestimonial/:id', videoTestimonial.deleteVideoTestimonial);
   // Legislative Artifacts (atomic) //
-  app.get('/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
-  app.get('/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
-  app.post('/legislativeArtifact', legislativeArtifact.createLegislativeArtifact);
-  app.put('/legislativeArtifact/:id', legislativeArtifact.updateLegislativeArtifact);
-  app.delete('/legislativeArtifact/:id', legislativeArtifact.deleteLegislativeArtifact);
+  app.get('/api/v1/legislativeArtifact', legislativeArtifact.getLegislativeArtifacts);
+  app.get('/api/v1/legislativeArtifact/:id', legislativeArtifact.getLegislativeArtifactById);
+  app.post('/api/v1/legislativeArtifact', legislativeArtifact.createLegislativeArtifact);
+  app.put('/api/v1/legislativeArtifact/:id', legislativeArtifact.updateLegislativeArtifact);
+  app.delete('/api/v1/legislativeArtifact/:id', legislativeArtifact.deleteLegislativeArtifact);
   // Unfiltered ArtifactList //
-  app.get('/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
+  app.get('/api/v1/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
   // Single Full Artifact //
-  app.get('/getSingleFullLegislativeArtifact/:id', singleFullArtifact.getSingleFullLegislativeArtifact);
+  app.get('/api/v1/getSingleFullLegislativeArtifact/:id', singleFullArtifact.getSingleFullLegislativeArtifact);
 
   // Intersections
   // category
-  app.delete('/categoryIntersection/:artifactId/:categoryId', adminIntersections.removeSingleCategoryIntersection);
-  app.delete('/categoryIntersections/:artifactId', adminIntersections.removeAllCategoryIntersections);
-  app.post('/categoryIntersection/:artifactId/:categoryId', adminIntersections.addCategoryIntersection);
+  app.delete('/api/v1/categoryIntersection/:artifactId/:categoryId', adminIntersections.removeSingleCategoryIntersection);
+  app.delete('/api/v1/categoryIntersections/:artifactId', adminIntersections.removeAllCategoryIntersections);
+  app.post('/api/v1/categoryIntersection/:artifactId/:categoryId', adminIntersections.addCategoryIntersection);
   // geo defs
-  app.delete('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.removeSingleGeoDefIntersection);
-  app.delete('/geoDefIntersections/:artifactId', adminIntersections.removeAllGeoDefIntersections);
-  app.post('/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.addGeoDefIntersection);
+  app.delete('/api/v1/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.removeSingleGeoDefIntersection);
+  app.delete('/api/v1/geoDefIntersections/:artifactId', adminIntersections.removeAllGeoDefIntersections);
+  app.post('/api/v1/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.addGeoDefIntersection);
   // officials
-  app.delete('/officialIntersection/:artifactId/:officialId', adminIntersections.removeSingleOfficialIntersection);
-  app.delete('/officialIntersections/:artifactId', adminIntersections.removeAllOfficialIntersections);
-  app.post('/officialIntersection/:artifactId/:officialId', adminIntersections.addOfficialIntersection);
+  app.delete('/api/v1/officialIntersection/:artifactId/:officialId', adminIntersections.removeSingleOfficialIntersection);
+  app.delete('/api/v1/officialIntersections/:artifactId', adminIntersections.removeAllOfficialIntersections);
+  app.post('/api/v1/officialIntersection/:artifactId/:officialId', adminIntersections.addOfficialIntersection);
   // publications
-  app.delete('/publicationIntersection/:artifactId/:publicationId', adminIntersections.removeSinglePublicationIntersection);
-  app.delete('/publicationIntersections/:artifactId', adminIntersections.removeAllPublicationIntersections);
-  app.post('/publicationIntersection/:artifactId/:publicationId', adminIntersections.addPublicationIntersection);
+  app.delete('/api/v1/publicationIntersection/:artifactId/:publicationId', adminIntersections.removeSinglePublicationIntersection);
+  app.delete('/api/v1/publicationIntersections/:artifactId', adminIntersections.removeAllPublicationIntersections);
+  app.post('/api/v1/publicationIntersection/:artifactId/:publicationId', adminIntersections.addPublicationIntersection);
   // advocacy groups
-  app.delete('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.removeSingleAdvocacyGroupIntersection);
-  app.delete('/advocacyGroupIntersections/:artifactId', adminIntersections.removeAllAdvocacyGroupIntersections);
-  app.post('/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.addAdvocacyGroupIntersection);
+  app.delete('/api/v1/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.removeSingleAdvocacyGroupIntersection);
+  app.delete('/api/v1/advocacyGroupIntersections/:artifactId', adminIntersections.removeAllAdvocacyGroupIntersections);
+  app.post('/api/v1/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.addAdvocacyGroupIntersection);
   // video testimonials
-  app.delete('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.removeSingleVideoTestimonialIntersection);
-  app.delete('/videoTestimonialIntersections/:artifactId', adminIntersections.removeAllVideoTestimonialIntersections);
-  app.post('/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.addVideoTestimonialIntersection);
+  app.delete('/api/v1/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.removeSingleVideoTestimonialIntersection);
+  app.delete('/api/v1/videoTestimonialIntersections/:artifactId', adminIntersections.removeAllVideoTestimonialIntersections);
+  app.post('/api/v1/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.addVideoTestimonialIntersection);
   // related artifacts
-  app.delete('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.removeSingleRelatedArtifactIntersection);
-  app.delete('/relatedArtifactIntersections/:artifactId', adminIntersections.removeAllRelatedArtifactIntersections);
-  app.post('/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
+  app.delete('/api/v1/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.removeSingleRelatedArtifactIntersection);
+  app.delete('/api/v1/relatedArtifactIntersections/:artifactId', adminIntersections.removeAllRelatedArtifactIntersections);
+  app.post('/api/v1/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
 
   const PORT = process.env.PORT || 5000;
   app.listen(5000, () => {

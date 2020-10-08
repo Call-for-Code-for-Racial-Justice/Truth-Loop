@@ -1,6 +1,6 @@
 {
   "openapi": "3.0.1",
-  "host": "legislative_artifcats.swagger.io",
+  "host": "legislative_artifacts.swagger.io",
   "schemes": ["http"],
   "info": {
     "title": "Legislative Artifacts Service API",
