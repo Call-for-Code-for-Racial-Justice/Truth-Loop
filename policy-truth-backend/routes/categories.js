@@ -1,10 +1,10 @@
 const logger = require('../logger').logger
-const categoryDB = require('../db/category')
+const categoryDB = require('../db/categories')
 var express = require('express');
 var router = express.Router();
 
 /**
-  @api [get] /api/v1/category
+  @api [get] /api/v1/categories
   summary: Get a list of category objects
   tags:
     - Categories
@@ -32,7 +32,7 @@ router.get('/', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/category/{id}
+  @api [get] /api/v1/categories/{id}
   summary: Get a category object
   tags:
     - Categories
@@ -73,7 +73,7 @@ router.get('/:id', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/category/name/{name}
+  @api [get] /api/v1/categories/name/{name}
   summary: Get a category object by name
   tags:
     - Categories
@@ -113,7 +113,7 @@ router.get('/name/:name', (request, response) => {
 })
 
 /**
-  @api [post] /api/v1/category
+  @api [post] /api/v1/categories
   summary: Creates a category object
   tags:
     - Categories
@@ -143,7 +143,7 @@ router.post('/', (request, response) => {
 })
 
 /**
-  @api [put] /api/v1/category
+  @api [put] /api/v1/categories
   summary: Updates a category object
   tags:
     - Categories
@@ -189,7 +189,7 @@ router.put('/:id', (request, response) => {
 })
 
 /**
-  @api [delete] /api/v1/category/{id}
+  @api [delete] /api/v1/categories/{id}
   summary: Deletes a category object
   tags:
     - Categories

@@ -1,10 +1,10 @@
 const logger = require('../logger').logger
-const geospatialDefinitionDB = require('../db/geospatial_definition')
+const geospatialDefinitionDB = require('../db/geospatial_definitions')
 var express = require('express');
 var router = express.Router();
 
 /**
-  @api [get] /api/v1/geospatialDefinition
+  @api [get] /api/v1/geospatialDefinitions
   summary: Get a list of geospatial definition objects
   tags:
     - Geospatial Definitions
@@ -32,7 +32,7 @@ router.get('/', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/geospatialDefinition/{id}
+  @api [get] /api/v1/geospatialDefinitions/{id}
   summary: Get a geospatial definition object
   tags:
     - Geospatial Definitions
@@ -73,7 +73,7 @@ router.get('/:id', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/geospatialDefinition/name/{name}
+  @api [get] /api/v1/geospatialDefinitions/name/{name}
   summary: Get a geospatial definition object by name
   tags:
     - Geospatial Definitions
@@ -113,7 +113,7 @@ router.get('/name/:name', (request, response) => {
 })
 
 /**
-  @api [post] /api/v1/geospatialDefinition
+  @api [post] /api/v1/geospatialDefinitions
   summary: Creates a geospatial definition object
   tags:
     - Geospatial Definitions
@@ -143,7 +143,7 @@ router.post('/', (request, response) => {
 })
 
 /**
-  @api [put] /api/v1/geospatialDefinition
+  @api [put] /api/v1/geospatialDefinitions
   summary: Updates a geospatial definition object
   tags:
     - Geospatial Definitions
@@ -189,7 +189,7 @@ router.put('/:id', (request, response) => {
 })
 
 /**
-  @api [delete] /api/v1/geospatialDefinition/{id}
+  @api [delete] /api/v1/geospatialDefinitions/{id}
   summary: Deletes a geospatial definition object
   tags:
     - Geospatial Definitions
