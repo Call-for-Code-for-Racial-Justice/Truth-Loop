@@ -1,7 +1,8 @@
 const logger = require('../logger').logger
 const categoryDB = require('../db/categories')
 var express = require('express');
-const Ustream = require("ustream-sdk")
+const Ustream = require("ustream-sdk");
+const { request, response } = require('express');
 var router = express.Router();
 
 // Set up instance using password authentication
@@ -14,7 +15,7 @@ let ustream = new Ustream({
 })
 
 
-router.get('/:id', (request, response) => {
+router.get('/channel/:id', (request, response) => {
   const id = parseInt(request.params.id);
   console.log(id);
   ustream.video.list(id).then((pageableResult) => {
@@ -32,6 +33,28 @@ router.get('/:id', (request, response) => {
     })
   }) 
 });
+
+router.get('/:id', (request, response) => {
+  const id = parseInt(request.params.id);
+  ustream.video.get(id).then((results) => {
+    response.status(200).json(results);
+  }).catch((err) => {
+    response.status(500).json({
+      error: "Internal Server Error"
+    })
+  })
+})
+
+router.delete('/:id', (request, response) => {
+  const id = parseInt(request.params.id);
+  ustream.video.remove(id).then((results) => {
+    response.status(200).json(results);
+  }).catch((err) => {
+    response.status(500).json({
+      error: "Internal Server Error"
+    })
+  })
+})
 
 module.exports = router
 
