@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 /**
-  @api [get] /category
+  @api [get] /api/v1/category
   summary: Get a list of category objects
   tags:
     - Categories
@@ -32,7 +32,7 @@ router.get('/', (request, response) => {
 })
 
 /**
-  @api [get] /category/{id}
+  @api [get] /api/v1/category/{id}
   summary: Get a category object
   tags:
     - Categories
@@ -40,7 +40,7 @@ router.get('/', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
   responses:
     200:
@@ -73,7 +73,7 @@ router.get('/:id', (request, response) => {
 })
 
 /**
-  @api [get] /category/name/{name}
+  @api [get] /api/v1/category/name/{name}
   summary: Get a category object by name
   tags:
     - Categories
@@ -113,7 +113,7 @@ router.get('/name/:name', (request, response) => {
 })
 
 /**
-  @api [post] /category
+  @api [post] /api/v1/category
   summary: Creates a category object
   tags:
     - Categories
@@ -123,13 +123,11 @@ router.get('/name/:name', (request, response) => {
         $ref: "#/components/schemas/Category"
   responses:
     201:
-      description: CategoryCategory object added
+      description: ID of Category object added
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
-    400:
-      description: Bad request
+            $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
     categoryDB.createCategory(request.body, (error, results) => {
@@ -145,7 +143,7 @@ router.post('/', (request, response) => {
 })
 
 /**
-  @api [put] /category
+  @api [put] /api/v1/category
   summary: Updates a category object
   tags:
     - Categories
@@ -153,20 +151,20 @@ router.post('/', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
     - in: body
       schema:
         $ref: "#/components/schemas/Category"
   responses:
     200:
-      description: CategoryCategory object updated
+      description: confirmation of success
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
-    400:
-      description: Bad request
+            $ref: "#/components/schemas/ConfirmationOfSuccess"
+    404:
+      description: No Category object exists for that id
  */
 router.put('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -191,7 +189,7 @@ router.put('/:id', (request, response) => {
 })
 
 /**
-  @api [delete] /category/{id}
+  @api [delete] /api/v1/category/{id}
   summary: Deletes a category object
   tags:
     - Categories
@@ -199,15 +197,15 @@ router.put('/:id', (request, response) => {
     - in: path
       name: id
       schema:
-        type: string
+        type: integer
       description: The category ID
   responses:
     200:
-      description: Category object found
+      description: confirmation of success
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Category"
+            $ref: "#/components/schemas/ConfirmationOfSuccess"
     404:
       description: No Category object exists for that id
  */

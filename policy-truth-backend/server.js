@@ -131,15 +131,10 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.get('/api/v1/channels',getChannels);
   app.get('/api/v1/channels/:id',getChannelVideos);
   app.get('/api/v1/video/:id',getVideo);
-  // Category //
+
+  // Database Entities
   app.use('/api/v1/category', category);
-  // Geospatial Definition //
-  app.get('/api/v1/geospatialDefinition', geospatialDefinition.getGeospatialDefinitions);
-  app.get('/api/v1/geospatialDefinition/:id', geospatialDefinition.getGeospatialDefinitionById);
-  app.get('/api/v1/geospatialDefinition/name/:name', geospatialDefinition.getGeospatialDefinitionByName);
-  app.post('/api/v1/geospatialDefinition', geospatialDefinition.createGeospatialDefinition);
-  app.put('/api/v1/geospatialDefinition/:id', geospatialDefinition.updateGeospatialDefinition);
-  app.delete('/api/v1/geospatialDefinition/:id', geospatialDefinition.deleteGeospatialDefinition);
+  app.use('/api/v1/geospatialDefinition', geospatialDefinition);
   // Official //
   app.get('/api/v1/official',official.getOfficials);
   app.get('/api/v1/official/:id',official.getOfficialById);
