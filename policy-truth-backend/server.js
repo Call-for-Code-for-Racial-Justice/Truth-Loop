@@ -137,13 +137,8 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
   app.use('/api/v1/officials', officials);
   app.use('/api/v1/advocacyGroups', advocacyGroups);
+  app.use('/api/v1/publications', publications);
 
-  // Publication //
-  app.get('/api/v1/publication',publications.getPublications);
-  app.get('/api/v1/publication/:id',publications.getPublicationById);
-  app.post('/api/v1/publication',publications.createPublication);
-  app.put('/api/v1/publication/:id',publications.updatePublication);
-  app.delete('/api/v1/publication/:id',publications.deletePublication);
   // Video Testimonials //
   app.get('/api/v1/videoTestimonial', videoTestimonial.getVideoTestimonials);
   app.get('/api/v1/videoTestimonial/:id', videoTestimonial.getVideoTestimonialById);
