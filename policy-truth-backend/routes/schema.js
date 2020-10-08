@@ -20,7 +20,7 @@
 
 /**
  * @schema Category
- * description: A Category defines....
+ * description: A Category describes an aspect of a legislative artifact by which users can filter a search
  * type: object
  * properties:
  *   id:
@@ -46,7 +46,7 @@
 
 /**
  * @schema GeospatialDefinition
- * description: A Geospatial Definition defines....
+ * description: A Geospatial Definition defines a region to which a legislative artifact pertains (postal code, county, state, city, township, etc.)
  * type: object
  * properties:
  *   id:
@@ -71,4 +71,37 @@
  * required:
  *   - name
  *   - short_name_ui
+ */
+
+/**
+ * @schema Official
+ * description: An Official defines a lawmaker, legislator, policymaker or other official responsible in some way for the presence of a given legislative artifact
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   name:
+ *     type: string
+ *   title:
+ *     type: string
+ *   email_address:
+ *     type: string
+ *   phone_number:
+ *     type: string
+ *   website_url:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ *   - title
  */
