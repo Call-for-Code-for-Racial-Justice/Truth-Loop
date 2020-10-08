@@ -1,22 +1,22 @@
 const logger = require('../logger').logger
-const geospatialDefinitionDB = require('../db/geospatial_definition')
+const geospatialDefinitionDB = require('../db/geospatial_definitions')
 var express = require('express');
 var router = express.Router();
 
 /**
-  @api [get] /api/v1/geospatialDefinition
-  summary: Get a list of geospatial definition objects
-  tags:
-    - Geospatial Definitions
-  responses:
-    200:
-      description: A list of geospatial definition objects
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/GeospatialDefinition"
+ * @api [get] /api/v1/geospatialDefinitions
+ * summary: Get a list of geospatial definition objects
+ * tags:
+ *   - Geospatial Definitions
+ * responses:
+ *   200:
+ *     description: A list of geospatial definition objects
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: "#/components/schemas/GeospatialDefinition"
  */
 router.get('/', (request, response) => {
     geospatialDefinitionDB.getGeospatialDefinitions((error, results) => {
@@ -32,25 +32,25 @@ router.get('/', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/geospatialDefinition/{id}
-  summary: Get a geospatial definition object
-  tags:
-    - Geospatial Definitions
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The geospatisl definition ID
-  responses:
-    200:
-      description: Geospatial Definition object found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/GeospatialDefinition"
-    404:
-      description: No Geospatial Definition object exists for that id
+ * @api [get] /api/v1/geospatialDefinitions/{id}
+ * summary: Get a geospatial definition object
+ * tags:
+ *   - Geospatial Definitions
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The geospatisl definition ID
+ * responses:
+ *   200:
+ *     description: Geospatial Definition object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/GeospatialDefinition"
+ *   404:
+ *     description: No Geospatial Definition object exists for that id
  */
 router.get('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -73,25 +73,25 @@ router.get('/:id', (request, response) => {
 })
 
 /**
-  @api [get] /api/v1/geospatialDefinition/name/{name}
-  summary: Get a geospatial definition object by name
-  tags:
-    - Geospatial Definitions
-  parameters:
-    - in: path
-      name: name
-      schema:
-        type: string
-      description: The geospatial definition name
-  responses:
-    200:
-      description: Geospatial Definition object found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/GeospatialDefinition"
-    404:
-      description: No Geospatial Definition object exists for that name
+ * @api [get] /api/v1/geospatialDefinitions/name/{name}
+ * summary: Get a geospatial definition object by name
+ * tags:
+ *   - Geospatial Definitions
+ * parameters:
+ *   - in: path
+ *     name: name
+ *     schema:
+ *       type: string
+ *     description: The geospatial definition name
+ * responses:
+ *   200:
+ *     description: Geospatial Definition object found
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/GeospatialDefinition"
+ *   404:
+ *     description: No Geospatial Definition object exists for that name
  */
 router.get('/name/:name', (request, response) => {
     geospatialDefinitionDB.getGeospatialDefinitionByName(request.params.name, (error, results) => {
@@ -113,21 +113,21 @@ router.get('/name/:name', (request, response) => {
 })
 
 /**
-  @api [post] /api/v1/geospatialDefinition
-  summary: Creates a geospatial definition object
-  tags:
-    - Geospatial Definitions
-  parameters:
-    - in: body
-      schema:
-        $ref: "#/components/schemas/GeospatialDefinition"
-  responses:
-    201:
-      description: ID of the Geospatial Definition object added
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/IdOfCreatedObject"
+ * @api [post] /api/v1/geospatialDefinitions
+ * summary: Creates a geospatial definition object
+ * tags:
+ *   - Geospatial Definitions
+ * parameters:
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/GeospatialDefinition"
+ * responses:
+ *   201:
+ *     description: ID of the Geospatial Definition object added
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
     geospatialDefinitionDB.createGeospatialDefinition(request.body, (error, results) => {
@@ -143,28 +143,28 @@ router.post('/', (request, response) => {
 })
 
 /**
-  @api [put] /api/v1/geospatialDefinition
-  summary: Updates a geospatial definition object
-  tags:
-    - Geospatial Definitions
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The geospatial definition ID
-    - in: body
-      schema:
-        $ref: "#/components/schemas/GeospatialDefinition"
-  responses:
-    200:
-      description: confirmation of success
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ConfirmationOfSuccess"
-    404:
-      description: No Geospatial Definition object exists for that name
+ * @api [put] /api/v1/geospatialDefinitions
+ * summary: Updates a geospatial definition object
+ * tags:
+ *   - Geospatial Definitions
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The geospatial definition ID
+ *   - in: body
+ *     schema:
+ *       $ref: "#/components/schemas/GeospatialDefinition"
+ * responses:
+ *   200:
+ *     description: confirmation of success
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/ConfirmationOfSuccess"
+ *   404:
+ *     description: No Geospatial Definition object exists for that name
  */
 router.put('/:id', (request, response) => {
     const id = parseInt(request.params.id)
@@ -189,25 +189,25 @@ router.put('/:id', (request, response) => {
 })
 
 /**
-  @api [delete] /api/v1/geospatialDefinition/{id}
-  summary: Deletes a geospatial definition object
-  tags:
-    - Geospatial Definitions
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: integer
-      description: The geospatial definition ID
-  responses:
-    200:
-      description: confirmation of success
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ConfirmationOfSuccess"
-    404:
-      description: No Geospatial Definition object exists for that id
+ * @api [delete] /api/v1/geospatialDefinitions/{id}
+ * summary: Deletes a geospatial definition object
+ * tags:
+ *   - Geospatial Definitions
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The geospatial definition ID
+ * responses:
+ *   200:
+ *     description: confirmation of success
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/ConfirmationOfSuccess"
+ *   404:
+ *     description: No Geospatial Definition object exists for that id
  */
 router.delete('/:id', (request, response) => {
     const id = parseInt(request.params.id)
