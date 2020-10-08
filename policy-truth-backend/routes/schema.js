@@ -114,9 +114,9 @@
  *   id:
  *     type: integer
  *     readOnly: true
- *   description:
+ *   name:
  *     type: string
- *   title:
+ *   description:
  *     type: string
  *   email_address:
  *     type: string
@@ -136,5 +136,5 @@
  *     description: date-time object last updated
  * required:
  *   - name
- *   - title
+ *   - description
  */
