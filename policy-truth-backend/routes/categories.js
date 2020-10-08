@@ -114,7 +114,7 @@ router.get('/name/:name', (request, response) => {
 
 /**
  * @api [post] /api/v1/categories
- * summary: Creates a category object
+ * summary: Create a category object
  * tags:
  *   - Categories
  * parameters:
@@ -144,7 +144,7 @@ router.post('/', (request, response) => {
 
 /**
  * @api [put] /api/v1/categories
- * summary: Updates a category object
+ * summary: Update a category object
  * tags:
  *   - Categories
  * parameters:
@@ -190,7 +190,7 @@ router.put('/:id', (request, response) => {
 
 /**
  * @api [delete] /api/v1/categories/{id}
- * summary: Deletes a category object
+ * summary: Delete a category object
  * tags:
  *   - Categories
  * parameters:
