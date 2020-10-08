@@ -88,7 +88,7 @@ console.log(process.env.DB_DATABASE_NAME);
 
 const categories = require('./routes/categories');
 const geospatialDefinitions = require('./routes/geospatial_definitions');
-const official = require('./routes/official');
+const officials = require('./routes/officials');
 const advocacyGroup = require('./routes/advocacy_group');
 const publication = require('./routes/publication');
 const videoTestimonial = require('./routes/video_testimonial');
@@ -135,12 +135,8 @@ swaggerInline(['./*.js', './routes/*.js'], {
   // Database Entities
   app.use('/api/v1/categories', categories);
   app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
-  // Official //
-  app.get('/api/v1/official',official.getOfficials);
-  app.get('/api/v1/official/:id',official.getOfficialById);
-  app.post('/api/v1/official',official.createOfficial);
-  app.put('/api/v1/official/:id',official.updateOfficial);
-  app.delete('/api/v1/official/:id',official.deleteOfficial);
+  app.use('/api/v1/officials', officials);
+
   // Advocacy Group //
   app.get('/api/v1/advocacyGroup',advocacyGroup.getAdvocacyGroups);
   app.get('/api/v1/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
