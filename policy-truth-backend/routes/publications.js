@@ -1,5 +1,5 @@
 const logger = require('../logger').logger
-const publicationDB = require('../db/publication')
+const publicationDB = require('../db/publications')
 
 const getPublications = (request, response) => {
     publicationDB.getPublications((error, results) => {
