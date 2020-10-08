@@ -1,5 +1,5 @@
 const logger = require('../logger').logger;
-const advocacyGroupDB = require('../db/advocacy_group');
+const advocacyGroupDB = require('../db/advocacy_groups');
 
 const getAdvocacyGroups = (request, response) => {
   advocacyGroupDB.getAdvocacyGroups((error, results) => {

@@ -89,7 +89,7 @@ console.log(process.env.DB_DATABASE_NAME);
 const categories = require('./routes/categories');
 const geospatialDefinitions = require('./routes/geospatial_definitions');
 const officials = require('./routes/officials');
-const advocacyGroup = require('./routes/advocacy_group');
+const advocacyGroups = require('./routes/advocacy_groups');
 const publication = require('./routes/publication');
 const videoTestimonial = require('./routes/video_testimonial');
 const legislativeArtifact = require('./routes/legislative_artifact');
@@ -138,11 +138,11 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/officials', officials);
 
   // Advocacy Group //
-  app.get('/api/v1/advocacyGroup',advocacyGroup.getAdvocacyGroups);
-  app.get('/api/v1/advocacyGroup/:id',advocacyGroup.getAdvocacyGroupById);
-  app.post('/api/v1/advocacyGroup',advocacyGroup.createAdvocacyGroup);
-  app.put('/api/v1/advocacyGroup/:id',advocacyGroup.updateAdvocacyGroup);
-  app.delete('/api/v1/advocacyGroup/:id',advocacyGroup.deleteAdvocacyGroup);
+  app.get('/api/v1/advocacyGroup',advocacyGroups.getAdvocacyGroups);
+  app.get('/api/v1/advocacyGroup/:id',advocacyGroups.getAdvocacyGroupById);
+  app.post('/api/v1/advocacyGroup',advocacyGroups.createAdvocacyGroup);
+  app.put('/api/v1/advocacyGroup/:id',advocacyGroups.updateAdvocacyGroup);
+  app.delete('/api/v1/advocacyGroup/:id',advocacyGroups.deleteAdvocacyGroup);
   // Publication //
   app.get('/api/v1/publication',publication.getPublications);
   app.get('/api/v1/publication/:id',publication.getPublicationById);
