@@ -1,75 +1,46 @@
 [hi-level-arch]: images/architectural-diagram.png "High Level Architecture"
 [components]: images/components.jpg "Components"
-[PRL-data]: images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [openshift]: images/openshift.png "OpenShift Console"
-[erd]: images/erd.png "Database ERD"
 [dataflow]: images/dataflow.png "Data flow"
 
 # Team Truth
-## Truth in Legislation
 
-### Team Members
+## Team Members
 
-#### Developers:
-Peter Ihlenfeldt, 
-Bimsara Pilapitiya, 
-Joe Konathapally, 
-Khadija Al-Selini, 
-Abiola Jones, 
-Ya Jiao Zheng, 
-Aakansha Agrawal, 
-Parisa Babaali, 
-Rahul Kalluri
+The initial version was developed by members of IBM in the summer of 2020:
+Aakansha Agrawal, Khadija Al-Selini, Parisa Babaali, Boz Bosma, Kimberly Cassidy, Stephanie Daher, Michelle Esselen, Peter Ihlenfeldt, Abiola Jones, Rahul Kalluri, Joe Konathapally, Frank Madden, Henry Nash, Sharon Osahon, Bimsara Pilapitiya, Ya Jiao Zheng,
 
-#### Architect:
-Boz Bosma
+## Contents
 
-#### Product Manager:
-Sharon Osahon 
-
-#### Designer:
-Stephanie Daher
-
-#### User Researcher:
-Kimberly Cassidy
-
-#### SMEs:
-Michelle Esselen, 
-Frank Madden
-
-
-### Contents
-
-1. [Short description](#short-description)
+1. [Overview](#Overview)
    1. [What's the Problem?](#whats-the-problem)
    1. [How can technology help?](#how-can-technology-help)
 1. [The Idea](#the-idea)
-   1. [A successful implementation](#a-successful-implementation)
-1. [Skills](#skills)
-1. [Reference Materials](#reference-materials)
-1. [The Architecture](#the-architecture)
-1. [Working Code](#working-code)
-   1. [Getting started](#getting-started)
-   1. [Contributing](#contributing)
-1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
-1. [Fortification Plan](#fortification-plan)
-1. [Privacy Considerations](#privacy-concerns)
----
-### Short description
+1. [Diagrams](#Diagrams)
+1. [Technologies](#Technologies)
+1. [Getting Started](#Getting-started-by-installing-and-running-the-components)
+1. [Resources](#Resources)
+1. [License](#License)
+1. [Contributing and Developer information](#Contributing-and-Developer-information)
+    1. [Contributing](#contributing)
+    1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
+    1. [Privacy Considerations](#privacy-concerns)
 
-#### What's the problem?
+## Overview
+
+### What's the problem
 
 Concerned and impacted citizens don't have a straightforward way of knowing 
 what or how policies, regulations and legislation (throughout this document 
 referred as either **Legislative Artifacts** or **PR&L**) impact them or 
 what they can do in response.
 
-#### How can technology help?
+### How can technology help
 
-What is missing from this situation, and what this technology was intending to 
-provide, is a means for people to:
+What is missing from this situation, and what this technology was intending to provide, is a means for people to:
+
 - readily understand the PR&L language and intent without being a legal expert
-- sort or filter the PR&L efficiently 
+- sort or filter the PR&L efficiently
 - digest an understandable summary of PR&L
 - explore related or supporting information, advocacy groups and other PR&L
 - make a determination of whether it will impact them
@@ -81,8 +52,8 @@ to the author or sponsor of the legislation
 - get an idea of the general sentiments people have expressed about the PR&L
 - engender dialogue between residents and PR&L authors and sponsor
 
----
-### The Idea
+## The Idea
+
 The driving idea behind the software is to provide a platform that is capable of storing
 curated PR&L information, as determined by the community (however large or small) it serves.
 Further, it is to provide a mobile-friendly way for users to examine that PR&L, increasing
@@ -90,96 +61,168 @@ their legal awareness, and to allow them to communicate their reactions and thou
 the recording of video testimonials to be shared with the community and the people
 responsible for the creation of the PR&L.
 
-**This solution, therefore, seeks to provide implementers the framework upon which to:**
-- build a server that facilitates the storage, maintenance and retrieval of PR&L
-- build an administrative interface (and the related server components) that would allow the 
-site owners to curate the PR&L information
-  - simple, intelligible summary that makes it easy to understand its potential impact
-  - categories it pertains to (law enforcement, healthcare, zoning)
-  - geospatial areas of pertinence (postal codes, cities, counties, e.g.)
-  - the type of the artifact (bill, law, policy, regulation, e.g.)
-  - (other) related PR&L in the system
-  - legislator, author, sponsor of the PR&L
-  - related advocacy groups or digital social communities
-  - related articles or supporting documentation
-  - a link to the actual full text of the PR&L  
-- build an intuitive interface to facilitate customized exploration, and discovery of
-pertinent PR&L, and submission of video testimonials
-- build a mechanism by which information about the video testimonials gets stored within the system,
+## Diagrams
 
+![architecture diagram](/images/high-level-architecture-diagram.png)
 
+[NB Diagram above is a placeholder, need to swap React for Vue, remove HERE, and swap Watson Media for Watson Assitant]
 
----
-### Skills
+This solution combines use of a media server (currently Watson Media) and data storage to hold the curated legislative artifcats, and the meta-data to link these together.
 
-- familiarity with cloud operations
-- object storage (called Cloud Object Storage in IBM Cloud, identical to AWS S3)
-- Kubernetes, possibly OpenShift
-- Node JS, React JS, Express JS
-- PostgreSQL
-- Javascript
-- SQLWorking on this solution as it stands will require an IBM Cloud account - free tier.
-In initial sandbox development we did have the opportunity to use OpenShift as a deployment
-environment.
-![openshift]Openshift makes it *easier* to deploy the Node application deployments and the Postgres
-database, but would not be essential.  An IBM Cloud with a Kubernetes cluster
-and an instance of Postgres would be sufficient.
+1. The User launches the mobile app and can view the range of curated legislative artifcast that have been created.
+1. The User can post their own (video) story that may support or challenge the legislated artifacts
+1. The User can...
 
-The software leverages all open-source technologies for core development, which is built upon the PERN stack (PostgreSQL, Express, React, and Nodejs). The framework itself relies on knowledge of Javascript as a required skill from the developer. For populating and working with the database, basic SQL skills are enough to get started with the current data model.
-   
+There is a separate administrative interface that allows the site owners to curate the PR&L information, with the following attributes
 
----
-### Reference Materials
+- simple, intelligible summary that makes it easy to understand its potential impact
+- categories it pertains to (law enforcement, healthcare, zoning)
+- geospatial areas of pertinence (postal codes, cities, counties, e.g.)
+- the type of the artifact (bill, law, policy, regulation, e.g.)
+- (other) related PR&L in the system
+- legislator, author, sponsor of the PR&L
+- related advocacy groups or digital social communities
+- related articles or supporting documentation
+- a link to the actual full text of the PR&L  
+
+[HN - do we actually do any of the above yet?]
+
+## Technologies
 
 - [IBM Cloud Documentation Home](https://cloud.ibm.com/docs/home/alldocs)
 - [Kubernetes in IBM Cloud](https://cloud.ibm.com/docs/containers?topic=containers-cs_cluster_tutorial)
 - [PostgreSQL](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started)
 - [OpenShift](https://cloud.ibm.com/docs/openshift?topic=openshift-getting-started)
-- [PERN](https://www.geeksforgeeks.org/what-is-pern-stack/)
-- [NodeJS](https://nodejs.org/en/docs/)
+- [Node.js](https://nodejs.org/en/docs/)
 - [ExpressJS](https://expressjs.com/)
-- [ReactJS](https://reactjs.org/)
+- [Vue.js](https://vuejs.org/)
 
----
-### The Architecture
+## Getting started by installing and running the components
 
-**The information to be stored in the system**
-![PRL-data]
----
-**The data structure**
-![erd]
----
-**The data flow**
+### Prerequisites
+
+- Register for an [IBM Cloud](https://www.ibm.com/account/reg/us-en/signup) account.
+- Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
+- Install [Vue CLI dependencies](hhttps://cli.vuejs.org/guide/installation.html) which should ensure you have the dependencies installed, namely
+    - [Node.js](https://nodejs.org/en/)
+    - [Watchman](https://facebook.github.io/watchman/docs/install)
+    - [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) if using macOS/iOS
+    - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) if using macOS/iOS
+- Clone the [repository](https://github.com/henrynash/policy-truth-frontend).
+
+### Steps
+
+1. [Provision a Postgres instance on the IBM Cloud](#1-Provision-a-Postgres-instance).
+1. [If you want to use the video services, provision an instance of Watson Media](#2-Provision-a-CouchDB-instance-using-Cloudant).
+1. [Run the server](#3-run-the-server).
+1. [Run the mobile application](#4-run-the-mobile-application).
+
+### 1: Provision a Postgres instance
+
+Log into the IBM Cloud and provision a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql).
+
+1. From the catalog, select Databases and then the Cloudant panel.
+1. Once selected, you can choose your Cloudant plan -- there is a free tier for simple testing that is sufficient to run this CIR example. You should choose an appropriate region, give the service a name, and it is recommended you choose **Use only IAM** under **Available authentication methods**. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
+1. Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running Cloudant instance, you can choose **Service credentials** from the left-hand menu. Create a new service credential and give it a name (it doesn't matter what you call it).
+1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste it into the code of the API server in Step 4.
+
+### 2. Set up an instance of Watson Media
+
+Log in to IBM Cloud and provision a Watson Assistant instance.
+
+1. Provision an instance of **Watson Assistant** from the [IBM Cloud catalog](https://cloud.ibm.com/catalog/services/watson-assistant).
+1. Launch the Watson Assistant service.
+1. [Create an **Assistant**](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add).
+1. [Add a dialog skill](https://cloud.ibm.com/docs/assistant?topic=assistant-skill-dialog-add) to the **Assistant** by importing the [`starter-kit-cooperation-dialog-skill.json`](./starter-kit/assistant/starter-kit-cooperation-dialog-skill.json) file.
+1. Go back to All Assistants page, open **Settings** from the action menu ( **`⋮`** ) and click on **API Details**.
+1. Note the **Assistant ID**, **API Key**, and **Assistant URL**. For **Assistant URL**, make note of the base URL/domain (e.g., `https://api.us-south.assistant.watson.cloud.ibm.com` or `https://api.eu-gb.assistant.watson.cloud.ibm.com`) and not the full directory/path. You will need all three of these values in Step 4 below.
+
+1. Go to **Preview Link** to get a link to test and verify the dialog skill.
+
+### 3. Run the server
+
+To set up and launch the server application:
+
+1. Go to the `policy-truth-backend` directory of the cloned repo.
+1. Copy the `.env.example` file in the `policy-truth-backend` directory, and create a new file named `.env`.
+1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance Step 1.
+1. Also update the `MEDIA_USERNAME`, `MEDIA_PASSWORD`, `MEDIA_CLIENT_ID`, `MEDIA_CLIENT_SECRET`, and `MEDIA_TYPE` with the values from creating your instance of Watson Media, from Step 2.
+
+1. From a terminal:
+    1. Go to the `policy-truth-backend` directory of the cloned repo.
+    1. Install the dependencies: `npm install`.
+    1. Launch the server application locally or deploy to IBM Cloud:
+        - To run locally:
+            1. Start the application: `npm start`.
+            1. The server can be accessed at <http://localhost:3000>.
+        - To deploy to IBM Cloud:
+            1. Edit the **name** value in the `manifest.yml` file to your application name (for example, _my-app-name_).
+            1. Log in to your IBM Cloud account using the IBM Cloud CLI: `ibmcloud login`.
+            1. Target a Cloud Foundry org and space: `ibmcloud target --cf`.
+            1. Push the app to IBM Cloud: `ibmcloud app push`.
+            1. The server can be accessed at a URL using the **name** given in the `manifest.yml` file (for example,  <https://my-app-name.bluemix.net>).
+
+### 4. Run the mobile application
+
+To run the mobile application (using the Xcode iOS Simulator):
+
+1. Go to the `client/mobile-app` directory of the cloned repo.
+1. Copy the `.env.example` file in the `client/mobile-app` directory, and create a file named `.env`.
+1. Edit the newly created `.env` file:
+    - Update the `SERVER_URL` with the URL to the server app launched in the previous step.
+1. From a terminal:
+    1. Go to the `client/mobile-app` directory.
+    1. Install the dependencies: `npm install`.
+    1. Install the dependencies: `npm run serve`.
+    1. Go to the `ios` directory: `cd ios`.
+    1. Install pod dependencies: `pod install`.
+    1. Return to the `mobile-app` directory: `cd ../`.
+    1. Launch the app in the simulator: `npm run ios`. You should be running at least iOS 13.0.
+    1. The first time you launch the simulator, you should ensure that you set a Location in the Features menu.
+
+With the application running in the simulator, you should be able to navigate through the various screens:
+
+[HN - replace the items below with our own screen shots]
+
+![Intro Screen](/images/0-screen-home.png)
+![Donate Screen](/images/1-screen-donate.png)
+![Search Screen](/images/2-screen-search.png)
+![Chat Screen](/images/5-screen-chat.png)
+![Map1 Screen](/images/3-screen-map.png)
+![Map2 Screen](/images/4-screen-map.png)
+
+## Resources
+
+- Any non-tech resources go here (e.g. links/videos to legislation, and the problem being solved)
+
+## License
+
+This solution is made available under the [Apache 2 License](LICENSE).
+
+## Contributing and Developer information
+
+**[HN - still working on everything below this line ....]**
+
+### The data flow
+
 ![dataflow]
----
-**The components of the system** 
+
+### The components of the system
+
 ![components]
 
----
-### Working Code
-- Developers will need access to the front end (this) and back end Git repos
-https://github.com/embrace-call-for-code/policy-truth-frontend
-https://github.com/embrace-call-for-code/policy-truth-backend
-- Individuals working on the CI/CD portion of the development will need access to
-the IBM Cloud and/or OpenShift consoles
-- Individuals working directly with the database will either need to configure remote
-connection to the database instance
+### Contributing
 
-#### Getting started
-Instructions to get you a copy of the project up and running on your local machine for development and testing purposes can be found [here](docs/README.md).
-
-#### Contributing
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
----
 ### Future Enhancements and Undecided Aspects of the Solution
 
-Currently, the back end and front end of the application have been developed in isolation due to the experience of developers within the team. Therefore, the first step in contribution would be to route the back end database to allow viewing and filtering of policies on the front end through API calls.
+[HN - we should summarize here, the detail shoudl become github issues in our repo]
+
+One first step in contribution would be to route the back end database to allow viewing and filtering of policies on the front end through API calls.
 
 One functionality that has caused technical issues is the implementation of the video testimonial uploading for different policies. Various approaches have been researched, including use of a no-streaming solution using Cloud Object Storage to call stored videos to be downloaded and then played back to the user, upon loading of the page. As the videos will have a restriction of 60 second time limits, optimisation can be made to minimise the overhead of waiting to download the entire video before playback. This implementation is certainly feasible, however it is not scalable when taking into account users with potentially weaker network connections.
 
-- **deployment:** As of this time it is unclear whether this would be hosted in IBM Cloud and enhanced there by contributors (a Reddit model), or supplied as open source for independent hosting.
-- **customizing instance if hosted:** We had not yet discussed options for customizing individual instances of this solution.  If hosted, we could certainly provide the means to customize the UI of the application. If independently hosted, of course, the implementers could customize it themselves.
 - **security:** An efficient expansion to secure data storage (particularly regarding the video implementation) is required to ensure all user data is kept safe. Implementation of user accounts that safely store user data may even assist in developing a more convenient solution, however the privacy implications that comes with this should also be assessed.
 - **privacy considerations around videos and location information:** Consideration of the metadata around user testimonials will be essential in providing a solution that focuses on privacy risks.
 - **sourcing legislation information:** Several data sources will be required to adapt the solution for all locales, therefore expansion of this project will be impacted massively by taking into account the structures of legislation from other countries. 
@@ -187,18 +230,7 @@ One functionality that has caused technical issues is the implementation of the 
 - **moderation of uploaded videos/text:** How is video or accompanying text reviewed to ensure community guidelines are being followed, and that users are misusing functionalities? Applications of moderation can include profanity detection, manual moderation via user admins, or through flagging and reporting of user content. Furthermore, consideration should be made to assess whether these implementations address the spirit of the solution, e.g. how to distinguish the software from social media settings where users already share political views. 
 - **Natural Language technology:** Work has already begun on refining a pipeline to extract text from video submissions to implement tone analysis, which will help to identify various characteristics and give more meaning to the video testimonials from users. Further expansion can be made to analyse profanity and inappropriate language submitted by users, to address moderation of user content.
 
-
----
-### Fortification Plan
-
-A Boxnote containing our [Fortification Plan](https://ibm.box.com/s/eevvdjtokxy23faaesj0kydm2vvyrj5a) which outlines:
-
- - Team members that are available to complete the below items and additional help needed to our OM; what platform, software, product naming and user experience expertise is needed to ensure the solution is robust and meets outlined criteria
- - Ideas on the user experience of developers, end users, public and private beneficiaries, and subject matter experts who would access and contribute to our solution
- - A draft of our high level test plan, which includes which preferred external partners we could work with to test our solution 
- 
- ---
-##### Privacy Considerations
+### Privacy Considerations
 
 **Personal Information (PI) is prevalent within the Team Truth solution (please see the PI Data Map below). The following risks are noteworthy:** 
  - **Child-related:** There is the possibility that child-related PI could be entered into the system. Data protection law requires verification and authorisation by parents or guardians.  In turn, a formal Privacy Impact Assessment may be required to mitigate risks; 
