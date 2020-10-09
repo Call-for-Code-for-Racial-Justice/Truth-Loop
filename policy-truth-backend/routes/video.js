@@ -4,6 +4,7 @@ const categoryDB = require('../db/categories')
 var express = require('express');
 const Ustream = require("ustream-sdk");
 const { request, response } = require('express');
+const multer = require("multer");
 var router = express.Router();
 
 // Set up instance using password authentication
@@ -46,18 +47,23 @@ router.get('/:id', (request, response) => {
   })
 })
 
-router.post('/', (request, response) => {
-  // console.log(request.body.file.getAsBinary());
-  fs.readFile(request.body.file, 'utf8', (err,data) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(data);
-  })
-  // fetch(request.body.file)
-  // .then(response => response.text())
-  // .then(text => console.log(text))
-  // outputs the content of the text file
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/', upload.single('file'), (request, response) => {
+  console.log(request.file);
+  console.log(request.body);
+  var tmp_path = request.file.path;
+  var target_path = 'uploads/' + request.file.filename + '.' + request.file.originalname.split('.').slice(-1).pop();
+  fs.rename(tmp_path, target_path, () => (
+    console.log('success')
+  ));
+  // var src = fs.createReadStream(tmp_path);
+  // var dest = fs.createWriteStream(target_path);
+  // src.pipe(dest);
+  // src.on('end', () => { response.status(200).json({}); });
+  // src.on('error', (err) => { response.status(500).json({
+  //   error: "Internal Server Error"
+  // }); });
 })
 
 router.delete('/:id', (request, response) => {

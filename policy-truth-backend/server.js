@@ -2,9 +2,12 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const logger = require("./logger");
+const multer = require("multer");
 const Ustream = require("ustream-sdk")
 
 require('dotenv').config();
+
+const upload = multer({ dest: 'uploads/' });
 
 const getVideo = (request, response) => {
   const id = parseInt(request.params.id);
