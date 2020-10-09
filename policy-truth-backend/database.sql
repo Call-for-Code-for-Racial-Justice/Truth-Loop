@@ -78,8 +78,8 @@ CREATE TABLE advocacy_group (
 
 CREATE TABLE legislative_artifact (
 	id serial NOT NULL,
-	title varchar NULL,
-	summary varchar NULL,
+	title varchar NOT NULL,
+	summary varchar NOT NULL,
 	link_to_full_text varchar NULL,
 	date_introduced date NULL,
     status varchar NULL,
