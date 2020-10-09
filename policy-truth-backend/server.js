@@ -138,36 +138,7 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/publications', publications);
   app.use('/api/v1/videoTestimonials', videoTestimonials);
   app.use('/api/v1/legislativeArtifacts', legislativeArtifacts);
-
-  // Intersections
-  // category
-  app.delete('/api/v1/categoryIntersection/:artifactId/:categoryId', adminIntersections.removeSingleCategoryIntersection);
-  app.delete('/api/v1/categoryIntersections/:artifactId', adminIntersections.removeAllCategoryIntersections);
-  app.post('/api/v1/categoryIntersection/:artifactId/:categoryId', adminIntersections.addCategoryIntersection);
-  // geo defs
-  app.delete('/api/v1/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.removeSingleGeoDefIntersection);
-  app.delete('/api/v1/geoDefIntersections/:artifactId', adminIntersections.removeAllGeoDefIntersections);
-  app.post('/api/v1/geoDefIntersection/:artifactId/:geoDefId', adminIntersections.addGeoDefIntersection);
-  // officials
-  app.delete('/api/v1/officialIntersection/:artifactId/:officialId', adminIntersections.removeSingleOfficialIntersection);
-  app.delete('/api/v1/officialIntersections/:artifactId', adminIntersections.removeAllOfficialIntersections);
-  app.post('/api/v1/officialIntersection/:artifactId/:officialId', adminIntersections.addOfficialIntersection);
-  // publications
-  app.delete('/api/v1/publicationIntersection/:artifactId/:publicationId', adminIntersections.removeSinglePublicationIntersection);
-  app.delete('/api/v1/publicationIntersections/:artifactId', adminIntersections.removeAllPublicationIntersections);
-  app.post('/api/v1/publicationIntersection/:artifactId/:publicationId', adminIntersections.addPublicationIntersection);
-  // advocacy groups
-  app.delete('/api/v1/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.removeSingleAdvocacyGroupIntersection);
-  app.delete('/api/v1/advocacyGroupIntersections/:artifactId', adminIntersections.removeAllAdvocacyGroupIntersections);
-  app.post('/api/v1/advocacyGroupIntersection/:artifactId/:advocacyGroupId', adminIntersections.addAdvocacyGroupIntersection);
-  // video testimonials
-  app.delete('/api/v1/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.removeSingleVideoTestimonialIntersection);
-  app.delete('/api/v1/videoTestimonialIntersections/:artifactId', adminIntersections.removeAllVideoTestimonialIntersections);
-  app.post('/api/v1/videoTestimonialIntersection/:artifactId/:videoTestimonialId', adminIntersections.addVideoTestimonialIntersection);
-  // related artifacts
-  app.delete('/api/v1/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.removeSingleRelatedArtifactIntersection);
-  app.delete('/api/v1/relatedArtifactIntersections/:artifactId', adminIntersections.removeAllRelatedArtifactIntersections);
-  app.post('/api/v1/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
+  app.use('/api/v1/adminIntersections', adminIntersections);
 
   const PORT = process.env.PORT || 5000;
   app.listen(5000, () => {
