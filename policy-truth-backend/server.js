@@ -5,6 +5,8 @@ const logger = require("./logger");
 
 require('dotenv').config();
 
+console.log(process.env.CMS_USERNAME);
+console.log(process.env.CMS_PASSWORD);
 console.log(process.env.CLIENT_ID);
 console.log(process.env.CLIENT_SECRET);
 console.log(process.env.DB_HOST);
