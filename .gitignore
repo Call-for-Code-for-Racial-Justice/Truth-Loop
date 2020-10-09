@@ -2,6 +2,7 @@
 .vscode
 .env
 code/server-app/yarn.lock
+policy-truth-backend/uploads/*
 
 # OSX
 #
