@@ -93,8 +93,6 @@ const advocacyGroups = require('./routes/advocacy_groups');
 const publications = require('./routes/publications');
 const videoTestimonials = require('./routes/video_testimonials');
 const legislativeArtifacts = require('./routes/legislative_artifacts');
-const unfilteredArtifactList = require('./routes/unfiltered_artifact_list');
-const singleFullArtifact = require('./routes/single_full_artifact');
 const adminIntersections = require('./routes/admin_intersections')
 const { response, request } = require("express");
 
@@ -140,11 +138,6 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.use('/api/v1/publications', publications);
   app.use('/api/v1/videoTestimonials', videoTestimonials);
   app.use('/api/v1/legislativeArtifacts', legislativeArtifacts);
-
-  // Unfiltered ArtifactList //
-  app.get('/api/v1/getLegislativeArtifactsForListUnfiltered', unfilteredArtifactList.getLegislativeArtifactsForListUnfiltered);
-  // Single Full Artifact //
-  app.get('/api/v1/getSingleFullLegislativeArtifact/:id', singleFullArtifact.getSingleFullLegislativeArtifact);
 
   // Intersections
   // category
