@@ -51,19 +51,42 @@ const upload = multer({ dest: 'uploads/' });
 
 router.post('/', upload.single('file'), (request, response) => {
   console.log(request.file);
-  console.log(request.body);
+  console.log(request.body.channelId);
   var tmp_path = request.file.path;
   var target_path = 'uploads/' + request.file.filename + '.' + request.file.originalname.split('.').slice(-1).pop();
-  fs.rename(tmp_path, target_path, () => (
+  fs.rename(tmp_path, target_path, () => {
     console.log('success')
-  ));
-  // var src = fs.createReadStream(tmp_path);
-  // var dest = fs.createWriteStream(target_path);
-  // src.pipe(dest);
-  // src.on('end', () => { response.status(200).json({}); });
-  // src.on('error', (err) => { response.status(500).json({
-  //   error: "Internal Server Error"
-  // }); });
+    // 23946193
+    const file = {originalname: request.file.originalname, stream: fs.createReadStream(target_path)};
+    const opts = {title: request.file.originalname, description: "desc", protect: "public"};
+    ustream.video.upload(request.body.channelId, file, opts).then((results) => {
+      fs.unlinkSync(target_path, (err) => {
+        if(err){
+          response.status(500).json({
+            error: "Successfully uploaded, failed to delete"
+          })
+        }
+        console.log('deleted');
+      })
+      response.status(200).json(results);
+    }).catch((err) => {
+      response.status(500).json({
+        error: "Internal Server Error"
+      })
+    })
+  });
+})
+
+router.get('/:channelId/:videoId', (request, response) => {
+  const channelID = parseInt(request.params.channelId);
+  const videoID = parseInt(request.params.videoId);
+  ustream.video.getStatus(channelID, videoID).then((results) => {
+    response.status(200).json(results);
+  }).catch((err) => {
+    response.status(500).json({
+      error: "Internal Server Error"
+    })
+  })
 })
 
 router.delete('/:id', (request, response) => {
