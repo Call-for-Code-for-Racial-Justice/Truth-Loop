@@ -239,3 +239,124 @@
  *   - summary
  */
 
+/**
+ * @schema RelatedArtifact
+ * description: A very minimal version of an artifact used as a reference in a _like_ relationship
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   title:
+ *     type: string
+ */
+
+/**
+ * @schema LegislativeArtifactMinDetail
+ * description: A Legislative Artifact Min Detail is a minimally composite version of the artifact, including categories and geo defs
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   title:
+ *     type: string
+ *   summary:
+ *     type: string
+ *   link_to_full_text:
+ *     type: string
+ *   date_introduced:
+ *     type: string
+ *     format: date-time
+ *     description: date the artifact was introduced to the legal/political system in which it resides
+ *   status:
+ *     type: string
+ *   video_cms_channel_id:
+ *     type: string
+ *   categories:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/Category'
+ *   geospatial_pertinence:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/GeospatialDefinition'
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - title
+ *   - summary
+ */
+
+/**
+ * @schema LegislativeArtifactFullDetail
+ * description: A Legislative Artifact Full Detail is a composite version of the artifact, including all reference data
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   title:
+ *     type: string
+ *   summary:
+ *     type: string
+ *   link_to_full_text:
+ *     type: string
+ *   date_introduced:
+ *     type: string
+ *     format: date-time
+ *     description: date the artifact was introduced to the legal/political system in which it resides
+ *   status:
+ *     type: string
+ *   video_cms_channel_id:
+ *     type: string
+ *   categories:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/Category'
+ *   geospatial_pertinence:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/GeospatialDefinition'
+ *   officials:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/Official'
+ *   publications:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/Publication'
+ *   advocacy_groups:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/AdvocacyGroup'
+ *   video_testimonials:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/VideoTestimonial'
+ *   related:
+ *     type: array
+ *     items:
+ *       $ref: '#/components/schemas/RelatedArtifact'
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - title
+ *   - summary
+ */
