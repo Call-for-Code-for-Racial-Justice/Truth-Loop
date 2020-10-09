@@ -82,7 +82,7 @@
             <cv-side-nav-link href="javascript:void(0)">
               L1 link
             </cv-side-nav-link>
-            <cv-side-nav-link href="http://localhost:5000/api-docs/">
+            <cv-side-nav-link href="/api-docs/">
               API Docs
             </cv-side-nav-link>
 
