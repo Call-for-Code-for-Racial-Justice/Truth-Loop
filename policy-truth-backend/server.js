@@ -102,7 +102,7 @@ swaggerInline(['./*.js', './routes/*.js'], {
   app.post('/api/v1/relatedArtifactIntersection/:artifactId/:relatedArtifactId', adminIntersections.addRelatedArtifactIntersection);
 
   const PORT = process.env.PORT || 5000;
-  app.listen(5000, () => {
+  app.listen(PORT, () => {
     logger.logger.info('server has started on port %d', PORT);
   });
 });

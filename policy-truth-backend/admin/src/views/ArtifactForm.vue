@@ -180,7 +180,7 @@ export default {
         if (body.video_cms_channel_id === '') {
           delete body.video_cms_channel_id;
         }
-        const response = await fetch('http://localhost:5000/api/v1/legislativeArtifacts', {
+        const response = await fetch('/api/v1/legislativeArtifacts', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
