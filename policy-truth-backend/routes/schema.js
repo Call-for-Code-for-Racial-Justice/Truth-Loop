@@ -201,3 +201,41 @@
  *   - video_cms_id
  *   - privacy_stmt_ack
  */
+
+/**
+ * @schema LegislativeArtifact
+ * description: A Legislative Artifact is the central entity in the platform, and represents a policy, law, bill, act, regulation or other legal action the platform adopter should wish to publish
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   title:
+ *     type: string
+ *   summary:
+ *     type: string
+ *   link_to_full_text:
+ *     type: string
+ *   date_introduced:
+ *     type: string
+ *     format: date-time
+ *     description: date the artifact was introduced to the legal/political system in which it resides
+ *   status:
+ *     type: string
+ *   video_cms_channel_id:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - title
+ *   - summary
+ */
+
