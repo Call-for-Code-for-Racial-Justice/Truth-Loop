@@ -80,7 +80,7 @@ router.delete('/category/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/category/{artifactId}/{categoryId}
+ * @api [post] /api/v1/adminIntersections/category/{artifactId}/{categoryId}
  * summary: Create an association between an artifact and a category
  * tags:
  *   - Intersections
@@ -199,7 +199,7 @@ router.delete('/geospatialDefinition/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/geospatialDefinition/{artifactId}/{geospatialDefinitionId}
+ * @api [post] /api/v1/adminIntersections/geospatialDefinition/{artifactId}/{geospatialDefinitionId}
  * summary: Create an association between an artifact and a geospatial definition
  * tags:
  *   - Intersections
@@ -318,7 +318,7 @@ router.delete('/official/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/official/{artifactId}/{officialId}
+ * @api [post] /api/v1/adminIntersections/official/{artifactId}/{officialId}
  * summary: Create an association between an artifact and an official
  * tags:
  *   - Intersections
@@ -437,7 +437,7 @@ router.delete('/publication/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/publication/{artifactId}/{publicationId}
+ * @api [post] /api/v1/adminIntersections/publication/{artifactId}/{publicationId}
  * summary: Create an association between an artifact and a publication
  * tags:
  *   - Intersections
@@ -556,7 +556,7 @@ router.delete('/advocacyGroup/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/advocacyGroup/{artifactId}/{advocacyGroupId}
+ * @api [post] /api/v1/adminIntersections/advocacyGroup/{artifactId}/{advocacyGroupId}
  * summary: Create an association between an artifact and an advocacy group
  * tags:
  *   - Intersections
@@ -675,7 +675,7 @@ router.delete('/category/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/videoTestimonial/{artifactId}/{videoTestimonialId}
+ * @api [post] /api/v1/adminIntersections/videoTestimonial/{artifactId}/{videoTestimonialId}
  * summary: Create an association between an artifact and a video testimonial
  * tags:
  *   - Intersections
@@ -794,7 +794,7 @@ router.delete('/relatedArtifact/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/intersections/relatedArtifact/{artifactId}/{relatedArtifact}
+ * @api [post] /api/v1/adminIntersections/relatedArtifact/{artifactId}/{relatedArtifact}
  * summary: Create an association between an artifact and another (related) artifact
  * tags:
  *   - Intersections
