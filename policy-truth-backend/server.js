@@ -7,23 +7,6 @@ const Ustream = require("ustream-sdk")
 
 require('dotenv').config();
 
-const upload = multer({ dest: 'uploads/' });
-
-const getVideo = (request, response) => {
-  const id = parseInt(request.params.id);
-  console.log(id);
-  ustream.video.get(id).then((results) => {
-    console.log('it was successful');
-    response.status(200).json(results);
-  }).catch((err) => {
-    console.warn(err)
-    response.status(500).json({
-      error: "Internal Server Error"
-  })
-  }) 
-}
-
-
 console.log(process.env.CLIENT_ID);
 console.log(process.env.CLIENT_SECRET);
 console.log(process.env.DB_HOST);
