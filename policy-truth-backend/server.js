@@ -39,6 +39,9 @@ app.use(
   })
 )
 
+// Static build of Admin UI
+app.use(express.static('admin/dist'));
+
 const swaggerInline = require('swagger-inline');
 
 swaggerInline(['./*.js', './routes/*.js'], {
@@ -47,7 +50,7 @@ swaggerInline(['./*.js', './routes/*.js'], {
   swaggerDocument = JSON.parse(generatedSwagger);
   var swaggerUi = require('swagger-ui-express');
   var options = {
-    jsonEditor: true 
+    jsonEditor: true
   }
   app.use('/api-docs', function(req, res, next){
     swaggerDocument.host = req.get('host');
