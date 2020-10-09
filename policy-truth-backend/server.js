@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const logger = require("./logger");
-const multer = require("multer");
-const Ustream = require("ustream-sdk")
 
 require('dotenv').config();
 
