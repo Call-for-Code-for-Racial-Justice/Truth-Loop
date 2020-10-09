@@ -6,10 +6,10 @@ var router = express.Router();
 
 // Set up instance using password authentication
 let ustream = new Ustream({
-  username: 'e97sd7dkmx3',
-  password: 'ugxbx krddk pugse',
-  client_id: '3d0df02cc292e7a243e9ede2639ee3278e8a2bad',
-  client_secret: '03357caf740cbb07f3e6251673d7717f203eef3f',
+  username: process.env.CMS_USERNAME,
+  password: process.env.CMS_PASSWORD,
+  client_id: process.env.CLIENT_ID,
+  client_secret: process.env.CLIENT_SECRET,
   type: "password"
 })
 
