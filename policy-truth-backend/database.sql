@@ -82,7 +82,7 @@ CREATE TABLE legislative_artifact (
 	summary varchar NOT NULL,
 	link_to_full_text varchar NULL,
 	date_introduced date NULL,
-    status varchar NULL,
+  status varchar NULL,
 	video_cms_channel_id varchar NULL, -- Watson Video Channel ID
 	created timestamp NOT NULL DEFAULT now(),
 	updated timestamp NOT NULL DEFAULT now(),
