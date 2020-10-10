@@ -1,6 +1,6 @@
 <template>
     <div>
-      <cv-data-table class="policy-table" no-header>
+      <cv-data-table class="policy-table" :columns="columns" >
         <template slot="data">
           <cv-data-table-row class="policy-row"
            v-for="(row, rowIndex) in this.datarows"
@@ -33,9 +33,9 @@ export default {
   data() {
     console.log(`items : ${this.rows.length} -> ${this.rows[0].title}`);
     return {
-      columns: ["name"],
+      columns: [`POLICIES (${this.rows.length})`],
       title: "",
-      helperText: "A Collection of Policies",
+      helperText: "",
       datarows: this.rows.map((row) => ({
         data: row,
         description: row.summary,
@@ -48,10 +48,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/carbon-overrides';
 .policy-table{
+  background-color: $ui-01;
   .policy-row{
     padding: 0;
+    margin: 0;
     .policy-cell{
       padding: 0;
+      margin: 0;
       background-color: $ui-01;
     }
   }
