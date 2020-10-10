@@ -3,11 +3,11 @@
       <cv-modal ref="modal_privacy"
       @modal-shown="actionShown"
       @modal-hidden="actionHidden"
-      @modal-hide-request="hideModal"
-      @primary-click="showModal"
+      @modal-hide-request="privacyCancelled"
+      @primary-click="privacyAccepted"
       auto-hide-off visible>
-      <template slot="label">label</template>
-      <template slot="title">A Title</template>
+      <template slot="label"><h5>Please Accept the Privacy Statement</h5></template>
+      <template slot="title">Policy Truth Project</template>
       <template slot="content">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed
@@ -17,7 +17,7 @@
           consequat.
         </p>
       </template>
-      <!-- <template slot="secondary-button">Canel</template> -->
+      <template slot="secondary-button">Canel</template>
       <template slot="primary-button">Accept</template>
     </cv-modal>
   </div>
@@ -31,6 +31,10 @@ export default {
       const prvc = this.$store.getters["privacystore/getPrivacyAccept"];
       return prvc;
     },
+    privacy_cancelled() {
+      const prvc = this.$store.getters["privacystore/getPrivacyCancel"];
+      return prvc;
+    },
   },
   data() {
     return {};
@@ -42,22 +46,25 @@ export default {
     actionHidden() {
       console.log("modal off");
     },
-    showModal() {
+    privacyAccepted() {
       this.$refs.modal_privacy.hide();
       this.$store.dispatch("privacystore/updatePrivacyAccept", {
         privacy_accepted: true,
+        privacy_cancelled: false,
       });
       console.log("modal show");
     },
-    hideModal() {
+    privacyCancelled() {
       this.$refs.modal_privacy.hide();
       this.$store.dispatch("privacystore/updatePrivacyAccept", {
         privacy_accepted: false,
+        privacy_cancelled: true,
       });
       console.log("modal hide");
     },
   },
   mounted() {
+    if (this.privacy_accepted) this.$refs.modal_privacy.hide();
     console.log("modal created ");
   },
 };
