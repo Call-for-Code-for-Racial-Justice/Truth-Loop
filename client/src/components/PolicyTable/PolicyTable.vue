@@ -4,11 +4,15 @@
         <template slot="data">
           <cv-data-table-row class="policy-row"
            v-for="(row, rowIndex) in this.datarows"
-           :key="`${rowIndex}`">
-            <cv-data-table-cell class="policy-cell">
+           :key="`${rowIndex}`"
+           >
+            <cv-data-table-cell class="policy-cell"  >
+              <router-link :to="`policy/${row.data.id}`" >
               <Policy :title="`${row.data.title}`"
               :summary="`${row.data.summary}`"
-              :date_introduced="`${row.data.date_introduced}`" />
+              :date_introduced="`${row.data.date_introduced}`"
+                 />
+              </router-link>
             </cv-data-table-cell>
             <!-- <template slot="expandedContent">
             {{ row.description }}

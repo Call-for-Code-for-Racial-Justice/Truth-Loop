@@ -27,7 +27,8 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.2",
+    "sass-loader": "^10.0.3",
+    "vue-friendly-iframe": "^0.18.0",
     "vue-template-compiler": "^2.6.11"
   }
 }
