@@ -9,14 +9,14 @@
         </div>
       </div>
     </div>
-    <div class="bx--row r2">
-      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12">
+    <div class="bx--row r2" @click="openPolicyDetails">
+      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12 title">
         {{title}}
       </div>
-      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12">
+      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12 summary">
         {{summary}}
       </div>
-      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12">
+      <div class="bx--col-lg-4 bx--col-md-4 bx--col-sm-12 introdate">
         Introduced: {{getIntroDt}}
       </div>
     </div>
@@ -27,7 +27,7 @@
 export default {
   name: 'Policy',
   props: {
-    id: Number,
+    id: String,
     title: String,
     summary: String,
     date_introduced: String,
@@ -40,6 +40,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    openPolicyDetails() {
+      this.$router.push({ path: `/policy/${this.id}` });
+    },
   },
 };
 </script>
@@ -75,6 +80,21 @@ export default {
       background-color: $ui-background;
       margin: 0;
       margin-bottom: $spacing-03;
+    }
+    .title{
+      font-weight: bold;
+    }
+    .summary{
+      cursor: pointer;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .policy-card {
+      .summary{
+        $h: $spacing-03;
+        $v: $spacing-07;
+        padding: $h $v $h $v;
+      }
     }
   }
 </style>

@@ -2,9 +2,11 @@ export default {
   namespaced: true,
   state: {
     privacy_accepted: false,
+    privacy_cancelled: false,
   },
   getters: {
     getPrivacyAccept: (state) => state.privacy_accepted,
+    getPrivacyCancel: (state) => state.privacy_cancelled,
   },
   actions: {
     updatePrivacyAccept({ commit }, payload) {
@@ -22,6 +24,7 @@ export default {
     setPrivacyAccept(state, payload) {
       console.log(payload);
       state.privacy_accepted = payload.privacy_accepted;
+      state.privacy_cancelled = payload.privacy_cancelled;
     },
   },
 };
