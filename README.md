@@ -65,13 +65,14 @@ responsible for the creation of the PR&L.
 
 ![architecture diagram](/images/high-level-architecture-diagram.png)
 
-[NB Diagram above is a placeholder, need to swap React for Vue, remove HERE, and swap Watson Media for Watson Assitant]
+[NB Diagram above is a placeholder, need to swap Cloudant for PostgreSQL and indicate this is not mobile only]
 
 This solution combines use of a media server (currently Watson Media) and data storage to hold the curated legislative artifcats, and the meta-data to link these together.
 
-1. The User launches the mobile app and can view the range of curated legislative artifcast that have been created.
-1. The User can post their own (video) story that may support or challenge the legislated artifacts
-1. The User can...
+1. The User launches the web app (on either a mobile or laptop/desktop device) and can view the range of curated legislative artifcast that have been created. The Vue app retrieves these by sending a REST request to the API server, which extracts them from the SQL database.
+1. The User can post their own (video) story that may support or challenge the legislated artifacts, which are uploaded to the API server, which directs these to the Watson Media services. The API server also stores a reference to the video location in the respective legislative artifact in the SQL database.
+1. The User can view other peoples' video stories which are retrieved by sending a REST request to the API server, which extracts them from the Watson Media services.
+1. [add more here?]
 
 There is a separate administrative interface that allows the site owners to curate the PR&L information, with the following attributes
 
@@ -85,7 +86,7 @@ There is a separate administrative interface that allows the site owners to cura
 - related articles or supporting documentation
 - a link to the actual full text of the PR&L  
 
-[HN - do we actually do any of the above yet?]
+[HN - do we actually do any of the above yet? Is this is in the same Vue app or a sepeate one?]
 
 ## Technologies
 
@@ -103,11 +104,7 @@ There is a separate administrative interface that allows the site owners to cura
 
 - Register for an [IBM Cloud](https://www.ibm.com/account/reg/us-en/signup) account.
 - Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
-- Install [Vue CLI dependencies](hhttps://cli.vuejs.org/guide/installation.html) which should ensure you have the dependencies installed, namely
-    - [Node.js](https://nodejs.org/en/)
-    - [Watchman](https://facebook.github.io/watchman/docs/install)
-    - [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) if using macOS/iOS
-    - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) if using macOS/iOS
+- Install [Vue CLI dependencies](hhttps://cli.vuejs.org/guide/installation.html) 
 - Clone the [repository](https://github.com/henrynash/policy-truth-frontend).
 
 ### Steps
@@ -117,14 +114,12 @@ There is a separate administrative interface that allows the site owners to cura
 1. [Run the server](#3-run-the-server).
 1. [Run the mobile application](#4-run-the-mobile-application).
 
-### 1: Provision a Postgres instance
+### 1: Provision a PostgreSQL instance
 
-Log into the IBM Cloud and provision a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql).
+The server requires and SQL server, and has been tested using PostgreSQL. You can deploy this in the IBM CLoud by logging into the IBM Cloud and provisioning a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Note that this does require a paid plan, although if you are new to the IBM Cloud, it is likely your initial cloud credits will cover this for a significant time. Alternatively, you could deploy a your own PostgreSQL instance either locally or in a remote VM or container. In this case, ensure you obatin the equivilent credientials to those described below.
 
-[HN - These are not accurate - also, there is no Postgres lite tier!! eeek]
-
-1. Choose your Databases for Postgres plan. You should choose an appropriate region, give the service a name, and it is recommended you choose **Use only IAM** under **Available authentication methods**. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
-1. Once your Postgres instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running Postgres instance, you can choose **Service credentials** from the left-hand menu. Create a new service credential and give it a name (it doesn't matter what you call it).
+1. Choose your Databases for Postgres plan. You should choose an appropriate region, give the service a name. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
+1. Once your Postgres instance has been created, you need to create a service credential that the API Server can use to communicate with it. By selecting your running Postgres instance, you can choose **Service credentials** from the left-hand menu. Create a new service credential and give it a name (it doesn't matter what you call it).
 1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste it into the code of the API server in Step 3.
 
 ### 2. Set up an instance of Watson Media
@@ -155,7 +150,7 @@ To set up and launch the server application:
     1. Launch the server application locally or deploy to IBM Cloud:
         - To run locally:
             1. Start the application: `npm start`.
-            1. The server can be accessed at <http://localhost:3000>.
+            1. The server can be accessed at <http://localhost:3000>
         - To deploy to IBM Cloud:
             1. Edit the **name** value in the `manifest.yml` file to your application name (for example, _my-app-name_).
             1. Log in to your IBM Cloud account using the IBM Cloud CLI: `ibmcloud login`.
@@ -163,34 +158,25 @@ To set up and launch the server application:
             1. Push the app to IBM Cloud: `ibmcloud app push`.
             1. The server can be accessed at a URL using the **name** given in the `manifest.yml` file (for example,  <https://my-app-name.bluemix.net>).
 
+Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally <http://localhost:3000/api-docs>, which should look something like this
+
+![api-docs](/images/api-docs.png)
+
 ### 4. Run the mobile application
 
 To run the mobile application (using the Xcode iOS Simulator):
 
-1. Go to the `client/mobile-app` directory of the cloned repo.
-1. Copy the `.env.example` file in the `client/mobile-app` directory, and create a file named `.env`.
+1. Go to the `client` directory of the cloned repo.
+1. Copy the `.env.example` file to a new file named `.env`.
 1. Edit the newly created `.env` file:
-    - Update the `SERVER_URL` with the URL to the server app launched in the previous step.
+    - Update the `SERVER_URL` with the URL to the server app launched in the previous step (for example <http://localhost:3000>).
 1. From a terminal:
-    1. Go to the `client/mobile-app` directory.
     1. Install the dependencies: `npm install`.
     1. Install the dependencies: `npm run serve`.
-    1. Go to the `ios` directory: `cd ios`.
-    1. Install pod dependencies: `pod install`.
-    1. Return to the `mobile-app` directory: `cd ../`.
-    1. Launch the app in the simulator: `npm run ios`. You should be running at least iOS 13.0.
-    1. The first time you launch the simulator, you should ensure that you set a Location in the Features menu.
+    1. Once the deevlopment server is running, you should be able to access the client from the URL indicated (typicall http://localhost:8080/).
+    1. If you are running a mobile simulator, you can also access the same url. For example, in the ios simulator, the screen would look something like this
 
-With the application running in the simulator, you should be able to navigate through the various screens:
-
-[HN - replace the items below with our own screen shots]
-
-![Intro Screen](/images/0-screen-home.png)
-![Donate Screen](/images/1-screen-donate.png)
-![Search Screen](/images/2-screen-search.png)
-![Chat Screen](/images/5-screen-chat.png)
-![Map1 Screen](/images/3-screen-map.png)
-![Map2 Screen](/images/4-screen-map.png)
+![Intro Screen](/images/first-screen.png)
 
 ## Resources
 
