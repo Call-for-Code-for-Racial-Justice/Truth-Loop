@@ -116,11 +116,13 @@ There is a separate administrative interface that allows the site owners to cura
 
 ### 1: Provision a PostgreSQL instance
 
-The server requires and SQL server, and has been tested using PostgreSQL. You can deploy this in the IBM CLoud by logging into the IBM Cloud and provisioning a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Note that this does require a paid plan, although if you are new to the IBM Cloud, it is likely your initial cloud credits will cover this for a significant time. Alternatively, you could deploy a your own PostgreSQL instance either locally or in a remote VM or container. In this case, ensure you obatin the equivilent credientials to those described below.
+The server requires an SQL server, and has been tested using PostgreSQL. You can deploy this in the IBM CLoud by logging into the IBM Cloud and provisioning a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Note that this does require a paid plan, although if you are new to the IBM Cloud, it is likely your initial cloud credits will cover this for a significant time.
 
 1. Choose your Databases for Postgres plan. You should choose an appropriate region, give the service a name. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
 1. Once your Postgres instance has been created, you need to create a service credential that the API Server can use to communicate with it. By selecting your running Postgres instance, you can choose **Service credentials** from the left-hand menu. Create a new service credential and give it a name (it doesn't matter what you call it).
-1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste it into the code of the API server in Step 3.
+1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste it into the code of the API server in [Step 3](#3-Configuring-and-running-the-server).
+
+Alternatively, you could deploy your own PostgreSQL instance either locally or in a remote VM or container. In this case, ensure you obatin the equivilent credientials to those described above, ready for [Step 3](#3-Configuring-and-running-the-server).
 
 ### 2. Set up an instance of Watson Media
 
@@ -129,9 +131,9 @@ Log in to IBM Cloud and provision a Watson Media instance.
 [HN - These are not accurate]
 
 1. Provision an instance of **Watson Media** [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing).
-1. Launch the Watson Assistant service.
+1. Launch the Watson Media service.
 1. [more]
-1. Note the **Assistant ID**, **API Key**, and **Assistant URL**. For **Assistant URL**, make note of the base URL/domain (e.g., `https://api.us-south.assistant.watson.cloud.ibm.com` or `https://api.eu-gb.assistant.watson.cloud.ibm.com`) and not the full directory/path. You will need all three of these values in Step 3 below.
+1. Note the **Assistant ID**, **API Key**, and **Assistant URL**. For **Assistant URL**, make note of the base URL/domain (e.g., `https://api.us-south.assistant.watson.cloud.ibm.com` or `https://api.eu-gb.assistant.watson.cloud.ibm.com`) and not the full directory/path. You will need all three of these values in [Step 3](#3-Configuring-and-running-the-server) below.
 
 1. Go to **Preview Link** to get a link to test and verify the dialog skill.
 
