@@ -1,1 +1,13 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
 @import './carbon-utils';
+
+$sentiment-color:(
+    "01": #f8555c,
+    "02": #2baeff,
+    "03": #fed01b
+);
+
+$sentiment-bar-width-01: 0.1rem;
