@@ -146,19 +146,18 @@ To set up and launch the server application:
 1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance Step 1.
 1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from Step 2.
 
-1. From a terminal:
-    1. Go to the `policy-truth-backend` directory of the cloned repo.
+1. From a terminal, in the `policy-truth-backend` directory of the cloned repo:
     1. Install the dependencies: `npm install`
     1. Launch the server application locally or deploy to IBM Cloud:
         - To run locally:
             1. Start the application: `npm start`
             1. The server can be accessed at <http://localhost:3000>
-        - To deploy to IBM Cloud:
+        - To deploy to the IBM Cloud in Cloud Foundry:
             1. Edit the **name** value in the `manifest.yml` file to a unique application name (for example, _my-legislative-server_).
             1. Log in to your IBM Cloud account using the IBM Cloud CLI: `ibmcloud login`
             1. Target a Cloud Foundry org and space: `ibmcloud target --cf`
             1. Push the app to IBM Cloud: `ibmcloud app push`
-            1. The server can be accessed at a URL given **routes** output by the push command (for example,  <https://my-legislative-server.eu-gb.mybluemix.net>)
+            1. The server can be accessed at the  **routes** URL displayed in the output of the push command (for example, <https://my-legislative-server.eu-gb.mybluemix.net>)
 
 Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally this will be on <http://localhost:3000/api-docs>, which should look something like this:
 
