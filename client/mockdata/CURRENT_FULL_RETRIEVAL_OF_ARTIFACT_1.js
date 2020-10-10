@@ -1,4 +1,5 @@
-var data = {
+/*eslint-disable */
+const policy = {
     "id": 1,
     "title": "Legislative Artifact 01",
     "summary": "Summary of Legislative Artifact 01",
@@ -97,4 +98,6 @@ var data = {
             "title": "Legislative Artifact 02"
         }
     ]
-}
+};
+
+export default policy;
