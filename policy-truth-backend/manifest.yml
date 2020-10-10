@@ -1,0 +1,6 @@
+applications:
+- name: legislative-artifacts-server
+  command: npm start
+  path: .
+  memory: 256M
+  instances: 1
