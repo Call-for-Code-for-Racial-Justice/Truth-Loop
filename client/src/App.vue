@@ -7,6 +7,9 @@
 <style lang="scss">
 @import "./styles/carbon";
 
+body{
+    background-color: $ui-01;
+}
 // body {
 //   background: #000;
 // }
