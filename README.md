@@ -148,17 +148,17 @@ To set up and launch the server application:
 
 1. From a terminal:
     1. Go to the `policy-truth-backend` directory of the cloned repo.
-    1. Install the dependencies: `npm install`.
+    1. Install the dependencies: `npm install`
     1. Launch the server application locally or deploy to IBM Cloud:
         - To run locally:
-            1. Start the application: `npm start`.
+            1. Start the application: `npm start`
             1. The server can be accessed at <http://localhost:3000>
         - To deploy to IBM Cloud:
-            1. Edit the **name** value in the `manifest.yml` file to your application name (for example, _my-app-name_).
-            1. Log in to your IBM Cloud account using the IBM Cloud CLI: `ibmcloud login`.
-            1. Target a Cloud Foundry org and space: `ibmcloud target --cf`.
-            1. Push the app to IBM Cloud: `ibmcloud app push`.
-            1. The server can be accessed at a URL using the **name** given in the `manifest.yml` file (for example,  <https://my-app-name.bluemix.net>).
+            1. Edit the **name** value in the `manifest.yml` file to a unique application name (for example, _my-legislative-server_).
+            1. Log in to your IBM Cloud account using the IBM Cloud CLI: `ibmcloud login`
+            1. Target a Cloud Foundry org and space: `ibmcloud target --cf`
+            1. Push the app to IBM Cloud: `ibmcloud app push`
+            1. The server can be accessed at a URL given **routes** output by the push command (for example,  <https://my-legislative-server.eu-gb.mybluemix.net>)
 
 Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally this will be on <http://localhost:3000/api-docs>, which should look something like this:
 
