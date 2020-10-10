@@ -3,11 +3,7 @@
     <div class="bx--grid policy">
       <div class="bx--row">
         <div class="bx--col">
-          <cv-icon-button
-            kind="secondary"
-            icon="img/chevron--left.svg"
-            class="back-btn"
-          />
+          <ChevronLeft32 @click="goHistoryBack()" />
         </div>
       </div>
       <div class="bx--row">
@@ -80,19 +76,20 @@
       </div>
     </div>
 
-    <cv-button kind="primary" icon="img/video--add.svg" class="lower-button"
+    <cv-button kind="primary" icon="img/video--add.svg" class="fixed-btn lower-btn"
       >Tell my story</cv-button
     >
     <cv-button
       kind="secondary"
       icon="img/video--filled.svg"
-      class="bottom-button"
+      class="fixed-btn bottom-btn"
       >See policy testimonials</cv-button
     >
   </div>
 </template>
 
 <script>
+import ChevronLeft32 from '@carbon/icons-vue/lib/chevron--left/32';
 import policy from "../../mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1";
 
 export default {
@@ -102,14 +99,15 @@ export default {
       policy,
     };
   },
-  components: {},
+  components: {
+    ChevronLeft32,
+  },
   methods: {
-    open: () => {
-      console.log("open");
+    goHistoryBack() {
+      this.$router.go(-1);
     },
-    actionChange: () => {
-      console.log("action");
-    },
+    open: () => {},
+    actionChange: () => {},
     getIntroDt(dateIntroduced) {
       const dt = new Date(dateIntroduced);
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
@@ -127,24 +125,19 @@ export default {
     font-size: 0.875 rem;
   }
   .bx--row {
-    margin: $spacing-03 0;
+    margin: $spacing-02 0;
   }
 }
 
-.back-btn {
-  background: white;
-}
-.bottom-button {
+.fixed-btn {
   width: 100%;
   max-width: 100%;
   position: fixed;
-  bottom: 0px;
-}
-
-.lower-button {
-  width: 100%;
-  max-width: 100%;
-  position: fixed;
-  bottom: 48px;
+  &.bottom-btn {
+    bottom: 0px;
+  }
+  &.lower-btn {
+    bottom: 48px;
+  }
 }
 </style>
