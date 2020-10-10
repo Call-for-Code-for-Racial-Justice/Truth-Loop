@@ -111,8 +111,8 @@ There is a separate administrative interface that allows the site owners to cura
 
 1. [Provision a Postgres instance on the IBM Cloud](#1-Provision-a-Postgres-instance).
 1. [If you want to use the video services, provision an instance of Watson Media](#2-Provision-a-CouchDB-instance-using-Cloudant).
-1. [Run the server](#3-run-the-server).
-1. [Run the mobile application](#4-run-the-mobile-application).
+1. [Configuring and running the server](#3-Configuring-and-running-the-server).
+1. [Configuring and running the client application](#4-Configuring-and-running-the-client-application).
 
 ### 1: Provision a PostgreSQL instance
 
@@ -135,14 +135,14 @@ Log in to IBM Cloud and provision a Watson Media instance.
 
 1. Go to **Preview Link** to get a link to test and verify the dialog skill.
 
-### 3. Run the server
+### 3. Configuring and running the server
 
 To set up and launch the server application:
 
 1. Go to the `policy-truth-backend` directory of the cloned repo.
-1. Copy the `.env.example` file in the `policy-truth-backend` directory, and create a new file named `.env`.
+1. Copy the `.env.example` file, and create a new file named `.env`.
 1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance Step 1.
-1. Also update the `MEDIA_USERNAME`, `MEDIA_PASSWORD`, `MEDIA_CLIENT_ID`, `MEDIA_CLIENT_SECRET`, and `MEDIA_TYPE` with the values from creating your instance of Watson Media, from Step 2.
+1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from Step 2.
 
 1. From a terminal:
     1. Go to the `policy-truth-backend` directory of the cloned repo.
@@ -158,13 +158,13 @@ To set up and launch the server application:
             1. Push the app to IBM Cloud: `ibmcloud app push`.
             1. The server can be accessed at a URL using the **name** given in the `manifest.yml` file (for example,  <https://my-app-name.bluemix.net>).
 
-Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally <http://localhost:3000/api-docs>, which should look something like this
+Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally this will be on <http://localhost:3000/api-docs>, which should look something like this:
 
 ![api-docs](/images/api-docs.png)
 
-### 4. Run the mobile application
+### 4. Configuring and running the client application
 
-To run the mobile application (using the Xcode iOS Simulator):
+To configure and run the client application:
 
 1. Go to the `client` directory of the cloned repo.
 1. Copy the `.env.example` file to a new file named `.env`.
@@ -188,19 +188,13 @@ This solution is made available under the [Apache 2 License](LICENSE).
 
 ## Contributing and Developer information
 
-**[HN - still working on everything below this line ....]**
+We welome your imvlovement and continbutions to this project. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-### The data flow
-
-![dataflow]
+Some more detailed information and the components and data flows within the system are given below.
 
 ### The components of the system
 
 ![components]
-
-### Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ### Future Enhancements and Undecided Aspects of the Solution
 
