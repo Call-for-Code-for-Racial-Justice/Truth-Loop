@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,9 @@
     "swagger-inline": "^3.2.0",
     "swagger-ui-express": "^4.1.4",
     "ustream-sdk": "^1.11.1"
+  },
+  "devDependencies": {
+    "jest": "^26.5.2",
+    "supertest": "^5.0.0"
   }
 }
