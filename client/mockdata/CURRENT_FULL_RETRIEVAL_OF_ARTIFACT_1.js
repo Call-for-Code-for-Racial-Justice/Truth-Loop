@@ -1,7 +1,7 @@
 /*eslint-disable */
 const policy = {
     "id": 1,
-    "title": "Legislative Artifact 01",
+    "title": "H.R. 6395: William M. (Mac) Thornberry National Defense Authorization Act Fiscal Year 2021",
     "summary": "Summary of Legislative Artifact 01",
     "link_to_full_text": "https://fulltextlegislation.com/artifact/01",
     "date_introduced": "2020-06-01T05:00:00.000Z",

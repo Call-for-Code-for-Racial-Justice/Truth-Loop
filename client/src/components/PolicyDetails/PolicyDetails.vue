@@ -3,7 +3,7 @@
     <div class="bx--grid policy">
       <div class="bx--row">
         <div class="bx--col">
-          <ChevronLeft32 @click="goHistoryBack()" />
+          <ChevronLeft20 class="back" @click="goHistoryBack()" />
         </div>
       </div>
       <div class="bx--row">
@@ -13,14 +13,14 @@
       </div>
       <div class="bx--row">
         <div class="bx--col">
-          <h3>{{ policy.title }}</h3>
+          <h4>{{ policy.title }}</h4>
         </div>
       </div>
       <div class="bx--row">
         <div class="bx--col">
-          <h6 class="light-text">{{policy.officials[0].name}}</h6>
+          <h6 class="light-text">{{ policy.officials[0].name }}</h6>
         </div>
-        <div class="bx--col">
+        <div class="bx--col text-right">
           <h6 class="light-text">
             Introduced: {{ getIntroDt(policy.date_introduced) }}
           </h6>
@@ -31,6 +31,12 @@
           <h6 class="light-text">{{ policy.status }}</h6>
         </div>
       </div>
+      <div class="bx--row launch">
+        <div class="bx--col">
+          <h5><a href="#">Full Text <Launch16 /></a></h5>
+        </div>
+      </div>
+      <Sentiment />
       <div class="bx--row">
         <cv-accordion @change="actionChange" ref="acc">
           <cv-accordion-item :open="open[0]">
@@ -76,7 +82,10 @@
       </div>
     </div>
 
-    <cv-button kind="primary" icon="img/video--add.svg" class="fixed-btn lower-btn"
+    <cv-button
+      kind="primary"
+      icon="img/video--add.svg"
+      class="fixed-btn lower-btn"
       >Tell my story</cv-button
     >
     <cv-button
@@ -89,7 +98,9 @@
 </template>
 
 <script>
-import ChevronLeft32 from '@carbon/icons-vue/lib/chevron--left/32';
+import ChevronLeft20 from "@carbon/icons-vue/lib/chevron--left/20";
+import Launch16 from "@carbon/icons-vue/lib/launch/16";
+import Sentiment from "./Sentiment.vue";
 
 export default {
   name: "Policy",
@@ -100,7 +111,9 @@ export default {
     policy: Object,
   },
   components: {
-    ChevronLeft32,
+    ChevronLeft20,
+    Launch16,
+    Sentiment,
   },
   methods: {
     goHistoryBack() {
@@ -120,15 +133,34 @@ export default {
 @import "@/styles/carbon-overrides";
 
 .policy {
+    h4 {
+        margin-bottom: 10px;
+    }
   .light-text {
     color: #a8a8a8;
     font-size: 0.875 rem;
   }
-  .bx--row {
-    margin: $spacing-02 0;
+  .text-right {
+    text-align: right;
+  }
+  .launch {
+      padding: 10px 0;
+      h5 {
+          font-weight: normal;
+          a {
+              text-decoration: none;
+          }
+      }
+      svg {
+          fill: #0062ff;
+          margin:0 0 -3px 30px;
+      }
   }
 }
-
+svg.back {
+    fill: #0062ff;
+    margin: 10px 0;
+}
 .fixed-btn {
   width: 100%;
   max-width: 100%;

@@ -1,1 +1,10 @@
-<svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><style>.cls-1{fill:none;}</style></defs><title>video--filled</title><path d="M21,26H4a2,2,0,0,1-2-2V8A2,2,0,0,1,4,6H21a2,2,0,0,1,2,2v4.06l5.42-3.87A1,1,0,0,1,30,9V23a1,1,0,0,1-1.58.81L23,19.94V24A2,2,0,0,1,21,26Z" transform="translate(0 0)"/><rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>video--filled</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="video--filled">
+            <path d="M21,26 L4,26 C2.8954305,26 2,25.1045695 2,24 L2,8 C2,6.8954305 2.8954305,6 4,6 L21,6 C22.1045695,6 23,6.8954305 23,8 L23,12.06 L28.42,8.19 C28.7242465,7.9733731 29.123855,7.94434682 29.4562129,8.11473282 C29.7885708,8.28511882 29.9982786,8.62651615 30,9 L30,23 C29.9982786,23.3734839 29.7885708,23.7148812 29.4562129,23.8852672 C29.123855,24.0556532 28.7242465,24.0266269 28.42,23.81 L23,19.94 L23,24 C23,25.1045695 22.1045695,26 21,26 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <rect id="_Transparent_Rectangle_" x="0" y="0" width="32" height="32"></rect>
+        </g>
+    </g>
+</svg>
