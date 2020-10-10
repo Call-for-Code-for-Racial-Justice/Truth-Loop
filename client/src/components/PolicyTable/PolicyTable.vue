@@ -6,7 +6,8 @@
            v-for="(row, rowIndex) in this.datarows"
            :key="`${rowIndex}`">
             <cv-data-table-cell class="policy-cell">
-              <Policy :title="`${row.data.title}`"
+              <Policy :id="`${row.data.id}`"
+              :title="`${row.data.title}`"
               :summary="`${row.data.summary}`"
               :date_introduced="`${row.data.date_introduced}`" />
             </cv-data-table-cell>
