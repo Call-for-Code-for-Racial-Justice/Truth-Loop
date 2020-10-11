@@ -1,4 +1,4 @@
-const PolicyDataList = [
+const policyDataList = [
   {
     id: 1,
     title: "Legislative Artifact 01",
@@ -361,4 +361,21 @@ const PolicyDataList = [
   },
 ];
 
-export default PolicyDataList;
+export default {
+  fetchPolicyDataList: (vuestore) => {
+    // comment out this is mock data block
+    vuestore.dispatch("policyliststore/updateItems", {
+      items: policyDataList,
+    });
+
+    // uncomment following api call code and replace the fetch url with correct api call url
+    // fetch('http://localhost:3000/api/datalist')
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     // console.log(json);
+    //     vuestore.dispatch("policyliststore/updateItems", {
+    //       items: json,
+    //     });
+    //   });
+  },
+};

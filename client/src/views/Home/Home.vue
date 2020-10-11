@@ -35,6 +35,10 @@ export default {
       const prvc = this.$store.getters["privacystore/getPrivacyCancel"];
       return prvc;
     },
+    rows() {
+      const datalist = this.$store.getters["policyliststore/getItems"];
+      return datalist;
+    },
   },
   components: {
     PolicyNotice,
@@ -42,12 +46,12 @@ export default {
   },
   data() {
     return {
-      rows: PolicyDataList,
     };
   },
   methods: {
   },
   mounted() {
+    PolicyDataList.fetchPolicyDataList(this.$store);
   },
 };
 </script>
