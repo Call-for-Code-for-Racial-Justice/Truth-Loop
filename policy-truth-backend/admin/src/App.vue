@@ -59,10 +59,10 @@
 
             <cv-side-nav-menu title="Legislative Artifacts">
               <cv-side-nav-menu-item href="#/artifactform" active>
-                Add
+                Add Artifact
               </cv-side-nav-menu-item>
-              <cv-side-nav-menu-item href="javascript:void(0)">
-                List
+              <cv-side-nav-menu-item href="#/artifacttable">
+                List/Edit Artifacts
               </cv-side-nav-menu-item>
               <cv-side-nav-menu-item href="javascript:void(0)">
                 Count
@@ -102,6 +102,6 @@
   #app {
     justify-content: center;
     align-items: center;
-    margin: 5rem 0 0 5rem;
+    margin: 5rem 1rem 0 5rem;
   }
 </style>

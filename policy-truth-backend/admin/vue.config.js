@@ -1,4 +1,4 @@
-require('dotenv').config({path: '../.env'});
+require('dotenv').config({ path: '../.env' });
 
 const port = process.env.PORT || 5000;
 const target = `http://localhost:${port}/`;
@@ -9,8 +9,11 @@ module.exports = {
       '^/api': {
         target,
         ws: true,
-        changeOrigin: true
-      }
-    }
-  }
-}
+        changeOrigin: true,
+      },
+    },
+  },
+  transpileDependencies: [
+    'vuetify',
+  ],
+};
