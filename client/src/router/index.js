@@ -14,6 +14,11 @@ const routes = [
     name: 'policy',
     component: () => import('../views/Policy'),
   },
+  {
+    path: '/policy/:policyid/record',
+    name: 'record',
+    component: () => import('../views/Record'),
+  },
 ];
 
 const router = new VueRouter({
