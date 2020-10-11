@@ -3,8 +3,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import privacystore from './modules/privacystore';
+import policyliststore from './modules/policyliststore';
 import policystore from './modules/policystore';
-import policyliststore from './modules/policystore';
 
 Vue.use(Vuex);
 
