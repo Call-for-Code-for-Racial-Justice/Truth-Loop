@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bx--grid policy">
+    <div class="bx--grid policy" v-if="policy">
       <div class="bx--row">
         <div class="bx--col">
           <ChevronLeft20 class="back" @click="goHistoryBack()" />
@@ -33,52 +33,14 @@
       </div>
       <div class="bx--row launch">
         <div class="bx--col">
-          <h5><a href="#">Full Text <Launch16 /></a></h5>
+          <h5>
+            <a href="#">Full Text <Launch16 /></a>
+          </h5>
         </div>
       </div>
       <Sentiment />
-      <div class="bx--row">
-        <cv-accordion @change="actionChange" ref="acc">
-          <cv-accordion-item :open="open[0]">
-            <template slot="title">Summary</template>
-            <template slot="content">
-              <p>{{ policy.summary }}</p>
-            </template>
-          </cv-accordion-item>
-          <cv-accordion-item :open="open[1]">
-            <template slot="title">Officials and sponsors</template>
-            <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore e dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </template>
-          </cv-accordion-item>
-          <cv-accordion-item :open="open[2]">
-            <template slot="title">Status history</template>
-            <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </template>
-          </cv-accordion-item>
-          <cv-accordion-item :open="open[3]">
-            <template slot="title">Related policies</template>
-            <template slot="content">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </template>
-          </cv-accordion-item>
-        </cv-accordion>
+      <div class="bx--row" v-if="policy">
+        <Accordion :policy="policy" />
       </div>
     </div>
 
@@ -100,30 +62,39 @@
 <script>
 import ChevronLeft20 from "@carbon/icons-vue/lib/chevron--left/20";
 import Launch16 from "@carbon/icons-vue/lib/launch/16";
+import Accordion from "./Accordion.vue";
 import Sentiment from "./Sentiment.vue";
+import mockPolicy from '../../../mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1';
 
 export default {
   name: "Policy",
   data() {
-    return {};
-  },
-  props: {
-    policy: Object,
+    return {
+      id: 2,
+    };
   },
   components: {
     ChevronLeft20,
     Launch16,
+    Accordion,
     Sentiment,
+  },
+  mounted() {
+    this.$store.dispatch("policystore/fetchPolicy", this.id);
   },
   methods: {
     goHistoryBack() {
       this.$router.go(-1);
     },
-    open: () => {},
-    actionChange: () => {},
     getIntroDt(dateIntroduced) {
       const dt = new Date(dateIntroduced);
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
+    },
+  },
+  computed: {
+    policy() {
+      const policy = this.$store.getters["policy/getCurrentPolicy"] || mockPolicy;
+      return policy;
     },
   },
 };
@@ -133,9 +104,9 @@ export default {
 @import "@/styles/carbon-overrides";
 
 .policy {
-    h4 {
-        margin-bottom: 10px;
-    }
+  h4 {
+    margin-bottom: 10px;
+  }
   .light-text {
     color: #a8a8a8;
     font-size: 0.875 rem;
@@ -144,22 +115,22 @@ export default {
     text-align: right;
   }
   .launch {
-      padding: 10px 0;
-      h5 {
-          font-weight: normal;
-          a {
-              text-decoration: none;
-          }
+    padding: 10px 0;
+    h5 {
+      font-weight: normal;
+      a {
+        text-decoration: none;
       }
-      svg {
-          fill: #0062ff;
-          margin:0 0 -3px 30px;
-      }
+    }
+    svg {
+      fill: #0062ff;
+      margin: 0 0 -3px 30px;
+    }
   }
 }
 svg.back {
-    fill: #0062ff;
-    margin: 10px 0;
+  fill: #0062ff;
+  margin: 10px 0;
 }
 .fixed-btn {
   width: 100%;
