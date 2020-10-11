@@ -1,6 +1,7 @@
 const logger = require('../logger').logger
 const legislativeArtifactDB = require('../db/legislative_artifacts')
 const intersectionsDB = require('../db/intersections_for_list')
+const adminIntersectionsDB = require('../db/admin_intersections');
 var express = require('express');
 var router = express.Router();
 
@@ -436,4 +437,147 @@ router.get('/fullDetail/:id', (request, response) => {
     })
 })
 
-module.exports = router
+/**
+ * @api [delete] /api/v1/legislativeArtifacts/fullDetail/{id}
+ * summary: Delete a legislative artifact object and its intersections
+ * tags:
+ *   - LegislativeArtifacts
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The legislative artifact ID
+ * responses:
+ *   200:
+ *     description: confirmation of success
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/ConfirmationOfSuccess"
+ *   404:
+ *     description: No Legislative Artifact object exists for that id
+ */
+router.delete('/fullDetail/:id', (request, response) => {
+  const id = parseInt(request.params.id);
+
+  let pDeCategories = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllCategoryIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all category intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    })
+  });
+
+  let pDeGeoDefinitions = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllGeoDefIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all geospatial definition intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    })
+  });
+
+  let pDeOfficials = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllOfficialIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all official intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    })
+  });
+
+  let pDePublications = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllPublicationIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all publication intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    })
+  });
+
+  let pDeAdvocacyGroups = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllAdvocacyGroupIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all advocacy group intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    });
+  });
+
+  let pDeVideoTestimonials = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllVideoTestimonialIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all video testimonial intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    });
+  });
+
+  let pDeRelatedArtifacts = new Promise(function (resolve, reject) {
+    adminIntersectionsDB.removeAllRelatedArtifactIntersections(id, (error, results) => {
+      if (error) {
+        logger.error("failed to remove all related artifact intersections for artifact %d: %s", id, error)
+        reject(error)
+      } else {
+        logger.info(results);
+        resolve(results.rows)
+      }
+    });
+  });
+
+  Promise.all([
+    pDeCategories,
+    pDeGeoDefinitions,
+    pDeOfficials,
+    pDePublications,
+    pDeAdvocacyGroups,
+    pDeVideoTestimonials,
+    pDeRelatedArtifacts
+  ]).then(() => {
+    legislativeArtifactDB.deleteLegislativeArtifact(id, (error, results) => {
+      if (error) {
+        logger.error("fail to delete legislative artifact with id %d: %s", id, error)
+        response.status(500).json({
+          error: "Internal Server Error"
+        })
+      } else {
+        if (results.rowCount > 0) {
+          logger.info(results);
+          response.status(200).json({
+            ok: true
+          })
+        } else {
+          response.status(404).json({
+            error: "Not Found"
+          })
+        }
+      }
+    });
+  }).catch(error => {
+    logger.error("failed to fully delete artifact %d: %s", id, error);
+    response.status(500).json({
+      error: "Internal Server Error"
+    })
+  })
+});
+module.exports = router;
