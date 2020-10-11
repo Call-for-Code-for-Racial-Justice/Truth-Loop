@@ -10,7 +10,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
   },
   {
-    path: '/artifactsform',
+    path: '/artifacts/form',
     name: 'Add Artifacts',
     component: () => import(/* webpackChunkName: "artifactsform" */ '../views/ArtifactForm.vue'),
   },
@@ -22,7 +22,7 @@ const routes = [
   {
     path: '/categories/form',
     name: 'Add Categories',
-    component: () => import(/* webpackChunkName: "categoriesadd" */ '../views/CategoriesForm.vue'),
+    component: () => import(/* webpackChunkName: "categoriesform" */ '../views/CategoriesForm.vue'),
   },
   {
     path: '/categories',
@@ -38,6 +38,16 @@ const routes = [
     path: '/publications',
     name: 'Publications',
     component: () => import(/* webpackChunkName: "publications" */ '../views/Publications.vue'),
+  },
+  {
+    path: '/locations/form',
+    name: 'Add Locations',
+    component: () => import(/* webpackChunkName: "locationsform" */ '../views/LocationsForm.vue'),
+  },
+  {
+    path: '/locations',
+    name: 'Locations',
+    component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue'),
   },
 ];
 

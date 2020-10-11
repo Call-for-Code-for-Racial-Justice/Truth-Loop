@@ -14,7 +14,7 @@
             API Docs
           </cv-side-nav-link>
           <cv-side-nav-menu title="Legislative Artifacts">
-            <cv-side-nav-menu-item href="#/artifactsform" active>
+            <cv-side-nav-menu-item href="#/artifacts/form" active>
               Add Artifacts
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/artifacts">
@@ -27,6 +27,14 @@
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/categories">
               List/Edit/Delete Categories
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
+          <cv-side-nav-menu title="Locations">
+            <cv-side-nav-menu-item href="#/locations/form" active>
+              Add Locations
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/locations">
+              List/Edit/Delete Locations
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
           <cv-side-nav-menu title="Publications">
