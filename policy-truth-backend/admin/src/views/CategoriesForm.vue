@@ -1,50 +1,23 @@
 <template>
-  <div id="artifact-form">
-    <h2>Add Artifact</h2>
-    <cv-form @submit.prevent="addArtifact">
+  <div id="category-form">
+    <h2>Add Category</h2>
+    <cv-form @submit.prevent="addItem">
       <body>
         <cv-text-input
-          label="Title"
-          v-model="instance.title"
+          label="Name"
+          v-model="instance.name"
           invalid-message=""
-          placeholder="Enter the title of the artifact">
+          placeholder="Enter the name of the category">
           <template v-if="useInvalidMessageSlot" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
 
         <cv-text-input
-          label="URL"
-          v-model="instance.link_to_full_text"
-          placeholder="Provide a link to the full text of the artifact">
+          label="Description"
+          v-model="instance.description"
+          placeholder="Provide a description of the category">
           ></cv-text-input>
-
-        <cv-text-area
-          label="Summary"
-          v-model="instance.summary"
-          placeholder="Provide your own summary of the artifact">
-          ></cv-text-area>
-
-        <cv-select
-          label="Status"
-          v-model="instance.status"
-          placeholder="Choose an option"
-          :invalidStatusMessage="invalidStatusMessage">
-          <cv-select-option disabled selected>Choose an option</cv-select-option>
-          <cv-select-option>Introduced</cv-select-option>
-          <cv-select-option>Referred</cv-select-option>
-          <cv-select-option>Reported</cv-select-option>
-          <cv-select-option>Failed</cv-select-option>
-          <cv-select-option>Passed</cv-select-option>
-          <cv-select-option>Enacted</cv-select-option>
-          <cv-select-option>Vetoed</cv-select-option>
-        </cv-select>
-
-        <cv-date-picker
-          date-label="Date introduced"
-          kind="single"
-          v-model="instance.date_introduced">
-        </cv-date-picker>
 
       </body>
       <cv-toast-notification v-if="errorTitle"
@@ -71,16 +44,12 @@
 <script>
 
 export default {
-  name: 'artifact-form',
+  name: 'category-form',
   data() {
     return {
-      statusPlaceholder: 'Choose an option',
       instance: {
-        title: '',
-        summary: '',
-        link_to_full_text: '',
-        date_introduced: '',
-        status: this.statusPlaceholder,
+        name: '',
+        description: '',
       },
       disabled: false,
       visible: false,
@@ -93,26 +62,6 @@ export default {
       successSubTitle: '',
       closeAriaLabel: 'Custom close aria label',
       lowContrast: true,
-
-      category: '',
-      priority: '',
-      categories: [
-        'Equipment',
-        'Service Access',
-        'Facilities',
-        'Other',
-      ],
-
-      statuses: [
-        'INTRODUCED',
-        'REFERRED',
-        'REPORTED',
-        'FAILED',
-        'PASSED',
-        'ENACTED',
-        'VETOED',
-      ],
-
     };
   },
   methods: {
@@ -121,11 +70,8 @@ export default {
       this.errorSubTitle = false;
       this.successTitle = false;
       this.successSubTitle = false;
-      this.instance.title = '';
-      this.instance.summary = '';
-      this.instance.link_to_full_text = '';
-      this.instance.status = this.statusPlaceholder;
-      this.instance.date_introduced = '';
+      this.instance.name = '';
+      this.instance.description = '';
     },
     doClose() {
       if (this.successTitle) {
@@ -137,8 +83,8 @@ export default {
         this.successSubTitle = false;
       }
     },
-    titleValidator() {
-      this.useInvalidMessageSlot = !this.instance.title;
+    formValidator() {
+      this.useInvalidMessageSlot = !this.instance.name;
       return !this.useInvalidMessageSlot;
     },
     okStatus(res) {
@@ -151,8 +97,8 @@ export default {
       this.errorSubTitle = `HTTP Status Code: ${res.status}`;
       return false;
     },
-    async addArtifact() {
-      if (!this.titleValidator()) {
+    async addItem() {
+      if (!this.formValidator()) {
         return;
       }
       try {
@@ -169,7 +115,7 @@ export default {
         if (body.link_to_full_text === '') {
           delete body.link_to_full_text;
         }
-        const response = await fetch('/api/v1/legislativeArtifacts', {
+        const response = await fetch('/api/v1/categories', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -189,6 +135,9 @@ export default {
 
 <style>
 
+  .bx--btn {
+    margin: 1rem 0 0 0;
+  }
   .bx--label {
     margin: 1rem 0 0 0;
   }
