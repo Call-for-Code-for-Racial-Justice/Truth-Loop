@@ -64,23 +64,17 @@ import ChevronLeft20 from "@carbon/icons-vue/lib/chevron--left/20";
 import Launch16 from "@carbon/icons-vue/lib/launch/16";
 import Accordion from "./Accordion.vue";
 import Sentiment from "./Sentiment.vue";
-import mockPolicy from '../../../mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1';
 
 export default {
   name: "Policy",
-  data() {
-    return {
-      id: 2,
-    };
+  props: {
+    policy: Object,
   },
   components: {
     ChevronLeft20,
     Launch16,
     Accordion,
     Sentiment,
-  },
-  mounted() {
-    this.$store.dispatch("policystore/fetchPolicy", this.id);
   },
   methods: {
     goHistoryBack() {
@@ -89,12 +83,6 @@ export default {
     getIntroDt(dateIntroduced) {
       const dt = new Date(dateIntroduced);
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
-    },
-  },
-  computed: {
-    policy() {
-      const policy = this.$store.getters["policy/getCurrentPolicy"] || mockPolicy;
-      return policy;
     },
   },
 };

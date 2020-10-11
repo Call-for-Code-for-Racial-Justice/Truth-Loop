@@ -1,20 +1,30 @@
 <template>
-  <PolicyDetail :policy="policy" />
+  <div v-if="policy">
+    <PolicyDetail :policy="policy" />
+  </div>
 </template>
 
 <script>
 import PolicyDetail from '../components/PolicyDetails/PolicyDetails.vue';
-import policy from "../../mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1";
 
 export default {
   name: "Policy",
   data() {
     return {
-      policy,
+      id: this.$route.params.policyid,
     };
   },
   components: {
     PolicyDetail,
+  },
+  mounted() {
+    this.$store.dispatch("policystore/fetchPolicy", this.id);
+  },
+  computed: {
+    policy() {
+      const policy = this.$store.getters["policystore/getCurrentPolicy"];
+      return policy;
+    },
   },
 };
 </script>
