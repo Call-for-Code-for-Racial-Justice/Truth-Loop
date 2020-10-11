@@ -168,7 +168,7 @@ const removeSingleRelatedArtifactIntersection = (artifactId, relatedArtifactId, 
 
 const removeAllRelatedArtifactIntersections = (id, callback) => {
     pool.query(
-        'DELETE FROM artifact_related_artifact where artifact_id_1=$1',
+        'DELETE FROM artifact_related_artifact where artifact_id_1=$1 or artifact_id_2=$1',
         [id],
         callback
     )
