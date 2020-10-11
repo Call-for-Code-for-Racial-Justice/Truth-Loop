@@ -74,7 +74,7 @@ This solution combines use of a media server (currently Watson Media) and data s
 1. The User can view other peoples' video stories which are retrieved by sending a REST request to the API server, which extracts them from the Watson Media services.
 1. [add more here?]
 
-There is a separate administrative interface that allows the site owners to curate the PR&L information, with the following attributes
+There is an administrative API interface that allows the site owners to curate the PR&L information, with the following attributes
 
 - simple, intelligible summary that makes it easy to understand its potential impact
 - categories it pertains to (law enforcement, healthcare, zoning)
@@ -85,8 +85,6 @@ There is a separate administrative interface that allows the site owners to cura
 - related advocacy groups or digital social communities
 - related articles or supporting documentation
 - a link to the actual full text of the PR&L  
-
-[HN - do we actually do any of the above yet? Is this is in the same Vue app or a sepeate one?]
 
 ## Technologies
 
@@ -110,7 +108,7 @@ There is a separate administrative interface that allows the site owners to cura
 ### Steps
 
 1. [Provision a Postgres instance on the IBM Cloud](#1-Provision-a-Postgres-instance).
-1. [If you want to use the video services, provision an instance of Watson Media](#2-Provision-a-CouchDB-instance-using-Cloudant).
+1. [If you want to use the video services, provision an instance of Watson Media](#2-Set-up-an-instance-of-Watson-Media).
 1. [Configuring and running the server](#3-Configuring-and-running-the-server).
 1. [Configuring and running the client application](#4-Configuring-and-running-the-client-application).
 
@@ -120,7 +118,7 @@ The server requires an SQL server, and has been tested using PostgreSQL. You can
 
 1. Choose your Databases for Postgres plan. You should choose an appropriate region, give the service a name. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
 1. Once your Postgres instance has been created, you need to create a service credential that the API Server can use to communicate with it. By selecting your running Postgres instance, you can choose **Service credentials** from the left-hand menu. Create a new service credential and give it a name (it doesn't matter what you call it).
-1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste it into the code of the API server in [Step 3](#3-Configuring-and-running-the-server).
+1. Once created, you can display the credentials by selecting **view service credentials**, and then copy the credential, so you are ready to paste parts of it into the environment file of the API server in [Step 3](#3-Configuring-and-running-the-server).
 
 Alternatively, you could deploy your own PostgreSQL instance either locally or in a remote VM or container. In this case, ensure you obatin the equivilent credientials to those described above, ready for [Step 3](#3-Configuring-and-running-the-server).
 
@@ -143,10 +141,16 @@ To set up and launch the server application:
 
 1. Go to the `policy-truth-backend` directory of the cloned repo.
 1. Copy the `.env.example` file, and create a new file named `.env`.
-1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance Step 1.
-1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from Step 2.
+1. If your postgreSQL server uses SSL (like the IBM Cloud verstion), then also create a file to hold the SSL certificate. For the IBM CLoud version of PosstgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.  
+1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance [Step 1](#1-Provision-a-Postgres-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `policy-truth-backend` directory).
+1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](#2-Set-up-an-instance-of-Watson-Media).
+1. Prepare to initialize the database with the correct tables. Scripts are provdied that do this using the `psql` cli, which reccomend you install. On macOS, for instance, you can do this with the brew command:
+    - `brew install libpq`
+    - You may also like to link the psql command to you local bin directory with brew `link --force libpq`
+1. To install the tables, you can use the `./psql_create_tables.sh` script
+1. If you would like to install some dummy data into the database for testing, then use the `./psql_refresh_sample_data.sh` script
 
-1. From a terminal, in the `policy-truth-backend` directory of the cloned repo:
+1. To actually now run the server, from a terminal, in the `policy-truth-backend` directory of the cloned repo:
     1. Install the dependencies: `npm install`
     1. Launch the server application locally or deploy to IBM Cloud:
         - To run locally:
@@ -172,8 +176,8 @@ To configure and run the client application:
 1. Edit the newly created `.env` file:
     - Update the `SERVER_URL` with the URL to the server app launched in the previous step (for example <http://localhost:3000>).
 1. From a terminal:
-    1. Install the dependencies: `npm install`.
-    1. Install the dependencies: `npm run serve`.
+    1. Install the dependencies: `npm install`
+    1. Install the dependencies: `npm run serve`
     1. Once the deevlopment server is running, you should be able to access the client from the URL indicated (typicall http://localhost:8080/).
     1. If you are running a mobile simulator, you can also access the same url. For example, in the ios simulator, the screen would look something like this
 
@@ -189,7 +193,7 @@ This solution is made available under the [Apache 2 License](LICENSE).
 
 ## Contributing and Developer information
 
-We welome your imvlovement and continbutions to this project. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+The community welomes your invlovement and contibutions to this project. Please read [contributing](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to the community.
 
 Some more detailed information and the components and data flows within the system are given below.
 
