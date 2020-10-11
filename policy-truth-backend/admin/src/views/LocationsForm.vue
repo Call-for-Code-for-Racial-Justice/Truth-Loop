@@ -1,28 +1,28 @@
 <template>
-  <div id="publications-form">
-    <h2>Add Publications</h2>
+  <div id="locations-form">
+    <h2>Add Locations</h2>
     <cv-form @submit.prevent="addItem">
       <body>
         <cv-text-input
-          label="Title"
-          v-model="instance.title"
+          label="Name"
+          v-model="instance.name"
           invalid-message=""
-          placeholder="Enter the title of the publication">
+          placeholder="Enter the name of the location">
           <template v-if="useInvalidMessageSlot" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
 
         <cv-text-input
-          label="Description"
-          v-model="instance.description"
-          placeholder="Provide a description of the publication">
+          label="Short Name (UI)"
+          v-model="instance.short_name_ui"
+          placeholder="Provide a short name for the location">
           ></cv-text-input>
 
         <cv-text-input
-          label="URL"
-          v-model="instance.link"
-          placeholder="Provide a the URL of the publication">
+          label="Description"
+          v-model="instance.description"
+          placeholder="Provide a description of the location">
           ></cv-text-input>
 
       </body>
@@ -50,13 +50,13 @@
 <script>
 
 export default {
-  name: 'publications-form',
+  name: 'location-form',
   data() {
     return {
       instance: {
-        title: '',
+        name: '',
+        short_name_ui: '',
         description: '',
-        link: '',
       },
       disabled: false,
       visible: false,
@@ -77,7 +77,8 @@ export default {
       this.errorSubTitle = false;
       this.successTitle = false;
       this.successSubTitle = false;
-      this.instance.title = '';
+      this.instance.name = '';
+      this.instance.short_name_ui = '';
       this.instance.description = '';
     },
     doClose() {
@@ -91,7 +92,7 @@ export default {
       }
     },
     formValidator() {
-      this.useInvalidMessageSlot = !this.instance.title;
+      this.useInvalidMessageSlot = !this.instance.name;
       return !this.useInvalidMessageSlot;
     },
     okStatus(res) {
@@ -110,7 +111,16 @@ export default {
       }
       try {
         const body = { ...this.instance };
-        const response = await fetch('/api/v1/publications', {
+        if (body.status === this.statusPlaceholder) {
+          delete body.status;
+        }
+        if (body.short_name_ui === '') {
+          delete body.short_name_ui;
+        }
+        if (body.description === '') {
+          delete body.description;
+        }
+        const response = await fetch('/api/v1/geospatialDefinitions', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },

@@ -1,8 +1,8 @@
 <template>
-  <div data-app id="publications">
+  <div data-app id="locations">
     <v-card>
       <v-card-title>
-        All Publications
+        All Locations
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -17,7 +17,7 @@
         :headers="headers"
         :items="this.items"
         item-key="id"
-        :sort-by="['title']"
+        :sort-by="['name']"
         :sort-desc="[false]"
         :search="search"
         dense
@@ -45,8 +45,8 @@
                       md="4"
                     >
                       <v-text-field
-                        v-model="editedItem.title"
-                        label="Title"
+                        v-model="editedItem.name"
+                        label="Name"
                       ></v-text-field>
                     </v-col>
                     <v-col
@@ -141,7 +141,7 @@
 <script>
 
 export default {
-  name: 'publications',
+  name: 'locations',
   data() {
     return {
       items: [],
@@ -156,7 +156,10 @@ export default {
           text: 'ID', value: 'id', filterable: true, groupable: false,
         },
         {
-          text: 'Title', value: 'title', filterable: true, groupable: false,
+          text: 'Name', value: 'name', filterable: true, groupable: false,
+        },
+        {
+          text: 'Short Name (UI)', value: 'short_name_ui', filterable: true, groupable: false,
         },
         {
           text: 'Description', value: 'description', filterable: true, groupable: false,
@@ -182,7 +185,7 @@ export default {
     },
     async getItems() {
       try {
-        const response = await fetch('/api/v1/publications');
+        const response = await fetch('/api/v1/geospatialDefinitions');
         this.items = await response.json();
       } catch (error) {
         console.error(error);
@@ -207,7 +210,7 @@ export default {
     async deleteItem(id) {
       try {
         console.log('deleteItem...');
-        await fetch(`/api/v1/publications/${id}`, {
+        await fetch(`/api/v1/geospatialDefinitions/${id}`, {
           method: 'DELETE',
         });
       } catch (error) {
@@ -248,7 +251,7 @@ export default {
     async updateItem(item) {
       try {
         await fetch(
-          `/api/v1/publications/${item.id}`, {
+          `/api/v1/geospatialDefinitions/${item.id}`, {
             method: 'PUT',
             body: JSON.stringify(item),
             headers: { 'Content-type': 'application/json; charset=UTF-8' },
