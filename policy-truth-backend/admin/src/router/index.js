@@ -14,6 +14,11 @@ const routes = [
     name: 'Artifact Form',
     component: () => import(/* webpackChunkName: "artifactform" */ '../views/ArtifactForm.vue'),
   },
+  {
+    path: '/artifacttable',
+    name: 'Artifact table',
+    component: () => import(/* webpackChunkName: "artifactform" */ '../views/ArtifactTable.vue'),
+  },
 ];
 
 const router = new VueRouter({
