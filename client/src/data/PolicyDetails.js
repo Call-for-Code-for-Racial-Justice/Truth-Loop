@@ -1,4 +1,4 @@
-const PolicyDetails = {
+const policyDetails = {
   id: 1,
   title: "Legislative Artifact 01",
   summary: "Summary of Legislative Artifact 01",
@@ -99,4 +99,23 @@ const PolicyDetails = {
   ],
 };
 
-export default PolicyDetails;
+export default {
+  fetchPolicyDetails: (policyid, vuestore) => {
+    // comment out this is mock data block
+    console.log(`Policy details store: ${policyid}`);
+    policyDetails.id = policyid;
+    vuestore.dispatch("policyliststore/updateItemDetails", {
+      itemdetail: policyDetails,
+    });
+
+    // uncomment following api call code and replace the fetch url with correct api call url
+    // fetch('http://localhost:3000/api/data/policyid')
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     // console.log(json);
+    //     vuestore.dispatch("policyliststore/updateItemDetails", {
+    //       items: json,
+    //     });
+    //   });
+  },
+};
