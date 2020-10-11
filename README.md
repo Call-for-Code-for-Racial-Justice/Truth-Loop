@@ -126,14 +126,10 @@ Alternatively, you could deploy your own PostgreSQL instance either locally or i
 
 Log in to IBM Cloud and provision a Watson Media instance.
 
-[HN - These are not accurate]
-
-1. Provision an instance of **Watson Media** [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing).
-1. Launch the Watson Media service.
-1. [more]
-1. Note the **Assistant ID**, **API Key**, and **Assistant URL**. For **Assistant URL**, make note of the base URL/domain (e.g., `https://api.us-south.assistant.watson.cloud.ibm.com` or `https://api.eu-gb.assistant.watson.cloud.ibm.com`) and not the full directory/path. You will need all three of these values in [Step 3](#3-Configuring-and-running-the-server) below.
-
-1. Go to **Preview Link** to get a link to test and verify the dialog skill.
+1. Provision an instance of **Watson Media** [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing). You can use the 30 day free-trial, if that works better for you.
+1. Once your Watson Media instance has launched, go to the `API/SDK access` item, under the `Integration & Apps` menu item, in the left hand menu.
+1. Create a new credential. You will need to enter an Application Name (you can chose anything) and a Redirect URL. This URL needs to be the prefix of the url you will br running the server on, e.g. <http://localhost>. Make note of the `client id` and `client secret`, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
+1. You also need to take note of your media username and password (HN: where do they come from? Are these just your IBM Cloud login creds?).
 
 ### 3. Configuring and running the server
 
@@ -163,7 +159,7 @@ To set up and launch the server application:
             1. Push the app to IBM Cloud: `ibmcloud app push`
             1. The server can be accessed at the  **routes** URL displayed in the output of the push command (for example: <my-legislative-server.eu-gb.mybluemix.net>)
 
-Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally this will be on <http://localhost:3000/api-docs>, which should look something like this:
+Once the server is running, you can test it be accessing the openAPI docs interface to explore and try out the API using the `/api-docs` endpoint. For example, if running locally this will be on <http://localhost:5000/api-docs>, which should look something like this:
 
 ![api-docs](/images/api-docs.png)
 
@@ -174,7 +170,7 @@ To configure and run the client application:
 1. Go to the `client` directory of the cloned repo.
 1. Copy the `.env.example` file to a new file named `.env`.
 1. Edit the newly created `.env` file:
-    - Update the `SERVER_URL` with the URL to the server app launched in the previous step (for example <http://localhost:3000>).
+    - Update the `SERVER_URL` with the URL to the server app launched in the previous step (for example <http://localhost:5000>).
 1. From a terminal:
     1. Install the dependencies: `npm install`
     1. Install the dependencies: `npm run serve`
@@ -201,14 +197,11 @@ Some more detailed information and the components and data flows within the syst
 
 ![components]
 
-### Future Enhancements and Undecided Aspects of the Solution
+### Future Enhancements to the Solution
 
-[HN - we should summarize here, the detail shoudl become github issues in our repo]
+There are a significant number of areas where the community is looking for help. Individual issues are raised in the repository, but the following class of assistance is needed:
 
-One first step in contribution would be to route the back end database to allow viewing and filtering of policies on the front end through API calls.
-
-One functionality that has caused technical issues is the implementation of the video testimonial uploading for different policies. Various approaches have been researched, including use of a no-streaming solution using Cloud Object Storage to call stored videos to be downloaded and then played back to the user, upon loading of the page. As the videos will have a restriction of 60 second time limits, optimisation can be made to minimise the overhead of waiting to download the entire video before playback. This implementation is certainly feasible, however it is not scalable when taking into account users with potentially weaker network connections.
-
+- **media services:** The current approach supports only one media services, namely Waston Media services. Although this provides excellent capabilioties, there is a desire to support a broader range of media services for testimonial vidoes. Various approaches have been researched, including use of a no-streaming solution using Cloud Object Storage to call stored videos to be downloaded and then played back to the user, upon loading of the page. As the videos will have a restriction of 60 second time limits, optimisation can be made to minimise the overhead of waiting to download the entire video before playback. This implementation is certainly feasible, however it is not scalable when taking into account users with potentially weaker network connections.
 - **security:** An efficient expansion to secure data storage (particularly regarding the video implementation) is required to ensure all user data is kept safe. Implementation of user accounts that safely store user data may even assist in developing a more convenient solution, however the privacy implications that comes with this should also be assessed.
 - **privacy considerations around videos and location information:** Consideration of the metadata around user testimonials will be essential in providing a solution that focuses on privacy risks.
 - **sourcing legislation information:** Several data sources will be required to adapt the solution for all locales, therefore expansion of this project will be impacted massively by taking into account the structures of legislation from other countries. 
