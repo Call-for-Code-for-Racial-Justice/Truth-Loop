@@ -4,6 +4,9 @@ const port = process.env.PORT || 5000;
 const target = `http://localhost:${port}/`;
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/admin/'
+    : '/',
   devServer: {
     proxy: {
       '^/api': {
