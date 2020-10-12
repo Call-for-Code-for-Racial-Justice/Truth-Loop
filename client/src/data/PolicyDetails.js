@@ -112,7 +112,7 @@ export default {
   //       itemdetail: policyDetails,
   //     });
   //   } else {
-  //     fetch('http://localhost:3000/api/data/policyid')
+  //     fetch('/api/data/policyid')
   //       .then((response) => response.json())
   //       .then((json) => {
   //         // console.log(json);
