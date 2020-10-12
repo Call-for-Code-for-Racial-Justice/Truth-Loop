@@ -363,19 +363,19 @@ const policyDataList = [
 
 export default {
   fetchPolicyDataList: (vuestore) => {
-    // comment out this is mock data block
-    vuestore.dispatch("policyliststore/updateItems", {
-      items: policyDataList,
-    });
-
-    // uncomment following api call code and replace the fetch url with correct api call url
-    // fetch('http://localhost:3000/api/datalist')
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     // console.log(json);
-    //     vuestore.dispatch("policyliststore/updateItems", {
-    //       items: json,
-    //     });
-    //   });
+    // Use the above mock data when env var MOCK is true
+    if (process.env.USE_MOCK_DATA) {
+      vuestore.dispatch("policyliststore/updateItems", {
+        items: policyDataList,
+      });
+    } else {
+      fetch('http://localhost:5000/api/v1/legislativeArtifacts')
+        .then((response) => response.json())
+        .then((json) => {
+          vuestore.dispatch("policyliststore/updateItems", {
+            items: json,
+          });
+        });
+    }
   },
 };
