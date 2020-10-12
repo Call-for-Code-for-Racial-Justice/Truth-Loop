@@ -369,7 +369,7 @@ export default {
         items: policyDataList,
       });
     } else {
-      fetch('http://localhost:5000/api/v1/legislativeArtifacts')
+      fetch('/api/v1/legislativeArtifacts')
         .then((response) => response.json())
         .then((json) => {
           vuestore.dispatch("policyliststore/updateItems", {
