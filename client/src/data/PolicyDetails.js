@@ -100,22 +100,26 @@ const policyDetails = {
 };
 
 export default {
-  fetchPolicyDetails: (policyid, vuestore) => {
-    // comment out this is mock data block
-    console.log(`Policy details store: ${policyid}`);
-    policyDetails.id = policyid;
-    vuestore.dispatch("policyliststore/updateItemDetails", {
-      itemdetail: policyDetails,
-    });
-
-    // uncomment following api call code and replace the fetch url with correct api call url
-    // fetch('http://localhost:3000/api/data/policyid')
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     // console.log(json);
-    //     vuestore.dispatch("policyliststore/updateItemDetails", {
-    //       items: json,
-    //     });
-    //   });
-  },
+  //
+  // TODO: Is this used anywhere?
+  //
+  // fetchPolicyDetails: (policyid, vuestore) => {
+  //
+  //   if (process.env.MOCK) {
+  //     console.log(`Policy details store: ${policyid}`);
+  //     policyDetails.id = policyid;
+  //     vuestore.dispatch("policyliststore/updateItemDetails", {
+  //       itemdetail: policyDetails,
+  //     });
+  //   } else {
+  //     fetch('http://localhost:3000/api/data/policyid')
+  //       .then((response) => response.json())
+  //       .then((json) => {
+  //         // console.log(json);
+  //         vuestore.dispatch("policyliststore/updateItemDetails", {
+  //           items: json,
+  //         });
+  //       });
+  //   }
+  // },
 };
