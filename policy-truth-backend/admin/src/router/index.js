@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
     path: '/artifacts/form',
@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/artifacts',
     name: 'Artifacts',
-    component: () => import(/* webpackChunkName: "artifacts" */ '../views/ArtifactTable.vue'),
+    component: () => import(/* webpackChunkName: "artifacts" */ '../views/Artifacts.vue'),
   },
   {
     path: '/categories/form',
@@ -28,6 +28,16 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: () => import(/* webpackChunkName: "categories" */ '../views/Categories.vue'),
+  },
+  {
+    path: '/officials/form',
+    name: 'Add Officials',
+    component: () => import(/* webpackChunkName: "officialsform" */ '../views/OfficialsForm.vue'),
+  },
+  {
+    path: '/officials',
+    name: 'Officials',
+    component: () => import(/* webpackChunkName: "officials" */ '../views/Officials.vue'),
   },
   {
     path: '/publications/form',
@@ -49,6 +59,30 @@ const routes = [
     name: 'Locations',
     component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue'),
   },
+  {
+    path: '/advocacy_groups/form',
+    name: 'Add Advocacy Groups',
+    component: () => import(
+      /* webpackChunkName: "advocacygroupsform" */ '../views/AdvocacyGroupsForm.vue'
+    ),
+  },
+  {
+    path: '/advocacy_groups',
+    name: 'Advocacy Groups',
+    component: () => import(
+      /* webpackChunkName: "advocacygroups" */ '../views/AdvocacyGroups.vue'
+    ),
+  },
+  // {
+  //   path: '/videos/form',
+  //   name: 'Add Video Testimonials',
+  //   component: () => import(/* webpackChunkName: "videosform" */ '../views/VideosForm.vue'),
+  // },
+  // {
+  //   path: '/videos',
+  //   name: 'Video Testimonials',
+  //   component: () => import(/* webpackChunkName: "videos" */ '../views/Videos.vue'),
+  // },
 ];
 
 const router = new VueRouter({
