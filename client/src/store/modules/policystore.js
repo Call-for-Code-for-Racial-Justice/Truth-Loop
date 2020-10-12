@@ -19,7 +19,7 @@ export default {
                   if (process.env.USE_MOCK_DATA) {
                     commit('setPolicy', policy);
                   } else {
-                    fetch(`http://localhost:5000/api/v1/legislativeArtifacts/fullDetail/${payload}`)
+                    fetch(`/api/v1/legislativeArtifacts/fullDetail/${payload}`)
                       .then((response) => response.json())
                       .then((json) => {
                         commit('setPolicy', json);
