@@ -6,9 +6,9 @@
         <cv-text-input
           label="Title"
           v-model="instance.title"
-          invalid-message=""
           placeholder="Enter the title of the artifact">
-          <template v-if="useInvalidMessageSlot" slot="invalid-message">
+          invalid-message=""
+          <template v-if="showInvalid.title" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
@@ -23,6 +23,10 @@
           label="Summary"
           v-model="instance.summary"
           placeholder="Provide your own summary of the artifact">
+          invalid-message=""
+          <template v-if="showInvalid.summary" slot="invalid-message">
+            Required field
+          </template>
           ></cv-text-area>
 
         <cv-select
@@ -87,6 +91,10 @@ export default {
       status: '',
       invalidStatusMessage: false,
       useInvalidMessageSlot: false,
+      showInvalid: { // These require validation.
+        title: false,
+        summary: false,
+      },
       errorTitle: false,
       errorSubTitle: '',
       successTitle: false,
@@ -137,9 +145,16 @@ export default {
         this.successSubTitle = false;
       }
     },
-    titleValidator() {
-      this.useInvalidMessageSlot = !this.instance.title;
-      return !this.useInvalidMessageSlot;
+    formInvalidator() {
+      let formNotValid = false;
+      const validating = Object.getOwnPropertyNames(this.showInvalid);
+      for (let i = 0; i < validating.length; i += 1) {
+        const item = validating[i];
+        const itemNotValid = !this.instance[item];
+        this.showInvalid[item] = itemNotValid;
+        formNotValid = formNotValid || itemNotValid;
+      }
+      return formNotValid;
     },
     okStatus(res) {
       if (res.status >= 200 && res.status < 300) {
@@ -152,16 +167,13 @@ export default {
       return false;
     },
     async addArtifact() {
-      if (!this.titleValidator()) {
+      if (this.formInvalidator()) {
         return;
       }
       try {
         const body = { ...this.instance };
         if (body.status === this.statusPlaceholder) {
           delete body.status;
-        }
-        if (body.summary === '') {
-          delete body.summary;
         }
         if (body.date_introduced === '') {
           delete body.date_introduced;
@@ -189,8 +201,13 @@ export default {
 
 <style>
 
-  .bx--label {
+  .bx--btn {
     margin: 1rem 0 0 0;
+    color:antiquewhite;
+  }
+  .bx--label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
 </style>

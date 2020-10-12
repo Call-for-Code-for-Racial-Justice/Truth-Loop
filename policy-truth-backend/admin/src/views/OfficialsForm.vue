@@ -1,22 +1,44 @@
 <template>
-  <div id="category-form">
-    <h2>Add Category</h2>
+  <div id="officials-form">
+    <h2>Add Officials</h2>
     <cv-form @submit.prevent="addItem">
       <body>
         <cv-text-input
           label="Name"
           v-model="instance.name"
           invalid-message=""
-          placeholder="Enter the name of the category">
-          <template v-if="useInvalidMessageSlot" slot="invalid-message">
+          placeholder="Enter the name of the official">
+          <template v-if="showInvalid.name" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
 
         <cv-text-input
-          label="Description"
-          v-model="instance.description"
-          placeholder="Provide a description of the category">
+          label="Title"
+          v-model="instance.title"
+          invalid-message=""
+          placeholder="Enter the title of the official">
+          <template v-if="showInvalid.title" slot="invalid-message">
+            Required field
+          </template>
+        </cv-text-input>
+
+        <cv-text-input
+          label="Email Address"
+          v-model="instance.email_address"
+          placeholder="Provide an email address for the official">
+          ></cv-text-input>
+
+        <cv-text-input
+          label="Phone Number"
+          v-model="instance.phone_number"
+          placeholder="Provide an phone number for the official">
+          ></cv-text-input>
+
+        <cv-text-input
+          label="URL"
+          v-model="instance.website_url"
+          placeholder="Provide the URL of the official's web site">
           ></cv-text-input>
 
       </body>
@@ -44,18 +66,24 @@
 <script>
 
 export default {
-  name: 'category-form',
+  name: 'officials-form',
   data() {
     return {
       instance: {
         name: '',
-        description: '',
+        title: '',
+        email_address: '',
+        phone_number: '',
+        website_url: '',
       },
       disabled: false,
       visible: false,
       status: '',
       invalidStatusMessage: false,
-      useInvalidMessageSlot: false,
+      showInvalid: { // These require validation.
+        name: false,
+        title: false,
+      },
       errorTitle: false,
       errorSubTitle: '',
       successTitle: false,
@@ -71,7 +99,10 @@ export default {
       this.successTitle = false;
       this.successSubTitle = false;
       this.instance.name = '';
-      this.instance.description = '';
+      this.instance.title = '';
+      this.instance.email_address = '';
+      this.instance.phone_number = '';
+      this.instance.website_url = '';
     },
     doClose() {
       if (this.successTitle) {
@@ -84,8 +115,15 @@ export default {
       }
     },
     formInvalidator() {
-      this.useInvalidMessageSlot = !this.instance.name;
-      return !this.useInvalidMessageSlot;
+      let formNotValid = false;
+      const validating = Object.getOwnPropertyNames(this.showInvalid);
+      for (let i = 0; i < validating.length; i += 1) {
+        const item = validating[i];
+        const itemNotValid = !this.instance[item];
+        this.showInvalid[item] = itemNotValid;
+        formNotValid = formNotValid || itemNotValid;
+      }
+      return formNotValid;
     },
     okStatus(res) {
       if (res.status >= 200 && res.status < 300) {
@@ -97,25 +135,26 @@ export default {
       this.errorSubTitle = `HTTP Status Code: ${res.status}`;
       return false;
     },
+    removeEmptyColumns(obj) {
+      const columns = Object.getOwnPropertyNames(obj);
+      for (let i = 0; i < columns.length; i += 1) {
+        const col = columns[i];
+        if (obj[col] === '') {
+          // eslint-disable-next-line no-param-reassign
+          delete obj[col];
+        }
+      }
+    },
     async addItem() {
-      if (!this.formInvalidator()) {
+      if (this.formInvalidator()) {
         return;
       }
       try {
         const body = { ...this.instance };
-        if (body.status === this.statusPlaceholder) {
-          delete body.status;
-        }
-        if (body.summary === '') {
-          delete body.summary;
-        }
-        if (body.date_introduced === '') {
-          delete body.date_introduced;
-        }
-        if (body.link_to_full_text === '') {
-          delete body.link_to_full_text;
-        }
-        const response = await fetch('/api/v1/categories', {
+
+        this.removeEmptyColumns(body); // Allows NULL and/or DEFAULT
+
+        const response = await fetch('/api/v1/officials', {
           method: 'POST',
           body: JSON.stringify(body),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },

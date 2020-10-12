@@ -6,9 +6,9 @@
         <cv-text-input
           label="Name"
           v-model="instance.name"
-          invalid-message=""
           placeholder="Enter the name of the location">
-          <template v-if="useInvalidMessageSlot" slot="invalid-message">
+          invalid-message=""
+          <template v-if="showInvalid.name" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
@@ -17,6 +17,10 @@
           label="Short Name (UI)"
           v-model="instance.short_name_ui"
           placeholder="Provide a short name for the location">
+          invalid-message=""
+          <template v-if="showInvalid.short_name_ui" slot="invalid-message">
+            Required field
+          </template>
           ></cv-text-input>
 
         <cv-text-input
@@ -60,9 +64,10 @@ export default {
       },
       disabled: false,
       visible: false,
-      status: '',
-      invalidStatusMessage: false,
-      useInvalidMessageSlot: false,
+      showInvalid: { // These require validation.
+        name: false,
+        short_name_ui: false,
+      },
       errorTitle: false,
       errorSubTitle: '',
       successTitle: false,
@@ -91,9 +96,16 @@ export default {
         this.successSubTitle = false;
       }
     },
-    formValidator() {
-      this.useInvalidMessageSlot = !this.instance.name;
-      return !this.useInvalidMessageSlot;
+    formInvalidator() {
+      let formNotValid = false;
+      const validating = Object.getOwnPropertyNames(this.showInvalid);
+      for (let i = 0; i < validating.length; i += 1) {
+        const item = validating[i];
+        const itemNotValid = !this.instance[item];
+        this.showInvalid[item] = itemNotValid;
+        formNotValid = formNotValid || itemNotValid;
+      }
+      return formNotValid;
     },
     okStatus(res) {
       if (res.status >= 200 && res.status < 300) {
@@ -105,21 +117,24 @@ export default {
       this.errorSubTitle = `HTTP Status Code: ${res.status}`;
       return false;
     },
+    removeEmptyColumns(obj) {
+      const columns = Object.getOwnPropertyNames(obj);
+      for (let i = 0; i < columns.length; i += 1) {
+        const col = columns[i];
+        if (obj[col] === '') {
+          // eslint-disable-next-line no-param-reassign
+          delete obj[col];
+        }
+      }
+    },
     async addItem() {
-      if (!this.formValidator()) {
+      if (this.formInvalidator()) {
         return;
       }
       try {
         const body = { ...this.instance };
-        if (body.status === this.statusPlaceholder) {
-          delete body.status;
-        }
-        if (body.short_name_ui === '') {
-          delete body.short_name_ui;
-        }
-        if (body.description === '') {
-          delete body.description;
-        }
+        this.removeEmptyColumns(body); // Allows NULL and/or DEFAULT
+
         const response = await fetch('/api/v1/geospatialDefinitions', {
           method: 'POST',
           body: JSON.stringify(body),
@@ -142,9 +157,11 @@ export default {
 
   .bx--btn {
     margin: 1rem 0 0 0;
+    color:antiquewhite;
   }
   .bx--label {
-    margin: 1rem 0 0 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
 </style>
