@@ -22,7 +22,7 @@ Aakansha Agrawal, Khadija Al-Selini, Parisa Babaali, Boz Bosma, Kimberly Cassidy
 1. [Resources](#Resources)
 1. [License](#License)
 1. [Contributing and Developer information](#Contributing-and-Developer-information)
-    1. [Contributing](#contributing)
+    1. [Components of the system](#contributing)
     1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
     1. [Privacy Considerations](#privacy-concerns)
 
@@ -69,10 +69,9 @@ responsible for the creation of the PR&L.
 
 This solution combines use of a media server (currently Watson Media) and data storage to hold the curated legislative artifcats, and the meta-data to link these together.
 
-1. The User launches the web app (on either a mobile or laptop/desktop device) and can view the range of curated legislative artifcast that have been created. The Vue app retrieves these by sending a REST request to the API server, which extracts them from the SQL database.
-1. The User can post their own (video) story that may support or challenge the legislated artifacts, which are uploaded to the API server, which directs these to the Watson Media services. The API server also stores a reference to the video location in the respective legislative artifact in the SQL database.
-1. The User can view other peoples' video stories which are retrieved by sending a REST request to the API server, which extracts them from the Watson Media services.
-1. [add more here?]
+- The User launches the web app (on either a mobile or laptop/desktop device) and can view the range of curated legislative artifcast that have been created (1). The Vue app retrieves these by sending a REST request to the API server, which extracts them (3) from the SQL database.
+- The User can post their own (video) story that may support or challenge the legislated artifacts, which are uploaded to the API server, which directs these to the Watson Media services (2). The API server also stores a reference to the video location in the respective legislative artifact in the SQL database (3).
+- The User can view other peoples' video stories which are retrieved by sending a REST request to the API server, which, after looking up the ID of the video in the SQL database (3), extracts them from Watson Media services (2).
 
 There is an administrative API interface that allows the site owners to curate the PR&L information, with the following attributes
 
@@ -129,16 +128,16 @@ Log in to IBM Cloud and provision a Watson Media instance.
 1. Provision an instance of **Watson Media** [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing). You can use the 30 day free-trial, if that works better for you.
 1. Once your Watson Media instance has launched, go to the `API/SDK access` item, under the `Integration & Apps` menu item, in the left hand menu.
 1. Create a new credential. You will need to enter an Application Name (you can chose anything) and a Redirect URL. This URL needs to be the prefix of the url you will br running the server on, e.g. <http://localhost>. Make note of the `client id` and `client secret`, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
-1. You also need to take note of your media username and password (HN: where do they come from? Are these just your IBM Cloud login creds?).
+1. Generate a device username and password to be used by your server, by going to the `Device passwords` in the same `API/SDK access` menu. You can give your device any name you choose, and then click `Create password`. Make a note of the username and password that are generated, since you will also need these in [Step 3](#3-Configuring-and-running-the-server), below.
 
 ### 3. Configuring and running the server
 
 To set up and launch the server application:
 
-1. Go to the `policy-truth-backend` directory of the cloned repo.
+1. Go to the `server` directory of the cloned repo.
 1. Copy the `.env.example` file, and create a new file named `.env`.
 1. If your postgreSQL server uses SSL (like the IBM Cloud verstion), then also create a file to hold the SSL certificate. For the IBM CLoud version of PosstgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.  
-1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance [Step 1](#1-Provision-a-Postgres-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `policy-truth-backend` directory).
+1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from credential you obtained when create the Database instance [Step 1](#1-Provision-a-Postgres-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory).
 1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](#2-Set-up-an-instance-of-Watson-Media).
 1. Prepare to initialize the database with the correct tables. Scripts are provdied that do this using the `psql` cli, which reccomend you install. On macOS, for instance, you can do this with the brew command:
     - `brew install libpq`
@@ -146,7 +145,7 @@ To set up and launch the server application:
 1. To install the tables, you can use the `./psql_create_tables.sh` script
 1. If you would like to install some dummy data into the database for testing, then use the `./psql_refresh_sample_data.sh` script
 
-1. To actually now run the server, from a terminal, in the `policy-truth-backend` directory of the cloned repo:
+1. To actually now run the server, from a terminal, in the `server` directory of the cloned repo:
     1. Install the dependencies: `npm install`
     1. Launch the server application locally or deploy to IBM Cloud:
         - To run locally:
@@ -190,12 +189,6 @@ This solution is made available under the [Apache 2 License](LICENSE).
 ## Contributing and Developer information
 
 The community welomes your invlovement and contibutions to this project. Please read [contributing](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to the community.
-
-Some more detailed information and the components and data flows within the system are given below.
-
-### The components of the system
-
-![components]
 
 ### Future Enhancements to the Solution
 
