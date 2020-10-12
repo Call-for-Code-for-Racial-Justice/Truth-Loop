@@ -8,13 +8,15 @@
       <cv-header-name href="javascript:void(0)">
         Policy Truth Admin UI
       </cv-header-name>
+      <cv-header-nav aria-label="Carbon nav">
+        <cv-header-menu-item href="/api-docs">
+          API Docs
+        </cv-header-menu-item>
+      </cv-header-nav>
       <template v-slot:left-panels>
         <cv-side-nav id="side-nav" rail>
-          <cv-side-nav-link href="/api-docs/">
-            API Docs
-          </cv-side-nav-link>
           <cv-side-nav-menu title="Legislative Artifacts">
-            <cv-side-nav-menu-item href="#/artifacts/form" active>
+            <cv-side-nav-menu-item href="#/artifacts/form">
               Add Artifacts
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/artifacts">
@@ -22,7 +24,7 @@
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
           <cv-side-nav-menu title="Categories">
-            <cv-side-nav-menu-item href="#/categories/form" active>
+            <cv-side-nav-menu-item href="#/categories/form">
               Add Categories
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/categories">
@@ -30,19 +32,35 @@
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
           <cv-side-nav-menu title="Locations">
-            <cv-side-nav-menu-item href="#/locations/form" active>
+            <cv-side-nav-menu-item href="#/locations/form">
               Add Locations
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/locations">
               List/Edit/Delete Locations
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
+          <cv-side-nav-menu title="Officials">
+            <cv-side-nav-menu-item href="#/officials/form">
+              Add Officials
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/officials">
+              List/Edit/Delete Officials
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
           <cv-side-nav-menu title="Publications">
-            <cv-side-nav-menu-item href="#/publications/form" active>
+            <cv-side-nav-menu-item href="#/publications/form">
               Add Publications
             </cv-side-nav-menu-item>
             <cv-side-nav-menu-item href="#/publications">
               List/Edit/Delete Publications
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
+          <cv-side-nav-menu title="Advocacy Groups">
+            <cv-side-nav-menu-item href="#/advocacy_groups/form">
+              Add Advocacy Groups
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/advocacy_groups">
+              List/Edit/Delete Advocacy Groups
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
         </cv-side-nav>

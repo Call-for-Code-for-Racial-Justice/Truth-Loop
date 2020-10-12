@@ -6,9 +6,9 @@
         <cv-text-input
           label="Title"
           v-model="instance.title"
-          invalid-message=""
           placeholder="Enter the title of the publication">
-          <template v-if="useInvalidMessageSlot" slot="invalid-message">
+          invalid-message=""
+          <template v-if="showInvalid.title" slot="invalid-message">
             Required field
           </template>
         </cv-text-input>
@@ -17,12 +17,20 @@
           label="Description"
           v-model="instance.description"
           placeholder="Provide a description of the publication">
+          invalid-message=""
+          <template v-if="showInvalid.description" slot="invalid-message">
+            Required field
+          </template>
           ></cv-text-input>
 
         <cv-text-input
           label="URL"
           v-model="instance.link"
           placeholder="Provide a the URL of the publication">
+          invalid-message=""
+          <template v-if="showInvalid.link" slot="invalid-message">
+            Required field
+          </template>
           ></cv-text-input>
 
       </body>
@@ -61,8 +69,11 @@ export default {
       disabled: false,
       visible: false,
       status: '',
-      invalidStatusMessage: false,
-      useInvalidMessageSlot: false,
+      showInvalid: { // These require validation.
+        title: false,
+        description: false,
+        link: false,
+      },
       errorTitle: false,
       errorSubTitle: '',
       successTitle: false,
@@ -90,9 +101,16 @@ export default {
         this.successSubTitle = false;
       }
     },
-    formValidator() {
-      this.useInvalidMessageSlot = !this.instance.title;
-      return !this.useInvalidMessageSlot;
+    formInvalidator() {
+      let formNotValid = false;
+      const validating = Object.getOwnPropertyNames(this.showInvalid);
+      for (let i = 0; i < validating.length; i += 1) {
+        const item = validating[i];
+        const itemNotValid = !this.instance[item];
+        this.showInvalid[item] = itemNotValid;
+        formNotValid = formNotValid || itemNotValid;
+      }
+      return formNotValid;
     },
     okStatus(res) {
       if (res.status >= 200 && res.status < 300) {
@@ -105,7 +123,7 @@ export default {
       return false;
     },
     async addItem() {
-      if (!this.formValidator()) {
+      if (this.formInvalidator()) {
         return;
       }
       try {
@@ -132,9 +150,11 @@ export default {
 
   .bx--btn {
     margin: 1rem 0 0 0;
+    color:antiquewhite;
   }
   .bx--label {
-    margin: 1rem 0 0 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
 </style>
