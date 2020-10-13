@@ -105,7 +105,8 @@ export default {
   //
   // fetchPolicyDetails: (policyid, vuestore) => {
   //
-  //   if (process.env.MOCK) {
+  //   if (process.env.VUE_APP_MOCK_DATA) {
+  //     console.log('Using MOCK DATA in PolicyDetails.js');
   //     console.log(`Policy details store: ${policyid}`);
   //     policyDetails.id = policyid;
   //     vuestore.dispatch("policyliststore/updateItemDetails", {
