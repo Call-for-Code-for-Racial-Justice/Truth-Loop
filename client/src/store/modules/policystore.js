@@ -16,7 +16,8 @@ export default {
 
                 if (payload != null && typeof payload !== "undefined") {
                     console.log('Fetching:', payload);
-                  if (process.env.USE_MOCK_DATA) {
+                  if (process.env.VUE_APP_MOCK_DATA) {
+                    console.log('Using MOCK DATA for policy store');
                     commit('setPolicy', policy);
                   } else {
                     fetch(`/api/v1/legislativeArtifacts/fullDetail/${payload}`)
