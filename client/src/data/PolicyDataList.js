@@ -364,7 +364,8 @@ const policyDataList = [
 export default {
   fetchPolicyDataList: (vuestore) => {
     // Use the above mock data when env var MOCK is true
-    if (process.env.USE_MOCK_DATA) {
+    if (process.env.VUE_APP_MOCK_DATA) {
+      console.log('Using MOCK DATA for policy list');
       vuestore.dispatch("policyliststore/updateItems", {
         items: policyDataList,
       });
