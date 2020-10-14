@@ -1,6 +1,7 @@
 <template>
-  <div id="category-form">
-    <h2>Add Category</h2>
+  <div id="category-form" class="bx--content">
+    <v-card class="elevation-24">
+      <v-card-title>Add Category</v-card-title>
     <cv-form @submit.prevent="addItem">
       <body>
         <cv-text-input
@@ -38,6 +39,7 @@
               <cv-button kind="secondary" style="float: right;"
                          @click="doReset">Reset</cv-button>
     </cv-form>
+    </v-card>
   </div>
 </template>
 
@@ -135,6 +137,9 @@ export default {
 
 <style>
 
+  .v-card {
+    padding: 1rem;
+  }
   .bx--btn {
     margin: 1rem 0 0 0;
     color:antiquewhite;

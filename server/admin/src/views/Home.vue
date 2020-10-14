@@ -1,4 +1,5 @@
 <template>
+  <div class="bx--content">
   <v-card>
     <!-- eslint-disable max-len -->
     <v-parallax height="100%" src="../assets/1024px-Black_Lives_Matter_-_Century_City_Protest_-_June_6,_2020_-_49979409667.jpg">
@@ -40,4 +41,5 @@
     </v-list-item>
 
   </v-card>
+  </div>
 </template>
