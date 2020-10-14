@@ -360,3 +360,28 @@
  *   - title
  *   - summary
  */
+
+/**
+ * @schema ArtifactOfficialIntersection
+ * description: A decorated intersection between artifact and official, including role and a boolean indicating whether this official is the one to be shown in the list
+ * type: object
+ * properties:
+ *   artifact_id:
+ *     type: integer
+ *     description: ID of the Legislative Artifact
+ *   official_id:
+ *     type: integer
+ *     description: ID of the Official
+ *   role_in_artifact:
+ *     type: string
+ *     description: the role the Official plays in the existence of the Legislative Artifact
+ *   show_in_list:
+ *     type: boolean
+ *     description: flag (default false) indicating whether this official should be the one shown in the list view of artifacts (should only be one per artifact)
+ * required:
+ *   - artifact_id
+ *   - official_id
+ *   - role_in_artifact
+ *   - show_in_list
+ */
+
