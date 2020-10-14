@@ -318,21 +318,14 @@ router.delete('/official/:artifactId', (request, response) => {
 })
 
 /**
- * @api [post] /api/v1/adminIntersections/official/{artifactId}/{officialId}
+ * @api [post] /api/v1/adminIntersections/official
  * summary: Create an association between an artifact and an official
  * tags:
  *   - Intersections
  * parameters:
- *   - in: path
- *     name: artifactId
+ *   - in: body
  *     schema:
- *       type: integer
- *     description: The artifact ID
- *   - in: path
- *     name: officialId
- *     schema:
- *       type: integer
- *     description: The official ID
+ *       $ref: "#/components/schemas/ArtifactOfficialIntersection"
  * responses:
  *   201:
  *     description: confirmation of success
@@ -341,12 +334,10 @@ router.delete('/official/:artifactId', (request, response) => {
  *         schema:
  *           $ref: "#/components/schemas/ConfirmationOfSuccess"
  */
-router.post('/official/:artifactId/:officialId', (request, response) => {
-    const artifactId = parseInt(request.params.artifactId)
-    const officialId = parseInt(request.params.officialId)
-    adminIntersectionsDB.addOfficialIntersection(artifactId, officialId, (error, results) => {
+router.post('/official', (request, response) => {
+    adminIntersectionsDB.addOfficialIntersection(request.body, (error, results) => {
         if (error) {
-            logger.error("failed to add official intersection between artifact %d and official %d: %s", artifactId, officialId, error)
+            logger.error("failed to add official intersection between artifact %d and official %d: %s", request.body.artifact_id, request.body.official_id, error)
             response.status(500).json({
                 error: "Internal Server Error"
             })

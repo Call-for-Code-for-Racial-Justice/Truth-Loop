@@ -47,7 +47,7 @@ const getGeoDefinitionsForArtifact = (id, callback) => {
 
 const getOfficialsForArtifact = (id, callback) => {
     pool.query(
-        'SELECT o.id, o."name", o.title, o.email_address, ao.role_in_artifact, o.phone_number, o.website_url from official o left join artifact_official ao on ao.official_id = o.id where ao.artifact_id = $1',
+        'SELECT o.id, o."name", o.title, o.email_address, ao.role_in_artifact, ao.show_in_list, o.phone_number, o.website_url from official o left join artifact_official ao on ao.official_id = o.id where ao.artifact_id = $1',
         [id],
         callback
     )

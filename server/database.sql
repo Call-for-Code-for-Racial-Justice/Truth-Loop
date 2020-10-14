@@ -19,6 +19,7 @@
 -- DROP TABLE official CASCADE;
 -- DROP TABLE category CASCADE;
 -- DROP TABLE geospatial_definition CASCADE;
+-- DROP TABLE level CASCADE;
 -- DROP TABLE "publication" CASCADE;
 -- DROP TABLE video_testimonial CASCADE;
 
@@ -76,17 +77,29 @@ CREATE TABLE advocacy_group (
 	CONSTRAINT advocacy_group_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE level (
+    id serial NOT NULL,
+    name varchar NOT NULL,
+    description varchar NULL,
+    created timestamp NOT NULL DEFAULT now(),
+    updated timestamp NOT NULL DEFAULT now(),
+    CONSTRAINT level_pk PRIMARY KEY (id),
+    CONSTRAINT level_uniq_name UNIQUE (name)
+);
+
 CREATE TABLE legislative_artifact (
 	id serial NOT NULL,
 	title varchar NOT NULL,
 	summary varchar NOT NULL,
 	link_to_full_text varchar NULL,
 	date_introduced date NULL,
-  status varchar NULL,
+    status varchar NULL,
 	video_cms_channel_id varchar NULL, -- Watson Video Channel ID
+	level_id int4 NULL,
 	created timestamp NOT NULL DEFAULT now(),
 	updated timestamp NOT NULL DEFAULT now(),
-	CONSTRAINT legislative_artifact_pk PRIMARY KEY (id)
+	CONSTRAINT legislative_artifact_pk PRIMARY KEY (id),
+    CONSTRAINT legislative_artifact_fk_level FOREIGN KEY (level_id) REFERENCES level(id)
 );
 
 CREATE TABLE official (
@@ -129,6 +142,7 @@ CREATE TABLE artifact_official (
 	artifact_id int4 NOT NULL,
 	official_id int4 NOT NULL,
 	role_in_artifact varchar NOT NULL,
+    show_in_list bool NOT NULL DEFAULT false,
 	CONSTRAINT artifact_official_pk PRIMARY KEY (artifact_id, official_id),
 	CONSTRAINT artifact_official_fk_artifact FOREIGN KEY (artifact_id) REFERENCES legislative_artifact(id),
 	CONSTRAINT artifact_official_fk_official FOREIGN KEY (official_id) REFERENCES official(id)
