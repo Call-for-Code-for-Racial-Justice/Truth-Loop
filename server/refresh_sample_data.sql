@@ -210,16 +210,16 @@ insert into artifact_geospatial_definition (artifact_id, geospatial_definition_i
 insert into artifact_geospatial_definition (artifact_id, geospatial_definition_id) values (10, 19);
 insert into artifact_geospatial_definition (artifact_id, geospatial_definition_id) values (10, 20);
 -- 1 official
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (1, 1, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (2, 2, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (3, 3, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (4, 4, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (5, 5, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (6, 6, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (7, 7, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (8, 8, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (9, 9, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (10, 10, 'sponsor');
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (1, 1, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (2, 2, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (3, 3, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (4, 4, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (5, 5, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (6, 6, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (7, 7, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (8, 8, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (9, 9, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (10, 10, 'sponsor', true);
 -- 2 publications
 insert into artifact_publication (artifact_id, publication_id) values (1, 1);
 insert into artifact_publication (artifact_id, publication_id) values (1, 2);

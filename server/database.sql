@@ -129,6 +129,7 @@ CREATE TABLE artifact_official (
 	artifact_id int4 NOT NULL,
 	official_id int4 NOT NULL,
 	role_in_artifact varchar NOT NULL,
+    show_in_list bool NOT NULL DEFAULT false,
 	CONSTRAINT artifact_official_pk PRIMARY KEY (artifact_id, official_id),
 	CONSTRAINT artifact_official_fk_artifact FOREIGN KEY (artifact_id) REFERENCES legislative_artifact(id),
 	CONSTRAINT artifact_official_fk_official FOREIGN KEY (official_id) REFERENCES official(id)
