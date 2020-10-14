@@ -3,8 +3,6 @@ import Vuetify from 'vuetify/lib';
 
 Vue.use(Vuetify);
 
-Vue.use(Vuetify);
-
 const opts = {
   theme: {
     dark: false,

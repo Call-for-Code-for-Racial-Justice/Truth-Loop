@@ -18,7 +18,7 @@
       </div>
       <div class="bx--row">
         <div class="bx--col">
-          <h6 class="light-text">{{ policy.officials[0].name }}</h6>
+          <h6 class="light-text">{{ policy.officials.length > 0 ? policy.name : '' }}</h6>
         </div>
         <div class="bx--col text-right">
           <h6 class="light-text">

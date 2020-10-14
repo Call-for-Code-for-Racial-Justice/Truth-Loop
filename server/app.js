@@ -38,8 +38,11 @@ app.use(
   })
 )
 
-// Static build of Admin UI
-app.use(express.static('admin/dist'));
+// Serve a static version of the client at /
+app.use(express.static('../client/dist', {fallthrough: true}));
+
+// Server a static version of the admin UI under /admin
+app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 
 //ROUTES//
 
