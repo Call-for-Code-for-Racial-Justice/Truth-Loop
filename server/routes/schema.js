@@ -107,6 +107,45 @@
  */
 
 /**
+ * @schema OfficialWithIntersectionData
+ * description: An Official with intersection decorations of role_in_artifact and show_in_list
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   name:
+ *     type: string
+ *   title:
+ *     type: string
+ *   email_address:
+ *     type: string
+ *   phone_number:
+ *     type: string
+ *   website_url:
+ *     type: string
+ *   role_in_artifact:
+ *     type: string
+ *     description: the role the Official plays in the existence of the Legislative Artifact
+ *   show_in_list:
+ *     type: boolean
+ *     description: flag (default false) indicating whether this official should be the one shown in the list view of artifacts (should only be one per artifact)
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ *   - title
+ */
+
+/**
  * @schema AdvocacyGroup
  * description: An Advocacy Group defines a human collective supporting and monitoring some aspect of one or more legal artifacts
  * type: object
@@ -299,6 +338,10 @@
  *     type: string
  *   video_cms_channel_id:
  *     type: string
+ *   level:
+ *     type: string
+ *   primary_official_name:
+ *     type: string
  *   categories:
  *     type: array
  *     items:
@@ -344,6 +387,10 @@
  *     type: string
  *   video_cms_channel_id:
  *     type: string
+ *   level:
+ *     type: string
+ *   primary_official_name:
+ *     type: string
  *   categories:
  *     type: array
  *     items:
@@ -355,7 +402,7 @@
  *   officials:
  *     type: array
  *     items:
- *       $ref: '#/components/schemas/Official'
+ *       $ref: '#/components/schemas/OfficialWithIntersectionData'
  *   publications:
  *     type: array
  *     items:

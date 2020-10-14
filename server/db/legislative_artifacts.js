@@ -2,14 +2,14 @@ const pool = require('./db_pool').pool
 
 const getLegislativeArtifacts = (callback) => {
     pool.query(
-        'SELECT * FROM legislative_artifact ORDER BY id ASC',
+        'SELECT la.id, la.title, la.summary, la.link_to_full_text, la.date_introduced, la.status, la.video_cms_channel_id, l.name as level, o.name as primary_official_name, la.created, la.updated from legislative_artifact la left join level l on la.level_id = l.id left join artifact_official ao on ao.artifact_id = la.id and ao.show_in_list = true left join official o on ao.official_id = o.id order by la.id',
         callback
     )
 }
 
 const getLegislativeArtifactById = (id, callback) => {
     pool.query(
-        'SELECT * FROM legislative_artifact WHERE id = $1',
+        'SELECT la.id, la.title, la.summary, la.link_to_full_text, la.date_introduced, la.status, la.video_cms_channel_id, l.name as level, o.name as primary_official_name, la.created, la.updated from legislative_artifact la left join level l on la.level_id = l.id left join artifact_official ao on ao.artifact_id = la.id and ao.show_in_list = true left join official o on ao.official_id = o.id WHERE la.id = $1',
         [id],
         callback
     )
