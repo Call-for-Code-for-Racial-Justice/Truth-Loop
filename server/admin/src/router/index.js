@@ -30,6 +30,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "categories" */ '../views/Categories.vue'),
   },
   {
+    path: '/levels/form',
+    name: 'Add Levels',
+    component: () => import(/* webpackChunkName: "levelsform" */ '../views/LevelsForm.vue'),
+  },
+  {
+    path: '/levels',
+    name: 'Levels',
+    component: () => import(/* webpackChunkName: "levels" */ '../views/Levels.vue'),
+  },
+  {
     path: '/officials/form',
     name: 'Add Officials',
     component: () => import(/* webpackChunkName: "officialsform" */ '../views/OfficialsForm.vue'),
@@ -50,14 +60,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "publications" */ '../views/Publications.vue'),
   },
   {
-    path: '/locations/form',
-    name: 'Add Locations',
-    component: () => import(/* webpackChunkName: "locationsform" */ '../views/LocationsForm.vue'),
+    path: '/geographies/form',
+    name: 'Add Geographies',
+    component: () => import(/* webpackChunkName: "geographiesform" */ '../views/GeographiesForm.vue'),
   },
   {
-    path: '/locations',
-    name: 'Locations',
-    component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue'),
+    path: '/geographies',
+    name: 'Geographies',
+    component: () => import(/* webpackChunkName: "geographies" */ '../views/Geographies.vue'),
   },
   {
     path: '/advocacy_groups/form',

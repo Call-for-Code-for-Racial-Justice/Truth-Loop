@@ -1,6 +1,6 @@
 <template>
   <v-app class="bx--content">
-    <v-card height="85vh">
+    <v-card class="maincard">
       <v-card-title>
         All Advocacy Groups
         <v-spacer></v-spacer>
@@ -14,6 +14,7 @@
       </v-card-title>
 
       <v-data-table
+        fixed-header
         height="60vh"
         :headers="headers"
         :items="this.items"
@@ -255,7 +256,16 @@ export default {
 
 <style scoped>
 
+  .maincard {
+    max-height: calc(100vh - 4rem)
+  }
+  .v-sheet {
+    margin-top: 0.5rem;
+  }
   .v-card {
+    overflow: scroll;
+  }
+  .cv-form {
     padding: 1rem;
   }
   .bx--btn {
