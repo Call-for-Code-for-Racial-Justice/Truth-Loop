@@ -23,6 +23,14 @@
               List/Edit/Delete Artifacts
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
+          <cv-side-nav-menu title="Advocacy Groups">
+            <cv-side-nav-menu-item href="#/advocacy_groups/form">
+              Add Advocacy Groups
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/advocacy_groups">
+              List/Edit/Delete Advocacy Groups
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
           <cv-side-nav-menu title="Categories">
             <cv-side-nav-menu-item href="#/categories/form">
               Add Categories
@@ -31,12 +39,20 @@
               List/Edit/Delete Categories
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
-          <cv-side-nav-menu title="Locations">
-            <cv-side-nav-menu-item href="#/locations/form">
-              Add Locations
+          <cv-side-nav-menu title="Levels">
+            <cv-side-nav-menu-item href="#/levels/form">
+              Add Levels
             </cv-side-nav-menu-item>
-            <cv-side-nav-menu-item href="#/locations">
-              List/Edit/Delete Locations
+            <cv-side-nav-menu-item href="#/levels">
+              List/Edit/Delete Levels
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
+          <cv-side-nav-menu title="Geographies">
+            <cv-side-nav-menu-item href="#/geographies/form">
+              Add Geographies
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/geographies">
+              List/Edit/Delete Geographies
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
           <cv-side-nav-menu title="Officials">
@@ -55,12 +71,9 @@
               List/Edit/Delete Publications
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
-          <cv-side-nav-menu title="Advocacy Groups">
-            <cv-side-nav-menu-item href="#/advocacy_groups/form">
-              Add Advocacy Groups
-            </cv-side-nav-menu-item>
-            <cv-side-nav-menu-item href="#/advocacy_groups">
-              List/Edit/Delete Advocacy Groups
+          <cv-side-nav-menu title="API Docs">
+            <cv-side-nav-menu-item href="/api-docs">
+              REST API Docs
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
         </cv-side-nav>
@@ -78,5 +91,7 @@
   #app {
     justify-content: center;
     align-items: center;
+    max-height: 100vh;
+    overflow: hidden
   }
 </style>

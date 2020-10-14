@@ -1,6 +1,6 @@
 <template>
   <v-app class="bx--content">
-    <v-card height="85vh">
+    <v-card class="maincard">
       <v-card-title>
         All Artifacts
         <v-spacer></v-spacer>
@@ -14,6 +14,7 @@
       </v-card-title>
 
       <v-data-table
+        fixed-header
         height="60vh"
         :headers="headers"
         :items="this.items"
@@ -110,7 +111,7 @@
                   :items="editedItem.advocacy_groups"
                   item-key="id"
                   :sort-by="['name']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.advocacy_groups)" >
                       mdi-trash-can-outline
@@ -125,7 +126,7 @@
                   :items="editedItem.categories"
                   item-key="id"
                   :sort-by="['name']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.categories)" >
                       mdi-trash-can-outline
@@ -141,7 +142,7 @@
                   :items="editedItem.geospatial_pertinence"
                   item-key="id"
                   :sort-by="['name']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.geospatial_pertinence)" >
                       mdi-trash-can-outline
@@ -156,7 +157,7 @@
                   :items="editedItem.officials"
                   item-key="id"
                   :sort-by="['name']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.officials)" >
                       mdi-trash-can-outline
@@ -171,7 +172,7 @@
                   :items="editedItem.publications"
                   item-key="id"
                   :sort-by="['title']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.publications)" >
                       mdi-trash-can-outline
@@ -186,7 +187,7 @@
                   :items="editedItem.video_testimonials"
                   item-key="id"
                   :sort-by="['subject']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.video_testimonials)" >
                       mdi-trash-can-outline
@@ -201,7 +202,7 @@
                   :items="editedItem.related"
                   item-key="id"
                   :sort-by="['title']"
-                  class="elevation-24">
+                  class="elevation-4">
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.related)" >
                       mdi-trash-can-outline
@@ -499,7 +500,16 @@ export default {
 
 <style scoped>
 
+  .maincard {
+    max-height: calc(100vh - 4rem)
+  }
+  .v-sheet {
+    margin-top: 0.5rem;
+  }
   .v-card {
+    overflow: scroll;
+  }
+  .cv-form {
     padding: 1rem;
   }
   .bx--btn {
