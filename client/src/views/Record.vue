@@ -1,10 +1,13 @@
 <template>
-  <div class="videoRec text-xs-center">
-    <input type="hidden" ref="video_h" name="video" v-model="videoModel" />
-    <video ref="video" class="video" :poster="poster" controls></video>
-    <div class="video-controllers"></div>
-    <button @click="startRecording('video1')">Record</button>
-    <button @click="stopRecording('video1')">Stop</button>
+  <div>
+    <div class="pagetitle">Tell My Story</div>
+    <div class="videoRec text-xs-center">
+      <input type="hidden" ref="video_h" name="video" v-model="videoModel" />
+      <video ref="video" class="video" :poster="poster" controls></video>
+      <div class="video-controllers"></div>
+      <button @click="startRecording('video1')">Record</button>
+      <button @click="stopRecording('video1')">Stop</button>
+    </div>
   </div>
 </template>
 
@@ -18,6 +21,9 @@ export default {
       poster: "/static/video-camera.png",
       videoModel: "",
     };
+  },
+  computed: {
+    videotitle(){ return 'H.R. 3695'}
   },
   methods: {
     successCallback(stream) {
@@ -72,6 +78,13 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch("appsettingstore/updateAppSettings", {
+      apptitle: this.videotitle,
+      topbar: {
+        hasBack: true,
+        hasSettings: false,
+      },
+    });
     const video = this.$refs.video;
     video.muted = false;
     video.controls = true;
@@ -84,5 +97,9 @@ export default {
 video {
     width: 100%;
     height: 100vh;
+}
+.pagetitle{
+  text-align: center;
+  font-size: 1rem;
 }
 </style>
