@@ -81,6 +81,8 @@ CREATE TABLE level (
     id serial NOT NULL,
     name varchar NOT NULL,
     description varchar NULL,
+    created timestamp NOT NULL DEFAULT now(),
+    updated timestamp NOT NULL DEFAULT now(),
     CONSTRAINT level_pk PRIMARY KEY (id),
     CONSTRAINT level_uniq_name UNIQUE (name)
 );
