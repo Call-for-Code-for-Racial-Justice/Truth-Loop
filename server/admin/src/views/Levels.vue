@@ -2,7 +2,7 @@
   <v-app class="bx--content">
     <v-card class="maincard">
       <v-card-title>
-        All Officials
+        All Levels
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -19,7 +19,7 @@
         :headers="headers"
         :items="this.items"
         item-key="id"
-        :sort-by="['title']"
+        :sort-by="['name']"
         :sort-desc="[false]"
         :search="search"
         dense
@@ -45,8 +45,8 @@
                       md="4"
                     >
                       <v-text-field
-                        v-model="editedItem.title"
-                        label="Title"
+                        v-model="editedItem.name"
+                        label="Name"
                       ></v-text-field>
                     </v-col>
                     <v-col
@@ -111,10 +111,6 @@
           </v-dialog>
         </template>
 
-        <template v-slot:item.website_url="{ item }">
-          <v-btn icon :disabled="!isUrl(item.website_url)" :href="item.website_url">
-            <v-icon left>mdi-open-in-new</v-icon></v-btn>
-        </template>
         <template v-slot:item.created="{ item }">
           {{ new Date(item.created).toLocaleDateString() }}
         </template>
@@ -135,7 +131,6 @@
 <script>
 
 export default {
-  name: 'officials',
   data() {
     return {
       items: [],
@@ -153,19 +148,13 @@ export default {
           text: 'Name', value: 'name', filterable: true, groupable: false,
         },
         {
-          text: 'Title', value: 'title', filterable: true, groupable: false,
-        },
-        {
-          text: 'Email Address', value: 'email_address', filterable: true, groupable: false,
-        },
-        {
-          text: 'Phone Number', value: 'phone_number', filterable: true, groupable: false,
-        },
-        {
-          text: 'URL', value: 'website_url', filterable: true, groupable: false,
+          text: 'Description', value: 'description', filterable: true, groupable: false,
         },
         {
           text: 'Date Created', value: 'created', filterable: false, groupable: false,
+        },
+        {
+          text: 'Date Updated', value: 'updated', filterable: false, groupable: false,
         },
         {
           text: 'Actions', value: 'actions', filterable: false, groupable: false,
@@ -182,7 +171,7 @@ export default {
     },
     async getItems() {
       try {
-        const response = await fetch('/api/v1/officials');
+        const response = await fetch('/api/v1/levels');
         this.items = await response.json();
       } catch (error) {
         console.error(error);
@@ -207,7 +196,7 @@ export default {
     async deleteItem(id) {
       try {
         console.log('deleteItem...');
-        await fetch(`/api/v1/officials/${id}`, {
+        await fetch(`/api/v1/levels/${id}`, {
           method: 'DELETE',
         });
       } catch (error) {
@@ -248,7 +237,7 @@ export default {
     async updateItem(item) {
       try {
         await fetch(
-          `/api/v1/officials/${item.id}`, {
+          `/api/v1/levels/${item.id}`, {
             method: 'PUT',
             body: JSON.stringify(item),
             headers: { 'Content-type': 'application/json; charset=UTF-8' },
