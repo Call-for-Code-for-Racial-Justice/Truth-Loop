@@ -5,29 +5,7 @@
 
 # Team Truth
 
-The initial version was developed by members of IBM in the summer of 2020.
-
-## Team Members
-
-- Aakansha Agrawal - IBM
-- Khadija Al-Selini - IBM
-- Parisa Babaali - IBM
-- Boz Bosma - IBM
-- Kimberly Cassidy - IBM
-- Stephanie Daher - IBM
-- Michelle Esselen - IBM
-- Peter Ihlenfeldt - IBM
-- Abiola Jones - IBM
-- Rahul Kalluri - IBM
-- Joe Konathapally - IBM
-- Frank Madden - IBM
-- Henry Nash - IBM
-- Sharon Osahon - IBM
-- Colby Stone - IBM
-- Mark Sturdevant - IBM
-- Tanushree Paul - IBM
-- Bimsara Pilapitiya - IBM
-- Ya Jiao Zheng - IBM
+The initial version was developed by contrinutors at IBM in the summer of 2020, namely: Aakansha Agrawal, Khadija Al-Selini, Parisa Babaali, Boz Bosma, Kimberly Cassidy, Stephanie Daher, Michelle Esselen, Peter Ihlenfeldt, Abiola Jones, Rahul Kalluri, Joe Konathapally, Frank Madden, Henry Nash, Sharon Osahon, Colby Stone, Mark Sturdevant, Tanushree Paul, Bimsara Pilapitiya, Ya Jiao Zheng.
 
 ## Contents
 
