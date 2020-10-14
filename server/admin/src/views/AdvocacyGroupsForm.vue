@@ -1,6 +1,7 @@
 <template>
-  <div id="advocacy-groups-form">
-    <h2>Add Advocacy Groups</h2>
+  <div id="advocacy-groups-form" class="bx--content">
+    <v-card class="elevation-24">
+      <v-card-title>Add Advocacy Groups</v-card-title>
     <cv-form @submit.prevent="addItem">
       <body>
         <cv-text-input
@@ -60,13 +61,14 @@
               <cv-button kind="secondary" style="float: right;"
                          @click="doReset">Reset</cv-button>
     </cv-form>
+    </v-card>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'advocacy-group-form',
+  name: 'advocacy-groups-form',
   data() {
     return {
       instance: {
@@ -174,6 +176,9 @@ export default {
 
 <style>
 
+  .v-card {
+    padding: 1rem;
+  }
   .bx--btn {
     margin: 1rem 0 0 0;
     color:antiquewhite;

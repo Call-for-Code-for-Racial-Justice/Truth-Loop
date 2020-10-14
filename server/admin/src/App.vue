@@ -72,9 +72,11 @@
 
 <style>
 
+  .bx--content {
+    margin-left: 2rem;
+  }
   #app {
     justify-content: center;
     align-items: center;
-    margin: 5rem 1rem 0 5rem;
   }
 </style>
