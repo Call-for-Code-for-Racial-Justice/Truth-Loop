@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="bx--grid policy" v-if="policy">
-      <div class="bx--row">
+      <!-- <div class="bx--row">
         <div class="bx--col">
           <ChevronLeft20 class="back" @click="goHistoryBack()" />
         </div>
-      </div>
+      </div> -->
       <div class="bx--row">
         <div class="bx--col">
           <h6 class="light-text">Federal</h6>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import ChevronLeft20 from "@carbon/icons-vue/lib/chevron--left/20";
+// import ChevronLeft20 from "@carbon/icons-vue/lib/chevron--left/20";
 import Launch16 from "@carbon/icons-vue/lib/launch/16";
 import Accordion from "./Accordion.vue";
 import Sentiment from "./Sentiment.vue";
@@ -71,7 +71,7 @@ export default {
     policy: Object,
   },
   components: {
-    ChevronLeft20,
+    // ChevronLeft20,
     Launch16,
     Accordion,
     Sentiment,

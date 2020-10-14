@@ -1,6 +1,6 @@
 <template>
   <div class="home-content">
-  <div class="bx--grid">
+  <div class="bx--grid bx--grid--full-width bx--grid--no-gutter ">
     <div class="bx--row">
       <div class="bx--col">
         <div v-if="privacy_cancelled" class="privacy-cancel-content">
@@ -10,7 +10,10 @@
         </div>
         <PolicyNotice />
         <div v-if="privacy_accepted">
-          <PolicyTable :rows="rows"/>
+          <PolicyTable
+          :rows="pageRows"
+          :totalRows="rows.length"
+          @pagination="onPagination" />
         </div>
       </div>
     </div>
@@ -39,6 +42,11 @@ export default {
       const datalist = this.$store.getters["policyliststore/getItems"];
       return datalist;
     },
+    pageRows() {
+      console.log(`paging-2 : length=${this.pageSize} start=${this.pageStart} page=${this.page} `);
+      const datalist = this.rows.slice(this.pageStart, this.pageStart + this.pageSize);
+      return datalist;
+    },
   },
   components: {
     PolicyNotice,
@@ -46,12 +54,28 @@ export default {
   },
   data() {
     return {
+      pageSize: 0,
+      pageStart: 0,
+      page: 0,
     };
   },
   methods: {
+    onPagination(val) {
+      console.log(`paging-1 : length=${val.length} start=${val.start} page=${val.page} `);
+      this.pageSize = val.length;
+      this.pageStart = Math.max(0, val.start - 1);
+      this.page = val.page;
+    },
   },
   mounted() {
     PolicyDataList.fetchPolicyDataList(this.$store);
+    this.$store.dispatch("appsettingstore/updateAppSettings", {
+      apptitle: "Policy Legislation Reform",
+      topbar: {
+        hasBack: false,
+        hasSettings: true,
+      },
+    });
   },
 };
 </script>
