@@ -1,8 +1,21 @@
 <template>
   <div id="app">
-    <router-view/>
+    <AppTopBar />
+    <div id="main-content">
+      <router-view/>
+    </div>
   </div>
 </template>
+
+<script>
+import AppTopBar from '@/components/AppTopBar';
+
+export default {
+  components: {
+    AppTopBar,
+  },
+};
+</script>
 
 <style lang="scss">
 @import "./styles/carbon";
