@@ -13,9 +13,19 @@ export default {
     actions: {
         fetchPolicy({ commit }, payload) {
             return new Promise((resolve, reject) => {
+
                 if (payload != null && typeof payload !== "undefined") {
                     console.log('Fetching:', payload);
+                  if (process.env.VUE_APP_MOCK_DATA) {
+                    console.log('Using MOCK DATA for policy store');
                     commit('setPolicy', policy);
+                  } else {
+                    fetch(`/api/v1/legislativeArtifacts/fullDetail/${payload}`)
+                      .then((response) => response.json())
+                      .then((json) => {
+                        commit('setPolicy', json);
+                      });
+                    }
                     resolve();
                 } else {
                     reject();
