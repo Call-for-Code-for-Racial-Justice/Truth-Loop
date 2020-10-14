@@ -1,6 +1,7 @@
 <template>
-  <div id="artifact-form">
-    <h2>Add Artifact</h2>
+  <div id="artifact-form" class="bx--content">
+    <v-card class="elevation-24">
+      <v-card-title>Add Artifact</v-card-title>
     <cv-form @submit.prevent="addArtifact">
       <body>
         <cv-text-input
@@ -69,6 +70,7 @@
               <cv-button kind="secondary" style="float: right;"
                          @click="doReset">Reset</cv-button>
     </cv-form>
+    </v-card>
   </div>
 </template>
 
@@ -201,6 +203,9 @@ export default {
 
 <style>
 
+  .v-card {
+    padding: 1rem;
+  }
   .bx--btn {
     margin: 1rem 0 0 0;
     color:antiquewhite;

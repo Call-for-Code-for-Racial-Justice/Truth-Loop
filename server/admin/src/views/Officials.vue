@@ -1,6 +1,6 @@
 <template>
-  <div data-app id="officials">
-    <v-card>
+  <v-app class="bx--content">
+    <v-card height="85vh">
       <v-card-title>
         All Officials
         <v-spacer></v-spacer>
@@ -14,6 +14,7 @@
       </v-card-title>
 
       <v-data-table
+        height="60vh"
         :headers="headers"
         :items="this.items"
         item-key="id"
@@ -21,10 +22,8 @@
         :sort-desc="[false]"
         :search="search"
         dense
-        group-desc
-        show-group-by
-        multi-sort
-        class="elevation-24">
+        class="elevation-4"
+      >
         <template v-slot:top>
           <v-spacer></v-spacer>
           <v-dialog
@@ -96,7 +95,7 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogDelete" max-width="500px">
+          <v-dialog v-model="dialogDelete">
             <v-card>
               <v-card-title class="headline">
                 Are you sure you want to delete this item?
@@ -122,24 +121,14 @@
           {{ new Date(item.updated).toLocaleDateString() }}
         </template>
         <template v-slot:item.actions="{ item }">
-          <v-icon
-            small
-            @click="editItem(item)"
-          >
-            mdi-pencil
-          </v-icon>
-          <v-icon
-            small
-            @click="deleteDialog(item)"
-          >
-            mdi-delete
-          </v-icon>
+          <v-icon small @click="editItem(item)" > mdi-pencil-outline </v-icon>
+          <v-icon small @click="deleteDialog(item)" > mdi-trash-can-outline </v-icon>
         </template>
 
       </v-data-table>
     </v-card>
 
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -272,3 +261,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+  .v-card {
+    padding: 1rem;
+  }
+  .bx--btn {
+    margin: 1rem 0 0 0;
+    color:antiquewhite;
+  }
+  .bx--label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+</style>
