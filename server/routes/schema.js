@@ -203,6 +203,32 @@
  */
 
 /**
+ * @schema Level
+ * description: A Level describes the political level in which a legislative artifact is being created or examined
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   name:
+ *     type: string
+ *   description:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ */
+
+/**
  * @schema LegislativeArtifact
  * description: A Legislative Artifact is the central entity in the platform, and represents a policy, law, bill, act, regulation or other legal action the platform adopter should wish to publish
  * type: object
