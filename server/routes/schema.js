@@ -107,6 +107,45 @@
  */
 
 /**
+ * @schema OfficialWithIntersectionData
+ * description: An Official with intersection decorations of role_in_artifact and show_in_list
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   name:
+ *     type: string
+ *   title:
+ *     type: string
+ *   email_address:
+ *     type: string
+ *   phone_number:
+ *     type: string
+ *   website_url:
+ *     type: string
+ *   role_in_artifact:
+ *     type: string
+ *     description: the role the Official plays in the existence of the Legislative Artifact
+ *   show_in_list:
+ *     type: boolean
+ *     description: flag (default false) indicating whether this official should be the one shown in the list view of artifacts (should only be one per artifact)
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ *   - title
+ */
+
+/**
  * @schema AdvocacyGroup
  * description: An Advocacy Group defines a human collective supporting and monitoring some aspect of one or more legal artifacts
  * type: object
@@ -203,6 +242,32 @@
  */
 
 /**
+ * @schema Level
+ * description: A Level describes the political level in which a legislative artifact is being created or examined
+ * type: object
+ * properties:
+ *   id:
+ *     type: integer
+ *     readOnly: true
+ *   name:
+ *     type: string
+ *   description:
+ *     type: string
+ *   created:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object first created
+ *   updated:
+ *     type: string
+ *     readOnly: true
+ *     format: date-time
+ *     description: date-time object last updated
+ * required:
+ *   - name
+ */
+
+/**
  * @schema LegislativeArtifact
  * description: A Legislative Artifact is the central entity in the platform, and represents a policy, law, bill, act, regulation or other legal action the platform adopter should wish to publish
  * type: object
@@ -273,6 +338,10 @@
  *     type: string
  *   video_cms_channel_id:
  *     type: string
+ *   level:
+ *     type: string
+ *   primary_official_name:
+ *     type: string
  *   categories:
  *     type: array
  *     items:
@@ -318,6 +387,10 @@
  *     type: string
  *   video_cms_channel_id:
  *     type: string
+ *   level:
+ *     type: string
+ *   primary_official_name:
+ *     type: string
  *   categories:
  *     type: array
  *     items:
@@ -329,7 +402,7 @@
  *   officials:
  *     type: array
  *     items:
- *       $ref: '#/components/schemas/Official'
+ *       $ref: '#/components/schemas/OfficialWithIntersectionData'
  *   publications:
  *     type: array
  *     items:
@@ -360,3 +433,28 @@
  *   - title
  *   - summary
  */
+
+/**
+ * @schema ArtifactOfficialIntersection
+ * description: A decorated intersection between artifact and official, including role and a boolean indicating whether this official is the one to be shown in the list
+ * type: object
+ * properties:
+ *   artifact_id:
+ *     type: integer
+ *     description: ID of the Legislative Artifact
+ *   official_id:
+ *     type: integer
+ *     description: ID of the Official
+ *   role_in_artifact:
+ *     type: string
+ *     description: the role the Official plays in the existence of the Legislative Artifact
+ *   show_in_list:
+ *     type: boolean
+ *     description: flag (default false) indicating whether this official should be the one shown in the list view of artifacts (should only be one per artifact)
+ * required:
+ *   - artifact_id
+ *   - official_id
+ *   - role_in_artifact
+ *   - show_in_list
+ */
+

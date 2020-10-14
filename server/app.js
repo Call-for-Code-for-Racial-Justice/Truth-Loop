@@ -20,6 +20,7 @@ const officials = require('./routes/officials');
 const advocacyGroups = require('./routes/advocacy_groups');
 const publications = require('./routes/publications');
 const videoTestimonials = require('./routes/video_testimonials');
+const levels = require('./routes/levels');
 const legislativeArtifacts = require('./routes/legislative_artifacts');
 const adminIntersections = require('./routes/admin_intersections')
 const videos = require('./routes/video');
@@ -55,6 +56,7 @@ app.use('/api/v1/videos', videos);
 app.use('/api/v1/advocacyGroups', advocacyGroups);
 app.use('/api/v1/publications', publications);
 app.use('/api/v1/videoTestimonials', videoTestimonials);
+app.use('/api/v1/levels', levels);
 app.use('/api/v1/legislativeArtifacts', legislativeArtifacts);
 app.use('/api/v1/adminIntersections', adminIntersections);
 

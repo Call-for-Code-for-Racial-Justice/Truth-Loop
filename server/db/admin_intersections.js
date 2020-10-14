@@ -70,10 +70,10 @@ const removeAllOfficialIntersections = (id, callback) => {
     )
 }
 
-const addOfficialIntersection = (artifactId, officialId, callback) => {
+const addOfficialIntersection = (data, callback) => {
     pool.query(
-        'INSERT INTO artifact_official (artifact_id, official_id) VALUES($1, $2)',
-        [artifactId, officialId],
+        'INSERT INTO artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) VALUES($1, $2, $3, $4)',
+        [data.artifact_id, data.official_id, data.role_in_artifact, data.show_in_list],
         callback
     )
 }

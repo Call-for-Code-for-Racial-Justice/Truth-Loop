@@ -17,6 +17,7 @@ truncate geospatial_definition cascade;
 truncate official cascade;
 truncate publication cascade;
 truncate video_testimonial cascade;
+truncate level cascade;
 truncate legislative_artifact cascade;
 -- reset all the sequences
 alter sequence advocacy_group_id_seq restart with 1;
@@ -26,6 +27,7 @@ alter sequence legislative_artifact_id_seq restart with 1;
 alter sequence official_id_seq restart with 1;
 alter sequence publication_id_seq restart with 1;
 alter sequence video_testimonial_id_seq restart with 1;
+alter sequence level_id_seq restart with 1;
 
 -- fill the data tables. 20 of everything except 10 officials and 10 legislative artifacts
 insert into advocacy_group (name, description, email_address, phone_number, website_url) values ('Advocacy Group 01', 'Description of AdvocacyGroup 01', 'admin@advocacygroup01.com', '123-456-7890', 'https://www.advocacygroups.com/group/01');
@@ -91,16 +93,20 @@ insert into geospatial_definition ("name", short_name_ui, description) values ('
 insert into geospatial_definition ("name", short_name_ui, description) values ('Geospatial Definition 19', 'GeoDef 19', 'Description of GeoDef 19');
 insert into geospatial_definition ("name", short_name_ui, description) values ('Geospatial Definition 20', 'GeoDef 20', 'Description of GeoDef 20');
 
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 01', 'Summary of Legislative Artifact 01', 'https://fulltextlegislation.com/artifact/01', '2020-06-01', 'Artifact 01 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 02', 'Summary of Legislative Artifact 02', 'https://fulltextlegislation.com/artifact/02', '2020-06-01', 'Artifact 02 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 03', 'Summary of Legislative Artifact 03', 'https://fulltextlegislation.com/artifact/03', '2020-06-01', 'Artifact 03 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 04', 'Summary of Legislative Artifact 04', 'https://fulltextlegislation.com/artifact/04', '2020-06-01', 'Artifact 04 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 05', 'Summary of Legislative Artifact 05', 'https://fulltextlegislation.com/artifact/05', '2020-06-01', 'Artifact 05 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 06', 'Summary of Legislative Artifact 06', 'https://fulltextlegislation.com/artifact/06', '2020-06-01', 'Artifact 06 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 07', 'Summary of Legislative Artifact 07', 'https://fulltextlegislation.com/artifact/07', '2020-06-01', 'Artifact 07 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 08', 'Summary of Legislative Artifact 08', 'https://fulltextlegislation.com/artifact/08', '2020-06-01', 'Artifact 08 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 09', 'Summary of Legislative Artifact 09', 'https://fulltextlegislation.com/artifact/09', '2020-06-01', 'Artifact 09 Status');
-insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status) values ('Legislative Artifact 10', 'Summary of Legislative Artifact 10', 'https://fulltextlegislation.com/artifact/10', '2020-06-01', 'Artifact 10 Status');
+INSERT INTO level ("name", description) VALUES('Federal', 'Federal');
+INSERT INTO level ("name", description) VALUES('State', 'State');
+INSERT INTO level ("name", description) VALUES('Municipal', 'Municipal');
+
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 01', 'Summary of Legislative Artifact 01', 'https://fulltextlegislation.com/artifact/01', '2020-06-01', 'Artifact 01 Status', 1);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 02', 'Summary of Legislative Artifact 02', 'https://fulltextlegislation.com/artifact/02', '2020-06-01', 'Artifact 02 Status', 2);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 03', 'Summary of Legislative Artifact 03', 'https://fulltextlegislation.com/artifact/03', '2020-06-01', 'Artifact 03 Status', 3);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 04', 'Summary of Legislative Artifact 04', 'https://fulltextlegislation.com/artifact/04', '2020-06-01', 'Artifact 04 Status', 1);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 05', 'Summary of Legislative Artifact 05', 'https://fulltextlegislation.com/artifact/05', '2020-06-01', 'Artifact 05 Status', 2);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 06', 'Summary of Legislative Artifact 06', 'https://fulltextlegislation.com/artifact/06', '2020-06-01', 'Artifact 06 Status', 3);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 07', 'Summary of Legislative Artifact 07', 'https://fulltextlegislation.com/artifact/07', '2020-06-01', 'Artifact 07 Status', 1);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 08', 'Summary of Legislative Artifact 08', 'https://fulltextlegislation.com/artifact/08', '2020-06-01', 'Artifact 08 Status', 2);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 09', 'Summary of Legislative Artifact 09', 'https://fulltextlegislation.com/artifact/09', '2020-06-01', 'Artifact 09 Status', 3);
+insert into legislative_artifact (title, summary, link_to_full_text, date_introduced, status, level_id) values ('Legislative Artifact 10', 'Summary of Legislative Artifact 10', 'https://fulltextlegislation.com/artifact/10', '2020-06-01', 'Artifact 10 Status', 1);
 
 insert into official ("name", title, email_address, phone_number, website_url) values ('Official Name_01', 'Official Title_01', 'official_01@officials.com', '123-456-7890', 'https://www.officials.com/official/01');
 insert into official ("name", title, email_address, phone_number, website_url) values ('Official Name_02', 'Official Title_02', 'official_02@officials.com', '123-456-7890', 'https://www.officials.com/official/02');
@@ -210,16 +216,16 @@ insert into artifact_geospatial_definition (artifact_id, geospatial_definition_i
 insert into artifact_geospatial_definition (artifact_id, geospatial_definition_id) values (10, 19);
 insert into artifact_geospatial_definition (artifact_id, geospatial_definition_id) values (10, 20);
 -- 1 official
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (1, 1, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (2, 2, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (3, 3, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (4, 4, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (5, 5, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (6, 6, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (7, 7, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (8, 8, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (9, 9, 'sponsor');
-insert into artifact_official (artifact_id, official_id, role_in_artifact) values (10, 10, 'sponsor');
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (1, 1, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (2, 2, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (3, 3, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (4, 4, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (5, 5, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (6, 6, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (7, 7, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (8, 8, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (9, 9, 'sponsor', true);
+insert into artifact_official (artifact_id, official_id, role_in_artifact, show_in_list) values (10, 10, 'sponsor', true);
 -- 2 publications
 insert into artifact_publication (artifact_id, publication_id) values (1, 1);
 insert into artifact_publication (artifact_id, publication_id) values (1, 2);
