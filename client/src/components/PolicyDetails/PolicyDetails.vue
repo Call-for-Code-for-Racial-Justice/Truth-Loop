@@ -85,6 +85,14 @@ export default {
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
     },
   },
+  mounted() {
+    this.$store.dispatch("appsettingstore/updateAppSettings", {
+      topbar: {
+        hasBack: true,
+        hasSettings: false,
+      },
+    });
+  },
 };
 </script>
 
