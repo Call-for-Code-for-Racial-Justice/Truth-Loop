@@ -110,7 +110,7 @@ There is an administrative API interface that allows the site owners to curate t
 
 ### 1: Provision a PostgreSQL instance
 
-The API server requires an SQL server, and has been tested using PostgreSQL. You can deploy this in the IBM Cloud by logging into the IBM Cloud and provisioning a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Note that this does require a paid plan, although if you are new to the IBM Cloud, it is likely your initial cloud credits will cover this for a significant time.
+The server requires an RDMS server and currently only supports PostgreSQL. You can deploy this in the IBM Cloud by logging into the IBM Cloud and provisioning a [Postgres instance](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Note that this does require a paid plan,  however if you have just signed up for a new IBM Cloud account, you will have received cloud credits, which would cover this for a significant time.
 
 1. Choose your Databases for Postgres plan. You should choose an appropriate region, give the service a name. You can leave the other settings with their defaults. Click the blue **Create** button when ready.
 1. Once your Postgres instance has been created, you need to create a service credential that the API Server can use to communicate with it. By selecting your running Postgres instance, you can choose **Service credentials** from the left menu. Create a new service credential and give it a name (it doesn't matter what you call it).
