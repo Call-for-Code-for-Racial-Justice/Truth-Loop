@@ -19,9 +19,8 @@ The initial version was developed by contrinutors at IBM in the summer of 2020, 
 1. [Resources](#Resources)
 1. [License](#License)
 1. [Contributing and Developer information](#Contributing-and-Developer-information)
-    1. [Components of the system](#contributing)
-    1. [Future Enhancements / Undecided Aspects](#future-enhancements-and-undecided-aspects-of-the-solution)
-    1. [Privacy Considerations](#privacy-concerns)
+    1. [Future Enhancements to the Solution](#future-enhancements-to-the-solution)
+    1. [Privacy Considerations](#Privacy-Considerations)
 
 ## Overview
 
@@ -202,7 +201,7 @@ There are a significant number of areas where the community is looking for help.
 
 ### Privacy Considerations
 
-**Personal Information (PI) is prevalent within the Team Truth solution (please see the PI Data Map below). The following risks are noteworthy:**
+**Personal Information (PI) is could be prevalent within the Team Truth solution (please see the PI Data Map below). The following risks are noteworthy:**
  - **Child-related:** There is the possibility that child-related PI could be entered into the system. Data protection law requires verification and authorization by parents or guardians.  In turn, a formal Privacy Impact Assessment may be required to mitigate risks;
  - **Encryption:** The storage and movement of PI must have technical and organizational security measures such as encryption, to ensure it is not accessed by those without authorization (which is a data breach, and breach compliance obligations then follow);
  - **Storage:** Where the PI is stored is an issue, as external providers would need to have security measures in place to protect it. There is also indemnity-related issues with the use of third parties. Also, it unclear at this stage where PI will actually be stored;
