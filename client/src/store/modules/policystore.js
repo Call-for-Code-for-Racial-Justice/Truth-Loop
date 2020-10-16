@@ -20,7 +20,8 @@ export default {
                     console.log('Using MOCK DATA for policy store');
                     commit('setPolicy', policy);
                   } else {
-                    fetch(`/api/v1/legislativeArtifacts/fullDetail/${payload}`)
+                    const apiurl = process.env.VUE_APP_SERVER_URL;
+                    fetch(`${apiurl}/api/v1/legislativeArtifacts/fullDetail/${payload}`)
                       .then((response) => response.json())
                       .then((json) => {
                         commit('setPolicy', json);

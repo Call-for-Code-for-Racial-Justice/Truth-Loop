@@ -48,6 +48,7 @@
       kind="primary"
       icon="img/video--add.svg"
       class="fixed-btn lower-btn"
+      @click="openTellStory"
       >Tell my story</cv-button
     >
     <cv-button
@@ -83,6 +84,9 @@ export default {
     getIntroDt(dateIntroduced) {
       const dt = new Date(dateIntroduced);
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
+    },
+    openTellStory() {
+      this.$router.push({ path: `/policy/${this.policy.id}/record` });
     },
   },
   mounted() {
