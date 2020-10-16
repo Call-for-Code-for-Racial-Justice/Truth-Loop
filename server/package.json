@@ -1,5 +1,5 @@
 {
-  "name": "policy-truth-backend",
+  "name": "truth-loop-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/embrace-call-for-code/policy-truth-backend.git"
+    "url": "git+https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/embrace-call-for-code/policy-truth-backend/issues"
+    "url": "https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop/issues"
   },
-  "homepage": "https://github.com/embrace-call-for-code/policy-truth-backend#readme",
+  "homepage": "https://Call-for-Code-for-Racial-Justice/Truth-Loop#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
