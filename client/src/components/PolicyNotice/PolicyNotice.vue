@@ -7,7 +7,7 @@
       @primary-click="privacyAccepted"
       auto-hide-off visible>
       <template slot="label"><h5>Please Accept the Privacy Statement</h5></template>
-      <template slot="title">Policy Truth Project</template>
+      <template slot="title">Truth Loop Project</template>
       <template slot="content">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed

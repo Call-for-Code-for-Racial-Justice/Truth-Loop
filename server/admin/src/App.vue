@@ -6,7 +6,7 @@
         Skip to content
       </cv-skip-to-content>
       <cv-header-name href="javascript:void(0)">
-        Policy Truth Admin UI
+        Truth Loop Admin UI
       </cv-header-name>
       <cv-header-nav aria-label="Carbon nav">
         <cv-header-menu-item href="/api-docs">

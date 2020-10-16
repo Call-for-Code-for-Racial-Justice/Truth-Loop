@@ -3,7 +3,7 @@
 [openshift]: images/openshift.png "OpenShift Console"
 [dataflow]: images/dataflow.png "Data flow"
 
-# Team Truth
+# Truth-Loop
 
 The initial version was developed by contrinutors at IBM in the summer of 2020, namely: Aakansha Agrawal, Khadija Al-Selini, Parisa Babaali, Boz Bosma, Kimberly Cassidy, Stephanie Daher, Michelle Esselen, Peter Ihlenfeldt, Abiola Jones, Rahul Kalluri, Joe Konathapally, Frank Madden, Henry Nash, Sharon Osahon, Colby Stone, Mark Sturdevant, Tanushree Paul, Bimsara Pilapitiya, Ya Jiao Zheng.
 
@@ -98,7 +98,7 @@ There is an administrative API interface that allows the site owners to curate t
 - Register for an [IBM Cloud](https://www.ibm.com/account/reg/us-en/signup) account.
 - Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
 - Install [Vue CLI dependencies](https://cli.vuejs.org/guide/installation.html)
-- Clone the [repository](https://github.com/embrace-call-for-code/policy-truth-frontend).
+- Clone the [repository](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop).
 
 ### Steps
 
@@ -201,7 +201,7 @@ There are a significant number of areas where the community is looking for help.
 
 ### Privacy Considerations
 
-**Personal Information (PI) is could be prevalent within the Team Truth solution (please see the PI Data Map below). The following risks are noteworthy:**
+**Personal Information (PI) is could be prevalent within the Truth Loop solution (please see the PI Data Map below). The following risks are noteworthy:**
  - **Child-related:** There is the possibility that child-related PI could be entered into the system. Data protection law requires verification and authorization by parents or guardians.  In turn, a formal Privacy Impact Assessment may be required to mitigate risks;
  - **Encryption:** The storage and movement of PI must have technical and organizational security measures such as encryption, to ensure it is not accessed by those without authorization (which is a data breach, and breach compliance obligations then follow);
  - **Storage:** Where the PI is stored is an issue, as external providers would need to have security measures in place to protect it. There is also indemnity-related issues with the use of third parties. Also, it unclear at this stage where PI will actually be stored;

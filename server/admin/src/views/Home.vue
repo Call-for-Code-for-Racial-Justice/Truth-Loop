@@ -11,7 +11,7 @@
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">
-          Administration UI for the Policy Truth database
+          Administration UI for the Truth Loop database
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
