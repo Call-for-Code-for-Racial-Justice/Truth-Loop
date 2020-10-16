@@ -201,7 +201,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
   .v-card {
     padding: 1rem;

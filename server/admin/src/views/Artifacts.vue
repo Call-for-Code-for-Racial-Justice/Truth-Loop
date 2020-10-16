@@ -94,33 +94,68 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogVectors" max-width="85%">
-            <v-card>
+          <v-dialog v-model="dialogVectors">
+            <v-card class="maincard">
               <v-card-title>
-                <h2>Edit Artifact #{{ editedItem.id }} Vectors</h2>
+                <h2>Artifact Intersections</h2>
               </v-card-title>
               <v-card-subtitle>
-                Title: {{ editedItem.title }}
+                Artifact #{{ editedItem.id }}: {{ editedItem.title }}
               </v-card-subtitle>
               <v-card>
-                <v-card-subtitle>
-                  <h4>Advocacy Groups</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="advocacyGroupsHeaders"
                   :items="editedItem.advocacy_groups"
                   item-key="id"
                   :sort-by="['name']"
-                  class="elevation-4">
+                  class="elevation-3">
+                  <template v-slot:top>
+                    <v-toolbar
+                      flat
+                    >
+                      <v-toolbar-title>Advocacy Groups</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="primary" dark
+                        @click="addAdvocacyGroupIntersections = true"
+                      >
+                        + Add
+                      </v-btn>
+
+                      <v-dialog v-model="addAdvocacyGroupIntersections" >
+                        <v-card>
+                        <v-app-bar
+                          dense
+                          elevate-on-scroll
+                          fade-img-on-scroll
+                        >
+                          <v-toolbar-title>Select Advocacy Groups to Add</v-toolbar-title>
+                          <v-spacer></v-spacer>
+                          <v-btn color="blue darken-1"
+                                 icon @click="addAdvocacyGroupIntersections = false"
+                          >
+                            <v-icon>mdi-close</v-icon>
+                          </v-btn>
+                        </v-app-bar>
+
+                        <add-intersections-table
+                          title="Add Advocacy Groups to Artifact"
+                          url="/api/v1/advocacyGroups"
+                          :headers="advocacyGroupsHeaders"
+                          :intersections="editedItem.advocacy_groups"
+                          @add="addIntersection"
+                          >
+                        </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                   <template v-slot:item.actions="{ item }">
                     <v-icon small @click="deleteItemFrom(item, editedItem.advocacy_groups)" >
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Categories</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="categoriesHeaders"
                   :items="editedItem.categories"
@@ -132,13 +167,39 @@
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Categories</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                        @click="addCategoriesIntersections = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addCategoriesIntersections" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Categories to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addCategoriesIntersections = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Categories to Artifact"
+                            url="/api/v1/categories"
+                            :headers="categoriesHeaders"
+                            :intersections="editedItem.categories"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Locations</h4>
-                </v-card-subtitle>
                 <v-data-table
-                  label="Locations"
-                  :headers="locationsHeaders"
+                  label="Geographies"
+                  :headers="geographiesHeaders"
                   :items="editedItem.geospatial_pertinence"
                   item-key="id"
                   :sort-by="['name']"
@@ -148,10 +209,36 @@
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Geographies</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                             @click="addGeographiesIntersections = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addGeographiesIntersections" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Geographies to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addGeographiesIntersections = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Geographies to Artifact"
+                            url="/api/v1/geospatialDefinitions"
+                            :headers="geographiesHeaders"
+                            :intersections="editedItem.geospatial_pertinence"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Officials</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="officialsHeaders"
                   :items="editedItem.officials"
@@ -163,10 +250,36 @@
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Officials</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                             @click="addOfficialsIntersections = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addOfficialsIntersections" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Officials to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addOfficialsIntersections = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Officials to Artifact"
+                            url="/api/v1/officials"
+                            :headers="officialsHeaders"
+                            :intersections="editedItem.officials"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Publications</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="publicationsHeaders"
                   :items="editedItem.publications"
@@ -178,10 +291,36 @@
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Publications</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                             @click="addIntersections = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addIntersections" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Publications to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addIntersections = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Publications to Artifact"
+                            url="/api/v1/publications"
+                            :headers="publicationsHeaders"
+                            :intersections="editedItem.publications"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Video Testimonials</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="videoTestimonialsHeaders"
                   :items="editedItem.video_testimonials"
@@ -193,10 +332,36 @@
                       mdi-trash-can-outline
                     </v-icon>
                   </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Video Testimonials</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                             @click="addIntersections2 = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addIntersections2" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Video Testimonials to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addIntersections2 = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Video Testimonials to Artifact"
+                            url="/api/v1/videoTestimonials"
+                            :headers="videoTestimonialsHeaders"
+                            :intersections="editedItem.video_testimonials"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
                 </v-data-table>
-                <v-card-subtitle>
-                  <h4>Related Artifacts</h4>
-                </v-card-subtitle>
                 <v-data-table
                   :headers="relatedArtifactsHeaders"
                   :items="editedItem.related"
@@ -207,6 +372,35 @@
                     <v-icon small @click="deleteItemFrom(item, editedItem.related)" >
                       mdi-trash-can-outline
                     </v-icon>
+                  </template>
+                  <template v-slot:top>
+                    <v-toolbar flat >
+                      <v-toolbar-title>Related Artifacts</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn color="primary" dark
+                             @click="addIntersectionsRelatedArtifacts = true"
+                      > + Add </v-btn>
+                      <v-dialog v-model="addIntersectionsRelatedArtifacts" >
+                        <v-card>
+                          <v-app-bar dense elevate-on-scroll fade-img-on-scroll >
+                            <v-toolbar-title>Select Related Artifacts to Add</v-toolbar-title>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1"
+                                   icon @click="addIntersectionsRelatedArtifacts = false">
+                              <v-icon>mdi-close</v-icon>
+                            </v-btn>
+                          </v-app-bar>
+                          <add-intersections-table
+                            title="Add Video Testimonials to Artifact"
+                            url="/api/v1/legislativeArtifacts"
+                            :headers="relatedArtifactsHeaders"
+                            :intersections="editedItem.related"
+                            @add="addIntersection"
+                          >
+                          </add-intersections-table>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
                   </template>
                 </v-data-table>
               </v-card>
@@ -232,8 +426,9 @@
         </template>
 
         <template v-slot:item.link_to_full_text="{ item }">
-          <v-btn icon :disabled="!isUrl(item.link_to_full_text)" :href="item.link_to_full_text">
-            <v-icon left>mdi-open-in-new</v-icon></v-btn>
+          <v-btn icon small
+                 :disabled="!isUrl(item.link_to_full_text)" :href="item.link_to_full_text">
+            <v-icon small left>mdi-open-in-new</v-icon></v-btn>
         </template>
         <template v-slot:item.date_introduced="{ item }">
           {{ new Date(item.date_introduced).toLocaleDateString() }}
@@ -257,11 +452,21 @@
 
 <script>
 
+import AddIntersectionsTable from '../components/AddIntersectionsTable.vue';
+
 export default {
   name: 'artifact-table',
   data() {
     return {
       items: [],
+      addAdvocacyGroupIntersections: false,
+      addCategoriesIntersections: false,
+      addGeographiesIntersections: false,
+      addOfficialsIntersections: false,
+      addIntersections: false,
+      addIntersections2: false,
+      addIntersectionsRelatedArtifacts: false,
+      target: '',
       dialogEdit: false,
       dialogVectors: false,
       dialogDelete: false,
@@ -313,7 +518,7 @@ export default {
         { text: 'Description', value: 'description' },
         { text: 'Actions', value: 'actions' },
       ],
-      locationsHeaders: [
+      geographiesHeaders: [
         { text: 'ID', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Description', value: 'description' },
@@ -343,6 +548,9 @@ export default {
         { text: 'Actions', value: 'actions' },
       ],
     };
+  },
+  components: {
+    'add-intersections-table': AddIntersectionsTable,
   },
   mounted() {
     this.getItems();
@@ -393,6 +601,20 @@ export default {
       } catch (error) {
         console.error(error);
         return {};
+      }
+    },
+    async postIt(url, body) {
+      try {
+        console.log('Sending POST...');
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        });
+        const data = await response.json();
+        console.log('Result:', data);
+      } catch (error) {
+        console.error(error);
       }
     },
     async deleteIt(url) {
@@ -446,6 +668,7 @@ export default {
           console.error('deleteItemFrom() did not recognize the vector');
           return;
       }
+      console.log(url);
       this.deleteIt(url);
       items.splice(items.indexOf(item), 1);
     },
@@ -468,6 +691,50 @@ export default {
     save() {
       this.updateItem(this.items[this.editedIndex]);
       this.dialogEdit = false;
+    },
+    addIntersection(item, items) {
+      if (!item) {
+        return '';
+      }
+
+      let url;
+      let body = {};
+      switch (items) {
+        case this.editedItem.advocacy_groups:
+          url = `/api/v1/adminIntersections/advocacyGroup/${this.editedItem.id}/${item.id}`;
+          break;
+        case this.editedItem.categories:
+          url = `/api/v1/adminIntersections/category/${this.editedItem.id}/${item.id}`;
+          break;
+        case this.editedItem.geospatial_pertinence:
+          url = `/api/v1/adminIntersections/geospatialDefinition/${this.editedItem.id}/${item.id}`;
+          break;
+        case this.editedItem.officials:
+          url = '/api/v1/adminIntersections/official';
+          body = {
+            artifact_id: this.editedItem.id,
+            official_id: item.id,
+            role_in_artifact: 'sponsor', // TODO:
+            show_in_list: false, // TODO: There can only be one true!!!
+          };
+          break;
+        case this.editedItem.publications:
+          url = `/api/v1/adminIntersections/publication/${this.editedItem.id}/${item.id}`;
+          break;
+        case this.editedItem.video_testimonials:
+          url = `/api/v1/adminIntersections/videoTestimonial/${this.editedItem.id}/${item.id}`;
+          break;
+        case this.editedItem.related:
+          url = `/api/v1/adminIntersections/relatedArtifact/${this.editedItem.id}/${item.id}`;
+          break;
+        default:
+          console.error('addIntersections() did not recognize the vector');
+          return '';
+      }
+      console.log(url);
+      items.splice(0, 0, item);
+      this.postIt(url, body);
+      return '';
     },
     cancel(item) {
       this.cancelEdit(item);
@@ -500,11 +767,17 @@ export default {
 
 <style scoped>
 
+  .bx--content {
+    margin-top: 2rem;
+  }
+  .v-dialog__content {
+    max-height: calc(100vh - 2rem)
+  }
   .maincard {
     max-height: calc(100vh - 4rem)
   }
   .v-sheet {
-    margin-top: 0.5rem;
+    margin-top: 0.0rem;
   }
   .v-card {
     overflow: scroll;
