@@ -11,7 +11,7 @@
         <PolicyNotice />
         <div v-if="privacy_accepted">
           <PolicyTable
-          :rows="pageRows"
+          :rows="rows"
           :totalRows="rows.length"
           @pagination="onPagination" />
         </div>

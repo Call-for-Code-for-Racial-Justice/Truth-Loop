@@ -1,27 +1,23 @@
 <template>
   <div>
-    <cv-data-table class="policy-table"
-    :columns="columns"
-    :pagination="{ numberOfItems: this.totalRows }"
-      @pagination="$emit('pagination', $event)"
-      ref="table">
-      <template slot="data">
-        <cv-data-table-row class="policy-row"
+    <cv-grid class="policy-table">
+      <cv-row class="policy-title-row">
+        <cv-column>
+          {{`POLICIES (${this.totalRows})`}}
+        </cv-column>
+      </cv-row>
+      <cv-row class="policy-row"
           v-for="(row, rowIndex) in this.datarows"
           :key="`${rowIndex}`">
-          <cv-data-table-cell class="policy-cell">
+        <cv-column class="policy-cell">
             <Policy :id="`${row.data.id}`"
             :title="`${row.data.title}`"
             :summary="`${row.data.summary}`"
             :date_introduced="`${row.data.date_introduced}`"
               />
-          </cv-data-table-cell>
-          <!-- <template slot="expandedContent">
-          {{ row.description }}
-          </template> -->
-        </cv-data-table-row>
-      </template>
-    </cv-data-table>
+        </cv-column>
+      </cv-row>
+    </cv-grid>
   </div>
 </template>
 
@@ -67,6 +63,11 @@ export default {
 @import '@/styles/carbon-overrides';
 .policy-table{
   background-color: $ui-01;
+  padding: 0;
+  margin: 0;
+  .policy-title-row{
+    padding: $spacing-05 $spacing-05;
+  }
   .policy-row{
     padding: 0;
     margin: 0;
