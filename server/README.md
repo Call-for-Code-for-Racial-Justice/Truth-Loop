@@ -1,9 +1,9 @@
 [PRL-data]: ../images/PRL-data.jpg "Policy, Regulation & Legislation Data"
 [erd]: ../images/erd.png "Database ERD"
 
-# policy-truth-backend
+# Truth Loop Server
 
-To run the backend server, from within the `policy-truth-backend` directory, enter
+To run the backend server, from within the `server` directory, enter
 
 ``` bash
  node server.js
