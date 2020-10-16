@@ -370,7 +370,8 @@ export default {
         items: policyDataList,
       });
     } else {
-      fetch('/api/v1/legislativeArtifacts')
+      const apiurl = process.env.VUE_APP_SERVER_URL;
+      fetch(`${apiurl}/api/v1/legislativeArtifacts`)
         .then((response) => response.json())
         .then((json) => {
           vuestore.dispatch("policyliststore/updateItems", {
