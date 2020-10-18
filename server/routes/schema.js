@@ -458,3 +458,110 @@
  *   - show_in_list
  */
 
+/**
+ * @schema Video
+ * description: A single video object
+ * type: object
+ * properties:
+ *   id:
+ *     type: string
+ *     description: ID of the video object
+ *   title:
+ *     type: string
+ *     description: Title of the video object
+ *   description:
+ *     type: string
+ *     description: Description of the video object
+ *   url:
+ *     type: string
+ *     description: Direct link to the video object
+ *   length:
+ *     type: string
+ *     description: Duration of the video object
+ *   created_at:
+ *     type: integer
+ *     description: The date of the creation of the video object
+ *   added_at:
+ *     type: string
+ *     description: A video file was affiliated with the video object
+ *   file_size:
+ *     type: string
+ *     description: Represents the size of the object file
+ *   views:
+ *     type: integer
+ *     description: Number of views affiliated with the video object 
+ *   protect:
+ *     type: string
+ *     description: Access privilege for the video object  
+ *   thumbnail:
+ *     type: object
+ *     properties:
+ *       default:
+ *         type: string
+ *         description: The default thumbnail for the video object
+ *       image_192x108: 
+ *         type: string
+ *         description: The thumbnail with dimensions 192*108
+ *       image_112x63:
+ *         type: string
+ *         description: The thumbnail with dimensions 112*63
+ *       image_128x72:
+ *         type: string
+ *         description: The thumbnail with dimensions 128*72
+ *       image_256x144:
+ *         type: string
+ *         description: The thumbnail with dimensions 256*144
+ *       image_320x180:
+ *         type: string
+ *         description: The thumbnail with dimensions 320*180
+ *       image_640x360:
+ *         type: string
+ *         description: The thumbnail with dimensions 640*360
+ *       image_1920x1080:
+ *         type: string
+ *         description: The thumbnail with dimensions 1920*1080
+ *   media_urls:
+ *      type: object
+ *      properties:
+ *        flv:
+ *          type: string
+ *          description: URL's if any to flv
+ *   links:
+ *     type: object
+ *     properties:
+ *       channel:
+ *         type: object
+ *         properties:
+ *           href: 
+ *             type: string
+ *             description: link to the channel object
+ *           id:
+ *             type: string
+ *             description: Id of the affiliated channel
+ *   chapters:
+ *     type: array
+ *     items:
+ *       type: string
+ *   tinyurl:
+ *     type: string
+ *     description: Quick link to the video object
+ *   schedule:
+ *     type: string
+ *     description: TBA
+ *   owner:
+ *     type: object
+ *     properties:
+ *       id:
+ *         type: string
+ *         description: ID of the owner
+ *       username:
+ *         type: string
+ *         description: Username of the user
+ *       picture:
+ *         type: string
+ *         description: Link to the image associated with the video object
+ *   locks:
+ *     type: object
+ *     description: TBA
+ */
+

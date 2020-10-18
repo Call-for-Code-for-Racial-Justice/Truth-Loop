@@ -17,16 +17,64 @@ let ustream = new Ustream({
 })
 
 
+/**
+ * @api [get] /api/v1/videos/channel/{id}
+ * summary: Get the list of videos associated with a given channel
+ * description: Given a specific channels ID returns all the associated videos
+ * tags:
+ *   - Videos
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The channel ID
+ * responses:
+ *   200: 
+ *     description: The Video object was found and returned
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: "#/components/schemas/Video"
+ *   404:
+ *     description: This channel has no videos associated with it or doesn't exist
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             message:
+ *               type: string
+ *               example: This channel has no videos associated with it or doesn't exist
+ *               description: This channel has no videos associated with it or doesn't exist
+ *   500:
+ *     description: Internal Server Error
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Internal Server Error
+ *               description: Returns the server error
+ */
 router.get('/channel/:id', (request, response) => {
   const id = parseInt(request.params.id);
-  console.log(id);
   ustream.video.list(id).then((pageableResult) => {
-    let videos = pageableResult.data
-    console.log('success');
-    response.status(200).json(videos);
-    if (pageableResult.hasNextPage()) {
-      pageableResult.next().then((nextPageResults) => {
+    if(pageableResult.data.length === 0){
+      response.status(404).json({
+        message: "This channel has no videos associated with it or doesn't exist"
       })
+    }else{
+      let videos = pageableResult.data
+      response.status(200).json(videos);
+      if (pageableResult.hasNextPage()) {
+        pageableResult.next().then((nextPageResults) => {
+        })
+      }
     }
   }).catch((err) => {
     console.warn(err)
@@ -36,11 +84,55 @@ router.get('/channel/:id', (request, response) => {
   }) 
 });
 
+
+/**
+ * @api [get] /api/v1/videos/{id}
+ * summary: Get a video object
+ * description: Returns a video object with a given ID if exists
+ * tags:
+ *   - Videos
+ * parameters:
+ *   - in: path
+ *     name: id
+ *     schema:
+ *       type: integer
+ *     description: The video ID
+ * responses:
+ *   200: 
+ *     description: The Video object was found and returned
+ *     content:
+ *       application/json:
+ *         schema:
+ *           $ref: "#/components/schemas/Video"
+ *   404:
+ *     description: No videos exists with given ID
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             message:
+ *               type: string
+ *               example: No videos exists with given ID
+ *               description: No videos exists with given ID
+ *   500:
+ *     description: Internal Server Error
+ *     content:
+ *       application/json:
+ *         schema:
+ *           type: object
+ *           properties:
+ *             error:
+ *               type: string
+ *               example: Internal Server Error
+ *               description: Returns the server error
+ */
 router.get('/:id', (request, response) => {
   const id = parseInt(request.params.id);
   ustream.video.get(id).then((results) => {
     response.status(200).json(results);
   }).catch((err) => {
+    console.log(err);
     response.status(500).json({
       error: "Internal Server Error"
     })
