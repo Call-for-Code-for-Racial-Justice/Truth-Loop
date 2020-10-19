@@ -199,18 +199,6 @@ There are a significant number of areas where the community is looking for help.
 - **Moderation of uploaded videos/text:** How is video or accompanying text reviewed to ensure community guidelines are being followed, and that users are not misusing the application? Applications of moderation can include profanity detection, manual moderation via user admins, or through flagging and reporting of user content. Furthermore, consideration should be made to assess whether these implementations address the spirit of the solution, e.g. how to distinguish this software from social media settings where users already share political views.
 - **Natural language technology:** Work has already begun on refining a pipeline to extract text from video submissions to implement tone analysis, which will help to identify various characteristics and give more meaning to the video testimonials from users. Further expansion can be made to analyze profanity and inappropriate language submitted by users, to address moderation of user content.
 
-### Privacy Considerations
+### Privacy Considerations for Implementors
 
-**Personal Information (PI) is could be prevalent within the Truth Loop solution (please see the PI Data Map below). The following risks are noteworthy:**
- - **Child-related:** There is the possibility that child-related PI could be entered into the system. Data protection law requires verification and authorization by parents or guardians.  In turn, a formal Privacy Impact Assessment may be required to mitigate risks;
- - **Encryption:** The storage and movement of PI must have technical and organizational security measures such as encryption, to ensure it is not accessed by those without authorization (which is a data breach, and breach compliance obligations then follow);
- - **Storage:** Where the PI is stored is an issue, as external providers would need to have security measures in place to protect it. There is also indemnity-related issues with the use of third parties. Also, it unclear at this stage where PI will actually be stored;
- - **Cross-Border Transfers:** After determining storage, it is imperative to know where the data actually resides, which enables managing “adequacy” of cross border transfers.  Many Cloud providers have overseas operations, and employ a ‘follow the sun’ approach to storage;
- - **Access to the Data:** Any unauthorized access to PI is a data breach and therefore comes with considerable data protection compliance obligations (e.g. a requirement to notify regulators and possibly the data subjects as well);
- - **Monitoring of Qualified Content:** Forwarding the content on without any monitoring or vetting of it beforehand risks not only defamation claims, but could be used by anonymous people to espouse hate speech. Both of which undermine the value of the solution;
- -	**Deletion:** Under data protection law, you can only hold on to the data for as long as is necessary. So at some point it will have to be deleted;
- -	**Data Sharing:** If any data sharing is desired with third parties, e.g. Social Media, data sharing agreements will need executing. Otherwise, processing may be deemed a breach;
- - **Privacy Notice(s):** A notice informing data subjects of the purpose of the processing, as well as the rights of the data subjects, is required. Otherwise, this would be a breach;
- - **Controller:** Processor obligations – IBM will act as both a Controller – determining the purpose of the processing – and as a Processor.  Accordingly, obligations are two-fold.
-
-![privacy map](images/privacy-map.png)
+Due to the nature of the solution, Personal Information (PI) could be prevalent within an implementation of a Truth Loop system. For implementors, there are a number of important considerations to take into account. Please refer to the [Platform Privacy Statement](privacy/platform_privacy_statement.md) and [Application User Guide](privacy/app_user_guide.md) documents to help you with your implementation
