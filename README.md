@@ -201,4 +201,4 @@ There are a significant number of areas where the community is looking for help.
 
 ### Privacy Considerations for Implementors
 
-Due to the nature of the solution, Personal Information (PI) could be prevalent within an implementation of a Truth Loop system. For implementors, there are a number of important considerations to take into account. Please refer to the [Platform Privacy Statement](privacy/platform_privacy_statement.md) and [Application User Guide](privacy/app_user_guide.md) documents to help you with your implementation
+Due to the nature of the solution, Personal Information (PI) could be prevalent within an implementation of a Truth Loop system. For implementors, there are a number of important considerations to take into account. Please refer to the [Platform Privacy Statement](privacy/platform_privacy_statement.md) and [Application User Guide](privacy/app_user_guide.md) documents to help you with your implementation.
