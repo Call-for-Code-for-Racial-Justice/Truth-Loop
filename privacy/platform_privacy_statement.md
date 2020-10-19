@@ -65,7 +65,7 @@ The “IMPLEMENTER” will process your personal information on the basis of con
 
 ![Consent](/images/consent.png)
 
-In addition, your personal information is used based on legitimate interest.  This means that the objectives and processing of your personal information by the “IMPLEMTER” will not be to the detriment of your rights and freedoms.  In the event that you feel that there would ever be an imbalance in those interests – or the imbalance is clearly realised by the “IMPLEMENTER” – the processing will cease upon that realisation, or when you advise the IMPLEMENTER as such.
+In addition, your personal information is used based on legitimate interest.  This means that the objectives and processing of your personal information by the “IMPLEMENTER” will not be to the detriment of your rights and freedoms.  In the event that you feel that there would ever be an imbalance in those interests – or the imbalance is clearly realised by the “IMPLEMENTER” – the processing will cease upon that realisation, or when you advise the IMPLEMENTER as such.
 
 _You have the right to object to the processing of your personal information at any time_ (please refer to the “Who to Contact” section below).
 
@@ -95,6 +95,7 @@ If you have any questions regarding the use of your personal information, please
 
 For those based in the UK, you can also contact the UK’s Information Commissioner’s Office (ICO) to raise any concerns that you may have.  They can be reached at:
 
+```text
 Information Commissioner's Office
 Wycliffe House
 Water Lane
@@ -103,3 +104,4 @@ Cheshire
 SK9 5AF
 Telephone: +44 (0)303 123 1113
 Or via Live Chat, at: <https://ico.org.uk/global/contact-us/live-chat/>
+```
