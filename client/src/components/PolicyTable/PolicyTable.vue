@@ -14,6 +14,7 @@
             :title="`${row.data.title}`"
             :summary="`${row.data.summary}`"
             :date_introduced="`${row.data.date_introduced}`"
+            :row_num="rowIndex"
               />
         </cv-column>
       </cv-row>
