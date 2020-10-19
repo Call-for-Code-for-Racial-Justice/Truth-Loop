@@ -10,11 +10,26 @@
       <template slot="title">Truth Loop Project</template>
       <template slot="content">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed
-          do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
+        The "IMPLEMENTER" will process your personal information on the basis of consent and
+        legitimate interest
+        <br/>By uploading your video and audio content via the "Truth Loops" Platform, you consent
+        to the "IMPLEMENTER" using your personal information for Purpose.  We confirm that
+        your consent includes the following:
+        <cv-list :ordered="false" class="bullet-list">
+          <cv-list-item>Your provision of your personal information is unconditional.
+            And you may withdraw your consent at any time;</cv-list-item>
+          <cv-list-item>The Purpose of providing your PI is to make the
+            video content available to legislators, policy makers,
+          advocacy groups, the media, and social media to advance the
+          cause of ending racial discrimination and injustice;</cv-list-item>
+          <cv-list-item>You only need to consent to the actual personal information
+            that exists within your content which you
+          upload to the Platform.  No other personal information is requested
+          or required of you;</cv-list-item>
+          <cv-list-item>Your uploading of the content is an indication of your
+            wishes to make use
+            of your personal information for the Purpose.</cv-list-item>
+        </cv-list>
         </p>
       </template>
       <template slot="secondary-button">Canel</template>
@@ -71,5 +86,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '@/styles/carbon-overrides';
+.bullet-list{
+  padding-left: $spacing-07;
+}
 </style>
