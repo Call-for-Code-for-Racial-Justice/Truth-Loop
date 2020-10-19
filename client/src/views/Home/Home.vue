@@ -70,7 +70,7 @@ export default {
   mounted() {
     PolicyDataList.fetchPolicyDataList(this.$store);
     this.$store.dispatch("appsettingstore/updateAppSettings", {
-      apptitle: "Policy Legislation Reform",
+      apptitle: "Truth Loop",
       topbar: {
         hasBack: false,
         hasSettings: true,
