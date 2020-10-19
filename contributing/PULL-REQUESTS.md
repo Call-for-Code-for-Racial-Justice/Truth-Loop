@@ -1,4 +1,4 @@
-truth-loop# Pull Requests
+# Pull Requests
 
 There are two fundamental components of the Pull Request process: one concrete
 and technical, and one more process oriented. The concrete and technical
