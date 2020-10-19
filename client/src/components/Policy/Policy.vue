@@ -3,9 +3,9 @@
     <div class="bx--row r1">
       <div class="bx--col-lg-12 bx--col-md-12 bx--col-sm-12">
         <div class="sentiment-bar">
-          <div class="sentiment-bar-1"></div>
-          <div class="sentiment-bar-2"></div>
-          <div class="sentiment-bar-3"></div>
+          <div :class="rowType"></div>
+          <!-- <div class="sentiment-bar-2"></div>
+          <div class="sentiment-bar-3"></div> -->
         </div>
       </div>
     </div>
@@ -31,11 +31,17 @@ export default {
     title: String,
     summary: String,
     date_introduced: String,
+    row_num: Number,
   },
   computed: {
     getIntroDt() {
       const dt = new Date(this.date_introduced);
       return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
+    },
+    rowType() {
+      // console.log(`${this.row_num}`);
+      if (((this.row_num + 1) % 2) === 0) return "sentiment-bar-1 even";
+      return "sentiment-bar-1 odd";
     },
   },
   data() {
@@ -63,12 +69,19 @@ export default {
         @for $i from 1 through 3 {
           &-#{$i}{
             padding: $sentiment-bar-width-01 0 $sentiment-bar-width-01 0;
-            background-color: map-get($map: $sentiment-color, $key: "0#{$i}");
-            @if $i==2 {
-              width: 40%;
-            }@else{
-              width: 30%;
+            background-color: map-get($map: $blue-gradient, $key: "0#{$i}");
+            width: 100%;
+            &.odd{
+              background-image: linear-gradient(to right, #1159f5,  #0690fc , #04d0fd);
             }
+            &.even{
+              background-image: linear-gradient(to left, #1159f5,  #0690fc , #04d0fd);
+            }
+            // @if $i==2 {
+            //   width: 40%;
+            // }@else{
+            //   width: 30%;
+            // }
           }
         }
       }
