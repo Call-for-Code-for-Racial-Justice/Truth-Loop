@@ -1,5 +1,5 @@
 <template>
-  <v-app id="add-publications" class="bx--content">
+  <v-app id="add-video-testimonials" class="bx--content">
     <v-card class="maincard elevation-24">
       <add-form
         :instance="instance"
@@ -12,19 +12,20 @@
 
 <script>
 
-import PublicationsForm from '../components/PublicationsForm.vue';
+import VideoTestimonialsForm from '../components/VideoTestimonialsForm.vue';
 
 export default {
-  name: 'add-publications',
+  name: 'add-video-testimonials',
   components: {
-    'add-form': PublicationsForm,
+    'add-form': VideoTestimonialsForm,
   },
   data() {
     return {
       instance: {
-        title: '',
-        description: '',
-        link: '',
+        subject: '',
+        comment: '',
+        privacy_stmt_ack: false,
+        video_cms_id: '',
       },
     };
   },

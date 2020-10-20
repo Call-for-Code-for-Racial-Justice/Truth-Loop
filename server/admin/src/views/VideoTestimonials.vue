@@ -2,7 +2,7 @@
   <v-app class="bx--content">
     <v-card class="maincard">
       <v-card-title>
-        All Categories
+        All Video Testimonials
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -26,7 +26,6 @@
         class="elevation-4"
       >
         <template v-slot:top>
-          <v-spacer></v-spacer>
           <v-dialog
             v-model="dialogEdit"
             persistent
@@ -55,12 +54,18 @@
           </v-dialog>
         </template>
 
+        <template v-slot:item.privacy_stmt_ack="{ item }">
+          <v-simple-checkbox
+            dense
+            :ripple=false
+            disabled
+            v-model="item.privacy_stmt_ack"
+          ></v-simple-checkbox>
+        </template>
         <template v-slot:item.created="{ item }">
           {{ new Date(item.created).toLocaleDateString() }}
         </template>
-        <template v-slot:item.updated="{ item }">
-          {{ new Date(item.updated).toLocaleDateString() }}
-        </template>
+
         <template v-slot:item.actions="{ item }">
           <v-icon small @click="editItem(item)" > mdi-pencil-outline </v-icon>
           <v-icon small @click="deleteDialog(item)" > mdi-trash-can-outline </v-icon>
@@ -74,12 +79,12 @@
 
 <script>
 
-import CategoriesForm from '../components/CategoriesForm.vue';
+import VideoTestimonialsForm from '../components/VideoTestimonialsForm.vue';
 
 export default {
-  name: 'categories',
+  name: 'video-testimonials',
   components: {
-    'edit-form': CategoriesForm,
+    'edit-form': VideoTestimonialsForm,
   },
   data() {
     return {
@@ -92,22 +97,21 @@ export default {
       search: '',
       headers: [
         {
-          text: 'ID', value: 'id', filterable: true, groupable: false,
+          text: 'ID', value: 'id', filterable: false,
+        },
+        { text: 'Subject', value: 'subject', width: '40%' },
+        { text: 'Comment', value: 'comment', width: '40%' },
+        {
+          text: 'Privacy Ack', value: 'privacy_stmt_ack', filterable: false, width: '1%',
         },
         {
-          text: 'Name', value: 'name', filterable: true, groupable: false,
+          text: 'CMS ID', value: 'video_cms_id', width: '1%',
         },
         {
-          text: 'Description', value: 'description', filterable: true, groupable: false,
+          text: 'Created', value: 'created', filterable: false, width: '1%',
         },
         {
-          text: 'Date Created', value: 'created', filterable: false, groupable: false,
-        },
-        {
-          text: 'Date Updated', value: 'updated', filterable: false, groupable: false,
-        },
-        {
-          text: 'Actions', value: 'actions', filterable: false, groupable: false,
+          text: 'Actions', value: 'actions', filterable: false, width: '1%',
         },
       ],
     };
@@ -116,12 +120,9 @@ export default {
     this.getItems();
   },
   methods: {
-    isUrl(link) {
-      return !!link && (link.length > 7) && link.startsWith('http');
-    },
     async getItems() {
       try {
-        const response = await fetch('/api/v1/categories');
+        const response = await fetch('/api/v1/videoTestimonials');
         this.items = await response.json();
       } catch (error) {
         console.error(error);
@@ -142,7 +143,7 @@ export default {
     },
     async deleteItem(id) {
       try {
-        await fetch(`/api/v1/categories/${id}`, {
+        await fetch(`/api/v1/videoTestimonials/${id}`, {
           method: 'DELETE',
         });
       } catch (error) {

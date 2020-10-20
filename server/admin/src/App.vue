@@ -71,6 +71,14 @@
               List/Edit/Delete Publications
             </cv-side-nav-menu-item>
           </cv-side-nav-menu>
+          <cv-side-nav-menu title="Video Testimonials">
+            <cv-side-nav-menu-item href="#/video_testimonials/form">
+              Add Video Testimonials
+            </cv-side-nav-menu-item>
+            <cv-side-nav-menu-item href="#/video_testimonials">
+              List/Edit/Delete Video Testimonials
+            </cv-side-nav-menu-item>
+          </cv-side-nav-menu>
           <cv-side-nav-menu title="API Docs">
             <cv-side-nav-menu-item href="/api-docs">
               REST API Docs
@@ -85,9 +93,34 @@
 
 <style>
 
+  .maincard {
+    max-height: calc(100vh - 4rem);
+    margin-top: 0.5rem;
+  }
+  .v-card {
+    overflow: scroll;
+  }
+  .cv-form {
+    padding: 1rem;
+    overflow: scroll;
+  }
   .bx--content {
     margin-left: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
+  .cv-button {
+    margin: 1rem 0 0 0;
+    color: antiquewhite !important;
+  }
+  .bx--label {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
   #app {
     justify-content: center;
     align-items: center;

@@ -27,82 +27,39 @@
         class="elevation-4"
       >
         <template v-slot:top>
-          <v-dialog v-model="dialogEdit">
-            <v-card>
-              <v-card-title>
-                <h2>Edit Artifact #{{ editedItem.id }}</h2>
-              </v-card-title>
-              <cv-form @submit.prevent="addArtifact">
-                <cv-text-input
-                  label="Title"
-                  v-model="editedItem.title"
-                  placeholder="Enter the title of the artifact">
-                  invalid-message=""
-                  <template v-if="showInvalid.title" slot="invalid-message">
-                    Required field
-                  </template>
-                </cv-text-input>
-                <cv-text-input
-                  label="URL"
-                  v-model="editedItem.link_to_full_text"
-                  placeholder="Provide a link to the full text of the artifact">
-                  ></cv-text-input>
-                <cv-text-area
-                  label="Summary"
-                  v-model="editedItem.summary"
-                  placeholder="Provide your own summary of the artifact">
-                  invalid-message=""
-                  <template v-if="showInvalid.summary" slot="invalid-message">
-                    Required field
-                  </template>
-                  ></cv-text-area>
-                <cv-select
-                  label="Status"
-                  v-model="editedItem.status"
-                  placeholder="Choose an option">
-                  <cv-select-option disabled selected>Choose an option</cv-select-option>
-                  <cv-select-option>Introduced</cv-select-option>
-                  <cv-select-option>Referred</cv-select-option>
-                  <cv-select-option>Reported</cv-select-option>
-                  <cv-select-option>Failed</cv-select-option>
-                  <cv-select-option>Passed</cv-select-option>
-                  <cv-select-option>Enacted</cv-select-option>
-                  <cv-select-option>Vetoed</cv-select-option>
-                </cv-select>
-                <cv-date-picker
-                  date-label="Date introduced"
-                  kind="single"
-                  v-model="editedItem.date_introduced">
-                </cv-date-picker>
-              </cv-form>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="cancel"
-                >
-                  Cancel
-                </v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="save"
-                >
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+          <v-spacer></v-spacer>
+          <v-dialog
+            v-model="dialogEdit"
+            persistent
+          >
+            <edit-form
+              :instance="editedItem"
+              add_or_edit="Edit"
+              method="PUT"
+              v-on:close-dialog="cancelEdit"
+              v-on:saved-item="editMode"
+            ></edit-form>
           </v-dialog>
+
           <v-dialog v-model="dialogVectors">
-            <v-card class="maincard">
-              <v-card-title>
-                <h2>Artifact Intersections</h2>
-              </v-card-title>
-              <v-card-subtitle>
-                Artifact #{{ editedItem.id }}: {{ editedItem.title }}
-              </v-card-subtitle>
-              <v-card>
+            <v-card>
+              <v-app-bar
+                elevate-on-scroll
+                fade-img-on-scroll
+              >
+                <v-toolbar-title>
+                  Artifact Intersections
+                  <div class="subtitle-1">
+                    Artifact #{{ editedItem.id }}: {{ editedItem.title }}
+                  </div>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1"
+                       icon @click="dialogVectors = false"
+                >
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+              </v-app-bar>
                 <v-data-table
                   :headers="advocacyGroupsHeaders"
                   :items="editedItem.advocacy_groups"
@@ -110,9 +67,7 @@
                   :sort-by="['name']"
                   class="elevation-3">
                   <template v-slot:top>
-                    <v-toolbar
-                      flat
-                    >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Advocacy Groups</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn
@@ -168,7 +123,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Categories</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -210,7 +165,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Geographies</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -251,7 +206,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Officials</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -292,7 +247,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Publications</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -333,7 +288,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Video Testimonials</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -374,7 +329,7 @@
                     </v-icon>
                   </template>
                   <template v-slot:top>
-                    <v-toolbar flat >
+                    <v-toolbar flat color="grey lighten-3">
                       <v-toolbar-title>Related Artifacts</v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" dark
@@ -403,7 +358,6 @@
                     </v-toolbar>
                   </template>
                 </v-data-table>
-              </v-card>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="closeVectorEdit" > Close </v-btn>
@@ -453,9 +407,14 @@
 <script>
 
 import AddIntersectionsTable from '../components/AddIntersectionsTable.vue';
+import ArtifactForm from '../components/ArtifactForm.vue';
 
 export default {
   name: 'artifact-table',
+  components: {
+    'add-intersections-table': AddIntersectionsTable,
+    'edit-form': ArtifactForm,
+  },
   data() {
     return {
       items: [],
@@ -489,7 +448,7 @@ export default {
           text: 'URL', value: 'link_to_full_text', filterable: true, width: '1%',
         },
         {
-          text: 'Status', value: 'status', filterable: true, width: '1%',
+          text: 'Status', value: 'status', filterable: true, width: '30%',
         },
         {
           text: 'Date Introduced', value: 'date_introduced', filterable: true, width: '1%',
@@ -549,9 +508,6 @@ export default {
       ],
     };
   },
-  components: {
-    'add-intersections-table': AddIntersectionsTable,
-  },
   mounted() {
     this.getItems();
   },
@@ -570,30 +526,25 @@ export default {
     editMode(item) {
       this.cachedItem = { ...item };
     },
-    cancelEdit(item) {
-      Object.assign(item, this.cachedItem);
+    cancelEdit() {
       this.items.splice(this.editedIndex, 1, this.cachedItem);
       this.dialogEdit = false;
     },
-
-    async editItem(item) {
+    editItem(item) {
       this.editMode(item);
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = item;
       this.dialogEdit = true;
     },
-
     closeVectorEdit() {
       this.dialogVectors = false;
     },
-
     async editVectors(item) {
       this.editMode(item);
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = await this.getItem(item.id);
       this.dialogVectors = true;
     },
-
     async getItem(id) {
       try {
         const response = await fetch(`/api/v1/legislativeArtifacts/fullDetail/${id}`);
@@ -767,17 +718,12 @@ export default {
 
 <style scoped>
 
-  .bx--content {
-    margin-top: 2rem;
-  }
   .v-dialog__content {
     max-height: calc(100vh - 2rem)
   }
   .maincard {
-    max-height: calc(100vh - 4rem)
-  }
-  .v-sheet {
-    margin-top: 0.0rem;
+    max-height: calc(100vh - 4rem);
+    margin-top: 0.5rem;
   }
   .v-card {
     overflow: scroll;
