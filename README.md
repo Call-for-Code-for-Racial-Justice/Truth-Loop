@@ -81,6 +81,9 @@ There is an administrative API interface that allows the site owners to curate t
 - related articles or supporting documentation
 - a link to the full text of the PR&L
 
+## Video
+[![Video Call for Code for Racial Justice Solution Starter: Truth Loop ](https://img.youtube.com/vi/AgTUXp4G1Ms/0.jpg)](https://www.youtube.com/watch?v=AgTUXp4G1Ms)
+
 ## Technologies
 
 - [IBM Cloud Documentation Home](https://cloud.ibm.com/docs/home/alldocs)
