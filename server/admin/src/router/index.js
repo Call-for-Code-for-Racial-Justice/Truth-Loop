@@ -83,16 +83,16 @@ const routes = [
       /* webpackChunkName: "advocacygroups" */ '../views/AdvocacyGroups.vue'
     ),
   },
-  // {
-  //   path: '/videos/form',
-  //   name: 'Add Video Testimonials',
-  //   component: () => import(/* webpackChunkName: "videosform" */ '../views/VideosForm.vue'),
-  // },
-  // {
-  //   path: '/videos',
-  //   name: 'Video Testimonials',
-  //   component: () => import(/* webpackChunkName: "videos" */ '../views/Videos.vue'),
-  // },
+  {
+    path: '/video_testimonials/form',
+    name: 'Add Video Testimonials',
+    component: () => import(/* webpackChunkName: "videotestimonialsform" */ '../views/VideoTestimonialsForm.vue'),
+  },
+  {
+    path: '/video_testimonials',
+    name: 'Video Testimonials',
+    component: () => import(/* webpackChunkName: "videos" */ '../views/VideoTestimonials.vue'),
+  },
 ];
 
 const router = new VueRouter({
