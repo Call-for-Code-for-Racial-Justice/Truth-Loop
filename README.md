@@ -14,6 +14,7 @@ The initial version was developed by contributors at IBM in the summer of 2020, 
    1. [How can technology help?](#how-can-technology-help)
 1. [The Idea](#the-idea)
 1. [Diagrams](#Diagrams)
+1. [Video](#Video)
 1. [Technologies](#Technologies)
 1. [Getting Started](#Getting-started-by-installing-and-running-the-components)
 1. [Resources](#Resources)
@@ -61,8 +62,6 @@ responsible for the creation of the PR&L.
 
 ![architecture diagram](/images/high-level-architecture-diagram.png)
 
-[NB Diagram above is a placeholder, need to swap Cloudant for PostgreSQL and indicate this is not mobile only]
-
 This solution combines a media server (currently Watson Media) and distributed database service to hold the curated legislative artifacts and the related metadata.
 
 - The user launches the web app (on either a laptop, desktop, or mobile device) and can view the range of curated legislative artifacts (1). The Vue app retrieves these by sending a REST request to the API server, which extracts them (3) from the SQL database.
@@ -82,6 +81,7 @@ There is an administrative API interface that allows the site owners to curate t
 - a link to the full text of the PR&L
 
 ## Video
+
 [![Video Call for Code for Racial Justice Solution Starter: Truth Loop ](https://img.youtube.com/vi/AgTUXp4G1Ms/0.jpg)](https://www.youtube.com/watch?v=AgTUXp4G1Ms)
 
 ## Technologies
