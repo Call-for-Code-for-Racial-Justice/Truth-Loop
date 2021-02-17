@@ -127,7 +127,7 @@ Log in to IBM Cloud and provision a Watson Media instance.
 1. Provision an instance of Watson Media [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing). You can use the 30 day free-trial to start.
 1. Once your Watson Media instance has launched, go to the **API/SDK access** item, under the **Integration & Apps** item, in the left menu.
 1. Create a new credential. You will need to enter an Application Name (you can choose anything) and a Redirect URL. This URL needs to be the prefix of the URL you will run the server on, e.g. <http://localhost>. Make note of the `client id` and `client secret`, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
-1. Generate a device username and password to be used by your server, by going to the **Device passwords** in the **API/SDK access** menu. Give your device any name you choose, and then click **Create password**. Make a note of the username and password that are generated, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
+1. Generate a device username and password to be used by your server, by going to the **Device passwords** in the **Integration & Apps** menu. Give your device any name you choose, and then click **Create password**. Make a note of the username and password that are generated, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
 
 ### 3. Configuring and running the server
 
