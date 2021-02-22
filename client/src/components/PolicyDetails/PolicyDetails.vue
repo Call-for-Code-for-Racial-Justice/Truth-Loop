@@ -34,7 +34,7 @@
       <div class="bx--row launch">
         <div class="bx--col">
           <h5>
-            <a href="#">Full Text <Launch16 /></a>
+            <a v-bind:href="policy.link_to_full_text" target='_blank'>Full Text <Launch16 /></a>
           </h5>
         </div>
       </div>
