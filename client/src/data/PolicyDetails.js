@@ -100,27 +100,26 @@ const policyDetails = {
 };
 
 export default {
-  //
+
   // TODO: Is this used anywhere?
-  //
-  // fetchPolicyDetails: (policyid, vuestore) => {
-  //
-  //   if (process.env.VUE_APP_MOCK_DATA) {
-  //     console.log('Using MOCK DATA in PolicyDetails.js');
-  //     console.log(`Policy details store: ${policyid}`);
-  //     policyDetails.id = policyid;
-  //     vuestore.dispatch("policyliststore/updateItemDetails", {
-  //       itemdetail: policyDetails,
-  //     });
-  //   } else {
-  //     fetch('/api/data/policyid')
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         // console.log(json);
-  //         vuestore.dispatch("policyliststore/updateItemDetails", {
-  //           items: json,
-  //         });
-  //       });
-  //   }
-  // },
+
+  fetchPolicyDetails: (policyid, vuestore) => {
+    if (process.env.VUE_APP_MOCK_DATA) {
+      console.log('Using MOCK DATA in PolicyDetails.js');
+      console.log(`Policy details store: ${policyid}`);
+      policyDetails.id = policyid;
+      vuestore.dispatch("policyliststore/updateItemDetails", {
+        itemdetail: policyDetails,
+      });
+    } else {
+      fetch('/api/data/policyid')
+        .then((response) => response.json())
+        .then((json) => {
+          // console.log(json);
+          vuestore.dispatch("policyliststore/updateItemDetails", {
+            items: json,
+          });
+        });
+    }
+  },
 };
