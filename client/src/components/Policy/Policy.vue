@@ -58,6 +58,7 @@ export default {
 <style lang="scss" scoped>
   @import '@/styles/carbon-overrides';
   .policy-card {
+    cursor: pointer;
     margin: 0;
     padding: 0;
     .r1 {
@@ -96,9 +97,6 @@ export default {
     }
     .title{
       font-weight: bold;
-    }
-    .summary{
-      cursor: pointer;
     }
   }
   @media screen and (max-width: 800px) {
