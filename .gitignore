@@ -4,8 +4,6 @@
 code/server-app/yarn.lock
 policy-truth-backend/uploads/*
 Truth-Loop/uploads/*
-server/env
-server/sslcertificate.pem
 
 # OSX
 #
