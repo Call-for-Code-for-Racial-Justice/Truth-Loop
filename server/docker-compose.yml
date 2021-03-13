@@ -3,8 +3,11 @@ services:
 
   db: 
     image: postgres:latest
-    container_name: postgres-database
-    restart: always
+    container_name: truth-loop-postgres-database
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
     environment: 
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
@@ -21,8 +24,11 @@ services:
 
   db-admin:
     image: dpage/pgadmin4:latest
-    container_name: postgres-database-admin
-    restart: always
+    container_name: truth-loop-postgres-database-admin
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
     networks:
       - backend-server
     environment:
@@ -36,14 +42,20 @@ services:
   server:
     build: 
       context: .
+    image: truth-loop/server
     container_name: truth-loop-server
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
     networks:
       - backend-server
     depends_on:
       - db
+    volumes:
+      - ./.docker.env:/usr/src/server/.env
     ports:
       - "5000:5000"
-      
+
 networks:
   backend-server:
