@@ -1,9 +1,11 @@
 # 
 .vscode
 .env
-code/server-app/yarn.lock
-policy-truth-backend/uploads/*
-Truth-Loop/uploads/*
+server/uploads/*
+server/admin/dist/
+server/admin/dist/index.html
+server/package-lock.json
+server/admin/package-lock.json
 
 # OSX
 #
