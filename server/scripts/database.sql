@@ -127,7 +127,8 @@ CREATE TYPE status AS ENUM ('valid', 'invalid');
 
 CREATE TABLE refresh_tokens (
 	id serial NOT NULL,
-	refresh_token status NOT NULL,
+	refresh_token varchar NOT NULL,
+  status status NOT NULL,
 	created timestamp NOT NULL DEFAULT now(),
 	updated timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT refresh_tokens_pk PRIMARY KEY (id)
