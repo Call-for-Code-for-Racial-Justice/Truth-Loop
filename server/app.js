@@ -4,6 +4,7 @@ const logger = require("./logger");
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const cookieParser = require('cookie-parser')
 
 // const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
@@ -39,6 +40,7 @@ const express = require("express");
 
 //middleware
 const app = express();
+app.use(cookieParser());
 app.use(logger.expressLogger);
 app.use(cors());
 app.use(express.json()); //req.body
@@ -91,8 +93,7 @@ app.use(express.static('../client/dist', {fallthrough: true}));
 app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 
 const authentic = function(req, res, next){
-  console.log(req.headers);
-  jwt.verify(req.headers.bearertoken, ACCESS_TOKEN_SECRET, function(error, decode){
+  jwt.verify(req.cookies.accessToken, ACCESS_TOKEN_SECRET, function(error, decode){
     if(error){
       console.log(error)
       res.status(401).send("Invalid access token.");
@@ -104,32 +105,19 @@ const authentic = function(req, res, next){
 
 //ROUTES//
 
-// app.get('/test', authentic, (req, res) => {
-//   res.status(200).send(req.user.rows[0]);
-// });
-
-// app.post('/login', passport.authenticate('local'), (req, res) => {
-//   res.status(200).send("Successfully logged in!");
-// });
-
-// app.get('/logout', (req, res) => {
-//   req.logOut();
-//   res.status(200).send("Successfully logged out!");
-// });
-
 app.use('/', authentication);
 
 // Database Entities
 app.use('/api/v1/categories', authentic, categories);
-app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
-app.use('/api/v1/officials', officials);
-app.use('/api/v1/channels', channels);
-app.use('/api/v1/videos', videos);
-app.use('/api/v1/advocacyGroups', advocacyGroups);
-app.use('/api/v1/publications', publications);
-app.use('/api/v1/videoTestimonials', videoTestimonials);
+app.use('/api/v1/geospatialDefinitions', authentic, geospatialDefinitions);
+app.use('/api/v1/officials', authentic, officials);
+app.use('/api/v1/channels', authentic, channels);
+app.use('/api/v1/videos', authentic, videos);
+app.use('/api/v1/advocacyGroups', authentic, advocacyGroups);
+app.use('/api/v1/publications', authentic, publications);
+app.use('/api/v1/videoTestimonials', authentic, videoTestimonials);
 app.use('/api/v1/levels', levels);
-app.use('/api/v1/legislativeArtifacts', legislativeArtifacts);
-app.use('/api/v1/adminIntersections', adminIntersections);
+app.use('/api/v1/legislativeArtifacts', authentic, legislativeArtifacts);
+app.use('/api/v1/adminIntersections', authentic, adminIntersections);
 
 module.exports = app;

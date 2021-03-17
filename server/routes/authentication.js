@@ -86,6 +86,7 @@ router.post('/signup', (req, res) => {
                               error: "Internal Server Error"
                             })
                           } else {
+                            res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
                             res.status(200).json({
                               accessToken: accessToken,
                               refreshToken: refreshToken
@@ -151,6 +152,7 @@ router.post('/login', (req, res) => {
                             error: "Internal Server Error"
                           })
                         } else {
+                          res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
                           res.status(200).json({
                             accessToken: accessToken,
                             refreshToken: refreshToken
@@ -197,6 +199,7 @@ router.post('/generateAccessToken', (req, res) => {
                     error: "Internal Server Error"
                   })
                 } else {
+                  res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
                   res.status(200).json({
                     accessToken: accessToken
                   })
