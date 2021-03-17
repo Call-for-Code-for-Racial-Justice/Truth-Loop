@@ -1,6 +1,10 @@
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const logger = require("./logger");
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const path = require('path');
+
 // const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
 
@@ -16,6 +20,7 @@ console.log(process.env.DB_USERNAME);
 console.log(process.env.DB_PORT);
 console.log(process.env.DB_DATABASE_NAME);
 
+const ACCESS_TOKEN_SECRET = fs.readFileSync(path.join(__dirname,'secrets','ACCESS_TOKEN_SECRET.txt'), 'utf8')
 const categories = require('./routes/categories');
 const geospatialDefinitions = require('./routes/geospatial_definitions');
 const officials = require('./routes/officials');
@@ -86,10 +91,15 @@ app.use(express.static('../client/dist', {fallthrough: true}));
 app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 
 const authentic = function(req, res, next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  res.status(401).send("Please log in");
+  console.log(req.headers);
+  jwt.verify(req.headers.bearertoken, ACCESS_TOKEN_SECRET, function(error, decode){
+    if(error){
+      console.log(error)
+      res.status(401).send("Invalid access token.");
+    } else {
+      next();
+    }
+  })
 }
 
 //ROUTES//
@@ -110,7 +120,7 @@ const authentic = function(req, res, next){
 app.use('/', authentication);
 
 // Database Entities
-app.use('/api/v1/categories', categories);
+app.use('/api/v1/categories', authentic, categories);
 app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
 app.use('/api/v1/officials', officials);
 app.use('/api/v1/channels', channels);

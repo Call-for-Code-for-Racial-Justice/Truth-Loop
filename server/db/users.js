@@ -1,11 +1,20 @@
 const pool = require('./db_pool').pool
+const bcrypt = require('bcrypt');
 
 const createUser = (user, callback) => {
-  pool.query(
-    'INSERT INTO users (username, password) VALUES ($1, $2);',
-    [user.username, user.password],
-    callback
-  )
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      if(err){
+        callback(err, null);
+      } else {
+        pool.query(
+          'INSERT INTO users (username, password) VALUES ($1, $2);',
+          [user.username, hash],
+          callback
+        )
+      }
+    });
+  });
 };
 
 const updateUser = (newUser, oldUser, callback) => {

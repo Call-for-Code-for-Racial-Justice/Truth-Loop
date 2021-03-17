@@ -116,7 +116,7 @@ CREATE TABLE official (
 
 CREATE TABLE users (
 	id serial NOT NULL,
-	username varchar NOT NULL,
+	username varchar NOT NULL UNIQUE,
 	password varchar NOT NULL,
 	created timestamp NOT NULL DEFAULT now(),
 	updated timestamp NOT NULL DEFAULT now(),

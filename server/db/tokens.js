@@ -27,5 +27,6 @@ const getRefreshTokenStatus = (refreshToken, callback) => {
 
 module.exports = {
   addRefreshToken,
-  revokeRefreshToken
+  revokeRefreshToken,
+  getRefreshTokenStatus
 }
