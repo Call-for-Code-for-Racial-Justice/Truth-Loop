@@ -175,7 +175,7 @@ router.post('/login', (req, res) => {
   })
 });
 
-router.post('/generateAccessToken', (req, res) => {
+router.get('/generateAccessToken', (req, res) => {
   console.log(req.cookies);
   jwt.verify(req.cookies.refreshToken, REFRESH_TOKEN_SECRET, function(error, decode){
     if(error){

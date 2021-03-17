@@ -93,14 +93,18 @@ app.use(express.static('../client/dist', {fallthrough: true}));
 app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 
 const authentic = function(req, res, next){
-  jwt.verify(req.cookies.accessToken, ACCESS_TOKEN_SECRET, function(error, decode){
-    if(error){
-      console.log(error)
-      res.status(401).send("Invalid access token.");
-    } else {
-      next();
-    }
-  })
+  if(req.cookies.accessToken==undefined){
+    res.redirect('/auth/generateAccessToken')
+  } else {
+    jwt.verify(req.cookies.accessToken, ACCESS_TOKEN_SECRET, function(error, decode){
+      if(error){
+        console.log(error)
+        res.status(401).send("Invalid access token.");
+      } else {
+        next();
+      }
+    })
+  }
 }
 
 //ROUTES//
