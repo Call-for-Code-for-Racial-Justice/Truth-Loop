@@ -105,7 +105,7 @@ const authentic = function(req, res, next){
 
 //ROUTES//
 
-app.use('/', authentication);
+app.use('/auth', authentication);
 
 // Database Entities
 app.use('/api/v1/categories', authentic, categories);

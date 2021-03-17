@@ -86,7 +86,8 @@ router.post('/signup', (req, res) => {
                               error: "Internal Server Error"
                             })
                           } else {
-                            res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
+                            res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true , sameSite: 'Strict', path: '/api'});
+                            res.cookie('refreshToken', refreshToken, { maxAge: 86400000, httpOnly: true , sameSite: 'Strict', path: '/auth'});
                             res.status(200).json({
                               accessToken: accessToken,
                               refreshToken: refreshToken
@@ -152,7 +153,8 @@ router.post('/login', (req, res) => {
                             error: "Internal Server Error"
                           })
                         } else {
-                          res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
+                          res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true , sameSite: 'Strict', path: '/api'});
+                          res.cookie('refreshToken', refreshToken, { maxAge: 86400000, httpOnly: true , sameSite: 'Strict', path: '/auth'});
                           res.status(200).json({
                             accessToken: accessToken,
                             refreshToken: refreshToken
@@ -174,14 +176,15 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/generateAccessToken', (req, res) => {
-  jwt.verify(req.body.refreshToken, REFRESH_TOKEN_SECRET, function(error, decode){
+  console.log(req.cookies);
+  jwt.verify(req.cookies.refreshToken, REFRESH_TOKEN_SECRET, function(error, decode){
     if(error){
       logger.error("failed to retrive users: %s", error);
       res.status(500).json({
         error: "Internal Server Error"
       })
     } else {
-      Token.getRefreshTokenStatus(req.body.refreshToken, function(error, results){
+      Token.getRefreshTokenStatus(req.cookies.refreshToken, function(error, results){
         if(error){
           logger.error("failed to retrive users: %s", error);
           res.status(500).json({
@@ -199,7 +202,7 @@ router.post('/generateAccessToken', (req, res) => {
                     error: "Internal Server Error"
                   })
                 } else {
-                  res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true });
+                  res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true , sameSite: 'Strict', path: '/api'});
                   res.status(200).json({
                     accessToken: accessToken
                   })
