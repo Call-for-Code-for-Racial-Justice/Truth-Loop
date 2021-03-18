@@ -39,23 +39,23 @@ services:
     ports:
       - "8080:80"
 
-  server:
-    build: 
-      context: .
-    image: truth-loop/server
-    container_name: truth-loop-server
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 4
-    networks:
-      - backend-server
-    depends_on:
-      - db
-    volumes:
-      - ./.docker.env:/usr/src/server/.env
-    ports:
-      - "5000:5000"
+  # server:
+  #   build: 
+  #     context: .
+  #   image: truth-loop/server
+  #   container_name: truth-loop-server
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #       max_attempts: 4
+  #   networks:
+  #     - backend-server
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./.docker.env:/usr/src/server/.env
+  #   ports:
+  #     - "5000:5000"
 
 networks:
   backend-server:
