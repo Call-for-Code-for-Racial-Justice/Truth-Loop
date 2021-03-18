@@ -17,6 +17,7 @@ The initial version was developed by contributors at IBM in the summer of 2020, 
 1. [Video](#Video)
 1. [Technologies](#Technologies)
 1. [Getting Started](#Getting-started-by-installing-and-running-the-components)
+1. [Docker](#Running-on-Docker)
 1. [Resources](#Resources)
 1. [License](#License)
 1. [Contributing and Developer information](#Contributing-and-Developer-information)
@@ -177,6 +178,23 @@ To configure and run the client application:
     1. If you are running a mobile simulator, you can also access the same URL. For example, in the ios simulator, the screen would look something like this:
 
 ![Intro Screen](/images/first-screen.png)
+
+## Running on Docker
+
+Running Truth Loop components as containers allows a simple and fast set-up of the application.
+
+### Pre-requisites
+
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Steps
+
+1. Ensure that your `docker-compose.yml` is up to date with the components you wish to run.
+1. In a terminal, navigate to the `server` directory and run `docker-compose up -d --build`.
+1. Check that all containers are up and running by issuing `docker ps -a`.
+1. Access each as normal component via their `localhost` ports.
+1. Once finished, run `docker-compose down`.
 
 ## Resources
 
