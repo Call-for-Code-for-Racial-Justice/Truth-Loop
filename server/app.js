@@ -51,41 +51,6 @@ app.use(
   })
 )
 
-// passport.use(new LocalStrategy(
-//   function(username, password, cb){
-//     users.getUserByUsername(username,
-//       function(err, user){
-//         if(err){
-//           return cb(err);
-//         }
-//         if(!user){
-//           return cb(null, false);
-//         }
-//         if(user.rows[0].password != password){
-//           return cb(null, false);
-//         }
-//         return cb(null, user.rows[0]);
-//       }
-//     );
-//   }
-// ));
-
-// passport.serializeUser(function(user, cb) {
-//   cb(null, user.id);
-// });
-
-// passport.deserializeUser(function(id, cb) {
-//   users.getUserById(id, function (err, user) {
-//     if (err) { return cb(err); }
-//     cb(null, user);
-//   });
-// });
-
-// app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
 // Serve a static version of the client at /
 app.use(express.static('../client/dist', {fallthrough: true}));
 

@@ -176,10 +176,9 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/generateAccessToken', (req, res) => {
-  console.log(req.cookies);
   jwt.verify(req.cookies.refreshToken, REFRESH_TOKEN_SECRET, function(error, decode){
     if(error){
-      logger.error("failed to retrive users: %s", error);
+      logger.error("Invalid refresh token: %s", error);
       res.status(500).json({
         error: "Internal Server Error"
       })
@@ -218,8 +217,8 @@ router.get('/generateAccessToken', (req, res) => {
   })
 })
 
-router.post('/logout', (req, res) => {
-  Token.revokeRefreshToken(req.body.refreshToken, function(error, results){
+router.get('/logout', (req, res) => {
+  Token.revokeRefreshToken(req.cookies.refreshToken, function(error, results){
     if(error){
       logger.error("failed to retrive users: %s", error);
       res.status(500).json({
