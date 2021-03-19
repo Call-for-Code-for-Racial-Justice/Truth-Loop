@@ -1,13 +1,7 @@
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const logger = require("./logger");
-const fs = require('fs');
-const jwt = require('jsonwebtoken');
-const path = require('path');
 const cookieParser = require('cookie-parser')
-
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
 
 require('dotenv').config();
 
@@ -21,7 +15,6 @@ console.log(process.env.DB_USERNAME);
 console.log(process.env.DB_PORT);
 console.log(process.env.DB_DATABASE_NAME);
 
-const ACCESS_TOKEN_SECRET = fs.readFileSync(path.join(__dirname,'secrets','ACCESS_TOKEN_SECRET.txt'), 'utf8')
 const categories = require('./routes/categories');
 const geospatialDefinitions = require('./routes/geospatial_definitions');
 const officials = require('./routes/officials');
@@ -33,10 +26,10 @@ const legislativeArtifacts = require('./routes/legislative_artifacts');
 const adminIntersections = require('./routes/admin_intersections')
 const videos = require('./routes/video');
 const channels = require('./routes/channel');
-// const users = require('./db/users');
 const authentication = require('./routes/authentication')
+const authentic = require('./middlewares/authentic').authentic;
+const authorize = require('./middlewares/authorize').authorize;
 const express = require("express");
-// const expressSession = require('express-session');
 
 //middleware
 const app = express();
@@ -57,27 +50,12 @@ app.use(express.static('../client/dist', {fallthrough: true}));
 // Server a static version of the admin UI under /admin
 app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 
-const authentic = function(req, res, next){
-  if(req.cookies.accessToken==undefined){
-    res.redirect('/auth/generateAccessToken')
-  } else {
-    jwt.verify(req.cookies.accessToken, ACCESS_TOKEN_SECRET, function(error, decode){
-      if(error){
-        console.log(error)
-        res.status(401).send("Invalid access token.");
-      } else {
-        next();
-      }
-    })
-  }
-}
-
 //ROUTES//
 
 app.use('/auth', authentication);
 
 // Database Entities
-app.use('/api/v1/categories', authentic, categories);
+app.use('/api/v1/categories', authentic, authorize, categories);
 app.use('/api/v1/geospatialDefinitions', authentic, geospatialDefinitions);
 app.use('/api/v1/officials', authentic, officials);
 app.use('/api/v1/channels', authentic, channels);

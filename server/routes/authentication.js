@@ -12,10 +12,10 @@ const { logger } = require('../logger');
 const ACCESS_TOKEN_SECRET = fs.readFileSync(path.join(__dirname,'..','secrets','ACCESS_TOKEN_SECRET.txt'), 'utf8')
 const REFRESH_TOKEN_SECRET = fs.readFileSync(path.join(__dirname,'..','secrets','REFRESH_TOKEN_SECRET.txt'), 'utf8')
 
-const generateAccessToken = (id, username, cb) => {
+const generateAccessToken = (id, username, role, cb) => {
   try{
     let accessToken = jwt.sign(
-      { user: {id, username} },
+      { user: {id, username, role} },
       ACCESS_TOKEN_SECRET,
       { expiresIn: "10m", }
     );
@@ -63,7 +63,7 @@ router.post('/signup', (req, res) => {
               } else {
                 var accessToken;
                 var refreshToken;
-                generateAccessToken(results.rows[0].id, results.rows[0].username, function(error, result){
+                generateAccessToken(results.rows[0].id, results.rows[0].username, results.rows[0].role, function(error, result){
                   if(error){
                     logger.error("failed to generate access token: %s", error);
                     res.status(500).json({
@@ -130,7 +130,7 @@ router.post('/login', (req, res) => {
             if(result==true){
               var accessToken;
               var refreshToken;
-              generateAccessToken(results.rows[0].id, results.rows[0].username, function(error, result){
+              generateAccessToken(results.rows[0].id, results.rows[0].username, results.rows[0].role, function(error, result){
                 if(error){
                   logger.error("failed to generate access token: %s", error);
                   res.status(500).json({
@@ -194,16 +194,25 @@ router.get('/generateAccessToken', (req, res) => {
             res.status(301).send("Invalid refresh token.");
           } else {
             if(results.rows[0].status=='valid'){
-              generateAccessToken(decode.user.id, decode.user.username, function(error, accessToken){
+              User.getUserById(decode.user.id, function(error, results){
                 if(error){
                   logger.error("failed to retrive users: %s", error);
                   res.status(500).json({
                     error: "Internal Server Error"
                   })
                 } else {
-                  res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true , sameSite: 'Strict', path: '/api'});
-                  res.status(200).json({
-                    accessToken: accessToken
+                  generateAccessToken(decode.user.id, decode.user.username, results.rows[0].role, function(error, accessToken){
+                    if(error){
+                      logger.error("failed to retrive users: %s", error);
+                      res.status(500).json({
+                        error: "Internal Server Error"
+                      })
+                    } else {
+                      res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true , sameSite: 'Strict', path: '/api'});
+                      res.status(200).json({
+                        accessToken: accessToken
+                      })
+                    }
                   })
                 }
               })
