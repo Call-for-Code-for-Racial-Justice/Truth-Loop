@@ -56,15 +56,15 @@ app.use('/auth', authentication);
 
 // Database Entities
 app.use('/api/v1/categories', authentic, authorize, categories);
-app.use('/api/v1/geospatialDefinitions', authentic, geospatialDefinitions);
-app.use('/api/v1/officials', authentic, officials);
-app.use('/api/v1/channels', authentic, channels);
-app.use('/api/v1/videos', authentic, videos);
-app.use('/api/v1/advocacyGroups', authentic, advocacyGroups);
-app.use('/api/v1/publications', authentic, publications);
-app.use('/api/v1/videoTestimonials', authentic, videoTestimonials);
-app.use('/api/v1/levels', levels);
-app.use('/api/v1/legislativeArtifacts', authentic, legislativeArtifacts);
-app.use('/api/v1/adminIntersections', authentic, adminIntersections);
+app.use('/api/v1/geospatialDefinitions', authentic, authorize, geospatialDefinitions);
+app.use('/api/v1/officials', authentic, authorize, officials);
+app.use('/api/v1/channels', authentic, authorize, channels);
+app.use('/api/v1/videos', authentic, authorize, videos);
+app.use('/api/v1/advocacyGroups', authentic, authorize, advocacyGroups);
+app.use('/api/v1/publications', authentic, authorize, publications);
+app.use('/api/v1/videoTestimonials', authentic, authorize, videoTestimonials);
+app.use('/api/v1/levels', authentic, authorize, levels);
+app.use('/api/v1/legislativeArtifacts', authentic, authorize, legislativeArtifacts);
+app.use('/api/v1/adminIntersections', authentic, authorize, adminIntersections);
 
 module.exports = app;

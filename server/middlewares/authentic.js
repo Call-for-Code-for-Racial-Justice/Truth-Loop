@@ -14,7 +14,7 @@ const authentic = function(req, res, next){
         console.log(error)
         res.status(401).send("Invalid access token.");
       } else {
-        res.user = decode.user;
+        req.user = decode.user;
         next();
       }
     })

@@ -1,17 +1,17 @@
 const routes = [
   // Advocacy Groups routes
   ['GET', /^\/api\/v1\/advocacyGroups$/, ['peasant','admin']],
-  ['POST', /^\/api\/v1\/advocacyGroups$/, ['admin']],
+  ['POST', /^\/api\/v1\/advocacyGroups$/, ['peasant','admin']],
   ['PUT', /^\/api\/v1\/advocacyGroups$/, ['peasant','admin']],
   ['GET', /^\/api\/v1\/advocacyGroups\/[0-9]+$/, ['peasant','admin']],
   ['DELETE', /^\/api\/v1\/advocacyGroups\/[0-9]+$/, ['peasant','admin']],
   // Category routes
   ['GET', /^\/api\/v1\/categories$/, ['peasant','admin']],
-  ['POST', /^\/api\/v1\/categories$/, ['admin']],
-  ['PUT', /^\/api\/v1\/categories$/, ['admin']],
+  ['POST', /^\/api\/v1\/categories$/, ['peasant','admin']],
+  ['PUT', /^\/api\/v1\/categories$/, ['peasant','admin']],
   ['GET', /^\/api\/v1\/categories\/[0-9]+$/, ['peasant','admin']],
-  ['DELETE', /^\/api\/v1\/categories\/[0-9]+$/, ['admin']],
-  ['GET', /^\/api\/v1\/categories\/name\/[A-Za-z0-9]+$/, ['peasant','admin']]
+  ['DELETE', /^\/api\/v1\/categories\/[0-9]+$/, ['peasant','admin']],
+  ['GET', /^\/api\/v1\/categories\/name\/[A-Za-z0-9]+$/, ['peasant','admin']],
   // Geospatial Definitions routes
   ['GET', /^\/api\/v1\/geospatialDefinitions$/, ['peasant','admin']],
   ['POST', /^\/api\/v1\/geospatialDefinitions$/, ['peasant','admin']],
@@ -58,14 +58,26 @@ const routes = [
   ['DELETE', /^\/api\/v1\/videoTestimonials\/[0-9]+$/, ['peasant','admin']], 
 ];
 
-const authorize = (req, res, next) => {
-  console.log(req.url);
-  console.log(req.method);
-  console.log(req._parsedOriginalUrl.pathname);
-  next();
+const isAuthorized = (method, request, role) => {
+  for(i=0;i<routes.length;i++){
+    if(routes[i][0].toLowerCase()==method.toLowerCase()){
+      if(routes[i][1].test(request)){
+        if(routes[i][2].includes(role)){
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
-console.log(/^\/api\/v1\/categories\/[0-9]+$/.test('/api/v1/categories/'));
+const authorize = (req, res, next) => {
+  if(!isAuthorized(req.method, req._parsedOriginalUrl.pathname, req.user.role)){
+    res.status(301).send("You are not authorized to perform this action.");
+  } else {
+    next();
+  }
+}
 
 module.exports = {
   authorize
