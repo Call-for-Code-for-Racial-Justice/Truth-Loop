@@ -114,6 +114,29 @@ CREATE TABLE official (
 	CONSTRAINT official_pk PRIMARY KEY (id)
 );
 
+CREATE TYPE role AS ENUM ('admin', 'peasant');
+
+CREATE TABLE users (
+	id serial NOT NULL,
+	username varchar NOT NULL UNIQUE,
+	password varchar NOT NULL,
+  role role NOT NULL DEFAULT 'peasant',
+	created timestamp NOT NULL DEFAULT now(),
+	updated timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT users_pk PRIMARY KEY (id)
+);
+
+CREATE TYPE status AS ENUM ('valid', 'invalid');
+
+CREATE TABLE refresh_tokens (
+	id serial NOT NULL,
+	refresh_token varchar NOT NULL,
+  status status NOT NULL,
+	created timestamp NOT NULL DEFAULT now(),
+	updated timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT refresh_tokens_pk PRIMARY KEY (id)
+);
+
 CREATE TABLE artifact_advocacy_group (
 	artifact_id int4 NOT NULL,
 	advocacy_group_id int4 NOT NULL,

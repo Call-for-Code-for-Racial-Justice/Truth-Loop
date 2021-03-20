@@ -2,7 +2,7 @@ node_modules/
 Dockerfile
 .env
 .env.example
-.env.docker
+.docker.env
 createdb.sql
 database.sql
 admin/
