@@ -1,5 +1,3 @@
 .env
 server/uploads/*
 admin/dist/*
-package-lock.json
-admin/package-lock.json
