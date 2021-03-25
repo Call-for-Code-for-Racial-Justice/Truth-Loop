@@ -7,7 +7,8 @@ const ACCESS_TOKEN_SECRET = fs.readFileSync(path.join(__dirname,'..','secrets','
 const authentic = function(req, res, next){
   if(req.cookies.accessToken==undefined){
     // TODO:figure out how to properly implement express redirect
-    res.redirect('/auth/generateAccessToken')
+    // res.redirect('/auth/generateAccessToken')
+    res.status(401).send("No valid access token provided.")
   } else {
     jwt.verify(req.cookies.accessToken, ACCESS_TOKEN_SECRET, function(error, decode){
       if(error){

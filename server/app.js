@@ -37,12 +37,6 @@ app.use(cookieParser());
 app.use(logger.expressLogger);
 app.use(cors());
 app.use(express.json()); //req.body
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
 
 // Serve a static version of the client at /
 app.use(express.static('../client/dist', {fallthrough: true}));
