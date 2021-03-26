@@ -135,12 +135,21 @@ To set up and launch the server application:
 
 1. Go to the `server` directory of the cloned repo.
 1. Copy the `.env.example` file, and create a new file named `.env`.
-1. If your PostgreSQL server uses SSL (like the IBM Cloud version), then create a file to hold the SSL certificate. For the IBM Cloud version of PostgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.
-1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from the credentials you obtained in [Step 1](#1-Provision-a-PostgreSQL-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory).
-1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](#2-Set-up-an-instance-of-Watson-Media).
-1. Prepare to initialize the database with the correct tables. Scripts are provided that do this using the `psql` cli, which is recommended that you install. On macOS, for instance, you can do this with the brew command:
-    - `brew install libpq`
-    - You may also like to link the `psql` command to you local bin directory with brew `link --force libpq`
+### 3. Configuring and running the server
+1. If your PostgreSQL server uses SSL (like the IBM Cloud version), then create a file named `cert.pem` to hold the SSL certificate. For the IBM Cloud version of PostgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.
+
+1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from the credentials you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-PostgreSQL-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory). For example, `DB_CERTFILE=./cert.pem`.
+1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#2-Set-up-an-instance-of-Watson-Media). 
+
+ 1. Prepare to initialize the database with the correct tables. Scripts are provided that do this using the  `psql`  CLI, which is recommended that you install:
+	- macOS:	
+        -   `brew install libpq`
+        -   You may also like to link the  `psql`  command to you local bin directory with brew  `link --force libpq`
+
+	- Windows:
+        - Download PostgreSQL for Windows [here]. (https://www.postgresql.org/download/windows/)
+        - You will also need to add the path to your PostgreSQL bin directory to your PATH variable in order for the CLI to work.
+
 1. To initialize the tables, you can use the `./psql_create_tables.sh` script
 1. If you would like to install sample data into the database for testing, then use the `./psql_refresh_sample_data.sh` script
 
