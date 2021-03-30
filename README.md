@@ -135,7 +135,6 @@ To set up and launch the server application:
 
 1. Go to the `server` directory of the cloned repo.
 1. Copy the `.env.example` file, and create a new file named `.env`.
-### 3. Configuring and running the server
 1. If your PostgreSQL server uses SSL (like the IBM Cloud version), then create a file named `cert.pem` to hold the SSL certificate. For the IBM Cloud version of PostgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.
 
 1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from the credentials you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-PostgreSQL-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory). For example, `DB_CERTFILE=./cert.pem`.
