@@ -147,7 +147,7 @@ To set up and launch the server application:
         -   You may also like to link the  `psql`  command to you local bin directory with brew  `link --force libpq`
 
 	- Windows:
-        - Download PostgreSQL for Windows [here]. (https://www.postgresql.org/download/windows/)
+        - Download PostgreSQL for Windows [here](https://www.postgresql.org/download/windows/).
         - You will also need to add the path to your PostgreSQL bin directory to your PATH variable in order for the CLI to work.
 
 1. To initialize the tables, you can use the `./psql_create_tables.sh` script
