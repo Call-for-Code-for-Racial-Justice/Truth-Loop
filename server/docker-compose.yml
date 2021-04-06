@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+
+  db: 
+    image: postgres:latest
+    container_name: truth-loop-postgres-database
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
+    environment: 
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=policydb
+    networks:
+      backend-server:
+        aliases:
+          - postgres
+    ports:
+      - "5431:5432"
+    volumes:
+      - ./scripts/database.sql:/docker-entrypoint-initdb.d/1-database.sql
+      - ./scripts/refresh_sample_data.sql:/docker-entrypoint-initdb.d/2-refresh_sample_data.sql
+
+  db-admin:
+    image: dpage/pgadmin4:latest
+    container_name: truth-loop-postgres-database-admin
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
+    networks:
+      - backend-server
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=password
+      - PGADMIN_DEFAULT_EMAIL=admin
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+
+  server:
+    build: 
+      context: .
+    image: truth-loop/server
+    container_name: truth-loop-server
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 4
+    networks:
+      - backend-server
+    depends_on:
+      - db
+    volumes:
+      - ./.docker.env:/usr/src/server/.env
+    ports:
+      - "5000:5000"
+
+networks:
+  backend-server:

@@ -1,0 +1,14 @@
+node_modules/
+Dockerfile
+.env
+.env.example
+.docker.env
+createdb.sql
+database.sql
+admin/
+README.md
+scripts/
+refresh_sample_data.sql
+psql_create_tables.sh
+psql_createdb.sh
+psql_refresh_sample_data.sh

@@ -17,6 +17,7 @@ The initial version was developed by contributors at IBM in the summer of 2020, 
 1. [Video](#Video)
 1. [Technologies](#Technologies)
 1. [Getting Started](#Getting-started-by-installing-and-running-the-components)
+1. [Docker](#Running-on-Docker)
 1. [Resources](#Resources)
 1. [License](#License)
 1. [Contributing and Developer information](#Contributing-and-Developer-information)
@@ -127,7 +128,7 @@ Log in to IBM Cloud and provision a Watson Media instance.
 1. Provision an instance of Watson Media [IBM Watson Media](https://www.ibm.com/products/video-streaming/pricing). You can use the 30 day free-trial to start.
 1. Once your Watson Media instance has launched, go to the **API/SDK access** item, under the **Integration & Apps** item, in the left menu.
 1. Create a new credential. You will need to enter an Application Name (you can choose anything) and a Redirect URL. This URL needs to be the prefix of the URL you will run the server on, e.g. <http://localhost>. Make note of the `client id` and `client secret`, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
-1. Generate a device username and password to be used by your server, by going to the **Device passwords** in the **API/SDK access** menu. Give your device any name you choose, and then click **Create password**. Make a note of the username and password that are generated, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
+1. Generate a device username and password to be used by your server, by going to the **Device passwords** in the **Integration & Apps** menu. Give your device any name you choose, and then click **Create password**. Make a note of the username and password that are generated, since you will need these in [Step 3](#3-Configuring-and-running-the-server).
 
 ### 3. Configuring and running the server
 
@@ -135,12 +136,20 @@ To set up and launch the server application:
 
 1. Go to the `server` directory of the cloned repo.
 1. Copy the `.env.example` file, and create a new file named `.env`.
-1. If your PostgreSQL server uses SSL (like the IBM Cloud version), then create a file to hold the SSL certificate. For the IBM Cloud version of PostgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.
-1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from the credentials you obtained in [Step 1](#1-Provision-a-PostgreSQL-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory).
-1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](#2-Set-up-an-instance-of-Watson-Media).
-1. Prepare to initialize the database with the correct tables. Scripts are provided that do this using the `psql` cli, which is recommended that you install. On macOS, for instance, you can do this with the brew command:
-    - `brew install libpq`
-    - You may also like to link the `psql` command to you local bin directory with brew `link --force libpq`
+1. If your PostgreSQL server uses SSL (like the IBM Cloud version), then create a file named `cert.pem` to hold the SSL certificate. For the IBM Cloud version of PostgreSQL, it is shown in the `certificate: certificate_base64` attribute of the service credential you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-Postgres-instance). Copy the raw contents of this attribute into the file you have created.
+
+1. Update the newly created `.env` file and update the `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PORT` and `DB_DATABASE_NAME` with the values from the credentials you obtained in [Step 1](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#1-Provision-a-PostgreSQL-instance). If you created a certificate file in the previous action, then also update the `DB_CERTFILE` with the location of this file (relative to the `server` directory). For example, `DB_CERTFILE=./cert.pem`.
+1. Also update the `CMS_USERNAME`, `CMS_PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` with the values from creating your instance of Watson Media, from [Step 2](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop#2-Set-up-an-instance-of-Watson-Media). 
+
+ 1. Prepare to initialize the database with the correct tables. Scripts are provided that do this using the  `psql`  CLI, which is recommended that you install:
+	- macOS:	
+        -   `brew install libpq`
+        -   You may also like to link the  `psql`  command to you local bin directory with brew  `link --force libpq`
+
+	- Windows:
+        - Download PostgreSQL for Windows [here](https://www.postgresql.org/download/windows/).
+        - You will also need to add the path to your PostgreSQL bin directory to your PATH variable in order for the CLI to work.
+
 1. To initialize the tables, you can use the `./psql_create_tables.sh` script
 1. If you would like to install sample data into the database for testing, then use the `./psql_refresh_sample_data.sh` script
 
@@ -177,6 +186,23 @@ To configure and run the client application:
     1. If you are running a mobile simulator, you can also access the same URL. For example, in the ios simulator, the screen would look something like this:
 
 ![Intro Screen](/images/first-screen.png)
+
+## Running on Docker
+
+Running Truth Loop components as containers allows a simple and fast set-up of the application.
+
+### Pre-requisites
+
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Steps
+
+1. Ensure that your `docker-compose.yml` is up to date with the components you wish to run.
+1. In a terminal, navigate to the `server` directory and run `docker-compose up -d --build`.
+1. Check that all containers are up and running by issuing `docker ps -a`.
+1. Access each as normal component via their `localhost` ports.
+1. Once finished, run `docker-compose down`.
 
 ## Resources
 

@@ -1,11 +1,12 @@
 # 
 .vscode
 .env
-code/server-app/yarn.lock
-policy-truth-backend/uploads/*
-Truth-Loop/uploads/*
-server/env
-server/sslcertificate.pem
+
+server/uploads/*
+server/admin/dist/
+server/admin/dist/index.html
+server/package-lock.json
+server/admin/package-lock.json
 
 # OSX
 #
