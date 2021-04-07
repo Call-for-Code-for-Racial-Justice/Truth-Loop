@@ -5,7 +5,7 @@
       <cv-skip-to-content href="#main-content">
         Skip to content
       </cv-skip-to-content>
-      <cv-header-name href="javascript:void(0)">
+      <cv-header-name href="#/">
         Truth Loop Admin UI
       </cv-header-name>
       <cv-header-nav aria-label="Carbon nav">
