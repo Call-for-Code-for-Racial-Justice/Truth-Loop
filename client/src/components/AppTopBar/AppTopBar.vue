@@ -55,6 +55,9 @@ export default {
         width: 20%;
         text-align: right;
     }
+    .back {
+        cursor: pointer;
+    }
 }
 
 </style>
