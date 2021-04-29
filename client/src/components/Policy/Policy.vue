@@ -36,7 +36,7 @@ export default {
   computed: {
     getIntroDt() {
       const dt = new Date(this.date_introduced);
-      return `${dt.getMonth()}-${dt.getDate()}-${dt.getFullYear()}`;
+      return `${dt.getMonth() + 1}-${dt.getDate()}-${dt.getFullYear()}`;
     },
     rowType() {
       // console.log(`${this.row_num}`);
