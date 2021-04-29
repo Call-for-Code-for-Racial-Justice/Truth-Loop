@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import AppTopBar from "../../../src/components/AppTopBar";
@@ -16,10 +16,10 @@ const factory = (values = { appTitle: '', hasBack: false, hasSettings: false }) 
     'appsettingstore/getTopBarSettings': () => ({ hasBack: values.hasBack, hasSettings: values.hasSettings }),
   };
   const store = new Vuex.Store({ getters });
-  return shallowMount(AppTopBar, { store, localVue, mocks });
+  return mount(AppTopBar, { store, localVue, mocks });
 };
 
-describe('AppTopBar.vue', () => {
+describe('AppTopBar tests', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
