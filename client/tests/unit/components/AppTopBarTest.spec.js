@@ -1,20 +1,29 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
+
 import AppTopBar from "../../../src/components/AppTopBar";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-
+const mocks = {
+  $router: {
+    go: jest.fn(),
+  },
+};
 const factory = (values = { appTitle: '', hasBack: false, hasSettings: false }) => {
   const getters = {
     'appsettingstore/getAppTitle': () => values.appTitle,
     'appsettingstore/getTopBarSettings': () => ({ hasBack: values.hasBack, hasSettings: values.hasSettings }),
   };
   const store = new Vuex.Store({ getters });
-  return shallowMount(AppTopBar, { store, localVue });
+  return shallowMount(AppTopBar, { store, localVue, mocks });
 };
 
 describe('AppTopBar.vue', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render correct title', () => {
     const wrapper = factory({ appTitle: 'Hello World' });
     expect(wrapper.find('.title').text()).toEqual('Hello World');
@@ -38,5 +47,11 @@ describe('AppTopBar.vue', () => {
   it('should NOT show the settings component', () => {
     const wrapper = factory({ hasSettings: false });
     expect(wrapper.find('.right-panel').exists()).toBeFalsy();
+  });
+
+  it('should go back', () => {
+    const wrapper = factory({ hasBack: true });
+    wrapper.find('.back').trigger('click');
+    expect(mocks.$router.go).toHaveBeenCalledWith(-1);
   });
 });
