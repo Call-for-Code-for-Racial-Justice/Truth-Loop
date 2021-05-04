@@ -14,7 +14,7 @@ describe('Policy tests', () => {
       expect(wrapper.find('.summary').text()).toEqual('Policy Summary');
     });
     it('should display appropriate Intro Date', () => {
-      const wrapper = factory({ propsData: { date_introduced: '2020-06-01T05:00:00.000Z' } });
+      const wrapper = factory({ propsData: { date_introduced: '2020-06-01T11:30:00.000Z' } });
       expect(wrapper.find('.introdate').text()).toEqual('Introduced: 6-1-2020');
     });
   });
@@ -36,7 +36,7 @@ describe('Policy tests', () => {
     });
     describe('getIntroDt tests', () => {
       it('should return formatted date', () => {
-        const wrapper = factory({ propsData: { date_introduced: '2020-06-01T05:00:00.000Z' } });
+        const wrapper = factory({ propsData: { date_introduced: '2020-06-01T11:30:00.000Z' } });
         expect(wrapper.vm.getIntroDt).toEqual('6-1-2020');
       });
     });
