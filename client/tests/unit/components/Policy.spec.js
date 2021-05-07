@@ -14,7 +14,7 @@ describe('Policy tests', () => {
       expect(wrapper.find('.summary').text()).toEqual('Policy Summary');
     });
     it('should display appropriate Intro Date', () => {
-      const wrapper = factory({ propsData: { date_introduced: '2020-06-01T05:00:00.000Z' } });
+      const wrapper = factory({ propsData: { date_introduced: '2020-06-01T01:00:00.000' } });
       expect(wrapper.find('.introdate').text()).toEqual('Introduced: 6-1-2020');
     });
   });
