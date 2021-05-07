@@ -36,7 +36,7 @@ describe('Policy tests', () => {
     });
     describe('getIntroDt tests', () => {
       it('should return formatted date', () => {
-        const wrapper = factory({ propsData: { date_introduced: '2020-06-01T05:00:00.000Z' } });
+        const wrapper = factory({ propsData: { date_introduced: '2020-06-01T01:00:00.000' } });
         expect(wrapper.vm.getIntroDt).toEqual('6-1-2020');
       });
     });
