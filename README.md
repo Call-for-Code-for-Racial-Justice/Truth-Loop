@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue.svg)](https://developer.ibm.com/callforcode/racial-justice/get-started/)
+
 [hi-level-arch]: images/architectural-diagram.png "High Level Architecture"
 [components]: images/components.jpg "Components"
 [openshift]: images/openshift.png "OpenShift Console"
@@ -99,7 +101,7 @@ There is an administrative API interface that allows the site owners to curate t
 
 ### Prerequisites
 
-- Register for an [IBM Cloud](https://www.ibm.com/account/reg/us-en/signup) account.
+- Register for an [IBM Cloud](https://developer.ibm.com/callforcode/racial-justice/get-started/) account.
 - Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
 - Install [Vue CLI dependencies](https://cli.vuejs.org/guide/installation.html)
 - Clone the [repository](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop).
