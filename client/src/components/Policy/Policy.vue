@@ -98,6 +98,9 @@ export default {
     .title{
       font-weight: bold;
     }
+    .summary{
+      cursor: pointer;
+    }
   }
   @media screen and (max-width: 800px) {
     .policy-card {

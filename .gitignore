@@ -1,7 +1,6 @@
 # 
 .vscode
 .env
-
 server/uploads/*
 server/admin/dist/
 server/admin/dist/index.html
