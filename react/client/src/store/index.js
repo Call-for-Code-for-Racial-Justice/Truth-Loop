@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import demoStartReducer from './reducers/demoStart/reducer'
+import appSettingsReducer from './reducers/appSettings.duck'
 
 const saveToLocalStorage = (state) => {
   try {
@@ -25,6 +26,7 @@ export const configureStore = () => {
 
   const reducers = combineReducers({
     demoStart: demoStartReducer,
+    appSettings: appSettingsReducer,
   })
 
   const middleware = [thunk]
@@ -37,7 +39,7 @@ export const configureStore = () => {
     persistedStore,
     enhancers(applyMiddleware(...middleware))
   )
-  
+
   store.subscribe(() => {
     saveToLocalStorage(store.getState())
   })
