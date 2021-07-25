@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect }from 'react'
 import * as TL from './styles' // Stands for "Truth Loop"
 
-import { useDemoStartActions } from '../../hooks/demoStart'
+import { useDemoStartActions } from '../../hooks/demoStart'
 
 const DemoStart = () => {
-  const { demoStart } = useDemoStartActions()
+  const { demoStart } = useDemoStartActions()
 
   useEffect(() => {
     // Just to don't persist that data on Storage.
     localStorage.clear()
     demoStart('Hello from REDUX')
-  }, [])
+  }, [demoStart])
 
   return (
     <TL.MainContainer>
