@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 
 import demoStartReducer from './reducers/demoStart/reducer'
 import appSettingsReducer from './reducers/appSettings.duck'
+import policyListReducer from './reducers/policyList.duck'
 
 const saveToLocalStorage = (state) => {
   try {
@@ -27,6 +28,7 @@ export const configureStore = () => {
   const reducers = combineReducers({
     demoStart: demoStartReducer,
     appSettings: appSettingsReducer,
+    policyList: policyListReducer,
   })
 
   const middleware = [thunk]
