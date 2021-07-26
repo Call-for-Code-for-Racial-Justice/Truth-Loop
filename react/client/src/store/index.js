@@ -6,7 +6,7 @@ import appSettingsReducer from './reducers/appSettings.duck'
 
 const saveToLocalStorage = (state) => {
   try {
-    localStorage.setItem('state', JSON.stringify(state));
+    localStorage.setItem('state', JSON.stringify(state))
   } catch (e) {
     console.error(e)
   }
