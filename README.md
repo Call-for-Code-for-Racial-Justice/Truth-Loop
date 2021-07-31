@@ -96,6 +96,13 @@ There is an administrative API interface that allows the site owners to curate t
 - [Node.js](https://nodejs.org/en/docs/)
 - [ExpressJS](https://expressjs.com/)
 - [Vue.js](https://vuejs.org/)
+- [React.js](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+  - For the redux we use the [ducks pattern as seen here](https://github.com/erikras/ducks-modular-redux)
+  - TL;DR? That means actionTypes, actions, and reducers are all in a file called `<module-name>.duck.js`
+  - Associated tests should be in `<module-name>.duck.test.js`
+  - Complex selectors ought to be in the .duck file as well
+  - Consider [`useSelector`](https://react-redux.js.org/api/hooks#useselector) for simple selectors
 
 ## Getting started by installing and running the components
 
