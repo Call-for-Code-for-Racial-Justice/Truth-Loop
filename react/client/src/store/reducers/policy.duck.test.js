@@ -1,4 +1,4 @@
-import reducer, {DEFAULT_STATE, POLICY_UPDATE_CURRENT_POLICY} from './policy.duck'
+import reducer, {DEFAULT_STATE, POLICY_CURRENT_POLICY_UPDATED} from './policy.duck'
 
 describe('policy reducer tests', () => {
   let actualState, initialState
@@ -6,13 +6,13 @@ describe('policy reducer tests', () => {
     initialState = {...DEFAULT_STATE}
   })
 
-  describe('POLICY_UPDATE_CURRENT_POLICY action tests', () => {
+  describe('POLICY_CURRENT_POLICY_UPDATED action tests', () => {
     beforeEach(() => {
       initialState = {...initialState, currentPolicy: {some: 'policy'}}
     })
     describe('when passing a new currentPolicy', () => {
       beforeEach(() => {
-        actualState = reducer(initialState, {type: POLICY_UPDATE_CURRENT_POLICY, payload: {different: 'policy'}})
+        actualState = reducer(initialState, {type: POLICY_CURRENT_POLICY_UPDATED, payload: {different: 'policy'}})
       })
       it('should update the currentPolicy', () => {
         expect(actualState.currentPolicy).toEqual({different: 'policy'})
@@ -20,7 +20,7 @@ describe('policy reducer tests', () => {
     })
     describe('when passing null for currentPolicy', () => {
       beforeEach(() => {
-        actualState = reducer(initialState, {type: POLICY_UPDATE_CURRENT_POLICY, payload: null})
+        actualState = reducer(initialState, {type: POLICY_CURRENT_POLICY_UPDATED, payload: null})
       })
       it('should not update the currentPolicy', () => {
         expect(actualState.currentPolicy).toEqual({some: 'policy'})
@@ -28,7 +28,7 @@ describe('policy reducer tests', () => {
     })
     describe('when passing undefined for currentPolicy', () => {
       beforeEach(() => {
-        actualState = reducer(initialState, {type: POLICY_UPDATE_CURRENT_POLICY, payload: undefined})
+        actualState = reducer(initialState, {type: POLICY_CURRENT_POLICY_UPDATED, payload: undefined})
       })
       it('should not update the currentPolicy', () => {
         expect(actualState.currentPolicy).toEqual({some: 'policy'})
