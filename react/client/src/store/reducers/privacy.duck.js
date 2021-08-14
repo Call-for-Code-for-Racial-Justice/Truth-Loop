@@ -7,13 +7,16 @@ export const DEFAULT_STATE = {
 }
 
 export default function reducer(state = DEFAULT_STATE, action = {}) {
-  if (action.payload === null || typeof action.payload === 'undefined') {
-    return state
-  }
   switch (action.type) {
     case PRIVACY_ACCEPTED_UPDATE:
+      if (action.payload === null || typeof action.payload === 'undefined') {
+        return state
+      }
       return { ...state, privacyAccepted: action.payload}
     case PRIVACY_CANCELLED_UPDATE:
+      if (action.payload === null || typeof action.payload === 'undefined') {
+        return state
+      }
       return { ...state, privacyCancelled: action.payload}
     default:
       return state
