@@ -1,5 +1,5 @@
 import fetchPolicy from './fetchPolicy'
-import policy from '../../../client/mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1'
+import policy from './mockdata/CURRENT_FULL_RETRIEVAL_OF_ARTIFACT_1'
 
 describe('fetchPolicy tests', () => {
   let expectedPolicy
