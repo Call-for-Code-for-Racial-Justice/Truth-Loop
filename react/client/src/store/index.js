@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import demoStartReducer from './reducers/demoStart/reducer'
 import appSettingsReducer from './reducers/appSettings.duck'
 import policyListReducer from './reducers/policyList.duck'
 import policyReducer from './reducers/policy.duck'
@@ -28,7 +27,6 @@ const loadFromLocalStorage = () => {
 export const configureStore = () => {
 
   const reducers = combineReducers({
-    demoStart: demoStartReducer,
     appSettings: appSettingsReducer,
     policyList: policyListReducer,
     policy: policyReducer,
