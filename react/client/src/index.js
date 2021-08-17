@@ -9,7 +9,7 @@ import App from './App'
 document.getElementById('root').style.maxWidth = '100vw'
 
 const globalStore = configureStore()
-const app = 
+const app =
   <Provider store={globalStore}>
     <App />
   </Provider>
@@ -21,4 +21,4 @@ ReactDOM.render(app, root)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint.
-reportWebVitals();
+reportWebVitals()
