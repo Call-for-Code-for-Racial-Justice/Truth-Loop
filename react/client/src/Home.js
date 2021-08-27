@@ -1,6 +1,7 @@
 import React from 'react'
-import PolicyNotice from './PolicyNotice'
 import {useSelector} from 'react-redux'
+import './Home.scss'
+import PolicyNotice from './PolicyNotice'
 import PolicyTable from './PolicyTable'
 
 const Home = () => {
