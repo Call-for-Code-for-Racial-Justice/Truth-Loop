@@ -1,4 +1,4 @@
-import fetchPolicy from '../../fetchPolicy'
+import fetchPolicy from '../fetchPolicy'
 
 export const POLICY_CURRENT_POLICY_UPDATED = 'truth-loop/policy/currentPolicyUpdated'
 export const POLICY_LOADING_NEW_CURRENT_POLICY = 'truth-loop/policy/loadingNewCurrentPolicy'
