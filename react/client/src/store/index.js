@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import appSettingsReducer from './reducers/appSettings.duck'
-import policyListReducer from './reducers/policyList.duck'
-import policyReducer from './reducers/policy.duck'
-import privacyReducer from './reducers/privacy.duck'
+import appSettingsReducer from './appSettings.duck'
+import policyListReducer from './policyList.duck'
+import policyReducer from './policy.duck'
+import privacyReducer from './privacy.duck'
 
 const saveToLocalStorage = (state) => {
   try {

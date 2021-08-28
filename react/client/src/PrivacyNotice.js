@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {ListItem, Modal, UnorderedList} from 'carbon-components-react'
 import './PrivacyNotice.scss'
-import {PRIVACY_CANCELLED_UPDATE, PRIVACY_ACCEPTED_UPDATE} from './store/reducers/privacy.duck'
+import {PRIVACY_CANCELLED_UPDATE, PRIVACY_ACCEPTED_UPDATE} from './store/privacy.duck'
 
 const PrivacyNotice = () => {
   const {privacyAccepted} = useSelector(({privacy}) => privacy)
