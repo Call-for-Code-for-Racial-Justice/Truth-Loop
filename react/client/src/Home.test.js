@@ -22,7 +22,6 @@ describe('Home component tests', () => {
     it('should not show the pleaseAcceptPrivacyStatement notification', () => {
       expect(screen.queryByTestId('pleaseAcceptPrivacyStatement')).toBeNull()
     })
-
     it('should not show the PolicyTable', () => {
       expect(screen.queryByTestId('policyTable')).toBeNull()
     })
