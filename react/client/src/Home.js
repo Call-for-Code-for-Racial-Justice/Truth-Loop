@@ -24,7 +24,7 @@ const Home = () => {
           <div className="bx--col">
             {!privacyAccepted && <PolicyNotice/>}
             {privacyAccepted && <PolicyTable/>}
-            {privacyCancelled && renderPrivacyCancelContent()}
+            {privacyCancelled && !privacyAccepted && renderPrivacyCancelContent()}
           </div>
         </div>
       </div>

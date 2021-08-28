@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <div id={'app'}>
-        <div id={'main-content'}>
+        <div id={'main-content'} data-testid={'mainContent'}>
           <Switch>
             <Route name="home-route" exact path={'/'} component={Home} />
             <Route name="policy-route" exact path={'/policy/:policyId'} component={Policy} />
