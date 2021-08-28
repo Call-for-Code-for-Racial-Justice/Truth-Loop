@@ -1,7 +1,7 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import './Home.scss'
-import PolicyNotice from './PolicyNotice'
+import PrivacyNotice from './PrivacyNotice'
 import PolicyTable from './PolicyTable'
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
       <div className="bx--grid bx--grid--full-width bx--grid--no-gutter ">
         <div className="bx--row">
           <div className="bx--col">
-            {!privacyAccepted && <PolicyNotice/>}
+            {!privacyAccepted && <PrivacyNotice/>}
             {privacyAccepted && <PolicyTable/>}
             {privacyCancelled && !privacyAccepted && renderPrivacyCancelContent()}
           </div>

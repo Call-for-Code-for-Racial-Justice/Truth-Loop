@@ -16,8 +16,8 @@ describe('Home component tests', () => {
       })
       render(<Provider store={store}><Home/></Provider>)
     })
-    it('should show the PolicyNotice', () => {
-      expect(screen.queryByTestId('policyNotice')).toBeInTheDocument()
+    it('should show the PrivacyNotice', () => {
+      expect(screen.queryByTestId('privacyNotice')).toBeInTheDocument()
     })
     it('should not show the pleaseAcceptPrivacyStatement notification', () => {
       expect(screen.queryByTestId('pleaseAcceptPrivacyStatement')).toBeNull()
@@ -27,22 +27,22 @@ describe('Home component tests', () => {
     })
   })
 
-  describe('when user has accepted the PolicyNotice', () => {
+  describe('when user has accepted the PrivacyNotice', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: false, privacyAccepted: true},
       })
       render(<Provider store={store}><Home/></Provider>)
     })
-    it('should not show the PolicyNotice', () => {
-      expect(screen.queryByTestId('policyNotice')).toBeNull()
+    it('should not show the PrivacyNotice', () => {
+      expect(screen.queryByTestId('privacyNotice')).toBeNull()
     })
     it('should show the PolicyTable', () => {
       expect(screen.queryByTestId('policyTable')).toBeInTheDocument()
     })
   })
 
-  describe('when user has cancelled the PolicyNotice', () => {
+  describe('when user has cancelled the PrivacyNotice', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: true, privacyAccepted: false},
