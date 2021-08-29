@@ -1,10 +1,10 @@
-import reducer, {DEFAULT_STATE, POLICY_LIST_ITEM_DETAILS_UPDATE, POLICY_LIST_ITEMS_UPDATE} from './policyList.duck'
+import reducer, {POLICY_LIST_ITEM_DETAILS_UPDATE, POLICY_LIST_ITEMS_UPDATE} from './policyList.duck'
 import mockedPolicyDataList from '../mockdata/CURRENT_LIST_RESULT'
 
 describe('policyList reducer tests', () => {
   let state, initialState
   beforeEach(() => {
-    initialState = { items: [], itemCount: 0, selectedItemDetails: null }
+    initialState = { items: [], selectedItemDetails: null }
   })
 
   describe('POLICY_LIST_ITEMS_UPDATE tests', () => {
@@ -15,9 +15,6 @@ describe('policyList reducer tests', () => {
       it('should update items', () => {
         expect(state.items).toEqual(['a', 'b'])
       })
-      it('should update itemCount', () => {
-        expect(state.itemCount).toEqual(2)
-      })
     })
     describe('when passing null as payload', () => {
       beforeEach(() => {
@@ -26,9 +23,6 @@ describe('policyList reducer tests', () => {
       it('should not update items', () => {
         expect(state.items).toEqual([])
       })
-      it('should not update itemCount', () => {
-        expect(state.itemCount).toEqual(0)
-      })
     })
     describe('when passing undefined as payload', () => {
       beforeEach(() => {
@@ -36,9 +30,6 @@ describe('policyList reducer tests', () => {
       })
       it('should not update items', () => {
         expect(state.items).toEqual([])
-      })
-      it('should not update itemCount', () => {
-        expect(state.itemCount).toEqual(0)
       })
     })
   })
@@ -76,7 +67,6 @@ describe('policyList reducer tests', () => {
     })
     it('should return the default state', () => {
       expect(state.items).toEqual(mockedPolicyDataList)
-      expect(state.itemCount).toEqual(mockedPolicyDataList.length)
       expect(state.selectedItemDetails).toEqual(null)
     })
   })

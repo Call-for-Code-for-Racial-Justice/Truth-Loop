@@ -2,8 +2,7 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 
 const PolicyTable = () => {
-  const { items, itemCount } = useSelector(({policyList}) => policyList)
-
+  const { items } = useSelector(({policyList}) => policyList)
   const renderEmptyPolicyTable = () => {
     return (
       <div data-testid={'emptyPolicyTable'}>
@@ -17,7 +16,7 @@ const PolicyTable = () => {
     )
   }
 
-  if (!itemCount || !items) {
+  if (!items || !items.length) {
     return renderEmptyPolicyTable()
   }
   return (
