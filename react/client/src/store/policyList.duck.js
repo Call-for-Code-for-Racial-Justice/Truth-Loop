@@ -1,9 +1,13 @@
+import mockedPolicyDataList from '../mockdata/CURRENT_LIST_RESULT'
+
 export const POLICY_LIST_ITEMS_UPDATE = 'truth-loop/policyList/itemsUpdate'
 export const POLICY_LIST_ITEM_DETAILS_UPDATE = 'truth-loop/policyList/itemDetailsUpdate'
 
+// TODO There should probably be a fetchPolicies.js service that attempts to hit the backend service if not running
+//  locally and loads the mock data if it is
 export const DEFAULT_STATE = {
-  items: [],
-  itemCount: 0,
+  items: mockedPolicyDataList || [],
+  itemCount: mockedPolicyDataList.length || 0,
   selectedItemDetails: null,
 }
 
