@@ -10,7 +10,7 @@ describe('PolicyTable component tests', () => {
   describe('when policy list is empty', () => {
     beforeEach(() => {
       const store = mockStore({
-        policyList: { items: [], itemCount: 0},
+        policyList: { items: []},
       })
       render(<Provider store={store}><PolicyTable/></Provider>)
     })
@@ -21,7 +21,7 @@ describe('PolicyTable component tests', () => {
   describe('when policy list has one item', () => {
     beforeEach(() => {
       const store = mockStore({
-        policyList: { items: [{ id: 1}], itemCount: 1},
+        policyList: { items: [{ id: 1}]},
       })
       render(<Provider store={store}><PolicyTable/></Provider>)
     })
