@@ -18,7 +18,7 @@ const PolicyTable = () => {
     return (
       <Row key={item.id} data-testid={'policyItem'} className={'policy-row'}>
         <Column className={'policy-cell'}>
-          <PolicyTableItem title={item.title} summary={item.summary} dateIntroduced={item.date_introduced} rowNumber={index}/>
+          <PolicyTableItem id={item.id} title={item.title} summary={item.summary} dateIntroduced={item.date_introduced} rowNumber={index}/>
         </Column>
       </Row>
     )
