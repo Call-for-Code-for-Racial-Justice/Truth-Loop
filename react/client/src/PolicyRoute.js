@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-const Policy = () => {
+const PolicyRoute = () => {
   const { policyId } = useParams()
 
   if (policyId) {
@@ -10,4 +10,4 @@ const Policy = () => {
   return <h2>No policy found</h2>
 }
 
-export default Policy
+export default PolicyRoute

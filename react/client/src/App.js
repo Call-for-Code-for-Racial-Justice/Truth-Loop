@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './App.scss'
 import Home from './Home'
-import Policy from './Policy'
+import PolicyRoute from './PolicyRoute'
 import Record from './Record'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <div id={'main-content'} data-testid={'mainContent'}>
           <Switch>
             <Route name="home-route" exact path={'/'} component={Home} />
-            <Route name="policy-route" exact path={'/policy/:policyId'} component={Policy} />
+            <Route name="policy-route" exact path={'/policy/:policyId'} component={PolicyRoute} />
             <Route name="record-route" exact path={'/policy/:policyId/record'} component={Record} />
           </Switch>
         </div>
