@@ -5,7 +5,6 @@ import configureMockStore from 'redux-mock-store'
 
 import PrivacyNotice from './PrivacyNotice'
 
-// noinspection JSValidateTypes
 const mockStore = configureMockStore()
 
 describe('PrivacyNotice component tests', () => {

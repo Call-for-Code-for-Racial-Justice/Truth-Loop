@@ -5,7 +5,6 @@ import configureMockStore from 'redux-mock-store'
 
 import Home from './Home'
 
-// noinspection JSValidateTypes
 const mockStore = configureMockStore()
 
 describe('Home component tests', () => {
