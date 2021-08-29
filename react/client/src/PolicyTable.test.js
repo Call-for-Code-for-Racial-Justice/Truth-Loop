@@ -21,7 +21,8 @@ describe('PolicyTable component tests', () => {
   describe('when policy list has one item', () => {
     beforeEach(() => {
       const store = mockStore({
-        policyList: { items: [{ id: 1}]},
+        // eslint-disable-next-line camelcase
+        policyList: { items: [{ id: 1, title: '', summary: '', date_introduced: '2016-11-03T04:47:00.000Z'}]},
       })
       render(<Provider store={store}><PolicyTable/></Provider>)
     })

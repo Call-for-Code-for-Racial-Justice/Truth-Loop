@@ -30,7 +30,8 @@ describe('Home component tests', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: false, privacyAccepted: true},
-        policyList: { items: [{id: 1}]},
+        // eslint-disable-next-line camelcase
+        policyList: { items: [{ id: 1, title: '', summary: '', date_introduced: '2016-11-03T04:47:00.000Z'}]},
       })
       render(<Provider store={store}><Home/></Provider>)
     })
