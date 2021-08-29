@@ -1,0 +1,19 @@
+@import './carbon-styles/carbon-overrides';
+
+.policy-table{
+  background-color: $ui-01;
+  padding: 0;
+  margin: 0;
+  .policy-title-row{
+    padding: $spacing-05 $spacing-05;
+  }
+  .policy-row{
+    padding: 0;
+    margin: 0;
+    .policy-cell{
+      padding: 0;
+      margin: 0;
+      background-color: $ui-01;
+    }
+  }
+}

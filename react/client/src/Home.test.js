@@ -31,6 +31,7 @@ describe('Home component tests', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: false, privacyAccepted: true},
+        policyList: { items: [{id: 1}], itemCount: 1},
       })
       render(<Provider store={store}><Home/></Provider>)
     })
