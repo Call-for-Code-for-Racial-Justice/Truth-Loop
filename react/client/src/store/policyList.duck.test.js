@@ -1,9 +1,10 @@
 import reducer, {DEFAULT_STATE, POLICY_LIST_ITEM_DETAILS_UPDATE, POLICY_LIST_ITEMS_UPDATE} from './policyList.duck'
+import mockedPolicyDataList from '../mockdata/CURRENT_LIST_RESULT'
 
 describe('policyList reducer tests', () => {
   let state, initialState
   beforeEach(() => {
-    initialState = { ...DEFAULT_STATE }
+    initialState = { items: [], itemCount: 0, selectedItemDetails: null }
   })
 
   describe('POLICY_LIST_ITEMS_UPDATE tests', () => {
@@ -74,8 +75,8 @@ describe('policyList reducer tests', () => {
       state = reducer(undefined, {})
     })
     it('should return the default state', () => {
-      expect(state.items).toEqual([])
-      expect(state.itemCount).toEqual(0)
+      expect(state.items).toEqual(mockedPolicyDataList)
+      expect(state.itemCount).toEqual(mockedPolicyDataList.length)
       expect(state.selectedItemDetails).toEqual(null)
     })
   })
