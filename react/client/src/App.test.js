@@ -5,7 +5,6 @@ import configureMockStore from 'redux-mock-store'
 
 import App from './App'
 
-// noinspection JSValidateTypes
 const mockStore = configureMockStore()
 
 describe('App component tests', () => {
