@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-const Record = () => {
+const RecordRoute = () => {
   const { policyId } = useParams()
 
   if (policyId) {
@@ -10,4 +10,4 @@ const Record = () => {
   return <h1>No policy found</h1>
 }
 
-export default Record
+export default RecordRoute

@@ -1,7 +1,7 @@
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import PolicyTableItem from './PolicyTableItem'
-import * as transformDate from './transformDate'
+import * as transformDate from '../transformDate'
 import {createMemoryHistory} from 'history'
 import {Router} from 'react-router-dom'
 import userEvent from '@testing-library/user-event'

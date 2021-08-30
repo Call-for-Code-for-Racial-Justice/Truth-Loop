@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
 
-import Home from './Home'
+import HomeRoute from './HomeRoute'
 
 const mockStore = configureMockStore()
 
@@ -13,7 +13,7 @@ describe('Home component tests', () => {
       const store = mockStore({
         privacy: { privacyCancelled: false, privacyAccepted: false},
       })
-      render(<Provider store={store}><Home/></Provider>)
+      render(<Provider store={store}><HomeRoute/></Provider>)
     })
     it('should show the PrivacyNotice', () => {
       expect(screen.queryByTestId('privacyNotice')).toBeInTheDocument()
@@ -33,7 +33,7 @@ describe('Home component tests', () => {
         // eslint-disable-next-line camelcase
         policyList: { items: [{ id: 1, title: '', summary: '', date_introduced: '2016-11-03T04:47:00.000Z'}]},
       })
-      render(<Provider store={store}><Home/></Provider>)
+      render(<Provider store={store}><HomeRoute/></Provider>)
     })
     it('should not show the PrivacyNotice', () => {
       expect(screen.queryByTestId('privacyNotice')).toBeNull()
@@ -48,7 +48,7 @@ describe('Home component tests', () => {
       const store = mockStore({
         privacy: { privacyCancelled: true, privacyAccepted: false},
       })
-      render(<Provider store={store}><Home/></Provider>)
+      render(<Provider store={store}><HomeRoute/></Provider>)
     })
     it('should show the pleaseAcceptPrivacyStatement notification', () => {
       expect(screen.queryByTestId('pleaseAcceptPrivacyStatement')).toBeInTheDocument()
