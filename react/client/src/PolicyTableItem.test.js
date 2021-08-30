@@ -25,7 +25,7 @@ describe('PolicyTableItem component tests', () => {
       jest.clearAllMocks()
     })
     it('should show the date', () => {
-      expect(screen.getByTestId('date-introduced')).toBeInTheDocument()
+      expect(screen.getByTestId('dateIntroduced')).toBeInTheDocument()
     })
     it('should transform the date', () => {
       expect(transformDateSpy).toBeCalledWith('2016-11-03T04:47:00.000Z')
@@ -43,6 +43,44 @@ describe('PolicyTableItem component tests', () => {
       })
       it('should route to PolicyRoute', () => {
         expect(historyPushSpy).toHaveBeenCalledWith('/policy/1')
+      })
+    })
+  })
+  describe('rowType tests', () => {
+    describe('when rowNum 0', () => {
+      beforeEach(() => {
+        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
+                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={0}/>)
+      })
+      it('should have sentiment-bar-1 class', () => {
+        expect(screen.getByTestId('sentimentBarRow0')).toHaveClass('sentiment-bar-1')
+      })
+      it('should have odd class', () => {
+        expect(screen.getByTestId('sentimentBarRow0')).toHaveClass('odd')
+      })
+    })
+    describe('when rowNum 1', () => {
+      beforeEach(() => {
+        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
+                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={1}/>)
+      })
+      it('should have sentiment-bar-1 class', () => {
+        expect(screen.getByTestId('sentimentBarRow1')).toHaveClass('sentiment-bar-1')
+      })
+      it('should have odd class', () => {
+        expect(screen.getByTestId('sentimentBarRow1')).toHaveClass('even')
+      })
+    })
+    describe('when rowNum 2', () => {
+      beforeEach(() => {
+        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
+                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={2}/>)
+      })
+      it('should have sentiment-bar-1 class', () => {
+        expect(screen.getByTestId('sentimentBarRow2')).toHaveClass('sentiment-bar-1')
+      })
+      it('should have odd class', () => {
+        expect(screen.getByTestId('sentimentBarRow2')).toHaveClass('odd')
       })
     })
   })
