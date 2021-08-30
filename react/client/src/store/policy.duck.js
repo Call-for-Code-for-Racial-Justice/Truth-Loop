@@ -1,34 +1,39 @@
 import fetchPolicy from '../fetchPolicy'
 
-export const POLICY_CURRENT_POLICY_UPDATED = 'truth-loop/policy/currentPolicyUpdated'
-export const POLICY_LOADING_NEW_CURRENT_POLICY = 'truth-loop/policy/loadingNewCurrentPolicy'
-export const POLICY_CURRENT_POLICY_UPDATE_FAILED = 'truth-loop/policy/policyUpdateFailed'
+export const FETCH_CURRENT_POLICY_PENDING = 'truth-loop/policy/fetchCurrentPolicy/pending'
+export const FETCH_CURRENT_POLICY_FULFILLED = 'truth-loop/policy/fetchCurrentPolicy/fulfilled'
+export const FETCH_CURRENT_POLICY_REJECTED = 'truth-loop/policy/fetchCurrentPolicy/rejected'
 
 export const DEFAULT_STATE = {
   currentPolicy: null,
+  status: 'idle'
 }
 
 export default function reducer(state = DEFAULT_STATE, action = {}) {
   switch (action.type) {
-    case POLICY_CURRENT_POLICY_UPDATED: {
+    case FETCH_CURRENT_POLICY_FULFILLED: {
       if (action.payload != null && typeof action.payload !== 'undefined') {
-        return {...state, currentPolicy: action.payload}
+        return {...state, currentPolicy: action.payload, status: 'idle'}
       }
       return state
+    }
+    case FETCH_CURRENT_POLICY_PENDING: {
+      return {...state, status: 'pending'}
     }
     default:
       return state
   }
 }
 
-export function updateCurrentPolicy(policyId) {
+export function fetchCurrentPolicy(policyId) {
   return async dispatch => {
-    dispatch({type: POLICY_LOADING_NEW_CURRENT_POLICY, payload: policyId})
-    try{
+    dispatch({type: FETCH_CURRENT_POLICY_PENDING, payload: policyId})
+    try {
+      await new Promise(resolve => setTimeout(resolve, 5000))
       const newCurrentPolicy = await fetchPolicy(policyId)
-      return dispatch({type: POLICY_CURRENT_POLICY_UPDATED, payload: newCurrentPolicy})
-    } catch(error) {
-      return dispatch({type: POLICY_CURRENT_POLICY_UPDATE_FAILED, payload: error})
+      return dispatch({type: FETCH_CURRENT_POLICY_FULFILLED, payload: newCurrentPolicy})
+    } catch (error) {
+      return dispatch({type: FETCH_CURRENT_POLICY_REJECTED, payload: error})
     }
   }
 }
