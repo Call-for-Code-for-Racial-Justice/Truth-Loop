@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react'
 import PropTypes from 'prop-types'
-import transformDate from './transformDate'
+import transformDate from '../transformDate'
 import {useHistory} from 'react-router-dom'
 import './PolicyTableItem.scss'
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import './Home.scss'
-import PrivacyNotice from './PrivacyNotice'
-import PolicyTable from './PolicyTable'
+import './HomeRoute.scss'
+import PrivacyNotice from '../privacyNotice/PrivacyNotice'
+import PolicyTable from '../policyTable/PolicyTable'
 
-const Home = () => {
+const HomeRoute = () => {
 
   const {privacyAccepted, privacyCancelled} = useSelector(({privacy}) => privacy)
   const renderPrivacyCancelContent = () => {
@@ -32,4 +32,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeRoute
