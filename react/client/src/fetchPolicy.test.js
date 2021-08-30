@@ -5,7 +5,7 @@ describe('fetchPolicy tests', () => {
   let expectedPolicy
   describe('mock data flag is set', () => {
     beforeEach(async () => {
-      process.env.VUE_APP_MOCK_DATA = 'true'
+      process.env.REACT_APP_MOCK_DATA = 'true'
       expectedPolicy = await fetchPolicy(1)
     })
     it('should return the mocked policy', () => {
@@ -14,7 +14,7 @@ describe('fetchPolicy tests', () => {
   })
   describe('mock data flag is any string', () => {
     beforeEach(async () => {
-      process.env.VUE_APP_MOCK_DATA = 'false'
+      process.env.REACT_APP_MOCK_DATA = 'false'
       expectedPolicy = await fetchPolicy(1)
     })
     it('should return the mocked policy', () => {
@@ -30,8 +30,8 @@ describe('fetchPolicy tests', () => {
         })
       )
       globalFetchSpy  = jest.spyOn(global, 'fetch')
-      process.env.VUE_APP_MOCK_DATA = ''
-      process.env.VUE_APP_SERVER_URL = 'https://example.com'
+      process.env.REACT_APP_MOCK_DATA = ''
+      process.env.REACT_APP_SERVER_URL = 'https://example.com'
       expectedPolicy = await fetchPolicy(1)
     })
     it('should call the legislativeArtifacts endpoint', () => {
