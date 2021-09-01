@@ -1,0 +1,22 @@
+@import "../carbon-styles/carbon-overrides";
+
+.sentiment {
+  color: #fff;
+  background: #000;
+  padding: 20px;
+  margin: 0 -20px;
+  font-size: 16px;
+}
+
+.title {
+  padding-left: 35px;
+}
+
+svg.white-icon {
+  fill: #fff;
+  margin-top: -5px;
+}
+
+.text-right {
+  text-align: right;
+}

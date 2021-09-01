@@ -1,0 +1,52 @@
+@import "../carbon-styles/carbon-overrides";
+
+.policy {
+  h4 {
+    margin-bottom: 10px;
+  }
+
+  .light-text {
+    color: #a8a8a8;
+    font-size: 0.875rem;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .launch {
+    padding: 10px 0;
+
+    h5 {
+      font-weight: normal;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    svg {
+      fill: #0062ff;
+      margin: 0 0 -3px 30px;
+    }
+  }
+}
+
+svg.back {
+  fill: #0062ff;
+  margin: 10px 0;
+}
+
+.fixed-btn {
+  width: 100%;
+  max-width: 100%;
+  position: fixed;
+
+  &.bottom-btn {
+    bottom: 0;
+  }
+
+  &.lower-btn {
+    bottom: 48px;
+  }
+}
