@@ -20,6 +20,9 @@ export default function reducer(state = DEFAULT_STATE, action = {}) {
     case FETCH_CURRENT_POLICY_PENDING: {
       return {...state, status: 'pending'}
     }
+    case FETCH_CURRENT_POLICY_REJECTED: {
+      return {...state, status: 'error'}
+    }
     default:
       return state
   }
@@ -29,7 +32,6 @@ export function fetchCurrentPolicy(policyId) {
   return async dispatch => {
     dispatch({type: FETCH_CURRENT_POLICY_PENDING, payload: policyId})
     try {
-      await new Promise(resolve => setTimeout(resolve, 5000))
       const newCurrentPolicy = await fetchPolicy(policyId)
       return dispatch({type: FETCH_CURRENT_POLICY_FULFILLED, payload: newCurrentPolicy})
     } catch (error) {
