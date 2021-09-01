@@ -1,10 +1,9 @@
 import React from 'react'
-import {render, screen} from '@testing-library/react'
+import {render, screen, fireEvent} from '@testing-library/react'
 import PolicyTableItem from './PolicyTableItem'
 import * as transformDate from '../transformDate'
 import {createMemoryHistory} from 'history'
 import {Router} from 'react-router-dom'
-import userEvent from '@testing-library/user-event'
 
 describe('PolicyTableItem component tests', () => {
   let transformDateSpy, historyPushSpy
@@ -39,7 +38,7 @@ describe('PolicyTableItem component tests', () => {
 
     describe('when selecting an item', () => {
       beforeEach(() => {
-        userEvent.click(screen.getByTestId('policyTableItem1'))
+        fireEvent.click(screen.getByTestId('policyTableItem1'))
       })
       it('should route to PolicyRoute', () => {
         expect(historyPushSpy).toHaveBeenCalledWith('/policy/1')

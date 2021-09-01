@@ -65,7 +65,7 @@ describe('PolicyRoute component tests', () => {
   describe('when PolicyRoute renders with policyId', () => {
     beforeEach(() => {
       const store = mockStore({
-        policy: {currentPolicy: {}, status: 'idle'},
+        policy: {currentPolicy: { summary: 'A summary', officials: [], related: []}, status: 'idle'},
       })
       const history = createMemoryHistory()
       history.push('/policy/1234')
