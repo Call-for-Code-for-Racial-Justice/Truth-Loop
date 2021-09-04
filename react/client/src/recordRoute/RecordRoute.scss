@@ -1,0 +1,78 @@
+@import '../carbon-styles/carbon-overrides';
+
+.tell-me-content {
+  background-color: $ui-05;
+  padding: 0;
+  margin: 0;
+
+  .r1-col {
+    background-color: $ui-01;
+
+    .page-title {
+      text-align: center;
+      font-size: 1rem;
+      padding: $spacing-05 $spacing-05;
+    }
+  }
+
+  .r2-col {
+    text-align: center;
+    background-color: $ui-05;
+
+    video {
+      //filter: blur(4px) invert(1) opacity(0.5);
+      max-width: 100%;
+      width: 90vw;
+      height: 70vh
+    }
+  }
+
+  .r3-col {
+    background-color: $ui-05;
+
+    .video-control-panel {
+      width: 100%;
+      color: white;
+      padding: 0;
+      margin: 0;
+
+      .grid-row {
+        padding: $spacing-03 $spacing-05 $spacing-05 $spacing-05;
+
+        .col {
+          cursor: pointer;
+
+          &-1 {
+            text-align: left;
+          }
+
+          &-2 {
+            text-align: center;
+
+            .btn-blur {
+              color: $color-yellow;
+            }
+
+            .btn-record-start, .btn-record-stop {
+              text-align: center;
+              cursor: pointer;
+            }
+          }
+
+          &-3 {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  .r4-col {
+    cursor: pointer;
+
+    .btn {
+      padding: $spacing-05 $spacing-05;
+    }
+  }
+
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Sentiment.scss'
-import {Watson16} from '@carbon/icons-react'
+import Watson16 from '@carbon/icons-react/lib/watson/16'
 import Progress from './Progress'
 
 const Sentiment = () => {
