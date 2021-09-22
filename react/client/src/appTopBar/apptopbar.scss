@@ -1,0 +1,28 @@
+@import 'src/carbon-styles/carbon-overrides';
+
+.app-top-bar {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding: $spacing-03 $spacing-03;
+    .left-panel{
+        width: 20%;
+        text-align: left;
+    }
+    .title{
+        width: 60%;
+        text-align: center;
+        font-weight: bold;
+    }
+    .right-panel{
+        width: 20%;
+        text-align: right;
+    }
+    .back {
+        cursor: pointer;
+    }
+    .settings{
+        cursor: pointer;
+
+    }
+}
