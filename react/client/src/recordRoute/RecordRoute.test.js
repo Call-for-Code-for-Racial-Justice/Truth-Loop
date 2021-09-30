@@ -1,10 +1,9 @@
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import {fireEvent, render, screen} from '@testing-library/react'
 import {createMemoryHistory} from 'history'
 import {Provider} from 'react-redux'
 import {Route, Router} from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
-
 import RecordRoute from './RecordRoute'
 
 const mockStore = configureMockStore()
@@ -36,7 +35,7 @@ describe('RecordRoute tests', () => {
       )
     })
     it('should NOT show the webcam', () => {
-      expect(screen.queryByTestId('webCam')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('webcam')).not.toBeInTheDocument()
     })
     it('should show the video player', () => {
       expect(screen.getByTestId('videoPlayer')).toBeInTheDocument()
@@ -63,7 +62,7 @@ describe('RecordRoute tests', () => {
       fireEvent.click(screen.getByTestId('startRecording'))
     })
     it('should show the webcam', () => {
-      expect(screen.getByTestId('webCam')).toBeInTheDocument()
+      expect(screen.getByTestId('webcam')).toBeInTheDocument()
     })
     it('should NOT show the video player', () => {
       expect(screen.queryByTestId('videoPlayer')).not.toBeInTheDocument()
@@ -73,42 +72,6 @@ describe('RecordRoute tests', () => {
     })
     it('should NOT provide the start recording option', () => {
       expect(screen.queryByTestId('startRecording')).not.toBeInTheDocument()
-    })
-    it.skip('should begin the recording', () => {
-      expect(webCamServiceStartSpy).toHaveBeenCalled()
-      // TODO check this.recordRTC.startRecording() is called
-    })
-  })
-  describe('When stopping the recording', () => {
-    beforeEach(() => {
-      const store = mockStore({})
-      const history = createMemoryHistory()
-      history.push('/policy/1234')
-      render(
-        <Provider store={store}>
-          <Router history={history}>
-            <Route path={'/policy/:policyId'}><RecordRoute/></Route>
-          </Router>
-        </Provider>
-      )
-      fireEvent.click(screen.getByTestId('startRecording'))
-      fireEvent.click(screen.getByTestId('stopRecording'))
-    })
-    it('should NOT show the webcam', () => {
-      expect(screen.queryByTestId('webCam')).not.toBeInTheDocument()
-    })
-    it('should show the video player', () => {
-      expect(screen.getByTestId('videoPlayer')).toBeInTheDocument()
-    })
-    it.skip('should stop the recording', () => {
-      expect(webCamServiceStopSpy).toHaveBeenCalled()
-      // TODO check this.recordRTC.startRecording() is called
-    })
-    it('should provide the start recording option', () => {
-      expect(screen.getByTestId('startRecording')).toBeInTheDocument()
-    })
-    it('should NOT provide the stop recording option', () => {
-      expect(screen.queryByTestId('stopRecording')).not.toBeInTheDocument()
     })
   })
 })
