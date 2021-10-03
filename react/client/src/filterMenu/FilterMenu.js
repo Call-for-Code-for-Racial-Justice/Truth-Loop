@@ -5,7 +5,7 @@ const FilterMenu = forwardRef(({show, children}, ref)=>{
     return(
         <div>
             {show &&
-                <div className="menu-bg"> 
+                <div className="menu-bg">
                     <div className="menu-main" ref={ref}>
                         <p>Filter by:</p>
                         <div className="filters" data-testid='filterSelection'>
@@ -21,5 +21,5 @@ FilterMenu.propTypes={
     show:PropTypes.bool,
     children:PropTypes.node
 }
-FilterMenu.displayName = FilterMenu
-export default FilterMenu 
+FilterMenu.displayName = 'FilterMenu'
+export default FilterMenu
