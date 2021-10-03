@@ -1,12 +1,21 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import './HomeRoute.scss'
 import PrivacyNotice from '../privacyNotice/PrivacyNotice'
 import PolicyTable from '../policyTable/PolicyTable'
+import {fetchPoliciesFromServer} from '../store/policyList.duck'
 
 const HomeRoute = () => {
-
   const {privacyAccepted, privacyCancelled} = useSelector(({privacy}) => privacy)
+  const {items} = useSelector(({policyList}) => policyList)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!items || !items.length) {
+      dispatch(fetchPoliciesFromServer())
+    }
+  }, [items, dispatch])
+
   const renderPrivacyCancelContent = () => {
     return (
       <div data-testid={'pleaseAcceptPrivacyStatement'} className="privacy-cancel-content">
