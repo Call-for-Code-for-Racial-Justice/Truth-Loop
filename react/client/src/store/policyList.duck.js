@@ -1,18 +1,19 @@
-import mockedPolicyDataList from '../mockdata/CURRENT_LIST_RESULT'
+import fetchPolicies from '../fetchPolicies'
 
-export const POLICY_LIST_ITEMS_UPDATE = 'truth-loop/policyList/itemsUpdate'
+export const FETCH_POLICIES_PENDING = 'truth-loop/policy/fetchPolicies/pending'
+export const FETCH_POLICIES_FULFILLED = 'truth-loop/policy/fetchPolicies/fulfilled'
+export const FETCH_POLICIES_REJECTED = 'truth-loop/policy/fetchPolicies/rejected'
+
 export const POLICY_LIST_ITEM_DETAILS_UPDATE = 'truth-loop/policyList/itemDetailsUpdate'
 
-// TODO There should probably be a fetchPolicies.js service that attempts to hit the backend service if not running
-//  locally and loads the mock data if it is
 export const DEFAULT_STATE = {
-  items: mockedPolicyDataList || [],
+  items: [],
   selectedItemDetails: null,
 }
 
 export default function reducer(state = DEFAULT_STATE, action = {}) {
   switch (action.type) {
-    case POLICY_LIST_ITEMS_UPDATE: {
+    case FETCH_POLICIES_FULFILLED: {
       if (action.payload != null && typeof action.payload !== 'undefined') {
         return { ...state, items: action.payload }
       }
@@ -29,14 +30,13 @@ export default function reducer(state = DEFAULT_STATE, action = {}) {
   }
 }
 
-export function updateItems(items) {
+export function fetchPoliciesFromServer() {
   return dispatch => {
-    return dispatch({type: POLICY_LIST_ITEMS_UPDATE, payload: items})
-  }
-}
-
-export function updateItemDetails(itemDetails) {
-  return dispatch => {
-    return dispatch({type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: itemDetails})
+    dispatch({type: FETCH_POLICIES_PENDING})
+      return fetchPolicies().then((policies) => {
+        return dispatch({type: FETCH_POLICIES_FULFILLED, payload: policies})
+      }, (error) => {
+        return dispatch({type: FETCH_POLICIES_REJECTED, payload: error})
+      })
   }
 }

@@ -1,5 +1,4 @@
-import reducer, {POLICY_LIST_ITEM_DETAILS_UPDATE, POLICY_LIST_ITEMS_UPDATE} from './policyList.duck'
-import mockedPolicyDataList from '../mockdata/CURRENT_LIST_RESULT'
+import reducer, {POLICY_LIST_ITEM_DETAILS_UPDATE, FETCH_POLICIES_FULFILLED} from './policyList.duck'
 
 describe('policyList reducer tests', () => {
   let state, initialState
@@ -7,10 +6,10 @@ describe('policyList reducer tests', () => {
     initialState = { items: [], selectedItemDetails: null }
   })
 
-  describe('POLICY_LIST_ITEMS_UPDATE tests', () => {
+  describe('FETCH_POLICIES_FULFILLED tests', () => {
     describe('when passing new items', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: POLICY_LIST_ITEMS_UPDATE, payload: ['a', 'b']})
+        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: ['a', 'b']})
       })
       it('should update items', () => {
         expect(state.items).toEqual(['a', 'b'])
@@ -18,7 +17,7 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing null as payload', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: POLICY_LIST_ITEMS_UPDATE, payload: null})
+        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: null})
       })
       it('should not update items', () => {
         expect(state.items).toEqual([])
@@ -26,7 +25,7 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing undefined as payload', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: POLICY_LIST_ITEMS_UPDATE, payload: undefined})
+        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: undefined})
       })
       it('should not update items', () => {
         expect(state.items).toEqual([])
@@ -66,7 +65,7 @@ describe('policyList reducer tests', () => {
       state = reducer(undefined, {})
     })
     it('should return the default state', () => {
-      expect(state.items).toEqual(mockedPolicyDataList)
+      expect(state.items).toEqual([])
       expect(state.selectedItemDetails).toEqual(null)
     })
   })
