@@ -10,7 +10,7 @@ const PolicyRoute = () => {
   const {currentPolicy, status} = useSelector(({policy}) => policy)
 
   useEffect(() => {
-    if (status === 'idle' && (!currentPolicy || currentPolicy.id !== policyId)) {
+    if (status === 'idle' && (!currentPolicy || `${currentPolicy.id}` !== policyId)) {
       dispatch(fetchCurrentPolicy(policyId))
     }
   }, [dispatch, status, policyId, currentPolicy])

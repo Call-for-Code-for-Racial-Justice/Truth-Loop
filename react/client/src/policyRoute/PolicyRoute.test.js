@@ -9,11 +9,10 @@ import * as policyDuck from '../store/policy.duck'
 import PolicyRoute from './PolicyRoute'
 
 const mockStore = configureMockStore()
-let fetchCurrentPolicySpy
 
 describe('PolicyRoute component tests', () => {
   beforeEach(() => {
-    fetchCurrentPolicySpy = jest.spyOn(policyDuck, 'fetchCurrentPolicy').mockImplementation(() => {
+    jest.spyOn(policyDuck, 'fetchCurrentPolicy').mockImplementation(() => {
       return {type: 'anything'}
     })
   })

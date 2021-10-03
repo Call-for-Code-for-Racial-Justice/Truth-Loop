@@ -4,14 +4,21 @@ import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
 
 import HomeRoute from './HomeRoute'
+import * as policyListDuck from '../store/policyList.duck'
 
 const mockStore = configureMockStore()
 
 describe('Home component tests', () => {
+  beforeEach(() => {
+    jest.spyOn(policyListDuck, 'fetchPoliciesFromServer').mockImplementation(() => {
+      return {type: 'anything', payload: []}
+    })
+  })
   describe('after initial rendering', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: false, privacyAccepted: false},
+        policyList: { items: [] }
       })
       render(<Provider store={store}><HomeRoute/></Provider>)
     })
@@ -47,6 +54,7 @@ describe('Home component tests', () => {
     beforeEach(() => {
       const store = mockStore({
         privacy: { privacyCancelled: true, privacyAccepted: false},
+        policyList: { items: [] },
       })
       render(<Provider store={store}><HomeRoute/></Provider>)
     })
