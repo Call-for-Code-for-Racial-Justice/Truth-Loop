@@ -13,7 +13,7 @@ describe('top-bar component test', ()=>{
             expect(screen.getByTestId('settingsButton')).toBeInTheDocument()
         })
     })
-    describe('after moving away from home "/" ',()=>{
+    describe('after moving away from home "/"',()=>{
         it('checking that elements render', ()=>{
             render(
                 <MemoryRouter initialEntries={[{ pathname: '/policy/1', search: '?value=teresa_teng' }]}><AppTopBar /></MemoryRouter>
