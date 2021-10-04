@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals'
 import { configureStore } from './store/index'
 import App from './App'
 
+console.log(`REACT_APP_MOCK_DATA: ${process.env.REACT_APP_MOCK_DATA}`)
+console.log(`REACT_APP_SERVER_URL: ${process.env.REACT_APP_SERVER_URL}`)
 document.getElementById('root').style.maxWidth = '100vw'
 
 const globalStore = configureStore()
