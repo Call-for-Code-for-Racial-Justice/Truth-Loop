@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
-
+import './filtermenu.scss'
 const FilterMenu = forwardRef(({show, children}, ref)=>{
     return(
         <div>
@@ -21,5 +21,5 @@ FilterMenu.propTypes={
     show:PropTypes.bool,
     children:PropTypes.node
 }
-FilterMenu.displayName = FilterMenu
+FilterMenu.displayName = 'FilterMenu'
 export default FilterMenu 
