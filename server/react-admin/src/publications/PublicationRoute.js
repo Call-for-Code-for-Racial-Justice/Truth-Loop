@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import PublicationTable from './PublicationTable'
 
 function PublicationRoute() {
   const [publications, setPublications] = useState([])
@@ -11,7 +12,7 @@ function PublicationRoute() {
   }, [])
   return (
     <>
-      <div data-testid={'publicationTable'}>{publications.length}</div>
+      <PublicationTable publications={publications}/>
       <div data-testid={'addPublication'}/>
     </>
   )

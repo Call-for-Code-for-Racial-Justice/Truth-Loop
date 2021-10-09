@@ -6,7 +6,7 @@ PublicationTable.propTypes = {
 }
 
 const renderTable = (publications) => (
-  <div>
+  <div data-testid={'publicationTable'}>
     <div data-testid={'publicationsTableHeaderRow'}/>
     {publications.map((publication) => (
       <div data-testid={'publicationItem'} key={publication.id}>hello</div>
