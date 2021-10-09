@@ -18,10 +18,10 @@ describe('PublicationRoute Tests', () => {
       expect(window.fetch).toBeCalledTimes(1)
     })
     it('should render the table', () => {
-      expect(screen.queryByTestId('publicationTable')).toBeInTheDocument()
+      expect(screen.getByTestId('publicationTable')).toBeInTheDocument()
     })
     it('should render an add option', () => {
-      expect(screen.queryByTestId('addPublication')).toBeInTheDocument()
+      expect(screen.getByTestId('addPublication')).toBeInTheDocument()
     })
   })
 })
