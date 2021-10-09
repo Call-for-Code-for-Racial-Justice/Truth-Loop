@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import AdminHomeRoute from './adminHomeRoute/AdminHomeRoute'
+import PublicationRoute from './publications/PublicationRoute'
 
 function AdminApp() {
   return (
@@ -9,6 +10,7 @@ function AdminApp() {
         <div id={'main-content'} data-testid={'mainContent'}>
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
+            <Route name="publication-route" exact path={'/publications'} component={PublicationRoute} />
           </Switch>
         </div>
       </div>
