@@ -1,16 +1,70 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  DataTable,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeader,
+  TableBody,
+  TableCell,
+} from 'carbon-components-react'
 
+const headers = [
+  {
+    key: 'id',
+    header: 'ID',
+  },
+  {
+    key: 'title',
+    header: 'Title',
+  },
+  {
+    key: 'description',
+    header: 'Description',
+  },
+  {
+    key: 'created',
+    header: 'Date Created',
+  },
+  {
+    key: 'updated',
+    header: 'Last Updated',
+  },
+  {
+    key: 'actions',
+    header: 'Actions',
+  },
+]
 PublicationTable.propTypes = {
   publications: PropTypes.array,
 }
-
 const renderTable = (publications) => (
   <div data-testid={'publicationTable'}>
-    <div data-testid={'publicationsTableHeaderRow'}/>
-    {publications.map((publication) => (
-      <div data-testid={'publicationItem'} key={publication.id}>hello</div>
-    ))}
+    <DataTable rows={publications} headers={headers}>
+      {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
+        <Table {...getTableProps()}>
+          <TableHead data-testid={'publicationsTableHeaderRow'}>
+            <TableRow>
+              {headers.map((header, index) => (
+                <TableHeader key={index} {...getHeaderProps({ header })}>
+                  {header.header}
+                </TableHeader>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id} {...getRowProps({ row })} data-testid={'publicationItem'} >
+                {row.cells.map((cell) => (
+                  <TableCell key={cell.id}>{cell.value}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
+    </DataTable>
   </div>
 )
 

@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:string';
+
+@import './carbon-utils';
+
+$color-yellow:#fed01b;
+
+$blue-gradient:(
+   "01": #1159f5,
+   "02": #0690fc,
+   "03": #04d0fd,
+);
+
