@@ -11,20 +11,30 @@ The initial version was developed by contributors at IBM in the summer of 2020, 
 
 ## Contents
 
-1. [Overview](#Overview)
-   1. [What's the Problem?](#whats-the-problem)
-   1. [How can technology help?](#how-can-technology-help)
-1. [The Idea](#the-idea)
-1. [Diagrams](#Diagrams)
-1. [Video](#Video)
-1. [Technologies](#Technologies)
-1. [Getting Started](#Getting-started-by-installing-and-running-the-components)
-1. [Docker](#Running-on-Docker)
-1. [Resources](#Resources)
-1. [License](#License)
-1. [Contributing and Developer information](#Contributing-and-Developer-information)
-    1. [Future Enhancements to the Solution](#future-enhancements-to-the-solution)
-    1. [Privacy Considerations](#Privacy-Considerations)
+- [Truth-Loop](#truth-loop)
+  - [Contents](#contents)
+  - [Overview](#overview)
+    - [What's the problem?](#whats-the-problem)
+    - [How can technology help?](#how-can-technology-help)
+  - [The Idea](#the-idea)
+  - [Diagrams](#diagrams)
+  - [Video](#video)
+  - [Technologies](#technologies)
+  - [Getting started by installing and running the components](#getting-started-by-installing-and-running-the-components)
+    - [Prerequisites](#prerequisites)
+    - [Steps](#steps)
+    - [1: Provision a PostgreSQL instance](#1-provision-a-postgresql-instance)
+    - [2. Set up an instance of Watson Media](#2-set-up-an-instance-of-watson-media)
+    - [3. Configuring and running the server](#3-configuring-and-running-the-server)
+    - [4. Configuring and running the client application](#4-configuring-and-running-the-client-application)
+  - [Running on Docker](#running-on-docker)
+    - [Pre-requisites](#pre-requisites)
+    - [Steps](#steps-1)
+  - [Resources](#resources)
+  - [License](#license)
+  - [Contributing and Developer information](#contributing-and-developer-information)
+    - [Future Enhancements to the Solution](#future-enhancements-to-the-solution)
+    - [Privacy Considerations for Implementors](#privacy-considerations-for-implementors)
 
 ## Overview
 
@@ -67,7 +77,7 @@ responsible for the creation of the PR&L.
 
 This solution combines a media server (currently Watson Media) and distributed database service to hold the curated legislative artifacts and the related metadata.
 
-- The user launches the web app (on either a laptop, desktop, or mobile device) and can view the range of curated legislative artifacts (1). The Vue app retrieves these by sending a REST request to the API server, which extracts them (3) from the SQL database.
+- The user launches the web app (on either a laptop, desktop, or mobile device) and can view the range of curated legislative artifacts (1). The React app retrieves these by sending a REST request to the API server, which extracts them (3) from the SQL database.
 - The user can post their own (video) story to support or challenge the legislated artifacts to the API server, which directs it to the Watson Media services (2). The API server also stores a reference to the video location in the respective legislative artifact in the SQL database (3).
 - The user can view other peoples' video stories which are retrieved by sending a REST request to the API server, which, after looking up the ID of the video in the SQL database (3), extracts them from Watson Media services (2).
 
@@ -110,7 +120,7 @@ There is an administrative API interface that allows the site owners to curate t
 
 - Register for an [IBM Cloud](https://developer.ibm.com/callforcode/racial-justice/get-started/) account.
 - Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
-- Install [Vue CLI dependencies](https://cli.vuejs.org/guide/installation.html)
+- Install [React dependencies](https://reactjs.org/docs/getting-started.html)
 - Clone the [repository](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop).
 
 ### Steps
