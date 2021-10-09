@@ -2,6 +2,7 @@
   "name": "admin",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@carbon/icons-react": "^10.37.0",
     "@reduxjs/toolkit": "^1.6.1",
