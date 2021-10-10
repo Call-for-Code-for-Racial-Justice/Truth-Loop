@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 //Icons 
 import ChevronLeft20 from '@carbon/icons-react/lib/chevron--left/20'
@@ -37,13 +37,6 @@ export default function AppTopBar() {
             document.removeEventListener('mousedown', checkClickOutside)
         }
     },[show])
-    //selecting active filters
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
-        )
-        setCheckedState(updatedCheckedState)
-    }
     return (
         <div className="app-top-bar">
             <div className="left-panel">
@@ -55,23 +48,8 @@ export default function AppTopBar() {
             <div className="right-panel">
                 <SettingsAdjust20 className="settings" data-testid='settingsButton' onMouseDown={()=>{setShow(!show)}}/>
             </div>
-            <FilterMenu show={show} ref={ref}>
-                {filterSelections.map((choice,i)=>(
-                    <div key={`filterchoice${i}`}>
-                        <input
-                            className="filter-selection"
-                            type='checkbox'
-                            value={choice}
-                            checked={checkedState[i]}
-                            onChange={() => handleOnChange(i)}
-                        />
-                        <label className="filter-label" htmlFor={choice}>
-                            {choice}
-                        </label>
-                    </div>
-                ))}
-
-            </FilterMenu>
+            <FilterMenu show={show} ref={ref} />
+                
         </div>
     )
 }

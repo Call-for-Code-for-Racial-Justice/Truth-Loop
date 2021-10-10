@@ -1,0 +1,30 @@
+.applied-filters{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-evenly;
+}
+.applied-filter-state{
+	background-color:rgba(223, 19, 19, 0.7);
+	border-radius:20px;
+	padding:0 10px 0 10px;
+	display:flex;
+	flex-direction:row;
+	width:fit-content;
+	margin:5px;
+}
+.applied-filter-category{
+	background-color:rgba(109, 93, 252, 0.7);
+	border-radius:20px;
+	padding:0 10px 0 10px;
+	display:flex;
+	flex-direction:row;
+	width:fit-content;
+	margin:5px;
+
+}
+.close20{
+	transform:translateY(15%) translateX(15%);
+	&:hover{
+		cursor:pointer;
+	}
+}

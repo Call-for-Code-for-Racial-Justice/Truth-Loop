@@ -12,7 +12,7 @@
     position:fixed;
     background: white;
     text-align:left;
-    width:20%;
+    width:25%;
     height:100vh;
     z-index:2;
     top:30px;
@@ -26,10 +26,20 @@
     flex-wrap:wrap;
     justify-content: space-evenly;
 }
+.inputs{
+	display:flex;
+	flex-direction:column;
+	margin-bottom:10px;
+	margin:5px;
+} 
+.label{
+	margin:5px;
+}
 @keyframes menu-slide{
     0%   {width:0;}
     20%  {width:5%;}
     40%  {width:10%;}
     60%  {width:15%;}
-    100% {width:20%;}
+	80%  {width:20%}
+    100% {width:25%;}
 }
