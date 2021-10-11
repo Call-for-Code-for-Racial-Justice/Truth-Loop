@@ -4,11 +4,7 @@ import {Column, Grid, Row} from 'carbon-components-react'
 import PolicyTableItem from './PolicyTableItem'
 import PropTypes from 'prop-types'
 
-
-
 const PolicyTable = ({policies}) => {
-  // const { policies } = useSelector(({policyList}) => policyList)
-
   const renderEmptyPolicyTable = () => {
     return (
       <div data-testid={'emptyPolicyTable'}>
