@@ -1,10 +1,13 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+// import {useSelector} from 'react-redux'
 import {Column, Grid, Row} from 'carbon-components-react'
 import PolicyTableItem from './PolicyTableItem'
+import PropTypes from 'prop-types'
 
-const PolicyTable = () => {
-  const { items } = useSelector(({policyList}) => policyList)
+
+
+const PolicyTable = ({policies}) => {
+  // const { policies } = useSelector(({policyList}) => policyList)
 
   const renderEmptyPolicyTable = () => {
     return (
@@ -24,19 +27,23 @@ const PolicyTable = () => {
     )
   }
 
-  if (!items || !items.length) {
+  if (!policies || !policies.length) {
     return renderEmptyPolicyTable()
   }
   return (
     <div data-testid={'policyTable'}>
       <Grid className={'policy-table'}>
         <Row className={'policy-title-row'}>
-          <Column>{`POLICIES: (${items.length})`}</Column>
+          <Column>{`POLICIES: (${policies.length})`}</Column>
         </Row>
-        {items.map(renderItem)}
+        {policies.map(renderItem)}
       </Grid>
     </div>
   )
+}
+
+PolicyTable.propTypes = {
+  policies: PropTypes.array.isRequired
 }
 
 export default PolicyTable

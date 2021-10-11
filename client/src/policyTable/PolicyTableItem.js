@@ -4,6 +4,8 @@ import transformDate from '../transformDate'
 import {useHistory} from 'react-router-dom'
 import './PolicyTableItem.scss'
 
+
+
 const PolicyTableItem = ({id, title, summary, dateIntroduced, rowNumber}) => {
   const history = useHistory()
 
@@ -48,5 +50,6 @@ PolicyTableItem.propTypes = {
   dateIntroduced: PropTypes.string.isRequired,
   rowNumber: PropTypes.number,
 }
+
 
 export default PolicyTableItem
