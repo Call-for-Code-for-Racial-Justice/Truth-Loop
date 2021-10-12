@@ -59,7 +59,7 @@ function AdminTable(props) {
   return (
     <>
       <TableContainer sx={{maxHeight: 600}}>
-        <Table sx={{minWidth: 650}} size="small" aria-label={tableLabel} stickyHeader>
+        <Table size="small" aria-label={tableLabel} stickyHeader>
           <caption>{caption}</caption>
           <TableHead data-testid={`${tableLabel}HeaderRow`}>
             <TableRow>
