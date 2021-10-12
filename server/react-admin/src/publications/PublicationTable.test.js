@@ -24,21 +24,24 @@ describe('PublicationTable Tests', () => {
       render(<PublicationTable publications={[{id: '1'}]}/>)
     })
     it('should show header row', () => {
-      expect(screen.getByTestId('publicationsTableHeaderRow')).toBeInTheDocument()
+      expect(screen.getByTestId('PublicationsHeaderRow')).toBeInTheDocument()
     })
     it('should show 1 item', () => {
-      expect(screen.getAllByTestId('publicationItem').length).toBe(1)
+      expect(screen.getAllByTestId('PublicationsRow').length).toBe(1)
     })
   })
   describe('When first rendering with 2 items', () => {
     beforeEach(() => {
-      render(<PublicationTable publications={[{id: '1'}, {id: '2'}]}/>)
+      render(<PublicationTable publications={[
+        {id: '1', title: 'title 1', description: 'desc 1', created: '2016-11-03T04:47:00.000Z', updated: '2016-11-03T04:47:00.000Z'},
+        {id: '2', title: 'title 1', description: 'desc 1', created: '2016-11-03T04:47:00.000Z', updated: '2016-11-03T04:47:00.000Z'},
+      ]}/>)
     })
     it('should show header row', () => {
-      expect(screen.getByTestId('publicationsTableHeaderRow')).toBeInTheDocument()
+      expect(screen.getByTestId('PublicationsHeaderRow')).toBeInTheDocument()
     })
     it('should show 2 items', () => {
-      expect(screen.getAllByTestId('publicationItem').length).toBe(2)
+      expect(screen.getAllByTestId('PublicationsRow').length).toBe(2)
     })
   })
   describe.skip('When editing an item', () => {
