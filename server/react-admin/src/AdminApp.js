@@ -2,7 +2,6 @@ import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import AdminHomeRoute from './adminHomeRoute/AdminHomeRoute'
 import PublicationRoute from './publications/PublicationRoute'
-import './AdminApp.scss'
 
 function AdminApp() {
   return (
