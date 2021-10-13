@@ -32,7 +32,7 @@ const HomeRoute = () => {
         <div className="bx--row">
           <div className="bx--col">
             {!privacyAccepted && <PrivacyNotice/>}
-            {privacyAccepted && <PolicyTable/>}
+            {privacyAccepted && <PolicyTable policies={items}/>}
             {privacyCancelled && !privacyAccepted && renderPrivacyCancelContent()}
           </div>
         </div>
