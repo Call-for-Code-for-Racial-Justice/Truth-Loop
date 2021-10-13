@@ -60,7 +60,7 @@ function AdminTable(props) {
     <>
       <TableContainer sx={{maxHeight: 600}}>
         <Table size="small" aria-label={tableLabel} stickyHeader>
-          <caption>{caption}</caption>
+          <caption data-testid={`${tableLabel}Caption`}>{caption}</caption>
           <TableHead data-testid={`${tableLabel}HeaderRow`}>
             <TableRow>
               {headCells.map((headCell) => (
