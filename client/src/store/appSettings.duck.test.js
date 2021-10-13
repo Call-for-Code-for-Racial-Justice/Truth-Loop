@@ -12,6 +12,10 @@ describe('appSettings reducer tests', () => {
         hasBack: false,
         hasSettings: false,
       },
+	  filters:{
+		  location:[''],
+		  category:['']
+	  }
     }
   })
 
@@ -34,6 +38,18 @@ describe('appSettings reducer tests', () => {
     it('topBar.hasSettings should be defined', () => {
       expect(state.topBar.hasSettings).toBeDefined()
     })
+	it('should not update filters.location', () => {
+	expect(state.filters.location).toEqual([''])
+	})
+	it('filters.location should be defined', () => {
+	expect(state.filters.location).toBeDefined()
+	})
+	it('should not update filters.category', () => {
+		expect(state.filters.category).toEqual([''])
+	})
+	it('filters.category should be defined', () => {
+		expect(state.filters.category).toBeDefined()
+	})
   })
 
   describe('when appTitle is undefined', () => {
@@ -64,6 +80,18 @@ describe('appSettings reducer tests', () => {
     it('should not update the title', () => {
       expect(state.appTitle).toEqual('')
     })
+	it('should not update filters.location', () => {
+	expect(state.filters.location).toEqual([''])
+	})
+	it('filters.location should be defined', () => {
+	expect(state.filters.location).toBeDefined()
+	})
+	it('should not update filters.category', () => {
+		expect(state.filters.category).toEqual([''])
+	})
+	it('filters.category should be defined', () => {
+		expect(state.filters.category).toBeDefined()
+	})
   })
 
   describe('when updating topBar.hasSettings', () => {
@@ -82,6 +110,18 @@ describe('appSettings reducer tests', () => {
     it('should not update the title', () => {
       expect(state.appTitle).toEqual('')
     })
+	it('should not update filters.location', () => {
+	expect(state.filters.location).toEqual([''])
+	})
+	it('filters.location should be defined', () => {
+	expect(state.filters.location).toBeDefined()
+	})
+	it('should not update filters.category', () => {
+		expect(state.filters.category).toEqual([''])
+	})
+	it('filters.category should be defined', () => {
+		expect(state.filters.category).toBeDefined()
+	})
   })
 
   describe('when topBar.hasBack is undefined', () => {
@@ -103,6 +143,18 @@ describe('appSettings reducer tests', () => {
     it('should not update the title', () => {
       expect(state.appTitle).toEqual('')
     })
+	it('should not update filters.location', () => {
+	expect(state.filters.location).toEqual([''])
+	})
+	it('filters.location should be defined', () => {
+	expect(state.filters.location).toBeDefined()
+	})
+	it('should not update filters.category', () => {
+		expect(state.filters.category).toEqual([''])
+	})
+	it('filters.category should be defined', () => {
+		expect(state.filters.category).toBeDefined()
+	})
   })
 
   describe('when topBar.hasSettings is undefined', () => {
@@ -124,7 +176,87 @@ describe('appSettings reducer tests', () => {
     it('should not update the title', () => {
       expect(state.appTitle).toEqual('')
     })
+	it('should not update filters.location', () => {
+	expect(state.filters.location).toEqual([''])
+	})
+	it('filters.location should be defined', () => {
+	expect(state.filters.location).toBeDefined()
+	})
+	it('should not update filters.category', () => {
+		expect(state.filters.category).toEqual([''])
+	})
+	it('filters.category should be defined', () => {
+		expect(state.filters.category).toBeDefined()
+	})
   })
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  describe('when updating filters.location', () => {
+    beforeEach(() => {
+      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {filters: {location: ['bubbles', 'are', 'light']}}})
+    })
+    it('should update filters.location', () => {
+      expect(state.filters.location).toBeTruthy()
+    })
+    it('filters.location should be defined', () => {
+      expect(state.filters.location).toBeDefined()
+    })
+    it('should not update filters.category', () => {
+      expect(state.filters.category).toEqual([''])
+    })
+    it('filters.category should be defined', () => {
+      expect(state.filters.category).toBeDefined()
+    })
+	it('should not update topBar.hasBack', () => {
+		expect(state.topBar.hasBack).toBeFalsy()
+	})
+	it('topBar.hasBack should be defined', () => {
+	expect(state.topBar.hasBack).toBeDefined()
+	})
+	it('should not update topBar.hasSettings', () => {
+	expect(state.topBar.hasSettings).toBeFalsy()
+	})
+	it('topBar.hasSettings should be defined', () => {
+	expect(state.topBar.hasSettings).toBeDefined()
+	})
+	it('should not update the title', () => {
+	expect(state.appTitle).toEqual('')
+	})
+  })
+
+  describe('when updating filters.category', () => {
+    beforeEach(() => {
+      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {filters: {category: ['bubbles', 'are', 'light']}}})
+    })
+    it('should update filters.category', () => {
+      expect(state.filters.category).toBeTruthy()
+    })
+    it('filters.category should be defined', () => {
+      expect(state.filters.category).toBeDefined()
+    })
+    it('should not update filters.location', () => {
+      expect(state.filters.location).toEqual([''])
+    })
+    it('filters.location should be defined', () => {
+      expect(state.filters.location).toBeDefined()
+    })
+	it('should not update topBar.hasBack', () => {
+		expect(state.topBar.hasBack).toBeFalsy()
+	})
+	it('topBar.hasBack should be defined', () => {
+	expect(state.topBar.hasBack).toBeDefined()
+	})
+	it('should not update topBar.hasSettings', () => {
+	expect(state.topBar.hasSettings).toBeFalsy()
+	})
+	it('topBar.hasSettings should be defined', () => {
+	expect(state.topBar.hasSettings).toBeDefined()
+	})
+	it('should not update the title', () => {
+	expect(state.appTitle).toEqual('')
+	})
+  })
+
+  
 
   describe('when no initial state exists', () => {
     it('should return the default state', () => {

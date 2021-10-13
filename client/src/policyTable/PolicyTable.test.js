@@ -10,6 +10,7 @@ describe('PolicyTable component tests', () => {
   describe('when policy list is empty', () => {
     beforeEach(() => {
       const store = mockStore({
+		appSettings:{filters: {location:[], category:[]}},
         policyList: { items: []},
       })
       render(<Provider store={store}><PolicyTable/></Provider>)
@@ -21,6 +22,7 @@ describe('PolicyTable component tests', () => {
   describe('when policy list has one item', () => {
     beforeEach(() => {
       const store = mockStore({
+		appSettings:{filters: {location:[], category:[]}},
         // eslint-disable-next-line camelcase
         policyList: { items: [{ id: 1, title: '', summary: '', date_introduced: '2016-11-03T04:47:00.000Z'}]},
       })

@@ -17,6 +17,7 @@ describe('Home component tests', () => {
   describe('after initial rendering', () => {
     beforeEach(() => {
       const store = mockStore({
+		appSettings:{filters: {location:[], category:[]}},
         privacy: { privacyCancelled: false, privacyAccepted: false},
         policyList: { items: [] }
       })
@@ -36,6 +37,7 @@ describe('Home component tests', () => {
   describe('when user has accepted the PrivacyNotice', () => {
     beforeEach(() => {
       const store = mockStore({
+		appSettings:{filters: {location:[], category:[]}},
         privacy: { privacyCancelled: false, privacyAccepted: true},
         // eslint-disable-next-line camelcase
         policyList: { items: [{ id: 1, title: '', summary: '', date_introduced: '2016-11-03T04:47:00.000Z'}]},
@@ -53,6 +55,7 @@ describe('Home component tests', () => {
   describe('when user has cancelled the PrivacyNotice', () => {
     beforeEach(() => {
       const store = mockStore({
+		appSettings:{filters: {location:[], category:[]}},
         privacy: { privacyCancelled: true, privacyAccepted: false},
         policyList: { items: [] },
       })
