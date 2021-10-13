@@ -41,7 +41,7 @@ function AdminTableToolbar({toolbarTitle, handleSearchRequest}) {
                    variant="standard"
                    value={searchText}
                    onChange={(event) => requestSearch(event.target.value)}
-                   placeholder="Search…"
+                   placeholder="Search..."
                    InputProps={{
                      startAdornment: <SearchIcon fontSize="small"/>,
                      endAdornment: (
