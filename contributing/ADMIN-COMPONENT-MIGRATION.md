@@ -23,7 +23,7 @@ The `methods` object contains the functions that may be executed within this com
 * Shows add option
 
 
-## Table - [DataTable](https://react.carbondesignsystem.com/?path=/story/components-datatable--usage)
+## Table - AdminTable.js and AdminTableToolbar.js (see PublicationTable.js for working example)
 #### Table.test.js
 * Handles empty data
 * Shows correct # of lines
