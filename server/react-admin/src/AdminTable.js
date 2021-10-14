@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
@@ -8,6 +8,7 @@ import TableCell from '@mui/material/TableCell'
 import {Box, TablePagination, TableSortLabel} from '@mui/material'
 import {visuallyHidden} from '@mui/utils'
 import TableBody from '@mui/material/TableBody'
+import AdminTableToolbar from './AdminTableToolbar'
 
 AdminTable.propTypes = {
   headCells: PropTypes.array.isRequired,
@@ -34,10 +35,11 @@ function getComparator(order, orderBy) {
 
 function AdminTable(props) {
   const {headCells, rows, caption, tableLabel} = props
-  const [order, setOrder] = React.useState('asc')
-  const [orderBy, setOrderBy] = React.useState('id')
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [order, setOrder] = useState('asc')
+  const [orderBy, setOrderBy] = useState('id')
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [filteredRows, setFilteredRows] = useState(rows)
 
   const createSortHandler = (property) => (event) => {
     handleRequestSort(event, property)
@@ -56,8 +58,20 @@ function AdminTable(props) {
     setRowsPerPage(+event.target.value)
     setPage(0)
   }
+
+  const handleSearchRequest = function(searchText) {
+    const filtered = rows.filter((row) => {
+      return Object.keys(row).some((field) => {
+        return searchText.test(row[field].toString())
+      })
+    })
+    setFilteredRows(filtered)
+    setPage(0)
+  }
   return (
     <>
+      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={tableLabel}/>
+
       <TableContainer sx={{maxHeight: 600}}>
         <Table size="small" aria-label={tableLabel} stickyHeader>
           <caption data-testid={`${tableLabel}Caption`}>{caption}</caption>
@@ -85,7 +99,7 @@ function AdminTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice().sort(getComparator(order, orderBy))
+            {filteredRows.slice().sort(getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (<TableRow data-testid={`${tableLabel}Row`}
                   key={`${row.id}-row`}
@@ -102,7 +116,7 @@ function AdminTable(props) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={filteredRows.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
