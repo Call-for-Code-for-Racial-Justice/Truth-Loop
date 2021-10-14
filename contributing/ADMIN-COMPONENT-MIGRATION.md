@@ -6,15 +6,15 @@ The `<template></template>` portion of the vue component is the basically what w
 - Tags will be different  
 - The `class` attribute will be `className`
 - There will be other tweaks necessary as JSX does not like hyphens (`-`) in attributes  
-- The CarbonComponent design system will be used: https://react.carbondesignsystem.com/?path=/story/getting-started--welcome
+- The MaterialUI Design system will be used https://mui.com/getting-started/usage/
 
 The `data()` function will primarily be the props that you pass in or the state values that you set.  
 
 In the `mounted()` function you'll find what needs to be executed immediately.
 
-The `methods` object contains the functions that may be executed within this component or passed to a sub-component.
+The `methods` object contains the functions that may be executed within this component or passed to a sub-component.  
 
-(TODO: Add the code excerpts of turning the Vue Publication* files into the corresponding React components. To include tests.)
+The [react-admin publications](https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop/tree/main/server/react-admin/src/publications) can be used as an example for other react-admin migrations.
 
 ## Route - [ReactRouter](https://reactrouter.com/)
 #### Route.test.js
