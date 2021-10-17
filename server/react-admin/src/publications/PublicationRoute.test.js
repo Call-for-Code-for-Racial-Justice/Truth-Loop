@@ -20,8 +20,5 @@ describe('PublicationRoute Tests', () => {
     it('should render the table', () => {
       expect(screen.getByTestId('publicationTable')).toBeInTheDocument()
     })
-    it('should render an add option', () => {
-      expect(screen.getByTestId('addPublication')).toBeInTheDocument()
-    })
   })
 })
