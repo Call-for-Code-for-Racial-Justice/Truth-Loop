@@ -37,6 +37,7 @@ The [react-admin publications](https://github.com/Call-for-Code-for-Racial-Justi
 
 
 ## Form - [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+[React Hook Form + MUI guide](https://blog.logrocket.com/using-material-ui-with-react-hook-form/)
 #### Form.test.js
 * Calls post on add
 * Calls put on edit

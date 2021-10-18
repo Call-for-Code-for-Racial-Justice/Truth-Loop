@@ -4,6 +4,8 @@ import AdminTable from '../AdminTable'
 import Paper from '@mui/material/Paper'
 import formatDate from '../formatDate'
 import AdminTableToolbar from '../AdminTableToolbar'
+import Button from '@mui/material/Button'
+import AddIcon from '@mui/icons-material/Add'
 
 PublicationTable.propTypes = {
   publications: PropTypes.array,
@@ -55,8 +57,8 @@ function PublicationTable(props) {
 
   return (
       props.publications && props.publications.length ? (
-        <Paper data-testid={'publicationTable'}>
-          <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Publications'}/>
+        <Paper data-testid={'publicationTable'} elevation={12}>
+          <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Publications'} showAdd={true} addFormPath={'/publications/add'}/>
           <AdminTable headCells={headCells}
                       rows={publications.map(publication => ({
                         ...publication,
@@ -66,6 +68,7 @@ function PublicationTable(props) {
                       ))}
                       caption={caption}
                       tableLabel={'Publications'}/>
+          <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon />}>Add Publication</Button>
         </Paper>
       ) : renderEmpty()
   )
