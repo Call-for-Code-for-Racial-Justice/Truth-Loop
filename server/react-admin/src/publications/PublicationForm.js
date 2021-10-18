@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom'
-import Button from '@mui/material/Button'
 import {useForm} from 'react-hook-form'
-import TextFieldInput from '../form/TextFieldInput'
-import Paper from '@mui/material/Paper'
+import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
-import {Snackbar} from '@mui/material'
+import TextFieldInput from '../form/TextFieldInput'
 
 function PublicationForm() {
   const {control, handleSubmit, reset} = useForm()
@@ -16,6 +16,10 @@ function PublicationForm() {
 
   const handleCloseFormError = function() {
     setFormError(false)
+  }
+
+  const cancel = function () {
+    history.push('/publications')
   }
 
   const onSubmit = async function(values) {
@@ -39,10 +43,10 @@ function PublicationForm() {
   }
 
   return (
-    <Paper elevation={12}>
+    <Paper elevation={12} data-testid={'addPublicationForm'}>
       <Grid container spacing={2} p={2}>
         <Grid item>
-          <Typography>Add Publication</Typography>
+          <Typography component={'h2'} variant={'h6'}>Add Publication</Typography>
         </Grid>
         <Grid item xs={12}>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +60,11 @@ function PublicationForm() {
               <Grid item lg={4} md={6} xs={12}>
                 <TextFieldInput name={'link'} control={control} label={'Link'} required/>
               </Grid>
-              <Grid item container justifyContent={'flex-end'} spacing={2}>
+              <Grid item container justifyContent={'flex-end'} spacing={2}><Grid item>
+                <Button variant="outlined" color="primary" disabled={submitting} onClick={cancel}>
+                  Cancel
+                </Button>
+              </Grid>
                 <Grid item>
                   <Button variant="outlined" color="primary" disabled={submitting} onClick={resetForm}>
                     Reset

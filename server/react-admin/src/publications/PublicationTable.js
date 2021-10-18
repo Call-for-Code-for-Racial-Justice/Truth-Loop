@@ -10,6 +10,7 @@ import AddIcon from '@mui/icons-material/Add'
 PublicationTable.propTypes = {
   publications: PropTypes.array,
 }
+const emptyTableCaption = 'No publications available'
 const caption = 'The Publications table shows a paginated list of all publications currently available'
 const headCells = [
   {
@@ -33,9 +34,7 @@ const headCells = [
     label: 'Last updated',
   },
 ]
-const renderEmpty = function() {
-  return <div data-testid={'emptyPublications'}>No publications available</div>
-}
+
 function PublicationTable(props) {
 
   const [publications, setPublications] = React.useState([])
@@ -56,21 +55,19 @@ function PublicationTable(props) {
   }, [props.publications])
 
   return (
-      props.publications && props.publications.length ? (
-        <Paper data-testid={'publicationTable'} elevation={12}>
-          <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Publications'} showAdd={true} addFormPath={'/publications/add'}/>
-          <AdminTable headCells={headCells}
-                      rows={publications.map(publication => ({
-                        ...publication,
-                        created: formatDate(publication.created),
-                        updated: formatDate(publication.updated),
-                        }
-                      ))}
-                      caption={caption}
-                      tableLabel={'Publications'}/>
-          <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon />}>Add Publication</Button>
-        </Paper>
-      ) : renderEmpty()
+    <Paper data-testid={'publicationTable'} elevation={12}>
+      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Publications'} showAdd={true} addFormPath={'/publications/add'} disabled={!(props.publications && props.publications.length)}/>
+      <AdminTable headCells={headCells}
+                  rows={publications.map(publication => ({
+                    ...publication,
+                    created: formatDate(publication.created),
+                    updated: formatDate(publication.updated),
+                    }
+                  ))}
+                  caption={props.publications && props.publications.length ? caption : emptyTableCaption}
+                  tableLabel={'Publications'}/>
+      <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon />}>Add Publication</Button>
+    </Paper>
   )
 }
 
