@@ -1,11 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
-import {Box, TablePagination, TableSortLabel} from '@mui/material'
+import TablePagination from '@mui/material/TablePagination'
+import TableSortLabel from '@mui/material/TableSortLabel'
 import {visuallyHidden} from '@mui/utils'
 import TableBody from '@mui/material/TableBody'
 
@@ -14,6 +19,8 @@ AdminTable.propTypes = {
   rows: PropTypes.array.isRequired,
   caption: PropTypes.string.isRequired,
   tableLabel: PropTypes.string.isRequired,
+  onEditItem: PropTypes.func,
+  onDeleteItem: PropTypes.func,
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -33,7 +40,7 @@ function getComparator(order, orderBy) {
 }
 
 function AdminTable(props) {
-  const {headCells, rows, caption, tableLabel} = props
+  const {headCells, rows, caption, tableLabel, onEditItem, onDeleteItem} = props
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('id')
   const [page, setPage] = React.useState(0)
@@ -94,6 +101,16 @@ function AdminTable(props) {
                   {headCells.map(headCell => (
                     <TableCell key={`${row.id}_${headCell.id}`}>{row[headCell.id]}</TableCell>
                   ))}
+                  {!!onEditItem && <TableCell padding={'none'} size={'small'}>
+                    <IconButton aria-label="edit" onClick={() => onEditItem(row)} size={'small'}>
+                      <EditIcon />
+                    </IconButton>
+                  </TableCell>}
+                  {!!onDeleteItem && <TableCell padding={'none'} size={'small'}>
+                    <IconButton aria-label="delete" onClick={() => onDeleteItem(row)} size={'small'}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>}
                 </TableRow>
               ))}
           </TableBody>

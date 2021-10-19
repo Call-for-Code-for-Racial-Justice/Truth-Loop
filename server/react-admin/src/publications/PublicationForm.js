@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import React, {useState} from 'react'
+import {useHistory, useLocation} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -8,13 +8,17 @@ import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
 
+const emptyFormValues = {title: '', link: '', description: ''}
+
 function PublicationForm() {
-  const {control, handleSubmit, reset} = useForm()
+  const location = useLocation()
+  const existingPublication = location?.state?.publication
+  const {control, handleSubmit, reset} = useForm({defaultValues: existingPublication ? {...existingPublication} : {...emptyFormValues}})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
   const history = useHistory()
 
-  const handleCloseFormError = function() {
+  const handleCloseFormError = function () {
     setFormError(false)
   }
 
@@ -22,11 +26,12 @@ function PublicationForm() {
     history.push('/publications')
   }
 
-  const onSubmit = async function(values) {
+  const onSubmit = async function (values) {
     setSubmitting(true)
-    const publicationsResponse = await fetch('/api/v1/publications', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
+    const url = existingPublication ? `/api/v1/publications/${existingPublication.id}` : '/api/v1/publications'
+    const publicationsResponse = await fetch(url, {
+      method: existingPublication ? 'PUT' : 'POST',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)
     })
     if (publicationsResponse.ok) {
@@ -39,7 +44,7 @@ function PublicationForm() {
   }
 
   const resetForm = function () {
-    reset({title: '', link: '', description: ''})
+    reset()
   }
 
   return (
@@ -47,12 +52,13 @@ function PublicationForm() {
       <Typography component={'h2'} variant={'h6'} mb={2}>Add Publication</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
-          <Grid item container spacing={1}>
+          <Grid item container spacing={2}>
             <Grid item lg={4} md={6} xs={12}>
               <TextFieldInput name={'title'} control={control} label={'Title'} required/>
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'description'} control={control} label={'Description'} required/>
+              <TextFieldInput name={'description'} control={control} label={'Description'}
+                              required/>
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
               <TextFieldInput name={'link'} control={control} label={'Link'} required/>
@@ -71,7 +77,7 @@ function PublicationForm() {
             </Grid>
             <Grid item>
               <Button variant="contained" color="primary" disabled={submitting} type={'submit'}>
-                Add
+                {existingPublication ? 'Update' : 'Add'}
               </Button>
             </Grid>
           </Grid>

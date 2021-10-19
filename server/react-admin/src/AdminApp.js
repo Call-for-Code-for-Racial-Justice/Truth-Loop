@@ -12,7 +12,8 @@ function AdminApp() {
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
             <Route name="publication-route" exact path={'/publications'} component={PublicationRoute} />
-            <Route name="publication-form" exact path={'/publications/add'} component={PublicationForm}/>
+            <Route name="add-publication-form" exact path={'/publications/add'} component={PublicationForm}/>
+            <Route name="edit-publication-form" path={'/publications/edit/:id'} component={PublicationForm}/>
           </Switch>
         </div>
       </div>
