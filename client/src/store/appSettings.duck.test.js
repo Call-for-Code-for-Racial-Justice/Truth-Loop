@@ -189,7 +189,7 @@ describe('appSettings reducer tests', () => {
 		expect(state.filters.category).toBeDefined()
 	})
   })
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   describe('when updating filters.location', () => {
     beforeEach(() => {
       state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {filters: {location: ['bubbles', 'are', 'light']}}})
@@ -255,8 +255,6 @@ describe('appSettings reducer tests', () => {
 	expect(state.appTitle).toEqual('')
 	})
   })
-
-  
 
   describe('when no initial state exists', () => {
     it('should return the default state', () => {
