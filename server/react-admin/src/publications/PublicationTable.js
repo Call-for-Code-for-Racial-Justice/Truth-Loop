@@ -13,6 +13,7 @@ import Snackbar from '@mui/material/Snackbar'
 PublicationTable.propTypes = {
   publications: PropTypes.array,
 }
+
 const emptyTableCaption = 'No publications available'
 const caption = 'The Publications table shows a paginated list of all publications currently available'
 const headCells = [
@@ -24,6 +25,7 @@ const headCells = [
 ]
 
 function PublicationTable(props) {
+
   const history = useHistory()
   const [publications, setPublications] = useState([])
   const [deleteError, setDeleteError] = useState('')

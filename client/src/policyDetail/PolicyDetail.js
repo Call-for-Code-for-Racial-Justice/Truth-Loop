@@ -52,7 +52,7 @@ const PolicyDetail = ({policy}) => {
         </div>
         <Sentiment/>
         <div className="bx--row">
-          <DetailsAccordion summary={policy.summary} officialsAndSponsors={policy.officials} statusHistory={[]}
+          <DetailsAccordion summary={policy.summary} officialsAndSponsors={policy.officials} policyStatus={policy.status}
                             relatedPolicies={policy.related}/>
         </div>
       </div>
