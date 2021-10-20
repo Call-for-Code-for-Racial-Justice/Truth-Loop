@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 
 require('dotenv').config();
 
+console.log('Auth enabled? ', !!process.env.ENABLE_AUTH);
 console.log(process.env.CMS_USERNAME);
 // console.log(process.env.CMS_PASSWORD);
 console.log(process.env.CLIENT_ID);
@@ -58,16 +59,35 @@ app.use('/admin', express.static('./admin/dist', {fallthrough: true}));
 app.use('/auth', authentication);
 
 // Database Entities
-app.use('/api/v1/categories', authentic, authorize, categories);
-app.use('/api/v1/geospatialDefinitions', authentic, authorize, geospatialDefinitions);
-app.use('/api/v1/officials', authentic, authorize, officials);
-app.use('/api/v1/channels', authentic, authorize, channels);
-app.use('/api/v1/videos', authentic, authorize, videos);
-app.use('/api/v1/advocacyGroups', authentic, authorize, advocacyGroups);
-app.use('/api/v1/publications', authentic, authorize, publications);
-app.use('/api/v1/videoTestimonials', authentic, authorize, videoTestimonials);
-app.use('/api/v1/levels', authentic, authorize, levels);
-app.use('/api/v1/legislativeArtifacts', authentic, authorize, legislativeArtifacts);
-app.use('/api/v1/adminIntersections', authentic, authorize, adminIntersections);
+
+// Using the auth checks is undocumented, so disabled by default
+if (process.env.ENABLE_AUTH) {
+    console.log('Authentication is ENABLED');
+    app.use('/api/v1/categories', authentic, authorize, categories);
+    app.use('/api/v1/geospatialDefinitions', authentic, authorize, geospatialDefinitions);
+    app.use('/api/v1/officials', authentic, authorize, officials);
+    app.use('/api/v1/channels', authentic, authorize, channels);
+    app.use('/api/v1/videos', authentic, authorize, videos);
+    app.use('/api/v1/advocacyGroups', authentic, authorize, advocacyGroups);
+    app.use('/api/v1/publications', authentic, authorize, publications);
+    app.use('/api/v1/videoTestimonials', authentic, authorize, videoTestimonials);
+    app.use('/api/v1/levels', authentic, authorize, levels);
+    app.use('/api/v1/legislativeArtifacts', authentic, authorize, legislativeArtifacts);
+    app.use('/api/v1/adminIntersections', authentic, authorize, adminIntersections);
+}
+else {
+    console.log('Authentication is DISABLED');
+    app.use('/api/v1/categories', categories);
+    app.use('/api/v1/geospatialDefinitions', geospatialDefinitions);
+    app.use('/api/v1/officials', officials);
+    app.use('/api/v1/channels', channels);
+    app.use('/api/v1/videos', videos);
+    app.use('/api/v1/advocacyGroups', advocacyGroups);
+    app.use('/api/v1/publications', publications);
+    app.use('/api/v1/videoTestimonials', videoTestimonials);
+    app.use('/api/v1/levels', levels);
+    app.use('/api/v1/legislativeArtifacts', legislativeArtifacts);
+    app.use('/api/v1/adminIntersections', adminIntersections);
+}
 
 module.exports = app;
