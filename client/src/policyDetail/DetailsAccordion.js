@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Accordion, AccordionItem} from 'carbon-components-react'
 
-const DetailsAccordion = ({summary, officialsAndSponsors, statusHistory, relatedPolicies}) => {
+const DetailsAccordion = ({summary, officialsAndSponsors, policyStatus, relatedPolicies}) => {
   return (
     <Accordion>
       <AccordionItem title="Summary">
@@ -12,9 +12,8 @@ const DetailsAccordion = ({summary, officialsAndSponsors, statusHistory, related
         {/*<p>{officialsAndSponsors}</p>*/}
         <p>TODO: handle array of officials</p>
       </AccordionItem>
-      <AccordionItem title="Status history">
-        {/*<p>{statusHistory}</p>*/}
-        <p>TODO: handle array of status history</p>
+      <AccordionItem title="Status">
+        <p>{policyStatus}</p>
       </AccordionItem>
       <AccordionItem title="Related policies">
         {/*<p>{relatedPolicies}</p>*/}
@@ -27,7 +26,7 @@ const DetailsAccordion = ({summary, officialsAndSponsors, statusHistory, related
 DetailsAccordion.propTypes = {
   summary: PropTypes.string.isRequired,
   officialsAndSponsors: PropTypes.array.isRequired,
-  statusHistory: PropTypes.array.isRequired,
+  policyStatus: PropTypes.string.isRequired,
   relatedPolicies: PropTypes.array.isRequired,
 }
 export default DetailsAccordion
