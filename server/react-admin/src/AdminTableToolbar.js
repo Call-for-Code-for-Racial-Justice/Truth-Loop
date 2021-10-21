@@ -11,13 +11,14 @@ import Toolbar from '@mui/material/Toolbar'
 AdminTableToolbar.propTypes = {
   toolbarTitle: PropTypes.string.isRequired,
   handleSearchRequest: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 }
 
 function escapeRegExp(value) {
   return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 }
 
-function AdminTableToolbar({toolbarTitle, handleSearchRequest}) {
+function AdminTableToolbar({toolbarTitle, handleSearchRequest, disabled}) {
   const [searchText, setSearchText] = React.useState('')
   const requestSearch = (searchValue) => {
     setSearchText(searchValue)
@@ -28,8 +29,7 @@ function AdminTableToolbar({toolbarTitle, handleSearchRequest}) {
     <Toolbar sx={{pl: {sm: 2}, pr: {xs: 1, sm: 1}}}>
       <Typography
         sx={{flex: '1 1 100%'}}
-        variant="overline"
-        fontWeight={'bold'}
+        variant="h6"
         id="tableTitle"
         component="h2"
       >
@@ -38,6 +38,7 @@ function AdminTableToolbar({toolbarTitle, handleSearchRequest}) {
 
       <Tooltip title="Search list">
         <TextField fullWidth
+                   disabled={disabled}
                    variant="standard"
                    value={searchText}
                    onChange={(event) => requestSearch(event.target.value)}

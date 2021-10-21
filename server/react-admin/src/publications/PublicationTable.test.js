@@ -8,7 +8,10 @@ describe('PublicationTable Tests', () => {
       render(<PublicationTable publications={null}/>)
     })
     it('should show empty data', () => {
-      expect(screen.getByTestId('emptyPublications')).toBeInTheDocument()
+      expect(screen.getByText('No publications available')).toBeVisible()
+    })
+    it('should show add button', () => {
+      expect(screen.getByTestId('AddIcon')).toBeVisible()
     })
   })
   describe('When first rendering with empty array', () => {
@@ -16,7 +19,10 @@ describe('PublicationTable Tests', () => {
       render(<PublicationTable publications={[]}/>)
     })
     it('should show empty data', () => {
-      expect(screen.getByTestId('emptyPublications')).toBeInTheDocument()
+      expect(screen.getByText('No publications available')).toBeVisible()
+    })
+    it('should show add button', () => {
+      expect(screen.getByTestId('AddIcon')).toBeVisible()
     })
   })
   describe('When first rendering with 1 item', () => {
@@ -28,6 +34,9 @@ describe('PublicationTable Tests', () => {
     })
     it('should show 1 item', () => {
       expect(screen.getAllByTestId('PublicationsRow').length).toBe(1)
+    })
+    it('should show add button', () => {
+      expect(screen.getByTestId('AddIcon')).toBeVisible()
     })
   })
   describe('When first rendering with 2 items', () => {
@@ -42,19 +51,6 @@ describe('PublicationTable Tests', () => {
     })
     it('should show 2 items', () => {
       expect(screen.getAllByTestId('PublicationsRow').length).toBe(2)
-    })
-  })
-  describe.skip('When editing an item', () => {
-    beforeEach(() => {
-
-    })
-    it('should show editing view', () => {
-      expect(2 + 2).toBe(5)
-    })
-  })
-  describe.skip('When deleting an item', () => {
-    it('show show delete confirmation', () => {
-      expect(2 + 2).toBe(5)
     })
   })
 })
