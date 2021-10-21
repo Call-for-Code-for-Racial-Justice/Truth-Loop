@@ -12,8 +12,8 @@ const FilterMenu = forwardRef(({ show }, ref) => {
   const [categories, setCategories] = useState([])
   const { filters } = useSelector(({ appSettings }) => appSettings)
   useEffect(() => {
-    setLocations(filters.location)
-    setCategories(filters.category)
+    setLocations(filters.location ? filters.location : [])
+    setCategories(filters.category ? filters.category : [])
   }, [])
   useEffect(() => {
     if (show == false) {
@@ -69,7 +69,7 @@ const FilterMenu = forwardRef(({ show }, ref) => {
                 <AppliedFilters
                   states={locations}
                   categories={categories}
-                  delete={deleteFilter}
+                  remove={deleteFilter}
                 />
                 <div className='inputs'>
                   <label className='label'>State: </label>
