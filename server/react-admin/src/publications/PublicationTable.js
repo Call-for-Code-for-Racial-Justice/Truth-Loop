@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AdminTable from '../AdminTable'
 import Paper from '@mui/material/Paper'
 import formatDate from '../formatDate'
-import AdminTableToolbar from '../AdminTableToolbar'
 import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteItemDialog from '../form/DeleteItemDialog'
@@ -27,7 +26,6 @@ const headCells = [
 function PublicationTable(props) {
 
   const history = useHistory()
-  const [publications, setPublications] = useState([])
   const [deleteError, setDeleteError] = useState('')
   const [itemToDelete, setItemToDelete] = useState(null)
 
@@ -55,33 +53,15 @@ function PublicationTable(props) {
     }
   }
 
-  const handleSearchRequest = function (searchText) {
-    const filteredRows = props.publications.filter((row) => {
-      return Object.keys(row).some((field) => {
-        return searchText.test(row[field].toString())
-      })
-    })
-    setPublications(filteredRows)
-  }
-
-  useEffect(() => {
-    if (props.publications && props.publications.length) {
-      setPublications(props.publications)
-    }
-  }, [props.publications])
-
   return (
     <Paper data-testid={'publicationTable'} elevation={12}>
-      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Publications'}
-                         showAdd={true} addFormPath={'/publications/add'}
-                         disabled={!(props.publications && props.publications.length)}/>
       <AdminTable headCells={headCells}
-                  rows={publications.map(publication => ({
+                  rows={props.publications ? props.publications.map(publication => ({
                       ...publication,
                       created: formatDate(publication.created),
                       updated: formatDate(publication.updated),
                     }
-                  ))}
+                  )) : []}
                   caption={props.publications && props.publications.length ? caption : emptyTableCaption}
                   tableLabel={'Publications'}
                   onEditItem={item => {
@@ -89,7 +69,8 @@ function PublicationTable(props) {
                   }}
                   onDeleteItem={item => {
                     setItemToDelete(item)
-                  }}/>
+                  }}
+                  disableSearch={!(props.publications && props.publications.length)}/>
       <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon/>}>
         Add Publication
       </Button>

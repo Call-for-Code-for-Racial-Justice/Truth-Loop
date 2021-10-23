@@ -22,6 +22,7 @@ AdminTable.propTypes = {
   tableLabel: PropTypes.string.isRequired,
   onEditItem: PropTypes.func,
   onDeleteItem: PropTypes.func,
+  disableSearch: PropTypes.bool,
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -42,11 +43,12 @@ function getComparator(order, orderBy) {
 
 function AdminTable(props) {
 
-  const {headCells, rows, caption, tableLabel, onEditItem, onDeleteItem} = props
+  const {headCells, rows, caption, tableLabel, onEditItem, onDeleteItem, disableSearch} = props
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('id')
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [filteredRows, setFilteredRows] = useState(rows)
 
   const createSortHandler = (property) => (event) => {
     handleRequestSort(event, property)
@@ -77,7 +79,7 @@ function AdminTable(props) {
   }
   return (
     <>
-      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={tableLabel}/>
+      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={tableLabel} disabled={disableSearch}/>
 
       <TableContainer sx={{maxHeight: 600}}>
         <Table size="small" aria-label={tableLabel} stickyHeader>
