@@ -13,7 +13,6 @@ function PublicationRoute() {
   return (
     <>
       <PublicationTable publications={publications}/>
-      <div data-testid={'addPublication'}/>
     </>
   )
 }
