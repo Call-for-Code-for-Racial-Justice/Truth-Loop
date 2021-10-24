@@ -47,7 +47,7 @@ function AdminTable(props) {
   const [orderBy, setOrderBy] = React.useState('id')
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
-
+  const [filteredRows, setFilteredRows] = React.useState([])
   const createSortHandler = (property) => (event) => {
     handleRequestSort(event, property)
   }
@@ -106,7 +106,7 @@ function AdminTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredRows.slice().sort(getComparator(order, orderBy))
+            {filteredRows&&filteredRows.slice().sort(getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (<TableRow data-testid={`${tableLabel}Row`}
                   key={`${row.id}-row`}
