@@ -24,7 +24,7 @@ function VideoTestimonial() {
     setFormError(false)
   }
   const cancel = function () {
-    history.push('/testimonials')
+    history.push('/videotestimonials')
   }
   const onSubmit = async function (values) {
     setSubmitting(true)

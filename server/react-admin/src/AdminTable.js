@@ -106,7 +106,7 @@ function AdminTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredRows&&filteredRows.slice().sort(getComparator(order, orderBy))
+            {filteredRows.slice().sort(getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (<TableRow data-testid={`${tableLabel}Row`}
                   key={`${row.id}-row`}
