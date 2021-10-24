@@ -1,96 +1,96 @@
-import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Snackbar from "@mui/material/Snackbar";
-import Typography from "@mui/material/Typography";
-import TextFieldInput from "../form/TextFieldInput";
+import React, { useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import Snackbar from '@mui/material/Snackbar'
+import Typography from '@mui/material/Typography'
+import TextFieldInput from '../form/TextFieldInput'
 
-const emptyFormValues = { subject: "", comment: "", cms_id: "" };
+const emptyFormValues = { subject: '', comment: '', cmsId: '' }
 
 function VideoTestimonial() {
-  const location = useLocation();
-  const existingTestimonial = location?.state?.testimonial;
+  const location = useLocation()
+  const existingTestimonial = location?.state?.testimonial
   const { control, handleSubmit, reset } = useForm({
     defaultValues: existingTestimonial ? { ...existingTestimonial } : { emptyFormValues },
-  });
-  const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState("");
-  const [privacyStatement, setPrivacyStatement] = useState(false);
-  const history = useHistory();
+  })
+  const [submitting, setSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
+  const [privacyStatement, setPrivacyStatement] = useState(false)
+  const history = useHistory()
   const handleCloseFormError = function () {
-    setFormError(false);
-  };
+    setFormError(false)
+  }
   const cancel = function () {
-    history.push("/testimonials");
-  };
+    history.push('/testimonials')
+  }
   const onSubmit = async function (values) {
-      setSubmitting(true);
-      const url = existingTestimonial
-        ? `/api/v1/videoTestimonial/${existingTestimonial.id}`
-        : "/api/v1/videoTestimonials";
-      const testimonialsResponse = await fetch(url, {
-        method: existingTestimonial ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (testimonialsResponse.ok) {
-        history.push("/testimonials");
-      } else {
-        const errorText = await testimonialsResponse.text();
-        setSubmitting(false);
-        setFormError(errorText);
-      }
-  };
+    setSubmitting(true)
+    const url = existingTestimonial
+      ? `/api/v1/videoTestimonial/${existingTestimonial.id}`
+      : '/api/v1/videoTestimonials'
+    const testimonialsResponse = await fetch(url, {
+      method: existingTestimonial ? 'PUT' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values),
+    })
+    if (testimonialsResponse.ok) {
+      history.push('/testimonials')
+    } else {
+      const errorText = await testimonialsResponse.text()
+      setSubmitting(false)
+      setFormError(errorText)
+    }
+  }
   const resetForm = function () {
-    reset();
-  };
+    reset()
+  }
   return (
-    <Paper elevation={12} data-testid={"addTestimonialForm"} sx={{ p: 2 }}>
-      <Typography component={"h2"} variant={"h6"} mb={2}>
+    <Paper elevation={12} data-testid={'addTestimonialForm'} sx={{ p: 2 }}>
+      <Typography component={'h2'} variant={'h6'} mb={2}>
         Add Testimonial
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item container spacing={2}>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={"subject"} control={control} label={"Subject"} required />
+              <TextFieldInput name={'subject'} control={control} label={'Subject'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={"comment"} control={control} label={"Comment"} required />
+              <TextFieldInput name={'comment'} control={control} label={'Comment'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={"cms_id"} control={control} label={"Video CMS ID"} required />
+              <TextFieldInput name={'cmsId'} control={control} label={'Video CMS ID'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
               <input
-                type="checkbox"
-                name="privacyStatement"
+                type='checkbox'
+                name='privacyStatement'
                 value={privacyStatement}
                 onClick={() => {
-                  setPrivacyStatement(!privacyStatement);
+                  setPrivacyStatement(!privacyStatement)
                 }}
                 required
               />
               Accept Privacy Statement
             </Grid>
           </Grid>
-          <Grid item container justifyContent={"flex-end"} spacing={1}>
+          <Grid item container justifyContent={'flex-end'} spacing={1}>
             <Grid item>
-              <Button variant="outlined" color="primary" disabled={submitting} onClick={cancel}>
+              <Button variant='outlined' color='primary' disabled={submitting} onClick={cancel}>
                 Cancel
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="primary" disabled={submitting} onClick={resetForm}>
+              <Button variant='outlined' color='primary' disabled={submitting} onClick={resetForm}>
                 Reset
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" disabled={submitting} type={"submit"}>
-                {existingTestimonial ? "Update" : "Add"}
+              <Button variant='contained' color='primary' disabled={submitting} type={'submit'}>
+                {existingTestimonial ? 'Update' : 'Add'}
               </Button>
             </Grid>
           </Grid>
@@ -103,6 +103,6 @@ function VideoTestimonial() {
         message={formError}
       />
     </Paper>
-  );
+  )
 }
-export default VideoTestimonial;
+export default VideoTestimonial
