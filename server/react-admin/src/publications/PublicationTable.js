@@ -10,7 +10,8 @@ import DeleteItemDialog from '../form/DeleteItemDialog'
 import Snackbar from '@mui/material/Snackbar'
 
 PublicationTable.propTypes = {
-  publications: PropTypes.array,
+  publications: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool,
 }
 
 const emptyTableCaption = 'No publications available'
@@ -56,12 +57,13 @@ function PublicationTable(props) {
   return (
     <Paper data-testid={'publicationTable'} elevation={12}>
       <AdminTable headCells={headCells}
-                  rows={props.publications ? props.publications.map(publication => ({
+                  isLoading={props.isLoading}
+                  rows={props.publications.map(publication => ({
                       ...publication,
                       created: formatDate(publication.created),
                       updated: formatDate(publication.updated),
                     }
-                  )) : []}
+                  ))}
                   caption={props.publications && props.publications.length ? caption : emptyTableCaption}
                   tableLabel={'Publications'}
                   onEditItem={item => {
@@ -71,7 +73,7 @@ function PublicationTable(props) {
                     setItemToDelete(item)
                   }}
                   disableSearch={!(props.publications && props.publications.length)}/>
-      <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon/>}>
+      <Button sx={{m: 2}} variant={'text'} href={'/publications/add'} startIcon={<AddIcon/>} disabled={props.isLoading}>
         Add Publication
       </Button>
       <DeleteItemDialog title={'Delete Publication?'} description={''} open={!!itemToDelete}
