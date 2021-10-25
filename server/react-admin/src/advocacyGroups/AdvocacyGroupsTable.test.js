@@ -3,17 +3,6 @@ import AdvocacyGroupsTable from './AdvocacyGroupsTable'
 import {render, screen} from '@testing-library/react'
 
 describe('AdvocacyGroupsTable Tests', () => {
-  describe('When first rendering with null', () => {
-    beforeEach(() => {
-      render(<AdvocacyGroupsTable advocacyGroups={null}/>)
-    })
-    it('should show empty data', () => {
-      expect(screen.getByText('No advocacy groups available')).toBeVisible()
-    })
-    it('should show add button', () => {
-      expect(screen.getByTestId('AddIcon')).toBeVisible()
-    })
-  })
   describe('When first rendering with empty array', () => {
     beforeEach(() => {
       render(<AdvocacyGroupsTable advocacyGroups={[]}/>)
@@ -33,9 +22,9 @@ describe('AdvocacyGroupsTable Tests', () => {
       expect(screen.getByTestId('Advocacy-GroupsHeaderRow')).toBeInTheDocument()
     })
 	/*unable to find 'Advocacy-GroupsRow' by test-id */
-    // it('should show 1 item', () => {
-    //   expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(1)
-    // })
+    it.skip('should show 1 item', () => {
+      expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(1)
+    })
     it('should show add button', () => {
       expect(screen.getByTestId('AddIcon')).toBeVisible()
     })
@@ -51,8 +40,8 @@ describe('AdvocacyGroupsTable Tests', () => {
       expect(screen.getByTestId('Advocacy-GroupsHeaderRow')).toBeInTheDocument()
     })
 	/*unable to find 'Advocacy-GroupsRow' by test-id */
-    // it('should show 2 items', () => {
-    //   expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(2)
-    // })
+    it.skip('should show 2 items', () => {
+      expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(2)
+    })
   })
 })
