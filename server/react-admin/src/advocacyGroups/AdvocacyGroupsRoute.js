@@ -12,7 +12,7 @@ function AdvocacyGroupsRoute() {
   }, [])
   return (
     <>
-      <AdvocacyGroupsTable advocacyGroup={advocacyGroups}/>
+      <AdvocacyGroupsTable advocacyGroups={advocacyGroups}/>
     </>
   )
 }
