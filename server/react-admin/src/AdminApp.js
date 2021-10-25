@@ -14,11 +14,11 @@ function AdminApp() {
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
             <Route name="publication-route" exact path={'/publications'} component={PublicationRoute} />
-			<Route name="advocacy-group-route" exact path={'/advocacyGroups'} component={AdvocacyGroupsRoute}/>
+			      <Route name="advocacy-group-route" exact path={'/advocacyGroups'} component={AdvocacyGroupsRoute}/>
             <Route name="add-publication-form" exact path={'/publications/add'} component={PublicationForm}/>
             <Route name="edit-publication-form" path={'/publications/edit/:id'} component={PublicationForm}/>
-			<Route name="add-advocacy-group-form" exact path={'/advocacyGroups/add'} component={AdvocacyGroupsForm} />
-			<Route name="edit-advocacy-group-form" path={'/advocacyGroups/edit/:id'} commponent={AdvocacyGroupsForm}/>
+			      <Route name="add-advocacy-group-form" exact path={'/advocacyGroups/add'} component={AdvocacyGroupsForm} />
+			      <Route name="edit-advocacy-group-form" path={'/advocacyGroups/edit/:id'} commponent={AdvocacyGroupsForm}/>
           </Switch>
         </div>
       </div>
