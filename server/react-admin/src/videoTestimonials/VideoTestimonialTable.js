@@ -40,7 +40,7 @@ function VideoTestimonialTable(props) {
   }
 
   const handleDelete = async () => {
-    const deleteTestimonialsResponse = await fetch(`/api/v1/testimonials/${itemToDelete.id}`, {
+    const deleteTestimonialsResponse = await fetch(`/api/v1/videoTestimonials/${itemToDelete.id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
     })
