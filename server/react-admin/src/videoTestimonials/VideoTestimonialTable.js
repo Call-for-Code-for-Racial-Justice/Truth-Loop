@@ -15,7 +15,7 @@ VideoTestimonialTable.propTypes = {
 }
 
 const emptyTableCaption = 'No video testimonials available'
-const caption = 'The testominial table shows a paginated list of all video testimonials currently available'
+const caption = 'The testimonials table shows a paginated list of all video testimonials currently available'
 const headCells = [
   {id: 'id', label: 'ID'},
   {id: 'subject', label: 'Subject'},

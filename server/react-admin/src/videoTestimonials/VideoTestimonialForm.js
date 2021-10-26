@@ -24,7 +24,7 @@ function VideoTestimonial() {
     setFormError(false)
   }
   const cancel = function () {
-    history.push('/videotestimonials')
+    history.push('/videoTestimonials')
   }
   const onSubmit = async function (values) {
     setSubmitting(true)
@@ -37,7 +37,7 @@ function VideoTestimonial() {
       body: JSON.stringify(values),
     })
     if (testimonialsResponse.ok) {
-      history.push('/testimonials')
+      history.push('/videoTestimonials')
     } else {
       const errorText = await testimonialsResponse.text()
       setSubmitting(false)
