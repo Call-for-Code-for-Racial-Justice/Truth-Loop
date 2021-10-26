@@ -3,15 +3,26 @@ import PublicationTable from './PublicationTable'
 import {render, screen} from '@testing-library/react'
 
 describe('PublicationTable Tests', () => {
-  describe('When first rendering with null', () => {
+  describe('When loading items', () => {
     beforeEach(() => {
-      render(<PublicationTable publications={null}/>)
+      render(<PublicationTable publications={[]} isLoading={true}/>)
     })
-    it('should show empty data', () => {
-      expect(screen.getByText('No publications available')).toBeVisible()
+    it('should show progressBar', () => {
+      expect(screen.getByRole('progressbar')).toBeVisible()
     })
-    it('should show add button', () => {
-      expect(screen.getByTestId('AddIcon')).toBeVisible()
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add Publication'})).toHaveAttribute('aria-disabled', 'true')
+    })
+  })
+  describe('When done loading items', () => {
+    beforeEach(() => {
+      render(<PublicationTable publications={[]} isLoading={false}/>)
+    })
+    it('should not show progressBar', () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add Publication'})).not.toHaveAttribute('aria-disabled', 'true')
     })
   })
   describe('When first rendering with empty array', () => {

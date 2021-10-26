@@ -14,16 +14,11 @@ AdminTableToolbar.propTypes = {
   disabled: PropTypes.bool,
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
-}
-
 function AdminTableToolbar({toolbarTitle, handleSearchRequest, disabled}) {
   const [searchText, setSearchText] = React.useState('')
   const requestSearch = (searchValue) => {
     setSearchText(searchValue)
-    const searchRegex = new RegExp(escapeRegExp(searchValue), 'i')
-    handleSearchRequest(searchRegex)
+    handleSearchRequest(searchValue)
   }
   return (
     <Toolbar sx={{pl: {sm: 2}, pr: {xs: 1, sm: 1}}}>

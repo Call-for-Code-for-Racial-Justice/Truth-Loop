@@ -3,6 +3,30 @@ import AdminTable from './AdminTable'
 import {render, screen} from '@testing-library/react'
 
 describe('AdminTable Tests', () => {
+  describe('When loading items', () => {
+    beforeEach(() => {
+      render(<AdminTable rows={[]}
+                         isLoading={true}
+                         headCells={[{id: 'id', label: 'ID'}]}
+                         caption={'Hello Widgets'}
+                         tableLabel={'Widgets'}/>)
+    })
+    it('should show progressBar', () => {
+      expect(screen.getByRole('progressbar')).toBeVisible()
+    })
+  })
+  describe('When done loading items', () => {
+    beforeEach(() => {
+      render(<AdminTable rows={[]}
+                         isLoading={false}
+                         headCells={[{id: 'id', label: 'ID'}]}
+                         caption={'Hello Widgets'}
+                         tableLabel={'Widgets'}/>)
+    })
+    it('should not show progressBar', () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
+  })
   describe('When first rendering with 1 item', () => {
     beforeEach(() => {
       render(<AdminTable rows={[{id: '1'}]} headCells={[{id: 'id', label: 'ID'}]} caption={'Hello Widgets'} tableLabel={'Widgets'}/>)

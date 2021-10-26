@@ -9,8 +9,15 @@ const DetailsAccordion = ({summary, officialsAndSponsors, policyStatus, relatedP
         <p>{summary}</p>
       </AccordionItem>
       <AccordionItem title="Officials and sponsors">
-        {/*<p>{officialsAndSponsors}</p>*/}
-        <p>TODO: handle array of officials</p>
+        {officialsAndSponsors.length ? officialsAndSponsors.map(official => (
+          <div key={official.id} data-testid={'officialsDetails'}>
+            <p>Title: {official.title}</p>
+            <p>Name: {official.name}</p>
+            <p>Email Address: {official.email_address}</p>
+            <p>Phone Number: {official.phone_number}</p>
+            <p>Role: {official.role_in_artifact}</p>
+          </div>
+        )) : <div>No officials or sponsors</div>}
       </AccordionItem>
       <AccordionItem title="Status">
         <p>{policyStatus}</p>
