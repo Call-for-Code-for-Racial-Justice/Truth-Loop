@@ -76,8 +76,8 @@ function AdminTable(props) {
     setPage(0)
   }
 
-  const handleSearchRequest = function(searchText) {
-    if (searchText) {
+  const handleSearchRequest = function (searchText) {
+    if (searchText || searchText === '') {
       const searchRegex = new RegExp(escapeRegExp(searchText), 'i')
       const filtered = rows.filter((row) => {
         return Object.keys(row).some((field) => {
