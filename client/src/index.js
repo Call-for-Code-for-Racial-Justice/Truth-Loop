@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals'
 
-import { configureStore } from './store/index'
+import { store } from './store/index'
 import App from './App'
 
 console.log(`REACT_APP_MOCK_DATA: ${process.env.REACT_APP_MOCK_DATA}`)
 console.log(`REACT_APP_SERVER_URL: ${process.env.REACT_APP_SERVER_URL}`)
 document.getElementById('root').style.maxWidth = '100vw'
 
-const globalStore = configureStore()
+const globalStore = store
 const app =
   <Provider store={globalStore}>
     <App />

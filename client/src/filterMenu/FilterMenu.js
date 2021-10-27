@@ -1,13 +1,15 @@
 import React, {forwardRef} from 'react'
 import PropTypes from 'prop-types'
+import {injectIntl} from 'react-intl'
+import {messages} from '../nls/nlsUtility'
 
-const FilterMenu = forwardRef(({show, children}, ref)=>{
+const FilterMenu = forwardRef(({show, intl, children}, ref)=>{
     return(
         <div>
             {show &&
                 <div className="menu-bg">
                     <div className="menu-main" ref={ref}>
-                        <p>Filter by:</p>
+                        <p>{intl.formatMessage(messages.filterBy)}</p>
                         <div className="filters" data-testid='filterSelection'>
                             {children}
                         </div>
@@ -19,7 +21,8 @@ const FilterMenu = forwardRef(({show, children}, ref)=>{
 })
 FilterMenu.propTypes={
     show:PropTypes.bool,
-    children:PropTypes.node
+    intl: PropTypes.any.isRequired,
+    children:PropTypes.node,
 }
 FilterMenu.displayName = 'FilterMenu'
-export default FilterMenu
+export default injectIntl(FilterMenu)

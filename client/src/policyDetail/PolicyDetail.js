@@ -7,8 +7,10 @@ import DetailsAccordion from './DetailsAccordion'
 import {Button} from 'carbon-components-react'
 import Launch16 from '@carbon/icons-react/lib/launch/16'
 import {useHistory} from 'react-router-dom'
+import {injectIntl} from 'react-intl'
+import {messages} from '../nls/nlsUtility'
 
-const PolicyDetail = ({policy}) => {
+const PolicyDetail = ({policy, intl}) => {
   const history = useHistory()
 
   const handleTellMyStoryClicked = useCallback(() => {
@@ -20,7 +22,7 @@ const PolicyDetail = ({policy}) => {
       <div className="bx--grid policy">
         <div className="bx--row">
           <div className="bx--col">
-            <h6 className="light-text">Federal</h6>
+            <h6 className="light-text">{intl.formatMessage(messages.federal)}</h6>
           </div>
         </div>
         <div className="bx--row">
@@ -46,7 +48,7 @@ const PolicyDetail = ({policy}) => {
         <div className="bx--row launch">
           <div className="bx--col">
             <h5>
-              <a href={`${policy.link_to_full_text}`} target="_blank" rel="noreferrer">Full Text <Launch16/></a>
+              <a href={`${policy.link_to_full_text}`} target="_blank" rel="noreferrer">{intl.formatMessage(messages.fullText)}<Launch16/></a>
             </h5>
           </div>
         </div>
@@ -59,18 +61,19 @@ const PolicyDetail = ({policy}) => {
 
       <Button data-testid={'tellMyStoryButton'} kind={'primary'} icon="img/video--add.svg" className="fixed-btn lower-btn"
               onClick={handleTellMyStoryClicked}>
-        Tell my story
+        {intl.formatMessage(messages.tellStory)}
       </Button>
 
       <Button kind={'secondary'} icon="img/video--filled.svg" className="fixed-btn bottom-btn" onClick={() => {
         console.warn('not yet implemented')
       }}>
-        See policy testimonials
+        {intl.formatMessage(messages.seeTestimonials)}
       </Button>
     </div>
   )
 }
 PolicyDetail.propTypes = {
   policy: PropTypes.object.isRequired,
+  intl: PropTypes.any.isRequired
 }
-export default PolicyDetail
+export default injectIntl(PolicyDetail)
