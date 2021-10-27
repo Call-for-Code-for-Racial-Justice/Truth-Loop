@@ -3,15 +3,27 @@ import VideoTestimonialTable from './VideoTestimonialTable'
 import {render, screen} from '@testing-library/react'
 
 describe('TestimonialTable Tests', () => {
-  describe('When first rendering with null', () => {
+
+  describe('When loading items', () => {
     beforeEach(() => {
-      render(<VideoTestimonialTable testimonials={null}/>)
+      render(<VideoTestimonialTable testimonials={[]} isLoading={true}/>)
     })
-    it('should show empty data', () => {
-      expect(screen.getByText('No video testimonials available')).toBeVisible()
+    it('should show progressBar', () => {
+      expect(screen.getByRole('progressbar')).toBeVisible()
     })
-    it('should show add button', () => {
-      expect(screen.getByTestId('AddIcon')).toBeVisible()
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add testimonial'})).toHaveAttribute('aria-disabled', 'true')
+    })
+  })
+  describe('When done loading items', () => {
+    beforeEach(() => {
+      render(<VideoTestimonialTable testimonials={[]} isLoading={false}/>)
+    })
+    it('should not show progressBar', () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add testimonial'})).not.toHaveAttribute('aria-disabled', 'true')
     })
   })
   describe('When first rendering with empty array', () => {
@@ -46,6 +58,5 @@ describe('TestimonialTable Tests', () => {
     it('should show header row', () => {
       expect(screen.getByTestId('TestimonialsHeaderRow')).toBeInTheDocument()
     })
-   
   })
 })

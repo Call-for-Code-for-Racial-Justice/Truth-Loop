@@ -13,7 +13,7 @@ const emptyFormValues = {name: '', description: '', email_address: '', phone_num
 
 function AdvocacyGroupsForm() {
   const location = useLocation()
-  const existingAdvocacyGroup = location?.state?.advocacyGroup
+  const existingAdvocacyGroup = location?.state?.group
   const { control, handleSubmit, reset } = useForm({
     defaultValues: existingAdvocacyGroup ? {...existingAdvocacyGroup} : {...emptyFormValues}
   })

@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AdminTable from '../AdminTable'
 import Paper from '@mui/material/Paper'
 import formatDate from '../formatDate'
-import AdminTableToolbar from '../AdminTableToolbar'
 import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteItemDialog from '../form/DeleteItemDialog'
 import Snackbar from '@mui/material/Snackbar'
 
 AdvocacyGroupsTable.propTypes = {
-  advocacyGroups: PropTypes.array,
+  advocacyGroups: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool,
 }
 
 const emptyTableCaption = 'No advocacy groups available'
@@ -30,7 +30,6 @@ const headCells = [
 function AdvocacyGroupsTable(props) {
 
   const history = useHistory()
-  const [advocacyGroups, setAdvocacyGroups] = useState([])
   const [deleteError, setDeleteError] = useState('')
   const [itemToDelete, setItemToDelete] = useState(null)
 
@@ -57,28 +56,11 @@ function AdvocacyGroupsTable(props) {
     }
   }
 
-  const handleSearchRequest = function (searchText) {
-    const filteredRows = props.advocacyGroups.filter((row) => {
-      return Object.keys(row).some((field) => {
-        return searchText.test(row[field].toString())
-      })
-    })
-    setAdvocacyGroups(filteredRows)
-  }
-
-  useEffect(() => {
-    if (props.advocacyGroups && props.advocacyGroups.length) {
-      setAdvocacyGroups(props.advocacyGroups)
-    }
-  }, [props.advocacyGroups])
-
   return (
     <Paper data-testid={'AdvocacyGroupsTable'} elevation={12}>
-      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={'All Advocacy Groups'}
-                         showAdd={true} addFormPath={'/advocacyGroups/add'}
-                         disabled={!(props.advocacyGroups && props.advocacyGroups.length)}/>
       <AdminTable headCells={headCells}
-                  rows={advocacyGroups.map(group => ({
+                  isLoading={props.isLoading}
+                  rows={props.advocacyGroups.map(group => ({
                       ...group,
                       created: formatDate(group.created),
                       updated: formatDate(group.updated),
@@ -91,8 +73,9 @@ function AdvocacyGroupsTable(props) {
                   }}
                   onDeleteItem={item => {
                     setItemToDelete(item)
-                  }}/>
-      <Button sx={{m: 2}} variant={'text'} href={'/advocacyGroups/add'} startIcon={<AddIcon/>}>
+                  }}
+                  disableSearch={!(props.advocacyGroups && props.advocacyGroups.length)}/>
+      <Button sx={{m: 2}} variant={'text'} href={'/advocacyGroups/add'} startIcon={<AddIcon/>} disabled={props.isLoading}>
         Add Advocacy Group
       </Button>
       <DeleteItemDialog title={'Delete Advocacy Group?'} description={''} open={!!itemToDelete}
