@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import {useHistory, useLocation} from 'react-router-dom'
-import {useForm} from 'react-hook-form'
+import React, { useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
@@ -8,12 +8,15 @@ import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
 
-const emptyFormValues = {name: '', description: '', email: '', phone: '', url: ''}
+// eslint-disable-next-line camelcase
+const emptyFormValues = {name: '', description: '', email_address: '', phone_number: '', website_url: ''}
 
 function AdvocacyGroupsForm() {
   const location = useLocation()
-  const existingAdvocacyGroup = location?.state?.group
-  const {control, handleSubmit, reset} = useForm({defaultValues: existingAdvocacyGroup ? {...existingAdvocacyGroup} : {...emptyFormValues}})
+  const existingAdvocacyGroup = location?.state?.advocacyGroup
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: existingAdvocacyGroup ? {...existingAdvocacyGroup} : {...emptyFormValues}
+  })
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
   const history = useHistory()
@@ -35,7 +38,7 @@ function AdvocacyGroupsForm() {
       body: JSON.stringify(values)
     })
     if (advocacyGroupsResponse.ok) {
-      history.push('/publications')
+      history.push('/advocacyGroups')
     } else {
       const errorText = await advocacyGroupsResponse.text()
       setSubmitting(false)
@@ -61,13 +64,13 @@ function AdvocacyGroupsForm() {
                               required/>
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'email'} control={control} label={'Email Address'} required/>
+              <TextFieldInput name={'email_address'} control={control} label={'Email Address'} required/>
             </Grid>
-			<Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'phone'} control={control} label={'Phone Number'} required/>
+            <Grid item lg={4} md={6} xs={12}>
+              <TextFieldInput name={'phone_number'} control={control} label={'Phone Number'} required/>
             </Grid>
-			<Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'url'} control={control} label={'Website URL'} required/>
+            <Grid item lg={4} md={6} xs={12}>
+              <TextFieldInput name={'website_url'} control={control} label={'Website URL'} required/>
             </Grid>
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
