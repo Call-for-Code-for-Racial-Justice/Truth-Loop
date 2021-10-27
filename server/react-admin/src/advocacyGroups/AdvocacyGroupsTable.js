@@ -20,9 +20,9 @@ const headCells = [
   {id: 'id', label: 'ID'},
   {id: 'name', label: 'Name'},
   {id: 'description', label: 'Description'},
-  {id: 'email', label: 'Email Address'},
-  {id: 'phone', label: 'Phone Number'},
-  {id: 'url', label: 'Website URL'},
+  {id: 'email_address', label: 'Email Address'},
+  {id: 'phone_number', label: 'Phone Number'},
+  {id: 'website_url', label: 'Website URL'},
   {id: 'created', label: 'Date Created'},
   {id: 'updated', label: 'Last updated'},
 ]
