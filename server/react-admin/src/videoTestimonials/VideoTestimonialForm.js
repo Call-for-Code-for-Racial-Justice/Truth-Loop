@@ -33,7 +33,7 @@ function VideoTestimonial() {
   const onSubmit = async function (values) {
     setSubmitting(true)
     const url = existingTestimonial
-      ? `/api/v1/videoTestimonial/${existingTestimonial.id}`
+      ? `/api/v1/videoTestimonials/${existingTestimonial.id}`
       : '/api/v1/videoTestimonials'
     const testimonialsResponse = await fetch(url, {
       method: existingTestimonial ? 'PUT' : 'POST',
