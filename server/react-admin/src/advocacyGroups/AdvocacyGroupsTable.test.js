@@ -3,6 +3,28 @@ import AdvocacyGroupsTable from './AdvocacyGroupsTable'
 import {render, screen} from '@testing-library/react'
 
 describe('AdvocacyGroupsTable Tests', () => {
+  describe('When loading items', () => {
+    beforeEach(() => {
+      render(<AdvocacyGroupsTable advocacyGroups={[]} isLoading={true}/>)
+    })
+    it('should show progressBar', () => {
+      expect(screen.getByRole('progressbar')).toBeVisible()
+    })
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add Advocacy Group'})).toHaveAttribute('aria-disabled', 'true')
+    })
+  })
+  describe('When done loading items', () => {
+    beforeEach(() => {
+      render(<AdvocacyGroupsTable advocacyGroups={[]} isLoading={false}/>)
+    })
+    it('should not show progressBar', () => {
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
+    })
+    it('should disable add button', () => {
+      expect(screen.getByRole('link', {name: 'Add Advocacy Group'})).not.toHaveAttribute('aria-disabled', 'true')
+    })
+  })
   describe('When first rendering with empty array', () => {
     beforeEach(() => {
       render(<AdvocacyGroupsTable advocacyGroups={[]}/>)
@@ -21,8 +43,7 @@ describe('AdvocacyGroupsTable Tests', () => {
     it('should show header row', () => {
       expect(screen.getByTestId('Advocacy-GroupsHeaderRow')).toBeInTheDocument()
     })
-	/*unable to find 'Advocacy-GroupsRow' by test-id */
-    it.skip('should show 1 item', () => {
+    it('should show 1 item', () => {
       expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(1)
     })
     it('should show add button', () => {
@@ -32,15 +53,26 @@ describe('AdvocacyGroupsTable Tests', () => {
   describe('When first rendering with 2 items', () => {
     beforeEach(() => {
       render(<AdvocacyGroupsTable advocacyGroups={[
-        {id: '1', title: 'title 1', description: 'desc 1', created: '2016-11-03T04:47:00.000Z', updated: '2016-11-03T04:47:00.000Z'},
-        {id: '2', title: 'title 1', description: 'desc 1', created: '2016-11-03T04:47:00.000Z', updated: '2016-11-03T04:47:00.000Z'},
+        {
+          id: '1',
+          title: 'title 1',
+          description: 'desc 1',
+          created: '2016-11-03T04:47:00.000Z',
+          updated: '2016-11-03T04:47:00.000Z'
+        },
+        {
+          id: '2',
+          title: 'title 1',
+          description: 'desc 1',
+          created: '2016-11-03T04:47:00.000Z',
+          updated: '2016-11-03T04:47:00.000Z'
+        },
       ]}/>)
     })
     it('should show header row', () => {
       expect(screen.getByTestId('Advocacy-GroupsHeaderRow')).toBeInTheDocument()
     })
-	/*unable to find 'Advocacy-GroupsRow' by test-id */
-    it.skip('should show 2 items', () => {
+    it('should show 2 items', () => {
       expect(screen.getAllByTestId('Advocacy-GroupsRow').length).toBe(2)
     })
   })

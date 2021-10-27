@@ -24,7 +24,7 @@ function AdminApp() {
             <Route name="add-publication-form" exact path={'/publications/add'} component={PublicationForm}/>
             <Route name="edit-publication-form" path={'/publications/edit/:id'} component={PublicationForm}/>
 			      <Route name="add-advocacy-group-form" exact path={'/advocacyGroups/add'} component={AdvocacyGroupsForm} />
-			      <Route name="edit-advocacy-group-form" path={'/advocacyGroups/edit/:id'} commponent={AdvocacyGroupsForm}/>
+            <Route name="edit-advocacy-group-form" path={'/advocacyGroups/edit/:id'} component={AdvocacyGroupsForm} />
           </Switch>
         </div>
       </div>
