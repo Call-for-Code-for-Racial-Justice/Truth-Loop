@@ -49,7 +49,9 @@ function PublicationForm() {
 
   return (
     <Paper elevation={12} data-testid={'addPublicationForm'} sx={{p: 2}}>
-      <Typography component={'h2'} variant={'h6'} mb={2}>Add Publication</Typography>
+      <Typography component={'h2'} variant={'h6'} mb={2}>
+        {existingPublication ? 'Edit' : 'Add'} Publication
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item container spacing={2}>

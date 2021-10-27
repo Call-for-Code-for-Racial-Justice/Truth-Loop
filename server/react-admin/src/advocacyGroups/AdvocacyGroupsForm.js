@@ -52,7 +52,7 @@ function AdvocacyGroupsForm() {
 
   return (
     <Paper elevation={12} data-testid={'add'} sx={{p: 2}}>
-      <Typography component={'h2'} variant={'h6'} mb={2}>Add Advocacy Group</Typography>
+      <Typography component={'h2'} variant={'h6'} mb={2}>{existingAdvocacyGroup ? 'Edit' : 'Add'}  Advocacy Group</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           <Grid item container spacing={2}>

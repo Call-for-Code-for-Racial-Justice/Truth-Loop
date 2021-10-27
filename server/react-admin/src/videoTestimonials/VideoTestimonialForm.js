@@ -55,7 +55,7 @@ function VideoTestimonial() {
   return (
     <Paper elevation={12} data-testid={'addTestimonialForm'} sx={{ p: 2 }}>
       <Typography component={'h2'} variant={'h6'} mb={2}>
-        Add Testimonial
+        {existingTestimonial ? 'Edit' : 'Add'} Testimonial
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>

@@ -13,9 +13,13 @@ import TablePagination from '@mui/material/TablePagination'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import {visuallyHidden} from '@mui/utils'
 import TableBody from '@mui/material/TableBody'
-import AdminTableToolbar from './AdminTableToolbar'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
+import TextField from '@mui/material/TextField'
+import SearchIcon from '@mui/icons-material/Search'
+import ClearIcon from '@mui/icons-material/Clear'
+import Toolbar from '@mui/material/Toolbar'
 
 AdminTable.propTypes = {
   headCells: PropTypes.array.isRequired,
@@ -51,6 +55,8 @@ function escapeRegExp(value) {
 function AdminTable(props) {
 
   const {headCells, rows, caption, tableLabel, onEditItem, onDeleteItem, disableSearch, isLoading} = props
+
+  const [searchText, setSearchText] = React.useState('')
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('id')
   const [page, setPage] = React.useState(0)
@@ -76,9 +82,10 @@ function AdminTable(props) {
     setPage(0)
   }
 
-  const handleSearchRequest = function (searchText) {
-    if (searchText || searchText === '') {
-      const searchRegex = new RegExp(escapeRegExp(searchText), 'i')
+  const handleSearchRequest = function (searchRequestText) {
+    setSearchText(searchRequestText)
+    if (searchRequestText || searchRequestText === '') {
+      const searchRegex = new RegExp(escapeRegExp(searchRequestText), 'i')
       const filtered = rows.filter((row) => {
         return Object.keys(row).some((field) => {
           return searchRegex.test(row[field].toString())
@@ -90,14 +97,46 @@ function AdminTable(props) {
   }
 
   useEffect(() => {
+    setSearchText('')
     setFilteredRows(rows)
     setPage(0)
   }, [setPage, setFilteredRows, rows])
 
   return (
     <>
-      <AdminTableToolbar handleSearchRequest={handleSearchRequest} toolbarTitle={tableLabel} disabled={disableSearch}/>
+      <Toolbar sx={{pl: {sm: 2}, pr: {xs: 1, sm: 1}}}>
+        <Typography
+          sx={{flex: '1 1 100%'}}
+          variant="h6"
+          id="tableTitle"
+          component="h2"
+        >
+          {tableLabel}
+        </Typography>
 
+        <Tooltip title="Search list">
+          <TextField fullWidth
+                     disabled={disableSearch}
+                     variant="standard"
+                     value={searchText}
+                     onChange={(event) => handleSearchRequest(event.target.value)}
+                     placeholder="Search..."
+                     InputProps={{
+                       startAdornment: <SearchIcon fontSize="small"/>,
+                       endAdornment: (
+                         <IconButton
+                           title="Clear"
+                           aria-label="Clear"
+                           style={{visibility: searchText ? 'visible' : 'hidden'}}
+                           onClick={() => requestSearch('')}
+                         >
+                           <ClearIcon fontSize="small"/>
+                         </IconButton>
+                       ),
+                     }}
+          />
+        </Tooltip>
+      </Toolbar>
       <TableContainer sx={{maxHeight: 600}}>
         { isLoading ?
           <Box component={'span'} sx={{ p: 2 }}>
