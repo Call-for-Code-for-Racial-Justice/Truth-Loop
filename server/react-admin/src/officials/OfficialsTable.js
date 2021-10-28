@@ -43,7 +43,7 @@ function OfficialsTable(props) {
 
   const handleDelete = async () => {
     // TODO https://github.com/Call-for-Code-for-Racial-Justice/Truth-Loop/issues/226
-    const deleteOfficlasResponse = await fetch(`/api/v1/officials/${itemToDelete.id}`, {
+    const deleteOfficialsResponse = await fetch(`/api/v1/officials/${itemToDelete.id}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json'},
     })
