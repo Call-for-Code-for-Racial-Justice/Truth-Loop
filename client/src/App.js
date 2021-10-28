@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import {IntlProvider} from 'react-intl-redux'
 import './App.scss'
 import HomeRoute from './homeRoute/HomeRoute'
 import PolicyRoute from './policyRoute/PolicyRoute'
@@ -23,7 +22,6 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
-      <IntlProvider>
         <div id={'app'}>
           <div id={'main-content'} data-testid={'mainContent'}>
           <AppTopBar />
@@ -34,7 +32,6 @@ function App() {
             </Switch>
           </div>
         </div>
-      </IntlProvider>
     </BrowserRouter>
   )
 }
