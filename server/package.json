@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd react-admin && npm install",
     "test": "npm run test:adminui",
     "test:adminui": "cd react-admin && npm run test:nowatch",
     "test:integration": "jest --detectOpenHandles --testPathIgnorePatterns react-admin",
