@@ -12,8 +12,8 @@ const emptyFormValues = {name: '', description: ''}
 
 function LevelsForm() {
   const location = useLocation()
-  const existingLevels = location?.state?.level
-  const {control, handleSubmit, reset} = useForm({defaultValues: existingLevels ? {...existingLevels} : {...emptyFormValues}})
+  const existingLevel = location?.state?.level
+  const {control, handleSubmit, reset} = useForm({defaultValues: existingLevel ? {...existingLevel} : {...emptyFormValues}})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
   const history = useHistory()
@@ -28,9 +28,9 @@ function LevelsForm() {
 
   const onSubmit = async function (values) {
     setSubmitting(true)
-    const url = existingLevels ? `/api/v1/levels/${existingLevels.id}` : '/api/v1/levels'
+    const url = existingLevel ? `/api/v1/levels/${existingLevel.id}` : '/api/v1/levels'
     const levelsResponse = await fetch(url, {
-      method: existingLevels ? 'PUT' : 'POST',
+      method: existingLevel ? 'PUT' : 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)
     })
@@ -73,7 +73,7 @@ function LevelsForm() {
             </Grid>
             <Grid item>
               <Button variant="contained" color="primary" disabled={submitting} type={'submit'}>
-                {existingLevels ? 'Update' : 'Add'}
+                {existingLevel ? 'Update' : 'Add'}
               </Button>
             </Grid>
           </Grid>
