@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, screen} from '@testing-library/react'
+import {render, screen} from '../testUtils.js'
 import {createMemoryHistory} from 'history'
 import {Route, Router} from 'react-router-dom'
 import {Provider} from 'react-redux'

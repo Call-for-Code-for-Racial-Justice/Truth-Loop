@@ -1,5 +1,6 @@
 import React from 'react'
-import {fireEvent, render, screen} from '@testing-library/react'
+import {fireEvent} from '@testing-library/react'
+import {render, screen} from '../testUtils.js'
 import {createMemoryHistory} from 'history'
 import {Provider} from 'react-redux'
 import {Route, Router} from 'react-router-dom'

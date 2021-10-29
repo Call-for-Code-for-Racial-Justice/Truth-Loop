@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import {render, screen} from '../testUtils.js'
 import FilterMenu from './FilterMenu'
 
 describe('wheck rendering of the filterMenu',()=>{
