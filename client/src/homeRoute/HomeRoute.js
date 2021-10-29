@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
+import {injectIntl} from 'react-intl'
 import './HomeRoute.scss'
 import PrivacyNotice from '../privacyNotice/PrivacyNotice'
 import PolicyTable from '../policyTable/PolicyTable'
 import {fetchPoliciesFromServer} from '../store/policyList.duck'
+import {messages} from '../nls/nlsUtility'
+import PropTypes from 'prop-types'
 
-const HomeRoute = () => {
+const HomeRoute = ({intl}) => {
   const {privacyAccepted, privacyCancelled} = useSelector(({privacy}) => privacy)
   const {items} = useSelector(({policyList}) => policyList)
   const dispatch = useDispatch()
@@ -19,9 +22,9 @@ const HomeRoute = () => {
   const renderPrivacyCancelContent = () => {
     return (
       <div data-testid={'pleaseAcceptPrivacyStatement'} className="privacy-cancel-content">
-        <h5>Please accept the Privacy Statement.</h5>
-        <p>Sorry! content is not available without accepting the privacy policy.
-          <br/>Please refresh this page and accept the privacy statement.</p>
+        <h5>{intl.formatMessage(messages.privacyAccept)}</h5>
+        <p>{intl.formatMessage(messages.privacyNotAvail)}
+          <br/>{intl.formatMessage(messages.privacyRefresh)}</p>
       </div>
     )
   }
@@ -41,4 +44,9 @@ const HomeRoute = () => {
   )
 }
 
-export default HomeRoute
+HomeRoute.propTypes = {
+  intl: PropTypes.any.isRequired
+}
+
+
+export default injectIntl(HomeRoute)

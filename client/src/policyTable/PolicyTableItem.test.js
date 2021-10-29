@@ -1,5 +1,6 @@
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import {fireEvent} from '@testing-library/react'
+import {render, screen} from '../testUtils.js'
 import PolicyTableItem from './PolicyTableItem'
 import * as transformDate from '../transformDate'
 import {createMemoryHistory} from 'history'
