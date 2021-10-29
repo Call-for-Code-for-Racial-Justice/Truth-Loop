@@ -1,0 +1,28 @@
+on:
+  pull_request:
+    branches:
+      - "**"
+name: Build Client PR
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: read-all
+    defaults:
+      run:
+        working-directory: client
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Install dependencies
+        run: npm install
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run test
