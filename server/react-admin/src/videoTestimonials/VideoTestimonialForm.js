@@ -7,9 +7,10 @@ import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
+import CheckboxInput from '../form/CheckboxInput'
 
 // eslint-disable-next-line camelcase
-const emptyFormValues = { subject: '', comment: '', video_cms_id: '' }
+const emptyFormValues = { subject: '', comment: '', video_cms_id: '', prvcy_stmt_ack: false }
 
 function VideoTestimonial() {
   const location = useLocation()
@@ -19,7 +20,6 @@ function VideoTestimonial() {
   })
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
-  const [privacyStatement, setPrivacyStatement] = useState(false)
   const history = useHistory()
 
   const handleCloseFormError = function () {
@@ -70,16 +70,7 @@ function VideoTestimonial() {
               <TextFieldInput name={'video_cms_id'} control={control} label={'Video CMS ID'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <input
-                type='checkbox'
-                name='privacyStatement'
-                value={privacyStatement}
-                onClick={() => {
-                  setPrivacyStatement(!privacyStatement)
-                }}
-                required
-              />
-              Accept Privacy Statement
+              <CheckboxInput name='privacy_stmt_ack' control={control} label={'Privacy Statement Acknowledgement'} required />
             </Grid>
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
