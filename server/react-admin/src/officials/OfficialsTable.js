@@ -18,7 +18,7 @@ const emptyTableCaption = 'No officials available'
 const caption = 'The officials table shows a paginated list of all officials currently available'
 const headCells = [
   {id: 'id', label: 'ID'},
-  {id: 'id', label: 'Name'},
+  {id: 'name', label: 'Name'},
   {id: 'title', label: 'Title'},
   {id: 'email_address', label: 'Email Address'},
   {id: 'phone_number', label: 'Phone Number'},
