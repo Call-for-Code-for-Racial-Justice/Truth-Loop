@@ -16,20 +16,14 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'jest',
-    'prettier',
-  ],
+  plugins: ['react', 'jest', 'prettier'],
   rules: {
-    "prettier/prettier": 'error',
+    'prettier/prettier': 'error',
     camelcase: 'warn',
   },
   overrides: [
     {
-      files: [
-        '**/*.test.js',
-      ],
+      files: ['**/*.test.js'],
       env: {
         jest: true,
       },

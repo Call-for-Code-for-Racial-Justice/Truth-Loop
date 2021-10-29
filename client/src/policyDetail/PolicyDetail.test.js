@@ -1,10 +1,10 @@
 import React from 'react'
-import {fireEvent} from '@testing-library/react'
-import {render, screen} from '../testUtils.js'
+import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../testUtils.js'
 import PolicyDetail from './PolicyDetail'
 import * as transformDate from '../transformDate'
-import {createMemoryHistory} from 'history'
-import {Router} from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
 
 describe('PolicyDetail component tests', () => {
   let transformDateSpy, historyPushSpy
@@ -16,7 +16,18 @@ describe('PolicyDetail component tests', () => {
       render(
         <Router history={history}>
           {/* eslint-disable-next-line camelcase */}
-          <PolicyDetail policy={{id: '105', title: 'test title', summary: 'test summary', officials: [], date_introduced: '2016-11-03T04:47:00.000Z', status: 'some status', link_to_full_text: 'https://example.com', related: []}}/>
+          <PolicyDetail
+            policy={{
+              id: '105',
+              title: 'test title',
+              summary: 'test summary',
+              officials: [],
+              date_introduced: '2016-11-03T04:47:00.000Z',
+              status: 'some status',
+              link_to_full_text: 'https://example.com',
+              related: [],
+            }}
+          />
         </Router>
       )
     })
