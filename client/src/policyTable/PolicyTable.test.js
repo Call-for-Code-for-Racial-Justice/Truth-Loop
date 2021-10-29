@@ -1,5 +1,7 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+// We're importing from our own created test-utils and not RTL's
+import {render, screen} from '../testUtils.js'
 import PolicyTable from './PolicyTable'
 
 describe('PolicyTable component tests', () => {

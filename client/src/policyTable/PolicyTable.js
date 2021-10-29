@@ -3,12 +3,14 @@ import React from 'react'
 import {Column, Grid, Row} from 'carbon-components-react'
 import PolicyTableItem from './PolicyTableItem'
 import PropTypes from 'prop-types'
+import {injectIntl} from 'react-intl'
+import {messages} from '../nls/nlsUtility'
 
-const PolicyTable = ({policies}) => {
+const PolicyTable = ({policies, intl}) => {
   const renderEmptyPolicyTable = () => {
     return (
       <div data-testid={'emptyPolicyTable'}>
-        No Policies Available.
+        {intl.formatMessage(messages.noPolicies)}
       </div>
     )
   }
@@ -39,7 +41,8 @@ const PolicyTable = ({policies}) => {
 }
 
 PolicyTable.propTypes = {
-  policies: PropTypes.array.isRequired
+  policies: PropTypes.array.isRequired,
+  intl: PropTypes.any.isRequired
 }
 
-export default PolicyTable
+export default injectIntl(PolicyTable)

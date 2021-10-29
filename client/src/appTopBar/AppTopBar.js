@@ -1,12 +1,15 @@
 import React, { useState, useEffect,useRef } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
+import {injectIntl} from 'react-intl'
 //Icons 
 import ChevronLeft20 from '@carbon/icons-react/lib/chevron--left/20'
 import SettingsAdjust20 from '@carbon/icons-react/lib/settings--adjust/20'
 import './apptopbar.scss'
 import FilterMenu from '../filterMenu/FilterMenu'
+import {messages} from '../nls/nlsUtility'
+import PropTypes from 'prop-types'
 
-export default function AppTopBar() {
+const AppTopBar = ({intl}) => {
     const location = useLocation()
     const history = useHistory()
     const ref = useRef()
@@ -50,7 +53,7 @@ export default function AppTopBar() {
                 {back && <ChevronLeft20 className="back" onClick={() => history.goBack()} data-testid={'backButton'}/>}
             </div>
             <div className="title">
-                <p>Truth-Loop</p>
+                <p>{intl.formatMessage(messages.appTitle)}</p>
             </div>
             <div className="right-panel">
                 <SettingsAdjust20 className="settings" data-testid='settingsButton' onMouseDown={()=>{setShow(!show)}}/>
@@ -75,3 +78,9 @@ export default function AppTopBar() {
         </div>
     )
 }
+
+AppTopBar.propTypes = {
+    intl: PropTypes.any.isRequired
+}
+  
+export default injectIntl(AppTopBar)

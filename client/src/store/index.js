@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { intlReducer } from 'react-intl-redux'
 import thunk from 'redux-thunk'
 
 import appSettingsReducer from './appSettings.duck'
@@ -23,14 +24,14 @@ const loadFromLocalStorage = () => {
     return undefined
   }
 }
-
-export const configureStore = () => {
+const configureStore = () => {
 
   const reducers = combineReducers({
     appSettings: appSettingsReducer,
     policyList: policyListReducer,
     policy: policyReducer,
     privacy: privacyReducer,
+    intl: intlReducer,
   })
 
   const middleware = [thunk]
@@ -50,3 +51,5 @@ export const configureStore = () => {
 
   return store
 }
+
+export const store = configureStore()
