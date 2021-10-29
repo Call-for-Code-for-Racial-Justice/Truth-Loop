@@ -12,7 +12,7 @@ const emptyFormValues = {name: '', title: '', email_address: '', phone_number: '
 
 function OfficialsForm() {
   const location = useLocation()
-  const existingOfficials = location?.state?.officials
+  const existingOfficials = location?.state?.official
   const {control, handleSubmit, reset} = useForm({defaultValues: existingOfficials ? {...existingOfficials} : {...emptyFormValues}})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
