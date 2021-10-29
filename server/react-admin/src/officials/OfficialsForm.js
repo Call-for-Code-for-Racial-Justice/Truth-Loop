@@ -12,8 +12,8 @@ const emptyFormValues = {name: '', title: '', email_address: '', phone_number: '
 
 function OfficialsForm() {
   const location = useLocation()
-  const existingOfficials = location?.state?.official
-  const {control, handleSubmit, reset} = useForm({defaultValues: existingOfficials ? {...existingOfficials} : {...emptyFormValues}})
+  const existingOfficial = location?.state?.official
+  const {control, handleSubmit, reset} = useForm({defaultValues: existingOfficial ? {...existingOfficial} : {...emptyFormValues}})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
   const history = useHistory()
@@ -28,9 +28,9 @@ function OfficialsForm() {
 
   const onSubmit = async function (values) {
     setSubmitting(true)
-    const url = existingOfficials ? `/api/v1/officials/${existingOfficials.id}` : '/api/v1/officials'
+    const url = existingOfficial ? `/api/v1/officials/${existingOfficial.id}` : '/api/v1/officials'
     const officialsResponse = await fetch(url, {
-      method: existingOfficials ? 'PUT' : 'POST',
+      method: existingOfficial ? 'PUT' : 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(values)
     })
@@ -83,7 +83,7 @@ function OfficialsForm() {
             </Grid>
             <Grid item>
               <Button variant="contained" color="primary" disabled={submitting} type={'submit'}>
-                {existingOfficials ? 'Update' : 'Add'}
+                {existingOfficial ? 'Update' : 'Add'}
               </Button>
             </Grid>
           </Grid>
