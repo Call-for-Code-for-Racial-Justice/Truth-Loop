@@ -12,7 +12,7 @@ const emptyFormValues = {name: '', description: ''}
 
 function LevelsForm() {
   const location = useLocation()
-  const existingLevels = location?.state?.levels
+  const existingLevels = location?.state?.level
   const {control, handleSubmit, reset} = useForm({defaultValues: existingLevels ? {...existingLevels} : {...emptyFormValues}})
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
