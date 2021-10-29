@@ -19,7 +19,6 @@ module.exports = {
   plugins: ['react', 'jest', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    camelcase: 'warn',
   },
   overrides: [
     {
