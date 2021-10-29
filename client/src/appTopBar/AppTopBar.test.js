@@ -1,6 +1,7 @@
 import React from 'react'
 import {MemoryRouter} from 'react-router-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
+import {render, screen} from '../testUtils.js'
+import { fireEvent } from '@testing-library/react'
 import AppTopBar from './AppTopBar'
 describe('top-bar component test', ()=>{
     describe('after initial rendering', ()=>{
