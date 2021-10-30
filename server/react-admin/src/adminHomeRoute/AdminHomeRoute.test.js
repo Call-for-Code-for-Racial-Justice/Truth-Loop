@@ -6,7 +6,7 @@ import AdminHomeRoute from './AdminHomeRoute'
 describe('AdminHomeRoute component tests', () => {
   describe('after initial rendering', () => {
     beforeEach(() => {
-      render(<AdminHomeRoute/>)
+      render(<AdminHomeRoute />)
     })
     it('shows the main content', () => {
       expect(screen.getByTestId('adminHomeContent')).toBeInTheDocument()

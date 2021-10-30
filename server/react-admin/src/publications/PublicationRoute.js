@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import PublicationTable from './PublicationTable'
 
 function PublicationRoute() {
@@ -16,7 +16,7 @@ function PublicationRoute() {
   }, [])
   return (
     <>
-      <PublicationTable publications={publications} isLoading={loadingPublications}/>
+      <PublicationTable publications={publications} isLoading={loadingPublications} />
     </>
   )
 }

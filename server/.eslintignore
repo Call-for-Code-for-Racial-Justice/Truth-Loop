@@ -1,0 +1,6 @@
+# Ignore dirs for root and subdirs
+node_modules/
+build/
+static/
+admin/
+
