@@ -10,7 +10,7 @@ describe('AdvocacyGroupsRoute Tests', () => {
     beforeEach(() => {
       window.fetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ([{some: 'item'}])
+        json: async () => [{ some: 'item' }],
       })
       render(<AdvocacyGroupsRoute />)
     })
@@ -22,4 +22,3 @@ describe('AdvocacyGroupsRoute Tests', () => {
     })
   })
 })
-  

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import VideoTestimonialTable from './VideoTestimonialTable'
 
 function VideoTestimonialRoute() {
@@ -16,7 +16,7 @@ function VideoTestimonialRoute() {
   }, [])
   return (
     <>
-      <VideoTestimonialTable testimonials={testimonials} isLoading={loadingTestimonials}/>
+      <VideoTestimonialTable testimonials={testimonials} isLoading={loadingTestimonials} />
     </>
   )
 }

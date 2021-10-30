@@ -1,7 +1,7 @@
-const logger = require('../logger').logger;
-const officialDB = require('../db/officials');
-var express = require('express');
-var router = express.Router();
+const logger = require('../logger').logger
+const officialDB = require('../db/officials')
+var express = require('express')
+var router = express.Router()
 
 /**
  * @api [get] /api/v1/officials
@@ -20,14 +20,14 @@ var router = express.Router();
  */
 router.get('/', (request, response) => {
   officialDB.getOfficials((error, results) => {
-      if (error) {
-          logger.error("failed to retrieve officials: %s", error)
-          response.status(500).json({
-              error: "Internal Server Error"
-          })
-      } else {
-          response.status(200).json(results.rows)
-      }
+    if (error) {
+      logger.error('failed to retrieve officials: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(200).json(results.rows)
+    }
   })
 })
 
@@ -55,20 +55,20 @@ router.get('/', (request, response) => {
 router.get('/:id', (request, response) => {
   const id = parseInt(request.params.id)
   officialDB.getOfficialById(id, (error, results) => {
-      if (error) {
-          logger.error("fail to retrieve official with id %d: %s", id, error)
-          response.status(500).json({
-              error: "Internal Server Error"
-          })
+    if (error) {
+      logger.error('fail to retrieve official with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rows && results.rows.length > 0) {
+        response.status(200).json(results.rows[0])
       } else {
-          if (results.rows && results.rows.length > 0) {
-              response.status(200).json(results.rows[0])
-          } else {
-              response.status(404).json({
-                  error: "Not Found"
-              })
-          }
+        response.status(404).json({
+          error: 'Not Found',
+        })
       }
+    }
   })
 })
 
@@ -90,16 +90,16 @@ router.get('/:id', (request, response) => {
  *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
-    officialDB.createOfficial(request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to create official: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(201).json(results.rows[0])
-        }
-    })
+  officialDB.createOfficial(request.body, (error, results) => {
+    if (error) {
+      logger.error('fail to create official: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(201).json(results.rows[0])
+    }
+  })
 })
 
 /**
@@ -129,22 +129,22 @@ router.post('/', (request, response) => {
 router.put('/:id', (request, response) => {
   const id = parseInt(request.params.id)
   officialDB.updateOfficial(id, request.body, (error, results) => {
-      if (error) {
-          logger.error("fail to update official with id %d: %s", id, error)
-          response.status(500).json({
-              error: "Internal Server Error"
-          })
+    if (error) {
+      logger.error('fail to update official with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
       } else {
-          if (results.rowCount > 0) {
-              response.status(200).json({
-                  ok: true
-              })
-          } else {
-              response.status(404).json({
-                  error: "Not Found"
-              })
-          }
+        response.status(404).json({
+          error: 'Not Found',
+        })
       }
+    }
   })
 })
 
@@ -172,22 +172,22 @@ router.put('/:id', (request, response) => {
 router.delete('/:id', (request, response) => {
   const id = parseInt(request.params.id)
   officialDB.deleteOfficial(id, (error, results) => {
-      if (error) {
-          logger.error("fail to delete official with id %d: %s", id, error)
-          response.status(500).json({
-              error: "Internal Server Error"
-          })
+    if (error) {
+      logger.error('fail to delete official with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
       } else {
-          if (results.rowCount > 0) {
-              response.status(200).json({
-                  ok: true
-              })
-          } else {
-              response.status(404).json({
-                  error: "Not Found"
-              })
-          }
+        response.status(404).json({
+          error: 'Not Found',
+        })
       }
+    }
   })
 })
 

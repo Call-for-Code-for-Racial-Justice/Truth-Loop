@@ -1,7 +1,7 @@
 const logger = require('../logger').logger
 const publicationDB = require('../db/publications')
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 /**
  * @api [get] /api/v1/publications
@@ -19,16 +19,16 @@ var router = express.Router();
  *             $ref: "#/components/schemas/Publication"
  */
 router.get('/', (request, response) => {
-    publicationDB.getPublications((error, results) => {
-        if (error) {
-            logger.error("fail to retrieve categories: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(200).json(results.rows)
-        }
-    })
+  publicationDB.getPublications((error, results) => {
+    if (error) {
+      logger.error('fail to retrieve categories: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(200).json(results.rows)
+    }
+  })
 })
 
 /**
@@ -53,23 +53,23 @@ router.get('/', (request, response) => {
  *     description: No Publication object exists for that id
  */
 router.get('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    publicationDB.getPublicationById(id, (error, results) => {
-        if (error) {
-            logger.error("fail to retrieve publication with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rows && results.rows.length > 0) {
-                response.status(200).json(results.rows[0])
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  publicationDB.getPublicationById(id, (error, results) => {
+    if (error) {
+      logger.error('fail to retrieve publication with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rows && results.rows.length > 0) {
+        response.status(200).json(results.rows[0])
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -90,16 +90,16 @@ router.get('/:id', (request, response) => {
  *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
-    publicationDB.createPublication(request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to create publication: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(201).json(results.rows[0])
-        }
-    })
+  publicationDB.createPublication(request.body, (error, results) => {
+    if (error) {
+      logger.error('fail to create publication: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(201).json(results.rows[0])
+    }
+  })
 })
 
 /**
@@ -127,25 +127,25 @@ router.post('/', (request, response) => {
  *     description: No Publication object exists for that id
  */
 router.put('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    publicationDB.updatePublication(id, request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to update publication with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  publicationDB.updatePublication(id, request.body, (error, results) => {
+    if (error) {
+      logger.error('fail to update publication with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -170,25 +170,25 @@ router.put('/:id', (request, response) => {
  *     description: No Publication object exists for that id
  */
 router.delete('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    publicationDB.deletePublication(id, (error, results) => {
-        if (error) {
-            logger.error("fail to delete publication with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  publicationDB.deletePublication(id, (error, results) => {
+    if (error) {
+      logger.error('fail to delete publication with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 module.exports = router

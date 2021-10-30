@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import AdvocacyGroupsTable from './AdvocacyGroupsTable'
 
 function AdvocacyGroupsRoute() {
@@ -16,7 +16,7 @@ function AdvocacyGroupsRoute() {
   }, [])
   return (
     <>
-      <AdvocacyGroupsTable advocacyGroups={advocacyGroups} isLoading={loadingAdvocacyGroups}/>
+      <AdvocacyGroupsTable advocacyGroups={advocacyGroups} isLoading={loadingAdvocacyGroups} />
     </>
   )
 }
