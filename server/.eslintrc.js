@@ -4,10 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:jest/recommended',
-    'prettier',
-  ],
+  extends: ['plugin:jest/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -28,4 +25,3 @@ module.exports = {
     },
   ],
 }
-

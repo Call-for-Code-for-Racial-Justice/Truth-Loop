@@ -26,11 +26,15 @@ function DeleteItemDialog(props) {
     >
       <DialogTitle id="delete-item-dialog-title">{props.title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="delete-item-dialog-description">{props.description}</DialogContentText>
+        <DialogContentText id="delete-item-dialog-description">
+          {props.description}
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleCancel}>Cancel</Button>
-        <Button onClick={props.handleDelete} autoFocus>Delete</Button>
+        <Button onClick={props.handleDelete} autoFocus>
+          Delete
+        </Button>
       </DialogActions>
     </Dialog>
   )
