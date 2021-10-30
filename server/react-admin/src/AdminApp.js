@@ -7,6 +7,8 @@ import VideoTestimonialRoute from './videoTestimonials/VideoTestimonialRoute'
 import VideoTestimonialForm from './videoTestimonials/VideoTestimonialForm'
 import AdvocacyGroupsRoute from './advocacyGroups/AdvocacyGroupsRoute'
 import AdvocacyGroupsForm from './advocacyGroups/AdvocacyGroupsForm'
+import GeographyRoute from './geographies/GeographyRoute'
+import GeographyForm from './geographies/GeographyForm'
 
 function AdminApp() {
   return (
@@ -45,6 +47,12 @@ function AdminApp() {
               component={AdvocacyGroupsRoute}
             />
             <Route
+              name="geography-route"
+              exact
+              path={'/geospatialDefinitions'}
+              component={GeographyRoute}
+            />
+            <Route
               name="add-publication-form"
               exact
               path={'/publications/add'}
@@ -65,6 +73,17 @@ function AdminApp() {
               name="edit-advocacy-group-form"
               path={'/advocacyGroups/edit/:id'}
               component={AdvocacyGroupsForm}
+            />
+            <Route
+              name="add-geography-form"
+              exact
+              path={'/geospatialDefinitions/add'}
+              component={GeographyForm}
+            />
+            <Route
+              name="edit-geography-form"
+              path={'/geospatialDefinitions/edit/:id'}
+              component={GeographyForm}
             />
           </Switch>
         </div>
