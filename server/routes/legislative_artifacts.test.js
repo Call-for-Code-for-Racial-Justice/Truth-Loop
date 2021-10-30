@@ -101,6 +101,7 @@ describe('CRUD TESTS FOR /api/v1/legislativeArtifacts', function () {
       .expect('Content-Type', /json/)
     expect(res.status).toBe(200)
     if (res.body.length > 0) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(res.body[res.body.length - 1]).toEqual(
         expect.objectContaining(updatedPayload)
       )

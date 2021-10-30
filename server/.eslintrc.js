@@ -14,6 +14,7 @@ module.exports = {
   },
   plugins: ['jest', 'prettier'],
   rules: {
+    'jest/no-done-callback': 'warn',
     'prettier/prettier': 'error',
   },
   overrides: [
