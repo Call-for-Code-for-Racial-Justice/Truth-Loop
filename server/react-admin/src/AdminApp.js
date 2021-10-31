@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AdminHomeRoute from './adminHomeRoute/AdminHomeRoute'
+import CategoryRoute from './categories/CategoryRoute'
+import CategoryForm from './categories/CategoryForm'
 import PublicationRoute from './publications/PublicationRoute'
 import PublicationForm from './publications/PublicationForm'
 import VideoTestimonialRoute from './videoTestimonials/VideoTestimonialRoute'
@@ -18,6 +20,18 @@ function AdminApp() {
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
 
+            <Route name="category-route" exact path={'/categories'} component={CategoryRoute} />
+            <Route
+              name="add-category-form"
+              exact
+              path={'/categories/add'}
+              component={CategoryForm}
+            />
+            <Route
+              name="edit-category-form"
+              path={'/categories/edit/:id'}
+              component={CategoryForm}
+            />
             <Route
               name="publication-route"
               exact
@@ -36,6 +50,23 @@ function AdminApp() {
               component={PublicationForm}
             />
                 
+            <Route
+              name="video-testimonial-route"
+              exact
+              path={'/videoTestimonials'}
+              component={VideoTestimonialRoute}
+            />
+            <Route
+              name="add-testimonial-form"
+              exact
+              path={'/videoTestimonials/add'}
+              component={VideoTestimonialForm}
+            />
+            <Route
+              name="edit-testimonial-form"
+              path={'/videoTestimonials/edit/:id'}
+              component={VideoTestimonialForm}
+            />
             <Route
               name="advocacy-group-route"
               exact
