@@ -18,7 +18,7 @@ describe('LevelsRoute Tests', () => {
       expect(window.fetch).toBeCalledTimes(1)
     })
     it('should render the table', () => {
-      expect(screen.getByTestId('levelsTable')).toBeInTheDocument()
+      expect(screen.getByTestId('LevelsTable')).toBeInTheDocument()
     })
   })
 })
