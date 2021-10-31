@@ -1,9 +1,9 @@
 import React from 'react'
-import {fireEvent} from '@testing-library/react'
-import {render, screen} from '../testUtils.js'
-import {createMemoryHistory} from 'history'
-import {Provider} from 'react-redux'
-import {Route, Router} from 'react-router-dom'
+import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../testUtils.js'
+import { createMemoryHistory } from 'history'
+import { Provider } from 'react-redux'
+import { Route, Router } from 'react-router-dom'
 import configureMockStore from 'redux-mock-store'
 import RecordRoute from './RecordRoute'
 
@@ -14,9 +14,15 @@ describe('RecordRoute tests', () => {
     beforeEach(() => {
       const store = mockStore({})
       const history = createMemoryHistory()
-      render(<Provider store={store}><Router history={history}>
-        <Route><RecordRoute/></Route>
-      </Router></Provider>)
+      render(
+        <Provider store={store}>
+          <Router history={history}>
+            <Route>
+              <RecordRoute />
+            </Route>
+          </Router>
+        </Provider>
+      )
     })
     it('should show the policy not found', () => {
       expect(screen.getByTestId('noPolicyFound')).toBeInTheDocument()
@@ -30,7 +36,9 @@ describe('RecordRoute tests', () => {
       render(
         <Provider store={store}>
           <Router history={history}>
-            <Route path={'/policy/:policyId'}><RecordRoute/></Route>
+            <Route path={'/policy/:policyId'}>
+              <RecordRoute />
+            </Route>
           </Router>
         </Provider>
       )
@@ -56,7 +64,9 @@ describe('RecordRoute tests', () => {
       render(
         <Provider store={store}>
           <Router history={history}>
-            <Route path={'/policy/:policyId'}><RecordRoute/></Route>
+            <Route path={'/policy/:policyId'}>
+              <RecordRoute />
+            </Route>
           </Router>
         </Provider>
       )
