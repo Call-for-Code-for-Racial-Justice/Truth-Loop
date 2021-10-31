@@ -72,23 +72,6 @@ function AdminApp() {
               component={AdvocacyGroupsRoute}
             />
             <Route
-              name="geography-route"
-              exact
-              path={'/geospatialDefinitions'}
-              component={GeographyRoute}
-            />
-            <Route
-              name="add-publication-form"
-              exact
-              path={'/publications/add'}
-              component={PublicationForm}
-            />
-            <Route
-              name="edit-publication-form"
-              path={'/publications/edit/:id'}
-              component={PublicationForm}
-            />
-            <Route
               name="add-advocacy-group-form"
               exact
               path={'/advocacyGroups/add'}
@@ -98,6 +81,12 @@ function AdminApp() {
               name="edit-advocacy-group-form"
               path={'/advocacyGroups/edit/:id'}
               component={AdvocacyGroupsForm}
+            />
+            <Route
+              name="geography-route"
+              exact
+              path={'/geospatialDefinitions'}
+              component={GeographyRoute}
             />
             <Route
               name="add-geography-form"
