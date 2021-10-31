@@ -11,6 +11,8 @@ import AdvocacyGroupsRoute from './advocacyGroups/AdvocacyGroupsRoute'
 import AdvocacyGroupsForm from './advocacyGroups/AdvocacyGroupsForm'
 import LevelsRoute from './levels/LevelsRoute'
 import LevelsForm from './levels/LevelsForm'
+import GeographyRoute from './geographies/GeographyRoute'
+import GeographyForm from './geographies/GeographyForm'
 
 function AdminApp() {
   return (
@@ -75,6 +77,23 @@ function AdminApp() {
               component={AdvocacyGroupsRoute}
             />
             <Route
+              name="geography-route"
+              exact
+              path={'/geospatialDefinitions'}
+              component={GeographyRoute}
+            />
+            <Route
+              name="add-publication-form"
+              exact
+              path={'/publications/add'}
+              component={PublicationForm}
+            />
+            <Route
+              name="edit-publication-form"
+              path={'/publications/edit/:id'}
+              component={PublicationForm}
+            />
+            <Route
               name="add-advocacy-group-form"
               exact
               path={'/advocacyGroups/add'}
@@ -84,6 +103,17 @@ function AdminApp() {
               name="edit-advocacy-group-form"
               path={'/advocacyGroups/edit/:id'}
               component={AdvocacyGroupsForm}
+            />
+            <Route
+              name="add-geography-form"
+              exact
+              path={'/geospatialDefinitions/add'}
+              component={GeographyForm}
+            />
+            <Route
+              name="edit-geography-form"
+              path={'/geospatialDefinitions/edit/:id'}
+              component={GeographyForm}
             />
           </Switch>
         </div>
