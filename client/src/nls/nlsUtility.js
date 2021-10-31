@@ -12,39 +12,39 @@ import { store } from '../store/index'
 // defaultMessage: string, The default message (probably in English)
 //
 const msgObj = Object.keys(msgEn).reduce((accum, id) => {
-	accum[id] = { id, defaultMessage: msgEn[id] }
-	return accum
+  accum[id] = { id, defaultMessage: msgEn[id] }
+  return accum
 }, {})
 export const messages = defineMessages(msgObj)
 
 // Default to English if locale set is unknown
 // locale set could come from browser locale, or language selector
 export function getLocale(locale) {
-	//include fr for testing, in app.js we only ever set 'en' so this is safe
-	const LANGUAGES_SUPPORTED = [ 'en', 'fr' ]
-	//if locale set is unknown, default to english
-	if(Object.values(LANGUAGES_SUPPORTED).indexOf(locale) <= -1){
-		return 'en'
-	};
-	return locale
-};
+  //include fr for testing, in app.js we only ever set 'en' so this is safe
+  const LANGUAGES_SUPPORTED = ['en', 'fr']
+  //if locale set is unknown, default to english
+  if (Object.values(LANGUAGES_SUPPORTED).indexOf(locale) <= -1) {
+    return 'en'
+  }
+  return locale
+}
 
 // For Webpack to work correctly with dynamic imports,
 // we need to specify constants for imports.
-export const getNlsMessages = locale => {
-	const fixedLocale = getLocale(locale)
-	return import('./messages/'+ fixedLocale + '/messages')
+export const getNlsMessages = (locale) => {
+  const fixedLocale = getLocale(locale)
+  return import('./messages/' + fixedLocale + '/messages')
 }
 
 export const getMsgsAndUpdtIntl = (locale) => {
-	if(locale){
-		getNlsMessages(locale).then((messages) => {
-			store.dispatch(
-				updateIntl({
-					locale: locale,
-					messages: messages.default
-				})
-			)
-		})
-	}
+  if (locale) {
+    getNlsMessages(locale).then((messages) => {
+      store.dispatch(
+        updateIntl({
+          locale: locale,
+          messages: messages.default,
+        })
+      )
+    })
+  }
 }

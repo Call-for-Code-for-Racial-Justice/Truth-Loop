@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Progress.scss'
 
-const Progress = ({percent, title, color}) => {
+const Progress = ({ percent, title, color }) => {
   return (
     <div className="progress">
       {percent} {title}
       <div className={`meter ${color}`}>
-        <span style={{ width: percent }}/>
+        <span style={{ width: percent }} />
       </div>
     </div>
   )
@@ -20,4 +20,3 @@ Progress.propTypes = {
 }
 
 export default Progress
-

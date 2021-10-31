@@ -6,7 +6,9 @@ export default async function fetchPolicy(policyId) {
     return { ...policy, id: policyId }
   } else {
     const apiUrl = process.env.REACT_APP_SERVER_URL || ''
-    const policyFullDetailResponse = await fetch(`${apiUrl}/api/v1/legislativeArtifacts/fullDetail/${policyId}`)
+    const policyFullDetailResponse = await fetch(
+      `${apiUrl}/api/v1/legislativeArtifacts/fullDetail/${policyId}`
+    )
     return policyFullDetailResponse.json()
   }
 }
