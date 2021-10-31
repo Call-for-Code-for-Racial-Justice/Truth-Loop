@@ -56,7 +56,7 @@ function AdminApp() {
               path={'/publications/edit/:id'}
               component={PublicationForm}
             />
-                
+
             <Route
               name="video-testimonial-route"
               exact
@@ -91,7 +91,7 @@ function AdminApp() {
               path={'/advocacyGroups/edit/:id'}
               component={AdvocacyGroupsForm}
             />
-                
+
             <Route
               name="video-testimonial-route"
               exact
@@ -109,10 +109,19 @@ function AdminApp() {
               path={'/videoTestimonials/edit/:id'}
               component={VideoTestimonialForm}
             />
-                
-				    <Route name="officials-route" exact path={"/officials"} component={OfficialsRoute} />
-				    <Route name="add-officials-form" exact path={'/officials/add'} component={OfficialsForm} />
-				    <Route name="edit-officials-form" path={'/officials/edit/:id'} component={OfficialsForm} />
+
+            <Route name="officials-route" exact path={'/officials'} component={OfficialsRoute} />
+            <Route
+              name="add-officials-form"
+              exact
+              path={'/officials/add'}
+              component={OfficialsForm}
+            />
+            <Route
+              name="edit-officials-form"
+              path={'/officials/edit/:id'}
+              component={OfficialsForm}
+            />
             <Route
               name="geography-route"
               exact

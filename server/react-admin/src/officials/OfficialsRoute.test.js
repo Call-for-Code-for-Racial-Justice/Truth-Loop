@@ -10,9 +10,9 @@ describe('OfficialsRoute Tests', () => {
     beforeEach(() => {
       window.fetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ([{some: 'item'}])
+        json: async () => [{ some: 'item' }],
       })
-      render(<OfficialsRoute/>)
+      render(<OfficialsRoute />)
     })
     it('should request items', () => {
       expect(window.fetch).toBeCalledTimes(1)

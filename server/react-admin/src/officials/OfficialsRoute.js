@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import OfficialsTable from './OfficialsTable'
 
 function OfficialsRoute() {
@@ -16,7 +16,7 @@ function OfficialsRoute() {
   }, [])
   return (
     <>
-      <OfficialsTable officials={officials} isLoading={loadingOfficials}/>
+      <OfficialsTable officials={officials} isLoading={loadingOfficials} />
     </>
   )
 }
