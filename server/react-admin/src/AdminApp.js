@@ -11,6 +11,10 @@ import AdvocacyGroupsRoute from './advocacyGroups/AdvocacyGroupsRoute'
 import AdvocacyGroupsForm from './advocacyGroups/AdvocacyGroupsForm'
 import OfficialsRoute from './officials/OfficialsRoute'
 import OfficialsForm from './officials/OfficialsForm'
+import LevelsRoute from './levels/LevelsRoute'
+import LevelsForm from './levels/LevelsForm'
+import GeographyRoute from './geographies/GeographyRoute'
+import GeographyForm from './geographies/GeographyForm'
 
 function AdminApp() {
   return (
@@ -20,6 +24,9 @@ function AdminApp() {
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
 
+            <Route name="level-route" exact path={'/levels'} component={LevelsRoute} />
+            <Route name="add-level-form" exact path={'/levels/add'} component={LevelsForm} />
+            <Route name="edit-level-form" path={'/levels/edit/:id'} component={LevelsForm} />
             <Route name="category-route" exact path={'/categories'} component={CategoryRoute} />
             <Route
               name="add-category-form"
@@ -106,6 +113,23 @@ function AdminApp() {
 				    <Route name="officials-route" exact path={"/officials"} component={OfficialsRoute} />
 				    <Route name="add-officials-form" exact path={'/officials/add'} component={OfficialsForm} />
 				    <Route name="edit-officials-form" path={'/officials/edit/:id'} component={OfficialsForm} />
+            <Route
+              name="geography-route"
+              exact
+              path={'/geospatialDefinitions'}
+              component={GeographyRoute}
+            />
+            <Route
+              name="add-geography-form"
+              exact
+              path={'/geospatialDefinitions/add'}
+              component={GeographyForm}
+            />
+            <Route
+              name="edit-geography-form"
+              path={'/geospatialDefinitions/edit/:id'}
+              component={GeographyForm}
+            />
           </Switch>
         </div>
       </div>
