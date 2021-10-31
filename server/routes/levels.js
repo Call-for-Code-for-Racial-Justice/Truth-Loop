@@ -1,7 +1,7 @@
 const logger = require('../logger').logger
 const LevelDB = require('../db/levels')
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 /**
  * @api [get] /api/v1/levels
@@ -19,16 +19,16 @@ var router = express.Router();
  *             $ref: "#/components/schemas/Level"
  */
 router.get('/', (request, response) => {
-    LevelDB.getLevels((error, results) => {
-        if (error) {
-            logger.error("fail to retrieve levels: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(200).json(results.rows)
-        }
-    })
+  LevelDB.getLevels((error, results) => {
+    if (error) {
+      logger.error('fail to retrieve levels: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(200).json(results.rows)
+    }
+  })
 })
 
 /**
@@ -53,23 +53,23 @@ router.get('/', (request, response) => {
  *     description: No Level object exists for that id
  */
 router.get('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    LevelDB.getLevelById(id, (error, results) => {
-        if (error) {
-            logger.error("fail to retrieve level with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rows && results.rows.length > 0) {
-                response.status(200).json(results.rows[0])
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  LevelDB.getLevelById(id, (error, results) => {
+    if (error) {
+      logger.error('fail to retrieve level with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rows && results.rows.length > 0) {
+        response.status(200).json(results.rows[0])
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -94,22 +94,26 @@ router.get('/:id', (request, response) => {
  *     description: No Level object exists for that name
  */
 router.get('/name/:name', (request, response) => {
-    LevelDB.getLevelByName(request.params.name, (error, results) => {
-        if (error) {
-            logger.error("fail to retrieve level with name %s: %s", request.params.name, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rows && results.rows.length > 0) {
-                response.status(200).json(results.rows[0])
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  LevelDB.getLevelByName(request.params.name, (error, results) => {
+    if (error) {
+      logger.error(
+        'fail to retrieve level with name %s: %s',
+        request.params.name,
+        error
+      )
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rows && results.rows.length > 0) {
+        response.status(200).json(results.rows[0])
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -130,16 +134,16 @@ router.get('/name/:name', (request, response) => {
  *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
-    LevelDB.createLevel(request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to create level: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(201).json(results.rows[0])
-        }
-    })
+  LevelDB.createLevel(request.body, (error, results) => {
+    if (error) {
+      logger.error('fail to create level: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(201).json(results.rows[0])
+    }
+  })
 })
 
 /**
@@ -167,25 +171,25 @@ router.post('/', (request, response) => {
  *     description: No Level object exists for that id
  */
 router.put('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    LevelDB.updateLevel(id, request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to update level with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  LevelDB.updateLevel(id, request.body, (error, results) => {
+    if (error) {
+      logger.error('fail to update level with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -210,25 +214,25 @@ router.put('/:id', (request, response) => {
  *     description: No Level object exists for that id
  */
 router.delete('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    LevelDB.deleteLevel(id, (error, results) => {
-        if (error) {
-            logger.error("fail to delete level with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  LevelDB.deleteLevel(id, (error, results) => {
+    if (error) {
+      logger.error('fail to delete level with id %d: %s', id, error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 module.exports = router

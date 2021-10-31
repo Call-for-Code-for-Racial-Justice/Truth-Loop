@@ -1,4 +1,7 @@
-import reducer, {POLICY_LIST_ITEM_DETAILS_UPDATE, FETCH_POLICIES_FULFILLED} from './policyList.duck'
+import reducer, {
+  POLICY_LIST_ITEM_DETAILS_UPDATE,
+  FETCH_POLICIES_FULFILLED,
+} from './policyList.duck'
 
 describe('policyList reducer tests', () => {
   let state, initialState
@@ -9,7 +12,10 @@ describe('policyList reducer tests', () => {
   describe('FETCH_POLICIES_FULFILLED tests', () => {
     describe('when passing new items', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: ['a', 'b']})
+        state = reducer(initialState, {
+          type: FETCH_POLICIES_FULFILLED,
+          payload: ['a', 'b'],
+        })
       })
       it('should update items', () => {
         expect(state.items).toEqual(['a', 'b'])
@@ -17,7 +23,10 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing null as payload', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: null})
+        state = reducer(initialState, {
+          type: FETCH_POLICIES_FULFILLED,
+          payload: null,
+        })
       })
       it('should not update items', () => {
         expect(state.items).toEqual([])
@@ -25,7 +34,10 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing undefined as payload', () => {
       beforeEach(() => {
-        state = reducer(initialState, {type: FETCH_POLICIES_FULFILLED, payload: undefined})
+        state = reducer(initialState, {
+          type: FETCH_POLICIES_FULFILLED,
+          payload: undefined,
+        })
       })
       it('should not update items', () => {
         expect(state.items).toEqual([])
@@ -36,7 +48,10 @@ describe('policyList reducer tests', () => {
   describe('POLICY_LIST_ITEM_DETAILS_UPDATE tests', () => {
     describe('when passing new itemDetails', () => {
       beforeEach(() => {
-        state = reducer({ ...initialState, selectedItemDetails: 'Test Details' }, {type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: 'updated details'})
+        state = reducer(
+          { ...initialState, selectedItemDetails: 'Test Details' },
+          { type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: 'updated details' }
+        )
       })
       it('should update selectedItemDetails', () => {
         expect(state.selectedItemDetails).toEqual('updated details')
@@ -44,7 +59,10 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing null as payload', () => {
       beforeEach(() => {
-        state = reducer({ ...initialState, selectedItemDetails: 'Test Details' }, {type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: null})
+        state = reducer(
+          { ...initialState, selectedItemDetails: 'Test Details' },
+          { type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: null }
+        )
       })
       it('should not update selectedItemDetails', () => {
         expect(state.selectedItemDetails).toEqual('Test Details')
@@ -52,7 +70,10 @@ describe('policyList reducer tests', () => {
     })
     describe('when passing undefined as payload', () => {
       beforeEach(() => {
-        state = reducer({ ...initialState, selectedItemDetails: 'Test Details' }, {type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: undefined})
+        state = reducer(
+          { ...initialState, selectedItemDetails: 'Test Details' },
+          { type: POLICY_LIST_ITEM_DETAILS_UPDATE, payload: undefined }
+        )
       })
       it('should not update selectedItemDetails', () => {
         expect(state.selectedItemDetails).toEqual('Test Details')

@@ -25,7 +25,6 @@ const loadFromLocalStorage = () => {
   }
 }
 const configureStore = () => {
-
   const reducers = combineReducers({
     appSettings: appSettingsReducer,
     policyList: policyListReducer,

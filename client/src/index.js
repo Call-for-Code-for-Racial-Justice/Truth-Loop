@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals'
-import {IntlProvider} from 'react-intl-redux'
+import { IntlProvider } from 'react-intl-redux'
 import { store } from './store/index'
 import App from './App'
 
@@ -11,12 +11,13 @@ console.log(`REACT_APP_SERVER_URL: ${process.env.REACT_APP_SERVER_URL}`)
 document.getElementById('root').style.maxWidth = '100vw'
 
 const globalStore = store
-const app =
+const app = (
   <Provider store={globalStore}>
     <IntlProvider>
       <App />
     </IntlProvider>
   </Provider>
+)
 
 const root = document.getElementById('root')
 
