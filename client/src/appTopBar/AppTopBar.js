@@ -1,86 +1,105 @@
-import React, { useState, useEffect,useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import {injectIntl} from 'react-intl'
-//Icons 
+import { injectIntl } from 'react-intl'
+//Icons
 import ChevronLeft20 from '@carbon/icons-react/lib/chevron--left/20'
 import SettingsAdjust20 from '@carbon/icons-react/lib/settings--adjust/20'
 import './apptopbar.scss'
 import FilterMenu from '../filterMenu/FilterMenu'
-import {messages} from '../nls/nlsUtility'
+import { messages } from '../nls/nlsUtility'
 import PropTypes from 'prop-types'
 
-const AppTopBar = ({intl}) => {
-    const location = useLocation()
-    const history = useHistory()
-    const ref = useRef()
-    const [back, setBack] = useState(true)
-    const [show, setShow] = useState(false)
-    const filterSelections = ['filter1','filter2','filter3','filter4','filter5']
+const AppTopBar = ({ intl }) => {
+  const location = useLocation()
+  const history = useHistory()
+  const ref = useRef()
+  const [back, setBack] = useState(true)
+  const [show, setShow] = useState(false)
+  const filterSelections = [
+    'filter1',
+    'filter2',
+    'filter3',
+    'filter4',
+    'filter5',
+  ]
 
-    //check states for the filter checkboxes
-    const [checkedState, setCheckedState] = useState(
-        new Array(filterSelections.length).fill(false)
-      )
+  //check states for the filter checkboxes
+  const [checkedState, setCheckedState] = useState(
+    new Array(filterSelections.length).fill(false)
+  )
 
-    useEffect(() => {
-        if (location.pathname === '/') {
-            setBack(false)
-        } else { setBack(true) }
-    }, [location])
-
-    //for clicks outside the menu to close it 
-    useEffect(()=>{
-        const checkClickOutside=(e)=>{
-            if (show && ref.current && !ref.current.contains(e.target)) {
-                setShow(false)
-              }
-        }
-        document.addEventListener('mousedown', checkClickOutside)
-        return ()=>{
-            document.removeEventListener('mousedown', checkClickOutside)
-        }
-    },[show])
-    //selecting active filters
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-          index === position ? !item : item
-        )
-        setCheckedState(updatedCheckedState)
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setBack(false)
+    } else {
+      setBack(true)
     }
-    return (
-        <div className="app-top-bar">
-            <div className="left-panel">
-                {back && <ChevronLeft20 className="back" onClick={() => history.goBack()} data-testid={'backButton'}/>}
-            </div>
-            <div className="title">
-                <p>{intl.formatMessage(messages.appTitle)}</p>
-            </div>
-            <div className="right-panel">
-                <SettingsAdjust20 className="settings" data-testid='settingsButton' onMouseDown={()=>{setShow(!show)}}/>
-            </div>
-            <FilterMenu show={show} ref={ref}>
-                {filterSelections.map((choice,i)=>(
-                    <div key={`filterchoice${i}`}>
-                        <input
-                            className="filter-selection"
-                            type='checkbox'
-                            value={choice}
-                            checked={checkedState[i]}
-                            onChange={() => handleOnChange(i)}
-                        />
-                        <label className="filter-label" htmlFor={choice}>
-                            {choice}
-                        </label>
-                    </div>
-                ))}
+  }, [location])
 
-            </FilterMenu>
-        </div>
+  //for clicks outside the menu to close it
+  useEffect(() => {
+    const checkClickOutside = (e) => {
+      if (show && ref.current && !ref.current.contains(e.target)) {
+        setShow(false)
+      }
+    }
+    document.addEventListener('mousedown', checkClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', checkClickOutside)
+    }
+  }, [show])
+  //selecting active filters
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
     )
+    setCheckedState(updatedCheckedState)
+  }
+  return (
+    <div className="app-top-bar">
+      <div className="left-panel">
+        {back && (
+          <ChevronLeft20
+            className="back"
+            onClick={() => history.goBack()}
+            data-testid={'backButton'}
+          />
+        )}
+      </div>
+      <div className="title">
+        <p>{intl.formatMessage(messages.appTitle)}</p>
+      </div>
+      <div className="right-panel">
+        <SettingsAdjust20
+          className="settings"
+          data-testid="settingsButton"
+          onMouseDown={() => {
+            setShow(!show)
+          }}
+        />
+      </div>
+      <FilterMenu show={show} ref={ref}>
+        {filterSelections.map((choice, i) => (
+          <div key={`filterchoice${i}`}>
+            <input
+              className="filter-selection"
+              type="checkbox"
+              value={choice}
+              checked={checkedState[i]}
+              onChange={() => handleOnChange(i)}
+            />
+            <label className="filter-label" htmlFor={choice}>
+              {choice}
+            </label>
+          </div>
+        ))}
+      </FilterMenu>
+    </div>
+  )
 }
 
 AppTopBar.propTypes = {
-    intl: PropTypes.any.isRequired
+  intl: PropTypes.any.isRequired,
 }
-  
+
 export default injectIntl(AppTopBar)

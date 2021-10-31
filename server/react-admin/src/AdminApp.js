@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AdminHomeRoute from './adminHomeRoute/AdminHomeRoute'
+import CategoryRoute from './categories/CategoryRoute'
+import CategoryForm from './categories/CategoryForm'
 import PublicationRoute from './publications/PublicationRoute'
 import PublicationForm from './publications/PublicationForm'
 import VideoTestimonialRoute from './videoTestimonials/VideoTestimonialRoute'
@@ -17,11 +19,34 @@ function AdminApp() {
         <div id={'main-content'} data-testid={'mainContent'}>
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
+            <Route name="category-route" exact path={'/categories'} component={CategoryRoute} />
+            <Route
+              name="add-category-form"
+              exact
+              path={'/categories/add'}
+              component={CategoryForm}
+            />
+            <Route
+              name="edit-category-form"
+              path={'/categories/edit/:id'}
+              component={CategoryForm}
+            />
             <Route
               name="publication-route"
               exact
               path={'/publications'}
               component={PublicationRoute}
+            />
+            <Route
+              name="add-publication-form"
+              exact
+              path={'/publications/add'}
+              component={PublicationForm}
+            />
+            <Route
+              name="edit-publication-form"
+              path={'/publications/edit/:id'}
+              component={PublicationForm}
             />
             <Route
               name="video-testimonial-route"

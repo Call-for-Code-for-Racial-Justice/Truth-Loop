@@ -29,13 +29,15 @@ describe('fetchPolicies tests', () => {
           json: () => Promise.resolve([{ some: 'thing' }]),
         })
       )
-      globalFetchSpy  = jest.spyOn(global, 'fetch')
+      globalFetchSpy = jest.spyOn(global, 'fetch')
       process.env.REACT_APP_MOCK_DATA = ''
       process.env.REACT_APP_SERVER_URL = 'https://example.com'
       actualPolicies = await fetchPolicies()
     })
     it('should call the legislativeArtifacts endpoint', () => {
-      expect(globalFetchSpy).toHaveBeenLastCalledWith('https://example.com/api/v1/legislativeArtifacts')
+      expect(globalFetchSpy).toHaveBeenLastCalledWith(
+        'https://example.com/api/v1/legislativeArtifacts'
+      )
     })
     it('should return an object', () => {
       expect(actualPolicies).toEqual([{ some: 'thing' }])
