@@ -4,9 +4,11 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'plugin:jest/recommended',
+    '../.eslintrc.js',
     'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -15,23 +17,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'jest',
-  ],
   rules: {
-    quotes: ['warn', 'single'],
-    semi: ['warn', 'never'],
-    camelcase: 'warn',
+    'prettier/prettier': 'warn',
   },
-  overrides: [
-    {
-      files: [
-        '**/*.test.js',
-      ],
-      env: {
-        jest: true,
-      },
-    },
-  ],
 }

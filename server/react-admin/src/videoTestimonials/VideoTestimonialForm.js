@@ -39,7 +39,7 @@ function VideoTestimonial() {
       method: existingTestimonial ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
       // eslint-disable-next-line camelcase
-      body: JSON.stringify({...values, privacy_stmt_ack: privacyStatement}),
+      body: JSON.stringify({ ...values, privacy_stmt_ack: privacyStatement }),
     })
     if (testimonialsResponse.ok) {
       history.push('/videoTestimonials')
@@ -67,12 +67,17 @@ function VideoTestimonial() {
               <TextFieldInput name={'comment'} control={control} label={'Comment'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'video_cms_id'} control={control} label={'Video CMS ID'} required />
+              <TextFieldInput
+                name={'video_cms_id'}
+                control={control}
+                label={'Video CMS ID'}
+                required
+              />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
               <input
-                type='checkbox'
-                name='privacyStatement'
+                type="checkbox"
+                name="privacyStatement"
                 value={privacyStatement}
                 onClick={() => {
                   setPrivacyStatement(!privacyStatement)
@@ -84,17 +89,17 @@ function VideoTestimonial() {
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
             <Grid item>
-              <Button variant='outlined' color='primary' disabled={submitting} onClick={cancel}>
+              <Button variant="outlined" color="primary" disabled={submitting} onClick={cancel}>
                 Cancel
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='outlined' color='primary' disabled={submitting} onClick={resetForm}>
+              <Button variant="outlined" color="primary" disabled={submitting} onClick={resetForm}>
                 Reset
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='contained' color='primary' disabled={submitting} type={'submit'}>
+              <Button variant="contained" color="primary" disabled={submitting} type={'submit'}>
                 {existingTestimonial ? 'Update' : 'Add'}
               </Button>
             </Grid>

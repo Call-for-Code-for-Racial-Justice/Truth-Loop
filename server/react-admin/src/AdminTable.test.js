@@ -1,15 +1,19 @@
 import React from 'react'
 import AdminTable from './AdminTable'
-import {render, screen} from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 describe('AdminTable Tests', () => {
   describe('When loading items', () => {
     beforeEach(() => {
-      render(<AdminTable rows={[]}
-                         isLoading={true}
-                         headCells={[{id: 'id', label: 'ID'}]}
-                         caption={'Hello Widgets'}
-                         tableLabel={'Widgets'}/>)
+      render(
+        <AdminTable
+          rows={[]}
+          isLoading={true}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Hello Widgets'}
+          tableLabel={'Widgets'}
+        />
+      )
     })
     it('should show progressBar', () => {
       expect(screen.getByRole('progressbar')).toBeVisible()
@@ -17,11 +21,15 @@ describe('AdminTable Tests', () => {
   })
   describe('When done loading items', () => {
     beforeEach(() => {
-      render(<AdminTable rows={[]}
-                         isLoading={false}
-                         headCells={[{id: 'id', label: 'ID'}]}
-                         caption={'Hello Widgets'}
-                         tableLabel={'Widgets'}/>)
+      render(
+        <AdminTable
+          rows={[]}
+          isLoading={false}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Hello Widgets'}
+          tableLabel={'Widgets'}
+        />
+      )
     })
     it('should not show progressBar', () => {
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument()
@@ -29,7 +37,14 @@ describe('AdminTable Tests', () => {
   })
   describe('When first rendering with 1 item', () => {
     beforeEach(() => {
-      render(<AdminTable rows={[{id: '1'}]} headCells={[{id: 'id', label: 'ID'}]} caption={'Hello Widgets'} tableLabel={'Widgets'}/>)
+      render(
+        <AdminTable
+          rows={[{ id: '1' }]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Hello Widgets'}
+          tableLabel={'Widgets'}
+        />
+      )
     })
     it('should show a caption', () => {
       expect(screen.getByTestId('WidgetsCaption')).toHaveTextContent('Hello Widgets')
@@ -43,11 +58,17 @@ describe('AdminTable Tests', () => {
   })
   describe('When first rendering with 2 items', () => {
     beforeEach(() => {
-      render(<AdminTable
-        rows={[{id: '1', title: 'title 1'}, {id: '2', title: 'title 2'}]}
-        headCells={[{id: 'id', label: 'ID'}]}
-        caption={'Other Widgets, hello'} tableLabel={'OtherWidgets'}
-      />)
+      render(
+        <AdminTable
+          rows={[
+            { id: '1', title: 'title 1' },
+            { id: '2', title: 'title 2' },
+          ]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Other Widgets, hello'}
+          tableLabel={'OtherWidgets'}
+        />
+      )
     })
     it('should show a caption', () => {
       expect(screen.getByTestId('OtherWidgetsCaption')).toHaveTextContent('Other Widgets, hello')
@@ -61,12 +82,15 @@ describe('AdminTable Tests', () => {
   })
   describe('when provided an onEditItem function', () => {
     beforeEach(() => {
-      render(<AdminTable
-        rows={[{id: '1', title: 'title 1'}]}
-        headCells={[{id: 'id', label: 'ID'}]}
-        caption={'Other Widgets, hello'} tableLabel={'OtherWidgets'}
-        onEditItem={() => {}}
-      />)
+      render(
+        <AdminTable
+          rows={[{ id: '1', title: 'title 1' }]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Other Widgets, hello'}
+          tableLabel={'OtherWidgets'}
+          onEditItem={() => {}}
+        />
+      )
     })
     it('should show an edit icon', () => {
       expect(screen.getByTestId('EditIcon')).toBeVisible()
@@ -74,11 +98,14 @@ describe('AdminTable Tests', () => {
   })
   describe('when provided no onEditItem function', () => {
     beforeEach(() => {
-      render(<AdminTable
-        rows={[{id: '1', title: 'title 1'}]}
-        headCells={[{id: 'id', label: 'ID'}]}
-        caption={'Other Widgets, hello'} tableLabel={'OtherWidgets'}
-      />)
+      render(
+        <AdminTable
+          rows={[{ id: '1', title: 'title 1' }]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Other Widgets, hello'}
+          tableLabel={'OtherWidgets'}
+        />
+      )
     })
     it('should not show an edit icon', () => {
       expect(screen.queryByTestId('EditIcon')).not.toBeInTheDocument()
@@ -86,12 +113,15 @@ describe('AdminTable Tests', () => {
   })
   describe('when provided an onDeleteItem function', () => {
     beforeEach(() => {
-      render(<AdminTable
-        rows={[{id: '1', title: 'title 1'}]}
-        headCells={[{id: 'id', label: 'ID'}]}
-        caption={'Other Widgets, hello'} tableLabel={'OtherWidgets'}
-        onDeleteItem={() => {}}
-      />)
+      render(
+        <AdminTable
+          rows={[{ id: '1', title: 'title 1' }]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Other Widgets, hello'}
+          tableLabel={'OtherWidgets'}
+          onDeleteItem={() => {}}
+        />
+      )
     })
     it('should show an edit icon', () => {
       expect(screen.getByTestId('DeleteIcon')).toBeVisible()
@@ -99,11 +129,14 @@ describe('AdminTable Tests', () => {
   })
   describe('when provided no onDeleteItem function', () => {
     beforeEach(() => {
-      render(<AdminTable
-        rows={[{id: '1', title: 'title 1'}]}
-        headCells={[{id: 'id', label: 'ID'}]}
-        caption={'Other Widgets, hello'} tableLabel={'OtherWidgets'}
-      />)
+      render(
+        <AdminTable
+          rows={[{ id: '1', title: 'title 1' }]}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Other Widgets, hello'}
+          tableLabel={'OtherWidgets'}
+        />
+      )
     })
     it('should not show an edit icon', () => {
       expect(screen.queryByTestId('DeleteIcon')).not.toBeInTheDocument()
