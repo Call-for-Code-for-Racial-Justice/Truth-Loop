@@ -1,7 +1,4 @@
-import reducer, {
-  APP_SETTINGS_UPDATE,
-  DEFAULT_STATE
-} from './appSettings.duck'
+import reducer, { APP_SETTINGS_UPDATE, DEFAULT_STATE } from './appSettings.duck'
 
 describe('appSettings reducer tests', () => {
   let state, initialState
@@ -17,7 +14,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when just updating the appTitle', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {appTitle: 'the new title'}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { appTitle: 'the new title' },
+      })
     })
     it('should update the title', () => {
       expect(state.appTitle).toEqual('the new title')
@@ -38,7 +38,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when appTitle is undefined', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {appTitle: undefined}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { appTitle: undefined },
+      })
     })
     it('should not update the title', () => {
       expect(state.appTitle).toEqual('')
@@ -47,7 +50,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when updating topBar.hasBack', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {topBar: {hasBack: true}}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { topBar: { hasBack: true } },
+      })
     })
     it('should update topBar.hasBack', () => {
       expect(state.topBar.hasBack).toBeTruthy()
@@ -68,7 +74,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when updating topBar.hasSettings', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {topBar: {hasSettings: true}}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { topBar: { hasSettings: true } },
+      })
     })
     it('should update topBar.hasSettings', () => {
       expect(state.topBar.hasSettings).toBeTruthy()
@@ -86,7 +95,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when topBar.hasBack is undefined', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {topBar: {hasBack: undefined}}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { topBar: { hasBack: undefined } },
+      })
     })
     it('should not update topBar.hasBack', () => {
       expect(state.topBar.hasBack).toBeFalsy()
@@ -107,7 +119,10 @@ describe('appSettings reducer tests', () => {
 
   describe('when topBar.hasSettings is undefined', () => {
     beforeEach(() => {
-      state = reducer(initialState, {type: APP_SETTINGS_UPDATE, payload: {topBar: {hasSettings: undefined}}})
+      state = reducer(initialState, {
+        type: APP_SETTINGS_UPDATE,
+        payload: { topBar: { hasSettings: undefined } },
+      })
     })
     it('should not update topBar.hasSettings', () => {
       expect(state.topBar.hasSettings).toBeFalsy()

@@ -1,10 +1,10 @@
 import React from 'react'
-import {fireEvent} from '@testing-library/react'
-import {render, screen} from '../testUtils.js'
+import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../testUtils.js'
 import PolicyTableItem from './PolicyTableItem'
 import * as transformDate from '../transformDate'
-import {createMemoryHistory} from 'history'
-import {Router} from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+import { Router } from 'react-router-dom'
 
 describe('PolicyTableItem component tests', () => {
   let transformDateSpy, historyPushSpy
@@ -16,8 +16,12 @@ describe('PolicyTableItem component tests', () => {
 
       render(
         <Router history={history}>
-          <PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
-                           dateIntroduced={'2016-11-03T04:47:00.000Z'}/>
+          <PolicyTableItem
+            id={1}
+            summary={'Test Summary'}
+            title={'Test Title'}
+            dateIntroduced={'2016-11-03T04:47:00.000Z'}
+          />
         </Router>
       )
     })
@@ -49,11 +53,20 @@ describe('PolicyTableItem component tests', () => {
   describe('rowType tests', () => {
     describe('when rowNum 0', () => {
       beforeEach(() => {
-        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
-                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={0}/>)
+        render(
+          <PolicyTableItem
+            id={1}
+            summary={'Test Summary'}
+            title={'Test Title'}
+            dateIntroduced={'2016-11-03T04:47:00.000Z'}
+            rowNumber={0}
+          />
+        )
       })
       it('should have sentiment-bar-1 class', () => {
-        expect(screen.getByTestId('sentimentBarRow0')).toHaveClass('sentiment-bar-1')
+        expect(screen.getByTestId('sentimentBarRow0')).toHaveClass(
+          'sentiment-bar-1'
+        )
       })
       it('should have odd class', () => {
         expect(screen.getByTestId('sentimentBarRow0')).toHaveClass('odd')
@@ -61,11 +74,20 @@ describe('PolicyTableItem component tests', () => {
     })
     describe('when rowNum 1', () => {
       beforeEach(() => {
-        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
-                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={1}/>)
+        render(
+          <PolicyTableItem
+            id={1}
+            summary={'Test Summary'}
+            title={'Test Title'}
+            dateIntroduced={'2016-11-03T04:47:00.000Z'}
+            rowNumber={1}
+          />
+        )
       })
       it('should have sentiment-bar-1 class', () => {
-        expect(screen.getByTestId('sentimentBarRow1')).toHaveClass('sentiment-bar-1')
+        expect(screen.getByTestId('sentimentBarRow1')).toHaveClass(
+          'sentiment-bar-1'
+        )
       })
       it('should have odd class', () => {
         expect(screen.getByTestId('sentimentBarRow1')).toHaveClass('even')
@@ -73,11 +95,20 @@ describe('PolicyTableItem component tests', () => {
     })
     describe('when rowNum 2', () => {
       beforeEach(() => {
-        render(<PolicyTableItem id={1} summary={'Test Summary'} title={'Test Title'}
-                                dateIntroduced={'2016-11-03T04:47:00.000Z'} rowNumber={2}/>)
+        render(
+          <PolicyTableItem
+            id={1}
+            summary={'Test Summary'}
+            title={'Test Title'}
+            dateIntroduced={'2016-11-03T04:47:00.000Z'}
+            rowNumber={2}
+          />
+        )
       })
       it('should have sentiment-bar-1 class', () => {
-        expect(screen.getByTestId('sentimentBarRow2')).toHaveClass('sentiment-bar-1')
+        expect(screen.getByTestId('sentimentBarRow2')).toHaveClass(
+          'sentiment-bar-1'
+        )
       })
       it('should have odd class', () => {
         expect(screen.getByTestId('sentimentBarRow2')).toHaveClass('odd')
