@@ -1,12 +1,18 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AdminHomeRoute from './adminHomeRoute/AdminHomeRoute'
+import CategoryRoute from './categories/CategoryRoute'
+import CategoryForm from './categories/CategoryForm'
 import PublicationRoute from './publications/PublicationRoute'
 import PublicationForm from './publications/PublicationForm'
 import VideoTestimonialRoute from './videoTestimonials/VideoTestimonialRoute'
 import VideoTestimonialForm from './videoTestimonials/VideoTestimonialForm'
 import AdvocacyGroupsRoute from './advocacyGroups/AdvocacyGroupsRoute'
 import AdvocacyGroupsForm from './advocacyGroups/AdvocacyGroupsForm'
+import LevelsRoute from './levels/LevelsRoute'
+import LevelsForm from './levels/LevelsForm'
+import GeographyRoute from './geographies/GeographyRoute'
+import GeographyForm from './geographies/GeographyForm'
 
 function AdminApp() {
   return (
@@ -15,11 +21,37 @@ function AdminApp() {
         <div id={'main-content'} data-testid={'mainContent'}>
           <Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
+            <Route name="level-route" exact path={'/levels'} component={LevelsRoute} />
+            <Route name="add-level-form" exact path={'/levels/add'} component={LevelsForm} />
+            <Route name="edit-level-form" path={'/levels/edit/:id'} component={LevelsForm} />
+            <Route name="category-route" exact path={'/categories'} component={CategoryRoute} />
+            <Route
+              name="add-category-form"
+              exact
+              path={'/categories/add'}
+              component={CategoryForm}
+            />
+            <Route
+              name="edit-category-form"
+              path={'/categories/edit/:id'}
+              component={CategoryForm}
+            />
             <Route
               name="publication-route"
               exact
               path={'/publications'}
               component={PublicationRoute}
+            />
+            <Route
+              name="add-publication-form"
+              exact
+              path={'/publications/add'}
+              component={PublicationForm}
+            />
+            <Route
+              name="edit-publication-form"
+              path={'/publications/edit/:id'}
+              component={PublicationForm}
             />
             <Route
               name="video-testimonial-route"
@@ -45,17 +77,6 @@ function AdminApp() {
               component={AdvocacyGroupsRoute}
             />
             <Route
-              name="add-publication-form"
-              exact
-              path={'/publications/add'}
-              component={PublicationForm}
-            />
-            <Route
-              name="edit-publication-form"
-              path={'/publications/edit/:id'}
-              component={PublicationForm}
-            />
-            <Route
               name="add-advocacy-group-form"
               exact
               path={'/advocacyGroups/add'}
@@ -65,6 +86,23 @@ function AdminApp() {
               name="edit-advocacy-group-form"
               path={'/advocacyGroups/edit/:id'}
               component={AdvocacyGroupsForm}
+            />
+            <Route
+              name="geography-route"
+              exact
+              path={'/geospatialDefinitions'}
+              component={GeographyRoute}
+            />
+            <Route
+              name="add-geography-form"
+              exact
+              path={'/geospatialDefinitions/add'}
+              component={GeographyForm}
+            />
+            <Route
+              name="edit-geography-form"
+              path={'/geospatialDefinitions/edit/:id'}
+              component={GeographyForm}
             />
           </Switch>
         </div>
