@@ -1,14 +1,10 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'plugin:jest/recommended',
-    'plugin:react-hooks/recommended',
-    'prettier',
-  ],
+  extends: ['plugin:jest/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,8 +12,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'jest', 'prettier'],
+  plugins: ['jest', 'prettier'],
   rules: {
+    'jest/no-done-callback': 'warn',
     'prettier/prettier': 'error',
   },
   overrides: [

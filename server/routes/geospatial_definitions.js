@@ -1,7 +1,7 @@
 const logger = require('../logger').logger
 const geospatialDefinitionDB = require('../db/geospatial_definitions')
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 /**
  * @api [get] /api/v1/geospatialDefinitions
@@ -19,16 +19,16 @@ var router = express.Router();
  *             $ref: "#/components/schemas/GeospatialDefinition"
  */
 router.get('/', (request, response) => {
-    geospatialDefinitionDB.getGeospatialDefinitions((error, results) => {
-        if (error) {
-            logger.error("fail to retrieve geospatial definitions: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(200).json(results.rows)
-        }
-    })
+  geospatialDefinitionDB.getGeospatialDefinitions((error, results) => {
+    if (error) {
+      logger.error('fail to retrieve geospatial definitions: %s', error)
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      response.status(200).json(results.rows)
+    }
+  })
 })
 
 /**
@@ -53,23 +53,27 @@ router.get('/', (request, response) => {
  *     description: No Geospatial Definition object exists for that id
  */
 router.get('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    geospatialDefinitionDB.getGeospatialDefinitionById(id, (error, results) => {
-        if (error) {
-            logger.error("fail to retrieve geospatial definition with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rows && results.rows.length > 0) {
-                response.status(200).json(results.rows[0])
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  geospatialDefinitionDB.getGeospatialDefinitionById(id, (error, results) => {
+    if (error) {
+      logger.error(
+        'fail to retrieve geospatial definition with id %d: %s',
+        id,
+        error
+      )
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rows && results.rows.length > 0) {
+        response.status(200).json(results.rows[0])
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 /**
@@ -94,22 +98,29 @@ router.get('/:id', (request, response) => {
  *     description: No Geospatial Definition object exists for that name
  */
 router.get('/name/:name', (request, response) => {
-    geospatialDefinitionDB.getGeospatialDefinitionByName(request.params.name, (error, results) => {
-        if (error) {
-            logger.error("fail to retrieve geospatial definition with name %s: %s", request.params.name, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
+  geospatialDefinitionDB.getGeospatialDefinitionByName(
+    request.params.name,
+    (error, results) => {
+      if (error) {
+        logger.error(
+          'fail to retrieve geospatial definition with name %s: %s',
+          request.params.name,
+          error
+        )
+        response.status(500).json({
+          error: 'Internal Server Error',
+        })
+      } else {
+        if (results.rows && results.rows.length > 0) {
+          response.status(200).json(results.rows[0])
         } else {
-            if (results.rows && results.rows.length > 0) {
-                response.status(200).json(results.rows[0])
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
+          response.status(404).json({
+            error: 'Not Found',
+          })
         }
-    })
+      }
+    }
+  )
 })
 
 /**
@@ -130,16 +141,19 @@ router.get('/name/:name', (request, response) => {
  *           $ref: "#/components/schemas/IdOfCreatedObject"
  */
 router.post('/', (request, response) => {
-    geospatialDefinitionDB.createGeospatialDefinition(request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to create geospatial definition: %s", error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            response.status(201).json(results.rows[0])
-        }
-    })
+  geospatialDefinitionDB.createGeospatialDefinition(
+    request.body,
+    (error, results) => {
+      if (error) {
+        logger.error('fail to create geospatial definition: %s', error)
+        response.status(500).json({
+          error: 'Internal Server Error',
+        })
+      } else {
+        response.status(201).json(results.rows[0])
+      }
+    }
+  )
 })
 
 /**
@@ -167,25 +181,33 @@ router.post('/', (request, response) => {
  *     description: No Geospatial Definition object exists for that name
  */
 router.put('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    geospatialDefinitionDB.updateGeospatialDefinition(id, request.body, (error, results) => {
-        if (error) {
-            logger.error("fail to update geospatial definition with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
+  const id = parseInt(request.params.id)
+  geospatialDefinitionDB.updateGeospatialDefinition(
+    id,
+    request.body,
+    (error, results) => {
+      if (error) {
+        logger.error(
+          'fail to update geospatial definition with id %d: %s',
+          id,
+          error
+        )
+        response.status(500).json({
+          error: 'Internal Server Error',
+        })
+      } else {
+        if (results.rowCount > 0) {
+          response.status(200).json({
+            ok: true,
+          })
         } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
+          response.status(404).json({
+            error: 'Not Found',
+          })
         }
-    })
+      }
+    }
+  )
 })
 
 /**
@@ -210,25 +232,29 @@ router.put('/:id', (request, response) => {
  *     description: No Geospatial Definition object exists for that id
  */
 router.delete('/:id', (request, response) => {
-    const id = parseInt(request.params.id)
-    geospatialDefinitionDB.deleteGeospatialDefinition(id, (error, results) => {
-        if (error) {
-            logger.error("fail to delete geospatial definition with id %d: %s", id, error)
-            response.status(500).json({
-                error: "Internal Server Error"
-            })
-        } else {
-            if (results.rowCount > 0) {
-                response.status(200).json({
-                    ok: true
-                })
-            } else {
-                response.status(404).json({
-                    error: "Not Found"
-                })
-            }
-        }
-    })
+  const id = parseInt(request.params.id)
+  geospatialDefinitionDB.deleteGeospatialDefinition(id, (error, results) => {
+    if (error) {
+      logger.error(
+        'fail to delete geospatial definition with id %d: %s',
+        id,
+        error
+      )
+      response.status(500).json({
+        error: 'Internal Server Error',
+      })
+    } else {
+      if (results.rowCount > 0) {
+        response.status(200).json({
+          ok: true,
+        })
+      } else {
+        response.status(404).json({
+          error: 'Not Found',
+        })
+      }
+    }
+  })
 })
 
 module.exports = router
