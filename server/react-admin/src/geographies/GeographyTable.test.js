@@ -64,7 +64,7 @@ describe('GeographyTable Tests', () => {
             {
               id: '1',
               name: 'title 1',
-			  short_name_ui: 'shortname 1',
+              short_name_ui: 'shortname 1',
               description: 'desc 1',
               created: '2016-11-03T04:47:00.000Z',
               updated: '2016-11-03T04:47:00.000Z',
@@ -72,7 +72,7 @@ describe('GeographyTable Tests', () => {
             {
               id: '2',
               name: 'title 2',
-			  short_name_ui: 'shortname 2',
+              short_name_ui: 'shortname 2',
               description: 'desc 2',
               created: '2016-11-03T04:47:00.000Z',
               updated: '2016-11-03T04:47:00.000Z',

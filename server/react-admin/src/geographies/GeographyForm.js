@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
-//name, short_name_ui, description
+
 const emptyFormValues = { name: '', short_name_ui: '', description: '' }
 
 function GeographyForm() {
