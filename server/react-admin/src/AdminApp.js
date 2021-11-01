@@ -9,18 +9,16 @@ import VideoTestimonialRoute from './videoTestimonials/VideoTestimonialRoute'
 import VideoTestimonialForm from './videoTestimonials/VideoTestimonialForm'
 import AdvocacyGroupsRoute from './advocacyGroups/AdvocacyGroupsRoute'
 import AdvocacyGroupsForm from './advocacyGroups/AdvocacyGroupsForm'
-<<<<<<< HEAD
-
-import './adminapp.scss'
-const drawerWidth = 280
-=======
 import OfficialsRoute from './officials/OfficialsRoute'
 import OfficialsForm from './officials/OfficialsForm'
 import LevelsRoute from './levels/LevelsRoute'
 import LevelsForm from './levels/LevelsForm'
 import GeographyRoute from './geographies/GeographyRoute'
 import GeographyForm from './geographies/GeographyForm'
->>>>>>> 0309b520c3580e778d54dee1748bb4e850983554
+
+import './adminapp.scss'
+const drawerWidth = 280
+
 
 function AdminApp() {
   const location = useLocation()
@@ -37,8 +35,8 @@ function AdminApp() {
   return (
     <div id={'app'}>
       <SideNav open={open} handleClose={handleDrawerClose} handleOpen={handleDrawerOpen} />
-      <Main open={open} id={'main-content'} data-testid={'mainContent'}>
-	  <Switch>
+      	<Main open={open} id={'main-content'} data-testid={'mainContent'}>
+	  		<Switch>
             <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
 
             <Route name="level-route" exact path={'/levels'} component={LevelsRoute} />
