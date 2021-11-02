@@ -41,7 +41,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }))
 const SideNav = ({ open, handleClose, handleOpen }) => {
   return (
-    <nav>
+    <nav data-testid="navbar">
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -50,6 +50,7 @@ const SideNav = ({ open, handleClose, handleOpen }) => {
             onClick={() => handleOpen()}
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            data-testid="open-nav"
           >
             <MenuIcon />
           </IconButton>
@@ -61,9 +62,9 @@ const SideNav = ({ open, handleClose, handleOpen }) => {
       <Drawer variant="persistent" anchor="left" open={open}>
         <DrawerHeader>
           <a href="/" id="home-button">
-            <HomeIcon color="primary" />
+            <HomeIcon color="primary" aria-label="Return-Home" data-testid="home" />
           </a>
-          <IconButton onClick={handleClose}>
+          <IconButton onClick={handleClose} data-testid="close-nav">
             <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>

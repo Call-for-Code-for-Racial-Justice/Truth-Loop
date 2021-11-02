@@ -7,7 +7,7 @@ const SideNavTab = ({ label, link }) => {
   const [open, setOpen] = React.useState(false)
   if (label == 'API Docs') {
     return (
-      <div className="menu-item">
+      <div className="menu-item" data-testid="rest-api">
         <button type="button" className="menu-button" onClick={() => setOpen(!open)}>
           {label}
           <ExpandMore className={open ? 'expand-icon-flipped' : 'expand-icon'} />
@@ -22,7 +22,7 @@ const SideNavTab = ({ label, link }) => {
     )
   } else {
     return (
-      <div className="menu-item">
+      <div className="menu-item" data-testid="side-nav-item">
         <button type="button" className="menu-button" onClick={() => setOpen(!open)}>
           {label}
           <ExpandMore className={open ? 'expand-icon-flipped' : 'expand-icon'} />
