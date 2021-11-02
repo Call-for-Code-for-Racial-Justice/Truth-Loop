@@ -15,6 +15,8 @@ import LevelsRoute from './levels/LevelsRoute'
 import LevelsForm from './levels/LevelsForm'
 import GeographyRoute from './geographies/GeographyRoute'
 import GeographyForm from './geographies/GeographyForm'
+import ArtifactRoute from './artifacts/ArtifactRoute'
+import ArtifactForm from './artifacts/ArtifactForm'
 
 function AdminApp() {
   return (
@@ -27,6 +29,7 @@ function AdminApp() {
             <Route name="level-route" exact path={'/levels'} component={LevelsRoute} />
             <Route name="add-level-form" exact path={'/levels/add'} component={LevelsForm} />
             <Route name="edit-level-form" path={'/levels/edit/:id'} component={LevelsForm} />
+
             <Route name="category-route" exact path={'/categories'} component={CategoryRoute} />
             <Route
               name="add-category-form"
@@ -39,6 +42,7 @@ function AdminApp() {
               path={'/categories/edit/:id'}
               component={CategoryForm}
             />
+
             <Route
               name="publication-route"
               exact
@@ -105,6 +109,7 @@ function AdminApp() {
               path={'/officials/edit/:id'}
               component={OfficialsForm}
             />
+
             <Route
               name="geography-route"
               exact
@@ -121,6 +126,19 @@ function AdminApp() {
               name="edit-geography-form"
               path={'/geospatialDefinitions/edit/:id'}
               component={GeographyForm}
+            />
+
+            <Route name="artifact-route" exact path={'/artifacts'} component={ArtifactRoute} />
+            <Route
+              name="add-artifact-form"
+              exact
+              path={'/artifacts/add'}
+              component={ArtifactForm}
+            />
+            <Route
+              name="edit-artifact-form"
+              path={'/artifacts/edit/:id'}
+              component={ArtifactForm}
             />
           </Switch>
         </div>
