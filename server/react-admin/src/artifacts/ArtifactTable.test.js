@@ -61,8 +61,8 @@ describe('ArtifactTable Tests', () => {
       render(
         <ArtifactTable
           artifacts={[
-            { title: 'some title 1', summary: 'some summary', aNullValue: null },
-            { title: 'some title 2', summary: 'some summary 2' },
+            { id: 1, title: 'some title 1', summary: 'some summary', aNullValue: null },
+            { id: 2, title: 'some title 2', summary: 'some summary 2' },
           ]}
         />
       )
