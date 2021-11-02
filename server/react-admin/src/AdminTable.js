@@ -96,7 +96,7 @@ function AdminTable(props) {
       const searchRegex = new RegExp(escapeRegExp(searchRequestText), 'i')
       const filtered = rows.filter((row) => {
         return Object.keys(row).some((field) => {
-          return searchRegex.test(row[field].toString())
+          return row[field] && searchRegex.test(row[field].toString())
         })
       })
       setFilteredRows(filtered)
