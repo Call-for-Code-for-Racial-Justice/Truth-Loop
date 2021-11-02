@@ -39,7 +39,7 @@ function VideoTestimonial() {
       method: existingTestimonial ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
       // eslint-disable-next-line camelcase
-      body: JSON.stringify({...values, privacy_stmt_ack: privacyStatement}),
+      body: JSON.stringify({...values}),
     })
     if (testimonialsResponse.ok) {
       history.push('/videoTestimonials')
