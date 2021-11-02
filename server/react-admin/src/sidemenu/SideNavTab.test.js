@@ -7,7 +7,7 @@ describe('SideNav tests', () => {
     beforeEach(() => {
       render(<SideNavTab link="categories" label="Categories" />)
     })
-    it('sidenavtab items should be visible ', () => {
+    it('sidenavtab items should be visible', () => {
       expect(screen.getByTestId('side-nav-item')).toBeInTheDocument()
       expect(screen.queryByText('Categories')).toBeVisible()
       expect(screen.getByText('Add Categories')).toBeInTheDocument()
