@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
+import DateInput from '../form/DateInput'
 
 const emptyFormValues = {
   title: '',
@@ -80,10 +81,11 @@ function ArtifactForm() {
               />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput
+              <DateInput
                 name={'date_introduced'}
                 control={control}
                 label={'Date Introduced'}
+                maxDate={new Date()}
                 required
               />
             </Grid>

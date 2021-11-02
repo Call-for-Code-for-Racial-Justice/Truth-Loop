@@ -61,7 +61,12 @@ function ArtifactTable(props) {
         headCells={headCells}
         isLoading={props.isLoading}
         rows={props.artifacts.map((artifact) => ({
-          ...artifact,
+          id: artifact.id,
+          title: artifact.title,
+          summary: artifact.summary,
+          link_to_full_text: artifact.link_to_full_text,
+          date_introduced: formatDate(artifact.date_introduced),
+          status: artifact.status,
           created: formatDate(artifact.created),
           updated: formatDate(artifact.updated),
         }))}
