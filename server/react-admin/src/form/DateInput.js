@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import DatePicker from '@mui/lab/DatePicker'
+import FormControl from '@mui/material/FormControl'
 
 DateInput.propTypes = {
   label: PropTypes.string.isRequired,
@@ -30,14 +31,16 @@ function DateInput({ control, label, name, defaultValue, required, maxDate }) {
         defaultValue={defaultValue || ''}
         rules={rules}
         render={({ field }) => (
-          <DatePicker
-            {...field}
-            maxDate={maxDate}
-            label={label}
-            renderInput={(params) => (
-              <TextField {...params} error={!!errorMessage} helperText={errorMessage} />
-            )}
-          />
+          <FormControl fullWidth error={!!errorMessage}>
+            <DatePicker
+              {...field}
+              maxDate={maxDate}
+              label={label}
+              renderInput={(params) => (
+                <TextField {...params} error={!!errorMessage} helperText={errorMessage} />
+              )}
+            />
+          </FormControl>
         )}
       />
     </LocalizationProvider>

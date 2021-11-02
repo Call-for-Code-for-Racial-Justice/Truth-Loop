@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
 import DateInput from '../form/DateInput'
+import SelectInput from '../form/SelectInput'
 
 const emptyFormValues = {
   title: '',
@@ -90,7 +91,21 @@ function ArtifactForm() {
               />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'status'} control={control} label={'Status'} required />
+              <SelectInput
+                name={'status'}
+                control={control}
+                label={'Status'}
+                required
+                options={[
+                  { value: 'Introduced', label: 'Introduced' },
+                  { value: 'Referred', label: 'Referred' },
+                  { value: 'Reported', label: 'Reported' },
+                  { value: 'Failed', label: 'Failed' },
+                  { value: 'Passed', label: 'Passed' },
+                  { value: 'Enacted', label: 'Enacted' },
+                  { value: 'Vetoed', label: 'Vetoed' },
+                ]}
+              />
             </Grid>
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
