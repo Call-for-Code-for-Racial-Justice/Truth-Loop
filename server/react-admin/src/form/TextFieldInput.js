@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Controller} from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import { useFormState } from 'react-hook-form'
 
@@ -9,12 +9,12 @@ TextFieldInput.propTypes = {
   name: PropTypes.string.isRequired,
   control: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
 }
 
-function TextFieldInput({control, label, name, defaultValue, required}) {
+function TextFieldInput({ control, label, name, defaultValue, required }) {
   const { errors } = useFormState({
-    control
+    control,
   })
   const errorMessage = errors[name] ? errors[name].message : ''
   const rules = {}
@@ -28,7 +28,13 @@ function TextFieldInput({control, label, name, defaultValue, required}) {
       defaultValue={defaultValue || ''}
       rules={rules}
       render={({ field }) => (
-        <TextField label={label} fullWidth {...field} error={!!errorMessage} helperText={errorMessage}/>
+        <TextField
+          label={label}
+          fullWidth
+          {...field}
+          error={!!errorMessage}
+          helperText={errorMessage}
+        />
       )}
     />
   )

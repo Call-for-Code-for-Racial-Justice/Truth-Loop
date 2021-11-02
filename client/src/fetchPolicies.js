@@ -6,7 +6,9 @@ export default async function fetchPolicies() {
     return [...policies]
   } else {
     const apiUrl = process.env.REACT_APP_SERVER_URL || ''
-    const policyFullDetailResponse = await fetch(`${apiUrl}/api/v1/legislativeArtifacts`)
+    const policyFullDetailResponse = await fetch(
+      `${apiUrl}/api/v1/legislativeArtifacts`
+    )
     return policyFullDetailResponse.json()
   }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import TablePagination from '@mui/material/TablePagination'
 import TableSortLabel from '@mui/material/TableSortLabel'
-import {visuallyHidden} from '@mui/utils'
+import { visuallyHidden } from '@mui/utils'
 import TableBody from '@mui/material/TableBody'
 import LinearProgress from '@mui/material/LinearProgress'
 import Typography from '@mui/material/Typography'
@@ -53,8 +53,16 @@ function escapeRegExp(value) {
 }
 
 function AdminTable(props) {
-
-  const {headCells, rows, caption, tableLabel, onEditItem, onDeleteItem, disableSearch, isLoading} = props
+  const {
+    headCells,
+    rows,
+    caption,
+    tableLabel,
+    onEditItem,
+    onDeleteItem,
+    disableSearch,
+    isLoading,
+  } = props
 
   const [searchText, setSearchText] = React.useState('')
   const [order, setOrder] = React.useState('asc')
@@ -104,46 +112,44 @@ function AdminTable(props) {
 
   return (
     <>
-      <Toolbar sx={{pl: {sm: 2}, pr: {xs: 1, sm: 1}}}>
-        <Typography
-          sx={{flex: '1 1 100%'}}
-          variant="h6"
-          id="tableTitle"
-          component="h2"
-        >
+      <Toolbar sx={{ pl: { sm: 2 }, pr: { xs: 1, sm: 1 } }}>
+        <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="h2">
           {tableLabel}
         </Typography>
 
         <Tooltip title="Search list">
-          <TextField fullWidth
-                     disabled={disableSearch}
-                     variant="standard"
-                     value={searchText}
-                     onChange={(event) => handleSearchRequest(event.target.value)}
-                     placeholder="Search..."
-                     InputProps={{
-                       startAdornment: <SearchIcon fontSize="small"/>,
-                       endAdornment: (
-                         <IconButton
-                           title="Clear"
-                           aria-label="Clear"
-                           style={{visibility: searchText ? 'visible' : 'hidden'}}
-                           onClick={() => requestSearch('')}
-                         >
-                           <ClearIcon fontSize="small"/>
-                         </IconButton>
-                       ),
-                     }}
+          <TextField
+            fullWidth
+            disabled={disableSearch}
+            variant="standard"
+            value={searchText}
+            onChange={(event) => handleSearchRequest(event.target.value)}
+            placeholder="Search..."
+            InputProps={{
+              startAdornment: <SearchIcon fontSize="small" />,
+              endAdornment: (
+                <IconButton
+                  title="Clear"
+                  aria-label="Clear"
+                  style={{ visibility: searchText ? 'visible' : 'hidden' }}
+                  onClick={() => requestSearch('')}
+                >
+                  <ClearIcon fontSize="small" />
+                </IconButton>
+              ),
+            }}
           />
         </Tooltip>
       </Toolbar>
-      <TableContainer sx={{maxHeight: 600}}>
-        { isLoading ?
+      <TableContainer sx={{ maxHeight: 600 }}>
+        {isLoading ? (
           <Box component={'span'} sx={{ p: 2 }}>
-            <Typography component={'h3'} variant={'overline'} sx={{ p: 2 }}>Loading {tableLabel} ...</Typography>
+            <Typography component={'h3'} variant={'overline'} sx={{ p: 2 }}>
+              Loading {tableLabel} ...
+            </Typography>
             <LinearProgress color="secondary" />
           </Box>
-          :
+        ) : (
           <Table size="small" aria-label={tableLabel} stickyHeader>
             <caption data-testid={`${tableLabel}Caption`}>{caption}</caption>
             <TableHead data-testid={`${tableLabel}HeaderRow`}>
@@ -161,9 +167,11 @@ function AdminTable(props) {
                       onClick={createSortHandler(headCell.id)}
                     >
                       {headCell.label}
-                      {orderBy === headCell.id ? (<Box component="span" sx={visuallyHidden}>
+                      {orderBy === headCell.id ? (
+                        <Box component="span" sx={visuallyHidden}>
                           {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                        </Box>) : null}
+                        </Box>
+                      ) : null}
                     </TableSortLabel>
                   </TableCell>
                 ))}
@@ -171,30 +179,46 @@ function AdminTable(props) {
             </TableHead>
 
             <TableBody>
-              {filteredRows.slice().sort(getComparator(order, orderBy))
+              {filteredRows
+                .slice()
+                .sort(getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (<TableRow data-testid={`${tableLabel}Row`}
+                .map((row) => (
+                  <TableRow
+                    data-testid={`${tableLabel}Row`}
                     key={`${row.id}-row`}
-                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    {headCells.map(headCell => (
+                    {headCells.map((headCell) => (
                       <TableCell key={`${row.id}_${headCell.id}`}>{row[headCell.id]}</TableCell>
                     ))}
-                    {!!onEditItem && <TableCell padding={'none'} size={'small'}>
-                      <IconButton aria-label="edit" onClick={() => onEditItem(row)} size={'small'}>
-                        <EditIcon />
-                      </IconButton>
-                    </TableCell>}
-                    {!!onDeleteItem && <TableCell padding={'none'} size={'small'}>
-                      <IconButton aria-label="delete" onClick={() => onDeleteItem(row)} size={'small'}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </TableCell>}
+                    {!!onEditItem && (
+                      <TableCell padding={'none'} size={'small'}>
+                        <IconButton
+                          aria-label="edit"
+                          onClick={() => onEditItem(row)}
+                          size={'small'}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                      </TableCell>
+                    )}
+                    {!!onDeleteItem && (
+                      <TableCell padding={'none'} size={'small'}>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => onDeleteItem(row)}
+                          size={'small'}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
             </TableBody>
           </Table>
-        }
+        )}
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}

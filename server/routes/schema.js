@@ -489,17 +489,17 @@
  *     description: Represents the size of the object file
  *   views:
  *     type: integer
- *     description: Number of views affiliated with the video object 
+ *     description: Number of views affiliated with the video object
  *   protect:
  *     type: string
- *     description: Access privilege for the video object  
+ *     description: Access privilege for the video object
  *   thumbnail:
  *     type: object
  *     properties:
  *       default:
  *         type: string
  *         description: The default thumbnail for the video object
- *       image_192x108: 
+ *       image_192x108:
  *         type: string
  *         description: The thumbnail with dimensions 192*108
  *       image_112x63:
@@ -532,7 +532,7 @@
  *       channel:
  *         type: object
  *         properties:
- *           href: 
+ *           href:
  *             type: string
  *             description: link to the channel object
  *           id:
@@ -564,4 +564,3 @@
  *     type: object
  *     description: TBA
  */
-

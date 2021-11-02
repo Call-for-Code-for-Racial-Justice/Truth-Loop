@@ -10,7 +10,7 @@ describe('VideoTestimonialRoute Tests', () => {
     beforeEach(() => {
       window.fetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => ([{some: 'item'}])
+        json: async () => [{ some: 'item' }],
       })
       render(<VideoTestimonialRoute />)
     })

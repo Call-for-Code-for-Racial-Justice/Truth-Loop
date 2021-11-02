@@ -2,13 +2,14 @@ on:
   push:
     branches:
       - "**"
-  pull_request_target:
+  pull_request:
     branches:
-      - main
+      - "**"
 name: Build Server
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: read-all
     defaults:
       run:
         working-directory: server
@@ -25,4 +26,5 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
       - name: Install dependencies
         run: npm install
+      - run: npm run lint
       - run: npm run test

@@ -11,15 +11,24 @@ export const DEFAULT_STATE = {
 export default function reducer(state = DEFAULT_STATE, action = {}) {
   switch (action.type) {
     case APP_SETTINGS_UPDATE: {
-      const newState = {...state}
-      if (action.payload.appTitle != null && typeof action.payload.appTitle !== 'undefined') {
+      const newState = { ...state }
+      if (
+        action.payload.appTitle != null &&
+        typeof action.payload.appTitle !== 'undefined'
+      ) {
         newState.appTitle = action.payload.appTitle
       }
       if (action.payload.topBar) {
-        if (action.payload.topBar.hasBack != null && typeof action.payload.topBar.hasBack !== 'undefined') {
+        if (
+          action.payload.topBar.hasBack != null &&
+          typeof action.payload.topBar.hasBack !== 'undefined'
+        ) {
           newState.topBar.hasBack = action.payload.topBar.hasBack
         }
-        if (action.payload.topBar.hasSettings != null && typeof action.payload.topBar.hasSettings !== 'undefined') {
+        if (
+          action.payload.topBar.hasSettings != null &&
+          typeof action.payload.topBar.hasSettings !== 'undefined'
+        ) {
           newState.topBar.hasSettings = action.payload.topBar.hasSettings
         }
       }
@@ -31,7 +40,7 @@ export default function reducer(state = DEFAULT_STATE, action = {}) {
 }
 
 export function updateAppSettings(appSettings) {
-  return dispatch => {
-    return dispatch({type: APP_SETTINGS_UPDATE, payload: appSettings})
+  return (dispatch) => {
+    return dispatch({ type: APP_SETTINGS_UPDATE, payload: appSettings })
   }
 }
