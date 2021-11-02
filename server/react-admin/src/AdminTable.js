@@ -132,7 +132,7 @@ function AdminTable(props) {
                   title="Clear"
                   aria-label="Clear"
                   style={{ visibility: searchText ? 'visible' : 'hidden' }}
-                  onClick={() => requestSearch('')}
+                  onClick={() => handleSearchRequest('')}
                 >
                   <ClearIcon fontSize="small" />
                 </IconButton>
