@@ -1,8 +1,8 @@
 import React from 'react'
-import {render, screen} from '../testUtils.js'
-import {createMemoryHistory} from 'history'
-import {Route, Router} from 'react-router-dom'
-import {Provider} from 'react-redux'
+import { render, screen } from '../testUtils.js'
+import { createMemoryHistory } from 'history'
+import { Route, Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import configureMockStore from 'redux-mock-store'
 import * as policyDuck from '../store/policy.duck'
 
@@ -13,14 +13,20 @@ const mockStore = configureMockStore()
 describe('PolicyRoute component tests', () => {
   beforeEach(() => {
     jest.spyOn(policyDuck, 'fetchCurrentPolicy').mockImplementation(() => {
-      return {type: 'anything'}
+      return { type: 'anything' }
     })
   })
   describe('when PolicyRoute fetch status returns an empty object', () => {
     beforeEach(() => {
-      const store = mockStore({policy: {currentPolicy: null, status: ''}})
+      const store = mockStore({ policy: { currentPolicy: null, status: '' } })
       const history = createMemoryHistory()
-      render(<Provider store={store}><Router history={history}><PolicyRoute/></Router></Provider>)
+      render(
+        <Provider store={store}>
+          <Router history={history}>
+            <PolicyRoute />
+          </Router>
+        </Provider>
+      )
     })
     it('should show empty policy notice', () => {
       expect(screen.getByTestId('emptyPolicy')).toBeInTheDocument()
@@ -28,9 +34,17 @@ describe('PolicyRoute component tests', () => {
   })
   describe('when PolicyRoute fetch status is not idle, pending, or error', () => {
     beforeEach(() => {
-      const store = mockStore({policy: {currentPolicy: 'Some error', status: ''}})
+      const store = mockStore({
+        policy: { currentPolicy: 'Some error', status: '' },
+      })
       const history = createMemoryHistory()
-      render(<Provider store={store}><Router history={history}><PolicyRoute/></Router></Provider>)
+      render(
+        <Provider store={store}>
+          <Router history={history}>
+            <PolicyRoute />
+          </Router>
+        </Provider>
+      )
     })
     it('should show empty policy notice', () => {
       expect(screen.getByTestId('emptyPolicy')).toBeInTheDocument()
@@ -39,10 +53,16 @@ describe('PolicyRoute component tests', () => {
   describe('when PolicyRoute fetch resulted in an error', () => {
     beforeEach(() => {
       const store = mockStore({
-        policy: {currentPolicy: 'Some error', status: 'error'},
+        policy: { currentPolicy: 'Some error', status: 'error' },
       })
       const history = createMemoryHistory()
-      render(<Provider store={store}><Router history={history}><PolicyRoute/></Router></Provider>)
+      render(
+        <Provider store={store}>
+          <Router history={history}>
+            <PolicyRoute />
+          </Router>
+        </Provider>
+      )
     })
     it('should show cannot load policy notice', () => {
       expect(screen.getByTestId('cannotLoadPolicy')).toBeInTheDocument()
@@ -51,10 +71,16 @@ describe('PolicyRoute component tests', () => {
   describe('when PolicyRoute fetch resulted is pending', () => {
     beforeEach(() => {
       const store = mockStore({
-        policy: {currentPolicy: {}, status: 'pending'},
+        policy: { currentPolicy: {}, status: 'pending' },
       })
       const history = createMemoryHistory()
-      render(<Provider store={store}><Router history={history}><PolicyRoute/></Router></Provider>)
+      render(
+        <Provider store={store}>
+          <Router history={history}>
+            <PolicyRoute />
+          </Router>
+        </Provider>
+      )
     })
     it('should show empty policy notice', () => {
       expect(screen.getByTestId('loadingPolicy')).toBeInTheDocument()
@@ -64,13 +90,20 @@ describe('PolicyRoute component tests', () => {
   describe('when PolicyRoute renders with policyId', () => {
     beforeEach(() => {
       const store = mockStore({
-        policy: {currentPolicy: { summary: 'A summary', officials: [], related: []}, status: 'idle'},
+        policy: {
+          currentPolicy: { summary: 'A summary', officials: [], related: [] },
+          status: 'idle',
+        },
       })
       const history = createMemoryHistory()
       history.push('/policy/1234')
       render(
         <Provider store={store}>
-          <Router history={history}><Route path={'/policy/:policyId'}><PolicyRoute/></Route></Router>
+          <Router history={history}>
+            <Route path={'/policy/:policyId'}>
+              <PolicyRoute />
+            </Route>
+          </Router>
         </Provider>
       )
     })

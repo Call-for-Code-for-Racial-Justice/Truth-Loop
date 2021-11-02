@@ -6,14 +6,14 @@ const addRefreshToken = (refreshToken, callback) => {
     [refreshToken, 'valid'],
     callback
   )
-};
+}
 const revokeRefreshToken = (refreshToken, callback) => {
   pool.query(
     'UPDATE refresh_tokens SET status=$1 WHERE refresh_token=$2;',
     ['invalid', refreshToken],
     callback
   )
-};
+}
 
 const getRefreshTokenStatus = (refreshToken, callback) => {
   pool.query(
@@ -28,5 +28,5 @@ const getRefreshTokenStatus = (refreshToken, callback) => {
 module.exports = {
   addRefreshToken,
   revokeRefreshToken,
-  getRefreshTokenStatus
+  getRefreshTokenStatus,
 }

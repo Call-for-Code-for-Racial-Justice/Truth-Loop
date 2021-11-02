@@ -10,7 +10,7 @@ import TextFieldInput from '../form/TextFieldInput'
 import CheckboxInput from '../form/CheckboxInput'
 
 // eslint-disable-next-line camelcase
-const emptyFormValues = { subject: '', comment: '', video_cms_id: '', prvcy_stmt_ack: false }
+const emptyFormValues = { subject: '', comment: '', video_cms_id: '', privacy_stmt_ack: false }
 
 function VideoTestimonial() {
   const location = useLocation()
@@ -39,7 +39,7 @@ function VideoTestimonial() {
       method: existingTestimonial ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
       // eslint-disable-next-line camelcase
-      body: JSON.stringify({...values}),
+      body: JSON.stringify({ ...values }),
     })
     if (testimonialsResponse.ok) {
       history.push('/videoTestimonials')
@@ -67,25 +67,35 @@ function VideoTestimonial() {
               <TextFieldInput name={'comment'} control={control} label={'Comment'} required />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <TextFieldInput name={'video_cms_id'} control={control} label={'Video CMS ID'} required />
+              <TextFieldInput
+                name={'video_cms_id'}
+                control={control}
+                label={'Video CMS ID'}
+                required
+              />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <CheckboxInput name='privacy_stmt_ack' control={control} label={'Privacy Statement Acknowledgement'} required />
+              <CheckboxInput
+                name="privacy_stmt_ack"
+                control={control}
+                label={'Privacy Statement Acknowledgement'}
+                required
+              />
             </Grid>
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
             <Grid item>
-              <Button variant='outlined' color='primary' disabled={submitting} onClick={cancel}>
+              <Button variant="outlined" color="primary" disabled={submitting} onClick={cancel}>
                 Cancel
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='outlined' color='primary' disabled={submitting} onClick={resetForm}>
+              <Button variant="outlined" color="primary" disabled={submitting} onClick={resetForm}>
                 Reset
               </Button>
             </Grid>
             <Grid item>
-              <Button variant='contained' color='primary' disabled={submitting} type={'submit'}>
+              <Button variant="contained" color="primary" disabled={submitting} type={'submit'}>
                 {existingTestimonial ? 'Update' : 'Add'}
               </Button>
             </Grid>
