@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import LevelsTable from './LevelsTable'
 
 function LevelsRoute() {
@@ -16,7 +16,7 @@ function LevelsRoute() {
   }, [])
   return (
     <>
-      <LevelsTable levels={levels} isLoading={loadingLevels}/>
+      <LevelsTable levels={levels} isLoading={loadingLevels} />
     </>
   )
 }
