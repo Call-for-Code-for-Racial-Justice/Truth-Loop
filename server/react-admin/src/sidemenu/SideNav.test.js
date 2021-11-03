@@ -13,7 +13,6 @@ describe('SideNav tests', () => {
     it('sidenav should be closed', () => {
       expect(screen.getByTestId('navbar')).toBeInTheDocument()
       expect(screen.queryByText('Levels')).not.toBeVisible()
-      expect(screen.getByTestId('open-nav')).toBeInTheDocument()
       expect(screen.getByTestId('home')).not.toBeVisible()
       expect(screen.getByTestId('open-nav')).toBeVisible()
     })
@@ -28,7 +27,7 @@ describe('SideNav tests', () => {
     it('sidenav should be open', () => {
       expect(screen.getByTestId('navbar')).toBeInTheDocument()
       expect(screen.getByText('Levels')).toBeVisible()
-      expect(screen.getByTestId('close-nav')).toBeInTheDocument()
+      expect(screen.getByTestId('close-nav')).toBeVisible()
       expect(screen.getByTestId('home')).toBeVisible()
       expect(screen.getByTestId('open-nav')).not.toBeVisible()
     })

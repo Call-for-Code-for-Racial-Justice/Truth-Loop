@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
-import SideNavTab from './SideNavTab'
 import MuiAppBar from '@mui/material/AppBar'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -10,11 +9,12 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Drawer from '@mui/material/Drawer'
-
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
 import './sidenav.scss'
 
-const drawerWidth = 280
-
+const drawerWidth = 170
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -40,6 +40,17 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }))
 const SideNav = ({ open, handleClose, handleOpen }) => {
+  const navItems = [
+    { label: 'Legislative Artifacts', link: '/legislativeArtifacts' },
+    { label: 'Advocacy Groups', link: '/advocacyGroups' },
+    { label: 'Categories', link: '/categories' },
+    { label: 'Levels', link: '/levels' },
+    { label: 'Geographies', link: '/geospatialDefinintions' },
+    { label: 'Officials', link: '/officials' },
+    { label: 'Publications', link: '/publications' },
+    { label: 'Video Testimonials', link: '/videoTestimonials' },
+    { label: 'REST API Docs', link: '/api-docs' },
+  ]
   return (
     <nav data-testid="navbar">
       <AppBar position="fixed" open={open}>
@@ -68,20 +79,13 @@ const SideNav = ({ open, handleClose, handleOpen }) => {
             <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>
-        <SideNavTab label="Legislative Artifacts" link="legislativeArtifacts" />
-        <SideNavTab label="Advocacy Groups" link="advocacyGroups" />
-        <SideNavTab label="Categories" link="categories" />
-        <SideNavTab label="Levels" link="levels" />
-        <SideNavTab label="Geographies" link="geospatialDefinitions" />
-        <SideNavTab label="Officials" link="officials" />
-        <SideNavTab label="Publications" link="publications" />
-        <SideNavTab
-          label="Video Testimonials"
-          link="videoTestimonials"
-          component="Video Testimonial"
-        />
-        <SideNavTab label="Legislative Artifacts" link="legislativeArtifacts" />
-        <SideNavTab label="API Docs" link="api-docs" />
+        <List>
+          {navItems.map((navItem) => (
+            <ListItemButton key={navItem.label} href={navItem.link} component="a">
+              <ListItemText primary={navItem.label} />
+            </ListItemButton>
+          ))}
+        </List>
       </Drawer>
     </nav>
   )

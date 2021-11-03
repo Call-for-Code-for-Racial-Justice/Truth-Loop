@@ -19,11 +19,11 @@ import GeographyRoute from './geographies/GeographyRoute'
 import GeographyForm from './geographies/GeographyForm'
 
 import './adminapp.scss'
-const drawerWidth = 280
+const drawerWidth = 170
 
 function AdminApp() {
   const location = useLocation()
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
   React.useEffect(() => {
     handleDrawerClose()
   }, [location])
