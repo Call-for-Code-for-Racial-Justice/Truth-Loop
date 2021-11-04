@@ -45,7 +45,7 @@ const SideNav = ({ open, handleClose, handleOpen }) => {
     { label: 'Advocacy Groups', link: '/advocacyGroups' },
     { label: 'Categories', link: '/categories' },
     { label: 'Levels', link: '/levels' },
-    { label: 'Geographies', link: '/geospatialDefinintions' },
+    { label: 'Geographies', link: '/geospatialDefinitions' },
     { label: 'Officials', link: '/officials' },
     { label: 'Publications', link: '/publications' },
     { label: 'Video Testimonials', link: '/videoTestimonials' },
