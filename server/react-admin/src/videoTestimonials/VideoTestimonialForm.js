@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
 import CheckboxInput from '../form/CheckboxInput'
 
-// eslint-disable-next-line camelcase
 const emptyFormValues = { subject: '', comment: '', video_cms_id: '', privacy_stmt_ack: false }
 
 function VideoTestimonial() {
