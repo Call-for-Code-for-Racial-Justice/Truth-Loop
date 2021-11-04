@@ -63,23 +63,6 @@ function AdminApp() {
             component={PublicationForm}
           />
           <Route
-            name="video-testimonial-route"
-            exact
-            path={'/videoTestimonials'}
-            component={VideoTestimonialRoute}
-          />
-          <Route
-            name="add-testimonial-form"
-            exact
-            path={'/videoTestimonials/add'}
-            component={VideoTestimonialForm}
-          />
-          <Route
-            name="edit-testimonial-form"
-            path={'/videoTestimonials/edit/:id'}
-            component={VideoTestimonialForm}
-          />
-          <Route
             name="advocacy-group-route"
             exact
             path={'/advocacyGroups'}
