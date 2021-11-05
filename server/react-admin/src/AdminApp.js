@@ -26,6 +26,7 @@ const drawerWidth = 170
 function AdminApp() {
   const location = useLocation()
   const [open, setOpen] = React.useState(false)
+
   React.useEffect(() => {
     handleDrawerClose()
   }, [location])
@@ -129,17 +130,8 @@ function AdminApp() {
           />
 
           <Route name="artifact-route" exact path={'/artifacts'} component={ArtifactRoute} />
-          <Route
-            name="add-artifact-form"
-            exact
-            path={'/artifacts/add'}
-            component={ArtifactForm}
-          />
-          <Route
-            name="edit-artifact-form"
-            path={'/artifacts/edit/:id'}
-            component={ArtifactForm}
-          />
+          <Route name="add-artifact-form" exact path={'/artifacts/add'} component={ArtifactForm} />
+          <Route name="edit-artifact-form" path={'/artifacts/edit/:id'} component={ArtifactForm} />
         </Switch>
       </Main>
     </div>
