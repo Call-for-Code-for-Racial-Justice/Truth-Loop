@@ -17,6 +17,8 @@ import LevelsRoute from './levels/LevelsRoute'
 import LevelsForm from './levels/LevelsForm'
 import GeographyRoute from './geographies/GeographyRoute'
 import GeographyForm from './geographies/GeographyForm'
+import ArtifactRoute from './artifacts/ArtifactRoute'
+import ArtifactForm from './artifacts/ArtifactForm'
 
 import './adminapp.scss'
 const drawerWidth = 170
@@ -24,6 +26,7 @@ const drawerWidth = 170
 function AdminApp() {
   const location = useLocation()
   const [open, setOpen] = React.useState(false)
+
   React.useEffect(() => {
     handleDrawerClose()
   }, [location])
@@ -125,6 +128,10 @@ function AdminApp() {
             path={'/geospatialDefinitions/edit/:id'}
             component={GeographyForm}
           />
+
+          <Route name="artifact-route" exact path={'/artifacts'} component={ArtifactRoute} />
+          <Route name="add-artifact-form" exact path={'/artifacts/add'} component={ArtifactForm} />
+          <Route name="edit-artifact-form" path={'/artifacts/edit/:id'} component={ArtifactForm} />
         </Switch>
       </Main>
     </div>

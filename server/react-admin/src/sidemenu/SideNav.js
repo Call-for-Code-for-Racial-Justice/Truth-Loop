@@ -41,7 +41,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }))
 const SideNav = ({ open, handleClose, handleOpen }) => {
   const navItems = [
-    { label: 'Legislative Artifacts', link: '/legislativeArtifacts' },
+    { label: 'Legislative Artifacts', link: '/artifacts' },
     { label: 'Advocacy Groups', link: '/advocacyGroups' },
     { label: 'Categories', link: '/categories' },
     { label: 'Levels', link: '/levels' },
