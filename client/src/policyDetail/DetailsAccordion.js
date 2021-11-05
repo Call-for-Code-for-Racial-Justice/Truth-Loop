@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Accordion, AccordionItem } from 'carbon-components-react'
 import { injectIntl } from 'react-intl'
 import { messages } from '../nls/nlsUtility'
+import RelatedPolicyDetails from './RelatedPolicyDetails'
 
 const DetailsAccordion = ({
   summary,
@@ -48,8 +49,17 @@ const DetailsAccordion = ({
       <AccordionItem
         title={intl.formatMessage(messages.detailsItemRelatedPolicies)}
       >
-        {/*<p>{relatedPolicies}</p>*/}
-        <p>TODO: handle array of related policies</p>
+        {relatedPolicies.length ? (
+          relatedPolicies.map((relatedPolicy, index) => (
+            <RelatedPolicyDetails
+              key={`related-${relatedPolicy}-${index}`}
+              policy={relatedPolicy.title}
+              id={relatedPolicy.id}
+            />
+          ))
+        ) : (
+          <p>No Related policies</p>
+        )}
       </AccordionItem>
     </Accordion>
   )
