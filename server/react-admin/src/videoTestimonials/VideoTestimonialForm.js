@@ -7,9 +7,9 @@ import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import TextFieldInput from '../form/TextFieldInput'
+import CheckboxInput from '../form/CheckboxInput'
 
-// eslint-disable-next-line camelcase
-const emptyFormValues = { subject: '', comment: '', video_cms_id: '' }
+const emptyFormValues = { subject: '', comment: '', video_cms_id: '', privacy_stmt_ack: false }
 
 function VideoTestimonial() {
   const location = useLocation()
@@ -19,7 +19,6 @@ function VideoTestimonial() {
   })
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
-  const [privacyStatement, setPrivacyStatement] = useState(false)
   const history = useHistory()
 
   const handleCloseFormError = function () {
@@ -39,7 +38,7 @@ function VideoTestimonial() {
       method: existingTestimonial ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
       // eslint-disable-next-line camelcase
-      body: JSON.stringify({ ...values, privacy_stmt_ack: privacyStatement }),
+      body: JSON.stringify({ ...values }),
     })
     if (testimonialsResponse.ok) {
       history.push('/videoTestimonials')
@@ -75,16 +74,12 @@ function VideoTestimonial() {
               />
             </Grid>
             <Grid item lg={4} md={6} xs={12}>
-              <input
-                type="checkbox"
-                name="privacyStatement"
-                value={privacyStatement}
-                onClick={() => {
-                  setPrivacyStatement(!privacyStatement)
-                }}
+              <CheckboxInput
+                name="privacy_stmt_ack"
+                control={control}
+                label={'Privacy Statement Acknowledgement'}
                 required
               />
-              Accept Privacy Statement
             </Grid>
           </Grid>
           <Grid item container justifyContent={'flex-end'} spacing={1}>
