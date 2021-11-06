@@ -39,9 +39,9 @@ const DetailsAccordion = ({
               </p>
             </div>
           ))
-        ) : (
+        ) : 
           <div>{intl.formatMessage(messages.detailsNoOfficials)}</div>
-        )}
+        }
       </AccordionItem>
       <AccordionItem title={intl.formatMessage(messages.detailsItemStatus)}>
         <p>{policyStatus}</p>
@@ -58,7 +58,7 @@ const DetailsAccordion = ({
             />
           ))
         ) : (
-          <p>No Related policies</p>
+          <div>{intl.formatMessage(messages.detailsNoRelatedPolicies)}</div>
         )}
       </AccordionItem>
     </Accordion>

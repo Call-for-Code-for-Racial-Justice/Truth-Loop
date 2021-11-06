@@ -37,6 +37,7 @@ const messages = {
   detailsPhone: 'Phone Number: ',
   detailsRole: 'Role: ',
   detailsNoOfficials: 'No officials or sponsors',
+  detailsNoRelatedPolicies: 'No Related Details Found',
   //PolicyDetail
   federal: 'Federal',
   fullText: 'Full Text ',
