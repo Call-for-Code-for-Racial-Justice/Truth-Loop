@@ -12,12 +12,11 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
   let itemById
   let updatedPayload = { ...payload, subject: updatedSubject }
 
-  it('Make sure the random subjects do not match', async (done) => {
+  it('Make sure the random subjects do not match', async () => {
     expect(payload.subject).not.toEqual(updatedSubject)
-    done()
   })
 
-  it('GET should not have the item.', async (done) => {
+  it('GET should not have the item.', async () => {
     let res = await request(app)
       .get('/api/v1/videoTestimonials')
       .set('Accept', 'application/json')
@@ -27,10 +26,9 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
       // NOT!!!
       expect.arrayContaining([expect.objectContaining(payload)])
     )
-    done()
   })
 
-  it('POST creates the item', async (done) => {
+  it('POST creates the item', async () => {
     let res = await request(app)
       .post('/api/v1/videoTestimonials')
       .set('Accept', 'application/json')
@@ -42,10 +40,9 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
 
     // Save the ID for later
     id = res.body.id
-    done()
   })
 
-  it('GET should now include the item', async (done) => {
+  it('GET should now include the item', async () => {
     let res = await request(app)
       .get('/api/v1/videoTestimonials')
       .set('Accept', 'application/json')
@@ -54,10 +51,9 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
     expect(res.body).toEqual(
       expect.arrayContaining([expect.objectContaining(payload)])
     )
-    done()
   })
 
-  it('GET by ID should return item', async (done) => {
+  it('GET by ID should return item', async () => {
     let res = await request(app)
       .get(`/api/v1/videoTestimonials/${id}`)
       .set('Accept', 'application/json')
@@ -65,10 +61,9 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
     expect(res.status).toBe(200)
     expect(res.body).toEqual(expect.objectContaining(payload))
     itemById = res.body
-    done()
   })
 
-  it('PUT by ID to change the subject', async (done) => {
+  it('PUT by ID to change the subject', async () => {
     updatedPayload = { ...payload, subject: updatedSubject }
 
     expect(payload).not.toEqual(updatedPayload)
@@ -81,35 +76,31 @@ describe('CRUD TESTS FOR /api/v1/videoTestimonials', function () {
       .expect(200)
 
     expect(res.status).toBe(200)
-    done()
   })
 
-  it('GET by ID should return ***UPDATED*** item', async (done) => {
+  it('GET by ID should return ***UPDATED*** item', async () => {
     let res = await request(app)
       .get(`/api/v1/videoTestimonials/${id}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
     expect(res.status).toBe(200)
     expect(res.body).toEqual(expect.objectContaining(updatedPayload))
-    done()
   })
 
-  it('DELETE by ID should succeed', async (done) => {
+  it('DELETE by ID should succeed', async () => {
     let res = await request(app)
       .delete(`/api/v1/videoTestimonials/${id}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
     expect(res.status).toBe(200)
-    done()
   })
 
-  it('GET by ID should NOT find an item', async (done) => {
+  it('GET by ID should NOT find an item', async () => {
     let res = await request(app)
       .get(`/api/v1/videoTestimonials/${id}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
     expect(res.status).toBe(404)
     expect(res.body).toEqual({ error: 'Not Found' })
-    done()
   })
 })
