@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
 import { messages } from '../nls/nlsUtility'
-import './filtermenu.scss'
 
 const FilterMenu = forwardRef(({ show, intl, children }, ref) => {
   return (

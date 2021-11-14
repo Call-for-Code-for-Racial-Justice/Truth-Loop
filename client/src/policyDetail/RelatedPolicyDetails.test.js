@@ -16,7 +16,7 @@ describe('Test the rendering of the related policy component', () => {
     beforeEach(() => {
       render(<RelatedPolicyDetails policy={'Legislative Article 05'} id={5} />)
     })
-    it('test when policy is empty', () => {
+    it('test when policy is populated with one policy', () => {
       expect(screen.getByTestId('relatedPolicy')).toBeInTheDocument()
       expect(screen.getByText('Legislative Article 05')).toBeVisible()
     })
