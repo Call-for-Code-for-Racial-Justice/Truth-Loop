@@ -10,6 +10,6 @@ const RelatedPolicyDetails = ({ policy, id }) => {
 }
 RelatedPolicyDetails.propTypes = {
   policy: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.number,
 }
 export default RelatedPolicyDetails
