@@ -31,6 +31,14 @@ function ArtifactTable(props) {
   const history = useHistory()
   const [deleteError, setDeleteError] = useState('')
   const [itemToDelete, setItemToDelete] = useState(null)
+  const [loadingArtifact, setLoadingArtifact] = useState(false)
+
+  async function fetchFullArtifact(artifactId) {
+    const fullArtifactResponse = await fetch(
+      `/api/v1/legislativeArtifacts/fullDetail/${artifactId}`
+    )
+    return await fullArtifactResponse.json()
+  }
 
   const handleCancelDelete = () => {
     setItemToDelete(null)
@@ -59,7 +67,7 @@ function ArtifactTable(props) {
     <Paper data-testid={'ArtifactsTable'} elevation={12}>
       <AdminTable
         headCells={headCells}
-        isLoading={props.isLoading}
+        isLoading={props.isLoading || loadingArtifact}
         rows={props.artifacts.map((artifact) => ({
           id: artifact.id,
           title: artifact.title,
@@ -72,8 +80,11 @@ function ArtifactTable(props) {
         }))}
         caption={props.artifacts && props.artifacts.length ? caption : emptyTableCaption}
         tableLabel={'Artifacts'}
-        onEditItem={(item) => {
-          history.push(`/artifacts/edit/${item.id}`, { artifact: item })
+        onEditItem={async (item) => {
+          setLoadingArtifact(true)
+          const fullArtifact = await fetchFullArtifact(item.id)
+          setLoadingArtifact(false)
+          history.push(`/artifacts/edit/${item.id}`, { artifact: fullArtifact })
         }}
         onDeleteItem={(item) => {
           setItemToDelete(item)
@@ -85,7 +96,7 @@ function ArtifactTable(props) {
         variant={'text'}
         href={'/artifacts/add'}
         startIcon={<AddIcon />}
-        disabled={props.isLoading}
+        disabled={props.isLoading || loadingArtifact}
       >
         Add Artifact
       </Button>
