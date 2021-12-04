@@ -3,14 +3,37 @@ import { render, screen } from '@testing-library/react'
 import IntersectionsTable from './IntersectionsTable'
 
 describe('IntersectionsTable Tests', () => {
+  describe('When loading items', () => {
+    beforeEach(() => {
+      render(
+        <IntersectionsTable
+          rows={[]}
+          isLoading={true}
+          headCells={[{ id: 'id', label: 'ID' }]}
+          caption={'Hello Widgets'}
+          label={'Widgets'}
+          artifactId={1}
+          reloadArtifact={() => {}}
+          intersectionUrl={'example.com/intersection'}
+        />
+      )
+    })
+    it('should show progressBar', () => {
+      expect(screen.getByRole('progressbar')).toBeVisible()
+    })
+  })
   describe('When first rendering with empty array', () => {
     beforeEach(() => {
       render(
         <IntersectionsTable
           rows={[]}
+          isLoading={false}
           headCells={[{ id: 'id', label: 'ID' }]}
           caption={'Hello Widgets'}
           label={'Widgets'}
+          artifactId={1}
+          reloadArtifact={() => {}}
+          intersectionUrl={'example.com/intersection'}
         />
       )
     })
@@ -26,8 +49,12 @@ describe('IntersectionsTable Tests', () => {
       render(
         <IntersectionsTable
           rows={[{ id: 123, label: 'Widget 123' }]}
+          isLoading={false}
           headCells={[{ id: 'id', label: 'ID' }]}
           label={'Widgets'}
+          artifactId={1}
+          reloadArtifact={() => {}}
+          intersectionUrl={'example.com/intersection'}
         />
       )
     })
@@ -49,8 +76,12 @@ describe('IntersectionsTable Tests', () => {
             { id: 123, label: 'Widget 123' },
             { id: 234, label: 'Widget 234' },
           ]}
+          isLoading={false}
           headCells={[{ id: 'id', label: 'ID' }]}
           label={'Widgets'}
+          artifactId={1}
+          reloadArtifact={() => {}}
+          intersectionUrl={'example.com/intersection'}
         />
       )
     })
