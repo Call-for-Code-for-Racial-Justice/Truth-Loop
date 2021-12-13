@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -17,6 +17,7 @@ import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Snackbar from '@mui/material/Snackbar'
+import AddIntersectionsTable from './AddIntersectionsTable'
 
 IntersectionsTable.propTypes = {
   headCells: PropTypes.array.isRequired,
@@ -26,17 +27,48 @@ IntersectionsTable.propTypes = {
   artifactId: PropTypes.number.isRequired,
   reloadArtifact: PropTypes.func.isRequired,
   intersectionUrl: PropTypes.string.isRequired,
+  itemsUrl: PropTypes.string.isRequired,
+  itemHeaders: PropTypes.array.isRequired,
 }
 
 function IntersectionsTable(props) {
   const { headCells, rows, label } = props
-  const [deleteError, setDeleteError] = useState('')
-  const handleCloseDeleteError = async () => {
-    setDeleteError('')
-  }
+  const [errorText, setErrorText] = useState('')
+  const [showAvailableIntersections, setShowAvailableIntersections] = useState(false)
+  const [allAvailableItems, setAllAvailableItems] = useState([])
 
+  const handleCloseError = async () => setErrorText('')
+  const addIntersections = () => setShowAvailableIntersections(true)
+  const handleAdd = async (rowToAdd) => {
+    let body, url
+    if (props.label === 'Officials') {
+      url = `${props.intersectionUrl}`
+      body = {
+        artifact_id: props.artifactId,
+        official_id: rowToAdd.id,
+        role_in_artifact: 'sponsor', // TODO:
+        show_in_list: false, // TODO: There can only be one true!!!
+      }
+    } else {
+      url = `${props.intersectionUrl}/${props.artifactId}/${rowToAdd.id}`
+      body = {}
+    }
+    const addArtifactIntersectionsResponse = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+    if (addArtifactIntersectionsResponse.ok) {
+      props.reloadArtifact()
+    } else {
+      const errorResponseText = await addArtifactIntersectionsResponse.text()
+      setErrorText(errorResponseText)
+    }
+  }
   const handleDelete = async (itemToRemove) => {
-    setDeleteError('')
+    setErrorText('')
     const deleteArtifactIntersectionUrl = `${props.intersectionUrl}/${props.artifactId}/${itemToRemove.id}`
     const deleteArtifactIntersectionResponse = await fetch(deleteArtifactIntersectionUrl, {
       method: 'DELETE',
@@ -45,10 +77,25 @@ function IntersectionsTable(props) {
     if (deleteArtifactIntersectionResponse.ok) {
       props.reloadArtifact()
     } else {
-      const errorText = await deleteArtifactIntersectionResponse.text()
-      setDeleteError(errorText)
+      const errorResponseText = await deleteArtifactIntersectionResponse.text()
+      setErrorText(errorResponseText)
     }
   }
+
+  useEffect(() => {
+    const loadItems = async () => {
+      const response = await fetch(props.itemsUrl)
+      const responseJson = await response.json()
+
+      const allItems = responseJson.filter((item) => {
+        return !rows.some((intersectedItem) => {
+          return intersectedItem.id === item.id
+        })
+      })
+      setAllAvailableItems(allItems)
+    }
+    loadItems()
+  }, [rows, props.itemsUrl])
 
   return (
     <>
@@ -112,17 +159,32 @@ function IntersectionsTable(props) {
         </TableContainer>
         <Grid container spacing={2} justifyContent={'flex-end'}>
           <Grid item>
-            <Button color={'secondary'} variant={'outlined'} href={''} startIcon={<AddIcon />}>
+            <Button
+              color={'secondary'}
+              variant={'outlined'}
+              href={''}
+              startIcon={<AddIcon />}
+              onClick={addIntersections}
+            >
               Add
             </Button>
           </Grid>
         </Grid>
       </Paper>
       <Snackbar
-        open={!!deleteError}
+        open={!!errorText}
         autoHideDuration={6000}
-        onClose={handleCloseDeleteError}
-        message={deleteError}
+        onClose={handleCloseError}
+        message={errorText}
+      />
+
+      <AddIntersectionsTable
+        headers={props.itemHeaders}
+        alreadyIntersected={rows}
+        onClose={() => setShowAvailableIntersections(false)}
+        onAdd={handleAdd}
+        show={showAvailableIntersections}
+        allAvailableItems={allAvailableItems}
       />
     </>
   )
