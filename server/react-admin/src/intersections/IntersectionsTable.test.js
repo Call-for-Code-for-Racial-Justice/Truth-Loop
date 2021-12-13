@@ -15,6 +15,8 @@ describe('IntersectionsTable Tests', () => {
           artifactId={1}
           reloadArtifact={() => {}}
           intersectionUrl={'example.com/intersection'}
+          itemsUrl={'example.com/item'}
+          itemHeaders={[{ id: 'id', label: 'ID' }]}
         />
       )
     })
@@ -34,6 +36,8 @@ describe('IntersectionsTable Tests', () => {
           artifactId={1}
           reloadArtifact={() => {}}
           intersectionUrl={'example.com/intersection'}
+          itemsUrl={'example.com/item'}
+          itemHeaders={[{ id: 'id', label: 'ID' }]}
         />
       )
     })
@@ -55,6 +59,8 @@ describe('IntersectionsTable Tests', () => {
           artifactId={1}
           reloadArtifact={() => {}}
           intersectionUrl={'example.com/intersection'}
+          itemsUrl={'example.com/item'}
+          itemHeaders={[{ id: 'id', label: 'ID' }]}
         />
       )
     })
@@ -82,6 +88,8 @@ describe('IntersectionsTable Tests', () => {
           artifactId={1}
           reloadArtifact={() => {}}
           intersectionUrl={'example.com/intersection'}
+          itemsUrl={'example.com/item'}
+          itemHeaders={[{ id: 'id', label: 'ID' }]}
         />
       )
     })

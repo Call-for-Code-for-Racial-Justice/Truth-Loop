@@ -31,6 +31,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/advocacyGroup'}
+        itemsUrl={'/api/v1/advocacyGroups'}
+        itemHeaders={[
+          { id: 'name', label: 'Name' },
+          { id: 'description', label: 'Description' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.categoryHeadCells}
@@ -39,6 +44,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/category'}
+        itemsUrl={'/api/v1//categories'}
+        itemHeaders={[
+          { id: 'name', label: 'Name' },
+          { id: 'description', label: 'Description' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.geographyHeadCells}
@@ -47,6 +57,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/geospatialDefinition'}
+        itemsUrl={'/api/v1//geospatialDefinitions'}
+        itemHeaders={[
+          { id: 'short_name_ui', label: 'Short Name' },
+          { id: 'description', label: 'Description' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.officialHeadCells}
@@ -55,6 +70,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/official'}
+        itemsUrl={'/api/v1//officials'}
+        itemHeaders={[
+          { id: 'name', label: 'Name' },
+          { id: 'title', label: 'Title' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.publicationHeadCells}
@@ -63,6 +83,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/publication'}
+        itemsUrl={'/api/v1//publications'}
+        itemHeaders={[
+          { id: 'title', label: 'Title' },
+          { id: 'description', label: 'Description' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.testimonialHeadCells}
@@ -71,6 +96,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/videoTestimonial'}
+        itemsUrl={'/api/v1//videoTestimonials'}
+        itemHeaders={[
+          { id: 'subject', label: 'Subject' },
+          { id: 'comment', label: 'Comment' },
+        ]}
       />
       <IntersectionsTable
         headCells={artifactIntersectionHeaders.relatedArtifactHeadCells}
@@ -79,6 +109,11 @@ function ArtifactIntersections({ artifact, reloadArtifact }) {
         reloadArtifact={reloadArtifact}
         artifactId={artifact.id}
         intersectionUrl={'/api/v1/adminIntersections/relatedArtifact'}
+        itemsUrl={'/api/v1//legislativeArtifacts'}
+        itemHeaders={[
+          { id: 'title', label: 'Title' },
+          { id: 'summary', label: 'Summary' },
+        ]}
       />
     </>
   )
