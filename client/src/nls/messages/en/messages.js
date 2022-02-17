@@ -24,6 +24,8 @@ const messages = {
   privacyRefresh: 'Please refresh this page and accept the privacy statement.',
   //PolicyTable
   noPolicies: 'No Policies Available.',
+  // PolicyNotice
+  policyNotice: 'Policy Notice',
   //Filter
   filterBy: 'Filter by:',
   //DetailsAccordion
