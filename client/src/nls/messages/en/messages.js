@@ -47,6 +47,15 @@ const messages = {
   seeTestimonials: 'See policy testimonials',
   //Sentiment
   communitySentiment: 'COMMUNITY SENTIMENT',
+  // RecordRoute
+  fullDetail: 'Full Detail',
+  share: 'Share',
+  cancel: 'Cancel',
+  audio: 'Audio Only',
+  noPolicyFound: 'No policy found',
+  // PolicyRoute
+  cannotLoadPolicy: 'Cannot load policy',
+  loading: 'Loading...',
 }
 
 export default messages
