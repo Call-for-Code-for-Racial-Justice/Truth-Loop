@@ -157,7 +157,9 @@ const RecordRoute = ({ intl }) => {
                 <div>{intl.formatMessage(messages.fullDetail)}</div>
               </Column>
               <Column className={'col-2'}>
-                <div className="btn-blur">Blur</div>
+                <div className="btn-blur">
+                  {intl.formatMessage(messages.blur)}
+                </div>
               </Column>
               <Column className={'col-3'}>
                 <div>{intl.formatMessage(messages.audio)}</div>

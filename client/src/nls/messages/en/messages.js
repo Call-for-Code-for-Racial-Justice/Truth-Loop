@@ -24,6 +24,7 @@ const messages = {
   privacyRefresh: 'Please refresh this page and accept the privacy statement.',
   //PolicyTable
   noPolicies: 'No Policies Available.',
+  policies: 'POLICIES',
   // PolicyNotice
   policyNotice: 'Policy Notice',
   //Filter
@@ -56,6 +57,7 @@ const messages = {
   // PolicyRoute
   cannotLoadPolicy: 'Cannot load policy',
   loading: 'Loading...',
+  blur: 'Blur',
 }
 
 export default messages

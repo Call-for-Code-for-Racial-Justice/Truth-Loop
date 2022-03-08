@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentPolicy } from '../store/policy.duck'
 import PolicyDetail from '../policyDetail/PolicyDetail'
 import { messages } from '../nls/nlsUtility'
+import { injectIntl } from 'react-intl'
 
 const PolicyRoute = () => {
   const { policyId } = useParams()
@@ -45,4 +46,8 @@ const PolicyRoute = () => {
   )
 }
 
-export default PolicyRoute
+PolicyRoute.propTypes = {
+  intl: PropTypes.any.isRequired,
+}
+
+export default injectIntl(PolicyRoute)
