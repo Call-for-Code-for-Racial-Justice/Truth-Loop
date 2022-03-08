@@ -19,8 +19,8 @@ import GeographyRoute from './geographies/GeographyRoute'
 import GeographyForm from './geographies/GeographyForm'
 import ArtifactRoute from './artifacts/ArtifactRoute'
 import ArtifactForm from './artifacts/ArtifactForm'
-
 import './adminapp.scss'
+
 const drawerWidth = 170
 
 function AdminApp() {
@@ -39,7 +39,7 @@ function AdminApp() {
   return (
     <div id={'app'}>
       <SideNav open={open} handleClose={handleDrawerClose} handleOpen={handleDrawerOpen} />
-      <Main open={open} id={'main-content'} data-testid={'mainContent'}>
+      <Main id={'main-content'} data-testid={'mainContent'}>
         <Switch>
           <Route name="admin-home-route" exact path={'/'} component={AdminHomeRoute} />
           <Route name="level-route" exact path={'/levels'} component={LevelsRoute} />
@@ -141,7 +141,7 @@ function AdminApp() {
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
