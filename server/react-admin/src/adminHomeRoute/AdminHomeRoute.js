@@ -30,7 +30,7 @@ const AdminHomeRoute = () => {
   }))
   const classes = useStyles()
   return (
-    <>
+    <div data-testid={'adminHomeContent'}>
       <Box className={classes.hero}>
         <Typography variant="h6" component={'h1'} m={theme.spacing(1)}>
           Administration UI for the Truth Loop database
@@ -58,7 +58,7 @@ const AdminHomeRoute = () => {
           Use the REST API to programmatically CRUD your database entities.
         </Typography>
       </Box>
-    </>
+    </div>
   )
 }
 
