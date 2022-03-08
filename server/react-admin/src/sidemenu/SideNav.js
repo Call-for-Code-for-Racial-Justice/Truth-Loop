@@ -49,7 +49,7 @@ const SideNav = ({ open, handleClose, handleOpen }) => {
     { label: 'Officials', link: '/officials' },
     { label: 'Publications', link: '/publications' },
     { label: 'Video Testimonials', link: '/videoTestimonials' },
-    { label: 'REST API Docs', link: '/api-docs' },
+    { label: 'REST API Docs', link: 'http://localhost:5000/api-docs' },
   ]
   return (
     <nav data-testid="navbar">
