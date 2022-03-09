@@ -40,9 +40,6 @@ app.use(logger.expressLogger)
 app.use(cors())
 app.use(express.json()) //req.body
 
-// Serve a static version of the Vue.js client at /
-app.use(express.static('../client/dist', { fallthrough: true }))
-
 // Serve a static version of the React.js client at /react
 // app.use(express.static('../react/client/build', {fallthrough: true}));
 app.use(express.static(path.join(__dirname, '../react/client/build')))

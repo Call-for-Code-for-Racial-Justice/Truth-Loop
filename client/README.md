@@ -1,7 +1,4 @@
-# Migration from Vue to React
-
-This project is about migrate and develop client-side using React for "Call for Code
-for Racial Justice.
+# Client App
 
 ## Installed Dependencies
 The expected is if you run "npm i" everything should be installed.

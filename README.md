@@ -105,7 +105,6 @@ There is an administrative API interface that allows the site owners to curate t
 - [OpenShift](https://cloud.ibm.com/docs/openshift?topic=openshift-getting-started)
 - [Node.js](https://nodejs.org/en/docs/)
 - [ExpressJS](https://expressjs.com/)
-- [Vue.js](https://vuejs.org/)
 - [React.js](https://reactjs.org/)
 - [Redux](https://redux.js.org/)
   - For the redux we use the [ducks pattern as seen here](https://github.com/erikras/ducks-modular-redux)
