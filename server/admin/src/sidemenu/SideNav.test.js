@@ -3,9 +3,9 @@ import { screen, render } from '@testing-library/react'
 import SideNav from './SideNav'
 
 describe('SideNav tests', () => {
-  describe('checking visiblilty of sidenav when open is false', () => {
+  describe('checking visibility of sidenav when open is false', () => {
     beforeEach(() => {
-      const open = false
+      let open = false
       render(
         <SideNav open={open} handleClose={() => (open = false)} handleOpen={() => (open = true)} />
       )
@@ -17,9 +17,9 @@ describe('SideNav tests', () => {
       expect(screen.getByTestId('open-nav')).toBeVisible()
     })
   })
-  describe('checking visiblilty of sidenav when open is true', () => {
+  describe('checking visibility of sidenav when open is true', () => {
     beforeEach(() => {
-      const open = true
+      let open = true
       render(
         <SideNav open={open} handleClose={() => (open = false)} handleOpen={() => (open = true)} />
       )

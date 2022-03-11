@@ -1,4 +1,3 @@
-const bodyParser = require('body-parser')
 const cors = require('cors')
 const logger = require('./logger')
 const cookieParser = require('cookie-parser')
@@ -40,21 +39,7 @@ app.use(logger.expressLogger)
 app.use(cors())
 app.use(express.json()) //req.body
 
-// Serve a static version of the React.js client at /react
-// app.use(express.static('../react/client/build', {fallthrough: true}));
-app.use(express.static(path.join(__dirname, '../react/client/build')))
-app.get('/react', function (req, res) {
-  res.sendFile(path.join(__dirname, '../react/client/build', 'index.html'))
-})
-
-// Server a static version of the admin UI under /admin
-app.use('/admin', express.static('./admin/dist', { fallthrough: true }))
-
-//ROUTES//
-
 app.use('/auth', authentication)
-
-// Database Entities
 
 // Using the auth checks is undocumented, so disabled by default
 if (process.env.ENABLE_AUTH) {
@@ -99,5 +84,17 @@ if (process.env.ENABLE_AUTH) {
   app.use('/api/v1/legislativeArtifacts', legislativeArtifacts)
   app.use('/api/v1/adminIntersections', adminIntersections)
 }
+
+app.use(
+  express.static(path.join(__dirname, './admin/build'), {
+    fallthrough: true,
+  })
+)
+
+app.get('*', function (req, res) {
+  res.sendFile('index.html', {
+    root: path.join(__dirname, './admin/build/'),
+  })
+})
 
 module.exports = app
