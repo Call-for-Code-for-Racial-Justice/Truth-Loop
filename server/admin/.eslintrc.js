@@ -1,13 +1,13 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
   },
   extends: [
-    '../.eslintrc.js',
+    'plugin:jest/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'prettier',
   ],
   parserOptions: {
@@ -17,7 +17,17 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
+  plugins: ['jest', 'prettier'],
   rules: {
+    'jest/no-done-callback': 'warn',
     'prettier/prettier': 'warn',
   },
+  overrides: [
+    {
+      files: ['**/*.test.js'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }
