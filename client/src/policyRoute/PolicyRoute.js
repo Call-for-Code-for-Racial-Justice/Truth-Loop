@@ -5,6 +5,7 @@ import { fetchCurrentPolicy } from '../store/policy.duck'
 import PolicyDetail from '../policyDetail/PolicyDetail'
 import { messages } from '../nls/nlsUtility'
 import { injectIntl } from 'react-intl'
+import PropTypes from 'prop-types'
 
 const PolicyRoute = () => {
   const { policyId } = useParams()
