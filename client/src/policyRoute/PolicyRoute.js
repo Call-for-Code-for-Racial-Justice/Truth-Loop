@@ -7,7 +7,7 @@ import { messages } from '../nls/nlsUtility'
 import { injectIntl } from 'react-intl'
 import PropTypes from 'prop-types'
 
-const PolicyRoute = () => {
+const PolicyRoute = ({ intl }) => {
   const { policyId } = useParams()
   const dispatch = useDispatch()
   const { currentPolicy, status } = useSelector(({ policy }) => policy)
