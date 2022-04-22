@@ -24,6 +24,9 @@ const messages = {
   privacyRefresh: 'Please refresh this page and accept the privacy statement.',
   //PolicyTable
   noPolicies: 'No Policies Available.',
+  policies: 'POLICIES',
+  // PolicyNotice
+  policyNotice: 'Policy Notice',
   //Filter
   filterBy: 'Filter by:',
   //DetailsAccordion
@@ -45,6 +48,16 @@ const messages = {
   seeTestimonials: 'See policy testimonials',
   //Sentiment
   communitySentiment: 'COMMUNITY SENTIMENT',
+  // RecordRoute
+  fullDetail: 'Full Detail',
+  share: 'Share',
+  cancel: 'Cancel',
+  audio: 'Audio Only',
+  noPolicyFound: 'No policy found',
+  // PolicyRoute
+  cannotLoadPolicy: 'Cannot load policy',
+  loading: 'Loading...',
+  blur: 'Blur',
 }
 
 export default messages

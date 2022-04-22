@@ -38,7 +38,9 @@ const PolicyTable = ({ policies, intl }) => {
     <div data-testid={'policyTable'}>
       <Grid className={'policy-table'}>
         <Row className={'policy-title-row'}>
-          <Column>{`POLICIES: (${policies.length})`}</Column>
+          <Column>{`${intl.formatMessage(messages.policies)}: (${
+            policies.length
+          })`}</Column>
         </Row>
         {policies.map(renderItem)}
       </Grid>

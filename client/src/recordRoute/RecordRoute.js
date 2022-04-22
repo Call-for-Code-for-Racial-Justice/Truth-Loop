@@ -5,6 +5,9 @@ import StopFilledAlt32 from '@carbon/icons-react/lib/stop--filled--alt/32'
 import RecordingFilledAlt32 from '@carbon/icons-react/lib/recording--filled--alt/32'
 import Webcam from 'react-webcam'
 import RecordRTC from 'recordrtc'
+import { messages } from '../nls/nlsUtility'
+import { injectIntl } from 'react-intl'
+import PropTypes from 'prop-types'
 
 import './RecordRoute.scss'
 
@@ -18,7 +21,7 @@ const mediaConstraints = {
   audio: true,
 }
 
-const RecordRoute = () => {
+const RecordRoute = ({ intl }) => {
   const { policyId } = useParams()
 
   const webcamRef = useRef(null)
@@ -120,14 +123,20 @@ const RecordRoute = () => {
   )
 
   if (!policyId) {
-    return <h2 data-testid={'noPolicyFound'}>No policy found</h2>
+    return (
+      <h2 data-testid={'noPolicyFound'}>
+        {intl.formatMessage(messages.noPolicyFound)}
+      </h2>
+    )
   }
 
   return (
     <div className="bx--grid bx--grid--default bx--grid--no-gutter tell-me-content">
       <div className="bx--row">
         <div className="bx--col r1-col">
-          <div className="page-title">Tell My Story</div>
+          <div className="page-title">
+            {intl.formatMessage(messages.tellStory)}
+          </div>
         </div>
       </div>
       <div className="bx--row">
@@ -145,13 +154,15 @@ const RecordRoute = () => {
           <Grid className={'video-control-panel'}>
             <Row className={'grid-row'}>
               <Column className={'col-1'}>
-                <div>Full Detail</div>
+                <div>{intl.formatMessage(messages.fullDetail)}</div>
               </Column>
               <Column className={'col-2'}>
-                <div className="btn-blur">Blur</div>
+                <div className="btn-blur">
+                  {intl.formatMessage(messages.blur)}
+                </div>
               </Column>
               <Column className={'col-3'}>
-                <div>Audio Only</div>
+                <div>{intl.formatMessage(messages.audio)}</div>
               </Column>
             </Row>
             <Row className={'grid-row'}>
@@ -174,14 +185,17 @@ const RecordRoute = () => {
       </div>
       <div className="bx--row">
         <div className="bx--col r4-col bx--btn--secondary">
-          <div className="btn">Cancel</div>
+          <div className="btn">{intl.formatMessage(messages.cancel)}</div>
         </div>
         <div className="bx--col r4-col bx--btn--primary">
-          <div className="btn">Share</div>
+          <div className="btn">{intl.formatMessage(messages.share)}</div>
         </div>
       </div>
     </div>
   )
 }
+RecordRoute.propTypes = {
+  intl: PropTypes.any.isRequired,
+}
 
-export default RecordRoute
+export default injectIntl(RecordRoute)

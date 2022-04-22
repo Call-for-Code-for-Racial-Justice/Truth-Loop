@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentPolicy } from '../store/policy.duck'
 import PolicyDetail from '../policyDetail/PolicyDetail'
+import { messages } from '../nls/nlsUtility'
+import { injectIntl } from 'react-intl'
+import PropTypes from 'prop-types'
 
-const PolicyRoute = () => {
+const PolicyRoute = ({ intl }) => {
   const { policyId } = useParams()
   const dispatch = useDispatch()
   const { currentPolicy, status } = useSelector(({ policy }) => policy)
@@ -25,11 +28,27 @@ const PolicyRoute = () => {
       </h2>
     )
   } else if (status === 'pending') {
-    return <h2 data-testid={'loadingPolicy'}>Loading...</h2>
+    return (
+      <h2 data-testid={'loadingPolicy'}>
+        {intl.formatMessage(messages.loading)}
+      </h2>
+    )
   } else if (status === 'error') {
-    return <h2 data-testid={'cannotLoadPolicy'}>Cannot load policy</h2>
+    return (
+      <h2 data-testid={'cannotLoadPolicy'}>
+        {intl.formatMessage(messages.cannotLoadPolicy)}
+      </h2>
+    )
   }
-  return <h2 data-testid={'emptyPolicy'}>No policy found</h2>
+  return (
+    <h2 data-testid={'emptyPolicy'}>
+      {intl.formatMessage(messages.noPolicyFound)}
+    </h2>
+  )
 }
 
-export default PolicyRoute
+PolicyRoute.propTypes = {
+  intl: PropTypes.any.isRequired,
+}
+
+export default injectIntl(PolicyRoute)
